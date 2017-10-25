@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+
+	<!-- ================================================ Form Bean Definitions-->
+
+	<form-beans>
+		 <!-- 用户登录 --> 
+		<form-bean name="loginForm" type="org.apache.struts.validator.DynaValidatorForm">
+	        <form-property name="username" type="java.lang.String"/>
+	        <form-property name="password" type="java.lang.String"/>
+	        <form-property name="code" type="java.lang.String"/>
+        </form-bean>
+        
+	</form-beans>
+
+
+	<!--  ========================================= Global Exception Definitions  -->
+
+	<global-exceptions>
+		<exception
+        key="request.invalid"
+        type="com.css.base.BaseException"
+        handler="com.css.base.BaseExceptionHandler"
+        path="/error.do"/>
+	</global-exceptions>
+
+
+	<!-- =========================================== Global Forward Definitions-->
+
+	<global-forwards>
+		<!-- 全局信息提示页面转向 -->
+        <forward name="error" path="/error.do"/>
+        <forward name="return2FavoriteIndex" path="/returnMain.do"/>
+	</global-forwards>
+
+
+	<!-- =========================================== Action Mapping Definitions-->
+
+	<action-mappings>
+
+		<!-- 将sys_message.vm映射为error.do -->
+		<action path="/error" forward="/sys_message.vm"/>
+		<action path="/index" forward="/load4Login.do"/>
+		
+		<!-- 用户登录 -->
+		<action	path="/login"
+			type="com.report.manage.action.LoginAction"
+			scope="request"
+			input="/load4Login.do"
+			name="loginForm"
+			validate="true"
+			parameter="login">
+		
+			<forward name="failure" path="/../manage/login.vm" />
+			<forward name="success" path="/load4Index.do" />
+		</action>
+		<!-- 请求验证码 -->
+		<action
+        	path="/imageCode"
+			type="com.report.manage.action.LoginAction"
+			scope="request"
+			input="/load4Login.do"
+			validate="false"
+			parameter="imageCode">
+        </action>
+        <!-- 后台首页 -->
+		<action
+        	path="/load4Index"
+			type="com.report.manage.action.LoginAction"
+			scope="request"
+			input="/load4Login.do"
+			validate="false"
+			parameter="load4Index">
+			<forward name="success" path="/../manage/index.vm"/>
+        </action>
+        
+        <!-- 拦截器返回首页 -->
+        <action path="/returnMain" forward="/pages/main/main.vm"/>
+        <!-- 后台登陆 -->
+		<action
+        	path="/load4Login"
+			type="com.report.manage.action.LoginAction"
+			scope="request"
+			input="/loginOn.do"
+			validate="false"
+			parameter="load4Login">
+			
+			<forward name="success" path="/../manage/login.vm"/>
+        </action>
+        
+        <!-- 加载后台左侧列表 -->
+		<action
+        	path="/load4Left"
+			type="com.report.manage.action.LoginAction"
+			scope="request"
+			input="/loginOn.do"
+			validate="false"
+			parameter="load4Left">
+			
+			<forward name="load4Left" path="/pages/main/left.vm"/>
+        </action>
+        <!-- 加载后台右侧页面 -->
+        <action
+        	path="/load4Right"
+			type="com.report.manage.action.LoginAction"
+			scope="request"
+			input="/loginOn.do"
+			validate="false"
+			parameter="load4Right">
+			
+			<forward name="load4Right" path="/pages/main/adminIndex.vm"/>
+        </action>
+        <!-- 退出 -->
+		<action
+        	path="/logout"
+			type="com.report.manage.action.LoginAction"
+			scope="request"
+			input="/loginOn.do"
+			validate="false"
+			parameter="logout">
+			
+			<forward name="logoutFrw" path="/load4Login.do"/>
+        </action>
+        
+		<action
+        	path="/getTest"
+			type="com.css.permit.action.TestAction"
+			scope="request"
+			input="/loginOn.do"
+			validate="false"
+			parameter="getTest">
+			
+			<forward name="getTest" path="/pages/main/echo.vm"/>
+        </action>
+        <action
+        	path="/getForm"
+			type="com.css.permit.action.TestAction"
+			scope="request"
+			input="/pages/permit/test.vm"
+			name="testForm"
+			validate="true"
+			parameter="getForm">
+			
+			<forward name="getForm" path="/pages/permit/test.vm"/>
+        </action>
+	</action-mappings>
+
+
+	<!-- ============================================= Controller Configuration-->
+
+	<!--<controller
+		processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>-->
+
+
+	<!-- ======================================== Message Resources Definitions-->
+
+	<message-resources parameter="resource.appResource" />
+
+
+	<!-- =============================================== Plug Ins Configuration-->
+
+
+	<!-- =================================================== Validator plugin-->
+
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/WEB-INF/validator-rules.xml,/WEB-INF/manage/validation.xml" />
+	</plug-in>
+
+	<!-- =================================================== AOP plugin -->
+	<!-- 自动加载interceptor-config.xml的信息 -->
+	<plug-in className="com.css.struts.aop.SAIFPlugin">
+		<set-property property="interceptor-config"
+			value="/WEB-INF/manage/interceptor-config.xml"/>
+		<set-property value="UTF-8" property="encoding" />
+	</plug-in>
+	
+</struts-config>

@@ -1,0 +1,121 @@
+#set($loginInfo = $session.getAttribute($MAIN_SESSION))
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台管理</title>
+<link rel="shortcut icon" href="<?php echo favicon; ?>" />
+<script language="javascript" type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script src="js/frame.js" language="javascript" type="text/javascript"></script>
+<link href="css/frame.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script src="js/DD_belatedPNG_0.0.8a-min.js" language="javascript" type="text/javascript"></script>
+<script>
+  DD_belatedPNG.fix('.nav ul li a,.top_link ul li,background');   /* string argument can be any CSS selector */
+</script>
+<![endif]-->
+</head>
+<body class="showmenu">
+<div class="pagemask"></div>
+<iframe class="iframemask"></iframe>
+<div class="head">
+<div class="top_logo"> <img src="images/main/logo.png" /> </div>
+	 <div class="top_link">
+      <ul>
+	    <li id="i_self">您好，$loginInfo.get("username")</li>
+		<li id="i_hide_menu"><a href="#" id="togglemenu">隐藏菜单</a></li>
+        <li id="i_home"><a href="<?php echo APP_PATH; ?>" target="_blank">首页</a></li> 
+        <li id="i_exit"><a href="$link.setAction('/logout')" target="_top">退出</a></li>		
+      </ul>
+    </div>
+</div>
+<!-- header end -->
+
+<div class="left">
+<div class="span"></div>
+<div class="menu" id="menu">
+<div>
+<?php
+	//菜单列表
+	$sql = "select a.* from cms_menu a, cms_access b, cms_role_user c where a.id=b.menuid and b.roleid=c.roleid and c.userid=$userid and a.pid=0 order by a.sort"; 
+	if($superadmin){
+		$sql = "select * from cms_menu t where t.pid=0 order by sort"; 
+	}
+	$result = mysql_query($sql);
+	while($data=mysql_fetch_array($result)){ 
+		if($data['id']=="6"){
+?>
+	<dl>
+		<dt><?php echo $data['name'] ?></dt>
+		<dd>
+			<ul>
+				<?php 
+				$sql1 = "select * from cms_category t where t.pid=0 and t.modelid<>0 and t.isshow=1 and t.isvalid=1 order by sort"; 
+				$result1 = mysql_query($sql1);
+				while($data1=mysql_fetch_array($result1)){ 
+					switch($data1['modelid']){
+						case "1":
+							echo "<li><a href='article_index.php?cid=".$data1['id']."' target='right'>".$data1['name']."</a></li>";
+							break;
+						case "2":
+							echo "<li><a href='page_index.php?cid=".$data1['id']."' target='right'>".$data1['name']."</a></li>";
+							break;
+						case "3":
+							echo "<li><a href='product_index.php?cid=".$data1['id']."' target='right'>".$data1['name']."</a></li>";
+							break;
+						case "4":
+							echo "<li><a href='picture_index.php?cid=".$data1['id']."' target='right'>".$data1['name']."</a></li>";
+							break;
+						case "5":
+							echo "<li><a href='soft_index.php?cid=".$data1['id']."' target='right'>".$data1['name']."</a></li>";
+							break;
+					}
+				}
+				?>
+			</ul>
+		</dd>
+	</dl>
+<?php
+		}else{
+?>
+	<dl>
+		<dt><?php echo $data['name'] ?></dt>
+		<dd>
+			<ul>
+				<?php 
+				$sql1 = "select a.* from cms_menu a, cms_access b, cms_role_user c where a.id=b.menuid and b.roleid=c.roleid and c.userid=$userid and a.pid=".$data['id']." order by a.sort"; 
+				if($superadmin){
+					$sql1 = "select * from cms_menu t where t.pid=".$data['id']." order by sort"; 
+				}
+				$result1 = mysql_query($sql1);
+				while($data1=mysql_fetch_array($result1)){ 
+					echo "<li><a href='".$data1['url']."' target='right'>".$data1['name']."</a></li>";
+				}
+				?>
+			</ul>
+		</dd>
+	</dl>
+<?php
+		}
+	}
+?>
+</div>
+
+</div>
+</div>
+<!-- left end -->
+
+<div class="right">
+	<div class="rightContent">
+	<iframe id="right" name="right" frameborder="0" scrolling="yes" src="right.php" ></iframe>
+	</div>    
+</div>
+<!-- right end -->
+
+<div class="bottom">
+<?php echo $cfg_powerby; ?>
+</div>
+<!-- bottom end -->
+
+</body>
+</html>

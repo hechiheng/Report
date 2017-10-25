@@ -1,0 +1,144 @@
+#set($loginInfo = $session.getAttribute($MAIN_SESSION))
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>大学生创新大赛网上申报系统</title>
+<meta name="keywords" content="大学生创新大赛网上申报系统" />
+<meta name="description" content="大学生创新大赛网上申报系统" />
+<link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
+<script type="text/javascript" src="$link.setRelative('/home/js/jquery-1.7.2.min.js')" ></script>
+<link href="$link.setRelative('/home/theme/default/css/css.css')" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<!--top -->
+<div id="top">
+<div class="warp" id="herd">
+	<div id="top_fla">
+	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="998" height="159">
+	  <param name="movie" value="$link.setRelative('/home/theme/default/images/top.swf')" />
+	  <param name="quality" value="high" />
+	  <PARAM NAME=wmode value="transparent">
+	  <embed src="$link.setRelative('/home/theme/default/images/top.swf')" quality="high" wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="998" height="159"></embed>
+	</object>
+	</div>
+	<div id="top_member">
+		#if($loginInfo)
+			<div>
+				<a href='login_action.php?action=logout'>退出登录</a>
+        		<a href='member_index.php'>会员中心</a>
+        		<span>欢迎您，.$nickname.&nbsp</span>
+        	</div>
+		#else
+			<div>
+				<a href='member_reg.php'>会员注册</a>
+				<a href='login.php'>会员登录</a>
+    		</div>
+		#end
+	</div>
+	<div id="top_logo"></div>
+</div>
+<!--menu -->
+<div id="menu">
+	<ul>
+		<li><a href="$link.contextPath">首 页</a></li>
+		<li><a href="$link.setAction('load4News')">新闻资讯</a></li>
+		<li><a href="$link.setAction('load4Message')">通知</a></li>
+		<li><a href="$link.setAction('load4Notice')">报名须知</a></li>
+		<li><a href="$link.setAction('load4Board')">公告</a></li>
+		<li><a href="$link.setAction('load4Search')">参赛查询</a></li>
+		<li><a href="$link.setAction('load4About')">联系我们</a></li>
+	</ul>
+</div>
+<div class="warp1 mt">
+	<div id="ggao">
+		<b>最新公告：</b>
+		<span>
+			<marquee>
+				#set($announce = $request.getAttribute("announce"))
+				$!announce.content
+ 			</marquee>
+ 		</span>
+ 	 </div>
+
+	<div id="syxw" class="f_l">
+	<p>
+		网站介绍
+	</p>
+	</div>
+	<div id="banner" class="f_r">
+
+	<div id="banBox">
+		<ul id="banContentID">
+			<li><a href="javascript:void(0)"><img border="0" src="$link.setRelative('/home/theme/default/images/p1.jpg')" width="722" height="257"/></a></li>
+			<li><a href="javascript:void(0)"><img border="0" src="$link.setRelative('/home/theme/default/images/p2.jpg')" width="722" height="257"/></a></li>
+		</ul>
+	</div>
+	<ul id="banNumID">
+		<li class="">1</li>
+		<li class="">2</li>
+		<li class="">3</li>
+	</ul>
+	</div>
+</div>
+</div>
+
+<div class="warp1 mt">
+<div class="left f_l">
+	<h3 class="left_bt">近期通知</h3>
+	<div class="xbox left_box" id="abt">
+	<ul class="sywz">
+		#set($messageList = $request.getAttribute("messageList"))
+		#foreach($message in $messageList)
+			<li><a href="$link.setAction('showMessage').addQueryData('id',$!message.id)">$!message.title</a></li>
+		#end
+	</ul>
+</div>	
+
+</div>
+
+<div class="right f_r">
+	<h3 class='r_bt'>
+		<a href="$link.setAction('load4News')">更多>></a>
+		<span>新闻资讯</span></h3>
+		<div class='xbox' style='height:185px; overflow:hidden;'>
+			<ul class='sywz'>
+				#set($newsList = $request.getAttribute("newsList"))
+				#foreach($news in $newsList)
+					<li><span>$!news.publishtime</span><a href="$link.setAction('showNews').addQueryData('id',$!news.id)">$!news.title</a></li>
+        		#end
+            </ul>
+		</div>
+	</h3>
+<div class=" clear"></div>
+</div>
+<div class=" clear"></div>
+</div>
+
+<div class="warp1 mt">
+<h3 class="r_bt"><span>友情链接</span></h3>
+<div class="xbox" id="yqlj">
+	#set($linkList = $request.getAttribute("linkList"))
+	#foreach($linkInfo in $linkList)
+		<a href="$!linkInfo.url" target="_blank">$!linkInfo.name</a>
+	#end
+<div class="clear"></div>
+</div>
+</div>
+<script language="javascript" src="$link.setRelative('/home/js/MSClass.js')"></script>
+<script type="text/javascript">
+new Marquee({MSClass:["banBox","banContentID","banNumID"],Direction:0,Step: 0.3,Width:722,Height:257,Timer:20,DelayTime:2000,WaitTime:0,ScrollStep:257,SwitchType: 0,AutoStart:1});
+</script>
+
+
+<div class="warp1 mt" id="bottom">
+	<a href="$link.contextPath">XXX</a>版权所有
+	<br />
+	联系地址：石家庄市新华区  电话：15176190900<br />
+	Copyright © 2009 - 2016 HCH. All Rights Reserved
+</div>
+	
+</body>
+</html>

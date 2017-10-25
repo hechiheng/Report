@@ -1,0 +1,42 @@
+<project name="webmodulebuilder" default="deploy" basedir=".">
+
+	<!-- set global properties for this build -->
+	<property file="build.properties" />
+
+	<!--将classes文件从外面的classes文件夹中copy到web-inf/classes目录下-->
+	<target name="init">
+		<copy todir="${project.dir}/${war}/WEB-INF/classes">
+			<fileset dir="${project.dir}/${bin.dir}">
+				<include name="**/*.*" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<!--去掉sqlMap中单行注释，build.properties文件中要配置replace.token-->
+		<replaceregexp encoding="UTF-8" byline="true">
+			<regexp pattern="${replace.token}" />
+			<substitution expression="" />
+			<fileset dir="${project.dir}/${war}/WEB-INF/classes">
+				<include name="**/*.xml" />
+			</fileset>
+		</replaceregexp>
+	</target>
+
+	<!--部署模块到weblogic的目录下-->
+	<target name="deploy" depends="undeploy,init">
+		<jar jarfile="${war}.war" basedir="${project.dir}/${war}" manifest="../META-INF/MANIFEST.MF">
+			<include name="**/*.*" />
+			<include name="**/*" />
+			<exclude name="**/build.xml" />
+			<exclude name="**/build.properties" />
+		</jar>
+		<copy file="${war}.war" todir="${deploy.dir}" />
+		<delete file="${war}.war" failonerror="false" />
+		<delete dir="${project.dir}/${war}/WEB-INF/classes" failonerror="false" />
+	</target>
+
+	<!--从weblogic中部署目录删除war包-->
+	<target name="undeploy">
+		<delete file="${deploy.dir}/${war}.war" failonerror="false" />
+	</target>
+
+</project>

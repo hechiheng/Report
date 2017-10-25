@@ -1,0 +1,40 @@
+#set($infoLink = $request.getAttribute("sysInfoLink"))
+<html>
+<head>
+#setCharset()
+<title>#if($messages.exist("sysPageTitle")) #messageMarkupForProperty("sysPageTitle") #else 系统信息提示 #end
+</title>
+#if($messages.exist("sysLinkText"))
+#if($infoLink.timer != "")
+	<meta HTTP-EQUIV=REFRESH CONTENT="${infoLink.timer};URL=#getActionLink($infoLink)">
+#end
+#end
+#setCSS($link.setRelative("/css_js/main/main.vm"))
+</head>
+<body>
+<br>
+<table align="center" width="80%" border="0" cellpadding="5" cellspacing="0" class="table_line">
+<tr>
+<td  align="center" class="td_bg">
+<b>#if($messages.exist("sysPageTitle")) #messageMarkupForProperty("sysPageTitle") #else 系统信息提示 #end
+</b>
+</td>
+</tr>
+<tr>
+<td align="center" height="200">
+#errorMarkup()
+#messageMarkupForProperty("sysMessage")
+#if($messages.exist("sysLinkText"))
+#if($infoLink.action != "")
+<br>
+<br>
+<br>
+#if($infoLink.timer != "")系统将在${infoLink.timer}秒内自动跳转,如果没有跳转,请点下面的链接:<br><br>#end
+<a href="#getActionLink($infoLink)" target="$infoLink.linkTarget">#messageMarkupForProperty("sysLinkText")</a>
+#end
+#end
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interceptor-config>
+	<interceptor name="login" type="com.report.manage.interceptor.LoginInterceptor"/>
+
+	<action type="com.report.manage.action.LoginAction">
+		<interceptor name="login"/>
+	</action>
+	
+</interceptor-config>

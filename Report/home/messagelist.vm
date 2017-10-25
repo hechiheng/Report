@@ -1,0 +1,122 @@
+#set($loginInfo = $session.getAttribute($MAIN_SESSION))
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>大学生创新大赛网上申报系统-通知</title>
+<meta name="keywords" content="大学生创新大赛网上申报系统" />
+<meta name="description" content="大学生创新大赛网上申报系统" />
+<link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
+<script type="text/javascript" src="$link.setRelative('/home/js/jquery-1.7.2.min.js')" ></script>
+<link href="$link.setRelative('/home/theme/default/css/css.css')" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<!--top -->
+<div id="top">
+<div class="warp" id="herd">
+	<div id="top_fla">
+	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="998" height="159">
+	  <param name="movie" value="$link.setRelative('/home/theme/default/images/top.swf')" />
+	  <param name="quality" value="high" />
+	  <PARAM NAME=wmode value="transparent">
+	  <embed src="$link.setRelative('/home/theme/default/images/top.swf')" quality="high" wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="998" height="159"></embed>
+	</object>
+	</div>
+	<div id="top_member">
+		#if($loginInfo)
+			<div>
+				<a href='login_action.php?action=logout'>退出登录</a>
+        		<a href='member_index.php'>会员中心</a>
+        		<span>欢迎您，.$nickname.&nbsp</span>
+        	</div>
+		#else
+			<div>
+				<a href='member_reg.php'>会员注册</a>
+				<a href='login.php'>会员登录</a>
+    		</div>
+		#end
+	</div>
+	<div id="top_logo"></div>
+</div>
+<!--menu -->
+<div id="menu">
+	<ul>
+		<li><a href="$link.contextPath">首 页</a></li>
+		<li><a href="$link.setAction('load4News')">新闻资讯</a></li>
+		<li><a href="$link.setAction('load4Message')">通知</a></li>
+		<li><a href="$link.setAction('load4Notice')">报名须知</a></li>
+		<li><a href="$link.setAction('load4Board')">公告</a></li>
+		<li><a href="$link.setAction('load4Search')">参赛查询</a></li>
+		<li><a href="$link.setAction('load4About')">联系我们</a></li>
+	</ul>
+</div>
+
+<div class="warp1 mt">
+	<div id="ggao">
+		<b>最新公告：</b>
+		<span>
+			<marquee>
+    			#set($announce = $request.getAttribute("announce"))
+				$!announce.content
+			</marquee>
+    	</span>
+    </div>
+</div>
+<div class="clear"></div>
+
+</div>
+
+<div class="content">
+	<div class="warp1 mt">
+
+<div class="left f_l">
+	<h3 class="left_bt">联系我们</h3>
+	<div class="xbox left_contactbox">
+	  <p>
+		联系地址：石家庄市新华区<br />
+		电话：15176190900
+	  </p>
+	</div>
+</div>
+
+<div class="right f_r">
+	<h3 class="nybt"><i>您当前的位置：<a href="$link.contextPath">首页</a> >> <a href="$link.setAction('load4Message')">通知</a></i>
+		<span>通知</span>
+	</h3>
+	<div class="xbox wzzw ">
+	
+	<ul class="wzli">	
+		#set($messageList = $request.getAttribute("messageList"))
+		#set($page = $request.getAttribute("page"))
+		#foreach($message in $messageList)
+			<li><span>$!message.publishtime</span><a href="$link.setAction('showMessage').addQueryData('id',$!message.id)">$!message.title</a></li>
+		#end
+	</ul>
+	<!--分页 -->
+	<div class="scott mt">
+		<a href="$link.setAction('load4Message').addQueryData('p','1')">首页</a>
+		<a href="$link.setAction('load4Message').addQueryData('p','$!{page.prePage}')">上一页</a>
+		<a href="$link.setAction('load4Message').addQueryData('p','$!{page.nextPage}')">下一页</a>
+		<a href="$link.setAction('load4Message').addQueryData('p','$!{page.totalPages}')">尾页</a>
+		第$!{page.nowPage}页/共$!{page.totalPages}页
+		 (共 $!{page.totalRows} 条记录)
+		<div class="clear"></div>
+	</div>
+	
+	</div>
+	</div>
+<div class=" clear"></div>
+</div>
+</div>
+
+<div class="warp1 mt" id="bottom">
+	<a href="$link.contextPath">XXX</a>版权所有
+	<br />
+	联系地址：石家庄市新华区  电话：15176190900<br />
+	Copyright © 2009 - 2016 HCH. All Rights Reserved
+</div>
+
+</body>
+</html>

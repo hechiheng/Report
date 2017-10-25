@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+
+	<!-- ================================================ Form Bean Definitions -->
+
+	<form-beans>
+		 <!-- 用户登录 --> 
+		<form-bean name="loginForm"
+        type="org.apache.struts.validator.DynaValidatorForm">
+        <form-property name="memberName" 
+                       type="java.lang.String"/>
+        <form-property name="password" 
+                       type="java.lang.String"/>
+        <form-property name="imageCheck" 
+                       type="java.lang.String"/>
+        </form-bean>
+        
+        <form-bean name="userForm"
+			type="com.css.main.form.UserForm"/>
+        
+	</form-beans>
+
+
+	<!--  ========================================= Global Exception Definitions  -->
+
+	<global-exceptions>
+		<exception
+        key="request.invalid"
+        type="com.css.base.BaseException"
+        handler="com.css.base.BaseExceptionHandler"
+        path="/error.do"/>
+	</global-exceptions>
+
+
+	<!-- =========================================== Global Forward Definitions -->
+
+	<global-forwards>
+		<!-- 全局信息提示页面转向 -->
+        <forward name="error" path="/error.do"/>
+        <forward name="return2FavoriteIndex" path="/returnMain.do"/>
+	</global-forwards>
+
+
+	<!-- =========================================== Action Mapping Definitions -->
+
+	<action-mappings>
+
+		<!-- 将sys_message.vm映射为error.do -->
+		<action path="/error" forward="/sys_message.vm"/>
+		<action path="/index" forward="/load4Home.do"/>
+		
+		<action
+        	path="/load4Home"
+			type="com.report.home.action.HomeAction"
+			scope="request"
+			validate="false"
+			parameter="load4Home">
+			<forward name="success" path="/home/index.vm"/>
+        </action>
+        <action
+        	path="/load4Message"
+			type="com.report.home.action.HomeAction"
+			scope="request"
+			validate="false"
+			parameter="load4Message">
+			<forward name="success" path="/home/messagelist.vm"/>
+        </action>
+        <action
+        	path="/showMessage"
+			type="com.report.home.action.HomeAction"
+			scope="request"
+			validate="false"
+			parameter="showMessage">
+			<forward name="success" path="/home/message.vm"/>
+        </action>
+        
+        
+        
+		
+	</action-mappings>
+
+
+	<!-- ============================================= Controller Configuration -->
+
+	<!--<controller
+		processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>-->
+
+
+	<!-- ======================================== Message Resources Definitions -->
+
+	<message-resources parameter="resource.main.appResource" />
+
+
+	<!-- =============================================== Plug Ins Configuration -->
+
+
+	<!-- =================================================== Validator plugin -->
+
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml" />
+	</plug-in>
+
+	<!-- =================================================== AOP plugin -->
+	<!-- 自动加载interceptor-config.xml的信息 -->
+<!--	<plug-in className="com.css.struts.aop.SAIFPlugin">-->
+<!--		<set-property property="interceptor-config"-->
+<!--			value="/WEB-INF/interceptor-config.xml"/>-->
+<!--		<set-property value="UTF-8" property="encoding" />-->
+<!--	</plug-in>-->
+	
+</struts-config>

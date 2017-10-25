@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="home.Home">
+	<typeAlias alias="announce" type="com.report.home.bean.Announce"/>
+	<typeAlias alias="message" type="com.report.home.bean.Message"/>
+	<typeAlias alias="news" type="com.report.home.bean.News"/>
+	<typeAlias alias="link" type="com.report.home.bean.Link"/>
+	
+	<select id="home.HomeDao.getLatestAnnounce" resultClass="announce">
+	<![CDATA[
+		select content from t_announce t where t.isvalid=1 and t.ispublish=1 and t.starttime<UNIX_TIMESTAMP(NOW()) and t.endtime>UNIX_TIMESTAMP(NOW()) limit 1
+	]]>
+	</select>
+	
+	<select id="home.HomeDao.getLatestMessageList" resultClass="message">
+	<![CDATA[
+		select id,title from t_message t where t.isvalid=1 and t.ispublish=1 and t.publishtime>UNIX_TIMESTAMP(date_add(NOW(), interval -10 day))
+	]]>
+	</select>
+	
+	<select id="home.HomeDao.getLatestNewsList" resultClass="news">
+	<![CDATA[
+		select id,title,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d') publishtime from t_news t where t.isvalid=1 and t.ispublish=1 and t.publishtime>UNIX_TIMESTAMP(date_add(NOW(), interval -10 day))
+	]]>
+	</select>
+	
+	<select id="home.HomeDao.getLinkList" resultClass="link">
+	<![CDATA[
+		select name,url from t_link a where a.isvalid=1 order by a.sort
+	]]>
+	</select>
+	
+	<select id="home.HomeDao.getMessage" parameterClass="int" resultClass="message">
+	<![CDATA[
+		select id,title,content,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d') publishtime from t_message t where t.id=#id#
+	]]>
+	</select>
+	
+	<select id="home.HomeDao.getMessageListSize" resultClass="int">
+	<![CDATA[
+		select count(id) cnt from t_message t where t.isvalid=1
+	]]>
+	</select>
+	
+	<select id="home.HomeDao.getMessageList" resultClass="message">
+	<![CDATA[
+		select id,title,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d') publishtime from t_message t where t.isvalid=1 order by t.publishtime desc limit $firstRow$,$listRows$
+	]]>
+	</select>
+	
+</sqlMap>
