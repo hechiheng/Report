@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import com.css.base.BaseException;
 import com.ibatis.dao.client.DaoManager;
 import com.report.global.DaoConfig;
+import com.report.home.bean.About;
 import com.report.home.bean.Announce;
 import com.report.home.bean.Link;
 import com.report.home.bean.Message;
@@ -51,5 +52,21 @@ public class HomeBo {
 
 	public Message getMessage(int id) throws BaseException {
 		return dao.getMessage(id);
+	}
+
+	public int getNewsListSize() throws BaseException {
+		return dao.getNewsListSize();
+	}
+
+	public List<News> getNewsList(News news) throws BaseException {
+		return dao.getNewsList(news);
+	}
+
+	public News getNews(int id) throws BaseException {
+		return dao.getNews(id);
+	}
+
+	public About getAbout() throws BaseException {
+		return dao.getAbout();
 	}
 }

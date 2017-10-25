@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>大学生创新大赛网上申报系统-通知</title>
+<title>大学生创新大赛网上申报系统-新闻资讯</title>
 <meta name="keywords" content="大学生创新大赛网上申报系统" />
 <meta name="description" content="大学生创新大赛网上申报系统" />
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
@@ -65,15 +65,15 @@
 </div>
 <div class="right f_r">
 	<h3 class="nybt">
-		<i>您当前的位置：<a href="$link.contextPath">首页</a> >> <a href="$link.setAction('load4Message')">通知</a></i>
-		<span>通知</span>
+		<i>您当前的位置：<a href="$link.contextPath">首页</a> >> <a href="$link.setAction('load4News')">新闻资讯</a></i>
+		<span>新闻资讯</span>
 	</h3>
 	<div class="xbox wzzw"> 
-		#set($message = $request.getAttribute("message"))
-		<div class="biaoti" align="center">$!message.title</div>
-		<div class="biaoti_sub">发布时间:$!message.publishtime</div>
+		#set($news = $request.getAttribute("news"))
+		<div class="biaoti" align="center">$!news.title</div>
+		<div class="biaoti_sub">发布时间:$!news.publishtime</div>
 		<div class="wzzw lh">
-			$!message.content
+			$!news.content
 		</div>
 	</div>
 

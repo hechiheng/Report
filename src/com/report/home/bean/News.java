@@ -17,6 +17,8 @@ public class News implements Serializable {
 	private String ispublish;
 	private String updatetime;
 	private int userid;
+	private int firstRow;
+	private int listRows;
 
 	public String getTitle() {
 		return title;
@@ -112,6 +114,22 @@ public class News implements Serializable {
 
 	public int getUserid() {
 		return userid;
+	}
+
+	public void setFirstRow(int firstRow) {
+		this.firstRow = firstRow;
+	}
+
+	public int getFirstRow() {
+		return firstRow;
+	}
+
+	public void setListRows(int listRows) {
+		this.listRows = listRows;
+	}
+
+	public int getListRows() {
+		return listRows;
 	}
 
 }

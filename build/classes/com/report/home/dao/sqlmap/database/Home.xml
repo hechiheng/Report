@@ -5,6 +5,7 @@
 	<typeAlias alias="message" type="com.report.home.bean.Message"/>
 	<typeAlias alias="news" type="com.report.home.bean.News"/>
 	<typeAlias alias="link" type="com.report.home.bean.Link"/>
+	<typeAlias alias="about" type="com.report.home.bean.About"/>
 	
 	<select id="home.HomeDao.getLatestAnnounce" resultClass="announce">
 	<![CDATA[
@@ -38,13 +39,37 @@
 	
 	<select id="home.HomeDao.getMessageListSize" resultClass="int">
 	<![CDATA[
-		select count(id) cnt from t_message t where t.isvalid=1
+		select count(id) cnt from t_message t where t.isvalid=1 and t.ispublish=1
 	]]>
 	</select>
 	
 	<select id="home.HomeDao.getMessageList" resultClass="message">
 	<![CDATA[
-		select id,title,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d') publishtime from t_message t where t.isvalid=1 order by t.publishtime desc limit $firstRow$,$listRows$
+		select id,title,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d') publishtime from t_message t where t.isvalid=1 and t.ispublish=1 order by t.publishtime desc limit $firstRow$,$listRows$
+	]]>
+	</select>
+	
+	<select id="home.HomeDao.getNewsListSize" resultClass="int">
+	<![CDATA[
+		select count(id) cnt from t_news t where t.isvalid=1 and t.ispublish=1
+	]]>
+	</select>
+	
+	<select id="home.HomeDao.getNewsList" resultClass="news">
+	<![CDATA[
+		select id,title,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d') publishtime from t_news t where t.isvalid=1 and t.ispublish=1 order by t.publishtime desc limit $firstRow$,$listRows$
+	]]>
+	</select>
+	
+	<select id="home.HomeDao.getNews" parameterClass="int" resultClass="news">
+	<![CDATA[
+		select id,title,content,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d') publishtime from t_news t where t.id=#id#
+	]]>
+	</select>
+	
+	<select id="home.HomeDao.getAbout" resultClass="about">
+	<![CDATA[
+		select id,title,content from t_about 
 	]]>
 	</select>
 	

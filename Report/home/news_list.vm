@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>大学生创新大赛网上申报系统-通知</title>
+<title>大学生创新大赛网上申报系统-新闻资讯</title>
 <meta name="keywords" content="大学生创新大赛网上申报系统" />
 <meta name="description" content="大学生创新大赛网上申报系统" />
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
@@ -25,31 +25,14 @@
 	</object>
 	</div>
 	<div id="top_member">
-		#if($loginInfo)
-			<div>
-				<a href='login_action.php?action=logout'>退出登录</a>
-        		<a href='member_index.php'>会员中心</a>
-        		<span>欢迎您，.$nickname.&nbsp</span>
-        	</div>
-		#else
-			<div>
-				<a href='member_reg.php'>会员注册</a>
-				<a href='login.php'>会员登录</a>
-    		</div>
-		#end
+		#parse("/home/top_member.vm")
 	</div>
 	<div id="top_logo"></div>
 </div>
 <!--menu -->
 <div id="menu">
 	<ul>
-		<li><a href="$link.contextPath">首 页</a></li>
-		<li><a href="$link.setAction('load4News')">新闻资讯</a></li>
-		<li><a href="$link.setAction('load4Message')">通知</a></li>
-		<li><a href="$link.setAction('load4Notice')">报名须知</a></li>
-		<li><a href="$link.setAction('load4Board')">公告</a></li>
-		<li><a href="$link.setAction('load4Search')">参赛查询</a></li>
-		<li><a href="$link.setAction('load4About')">联系我们</a></li>
+		#parse("/home/menu.vm")
 	</ul>
 </div>
 
@@ -82,24 +65,24 @@
 </div>
 
 <div class="right f_r">
-	<h3 class="nybt"><i>您当前的位置：<a href="$link.contextPath">首页</a> >> <a href="$link.setAction('load4Message')">通知</a></i>
-		<span>通知</span>
+	<h3 class="nybt"><i>您当前的位置：<a href="$link.contextPath">首页</a> >> <a href="$link.setAction('load4News')">新闻资讯</a></i>
+		<span>新闻资讯</span>
 	</h3>
 	<div class="xbox wzzw ">
 	
 	<ul class="wzli">	
-		#set($messageList = $request.getAttribute("messageList"))
+		#set($newsList = $request.getAttribute("newsList"))
 		#set($page = $request.getAttribute("page"))
-		#foreach($message in $messageList)
-			<li><span>$!message.publishtime</span><a href="$link.setAction('showMessage').addQueryData('id',$!message.id)">$!message.title</a></li>
+		#foreach($news in $newsList)
+			<li><span>$!news.publishtime</span><a href="$link.setAction('showNews').addQueryData('id',$!news.id)">$!news.title</a></li>
 		#end
 	</ul>
 	<!--分页 -->
 	<div class="scott mt">
-		<a href="$link.setAction('load4Message').addQueryData('p','1')">首页</a>
-		<a href="$link.setAction('load4Message').addQueryData('p','$!{page.prePage}')">上一页</a>
-		<a href="$link.setAction('load4Message').addQueryData('p','$!{page.nextPage}')">下一页</a>
-		<a href="$link.setAction('load4Message').addQueryData('p','$!{page.totalPages}')">尾页</a>
+		<a href="$link.setAction('load4News').addQueryData('p','1')">首页</a>
+		<a href="$link.setAction('load4News').addQueryData('p',$!{page.prePage})">上一页</a>
+		<a href="$link.setAction('load4News').addQueryData('p',$!{page.nextPage})">下一页</a>
+		<a href="$link.setAction('load4News').addQueryData('p',$!{page.totalPages})">尾页</a>
 		第$!{page.nowPage}页/共$!{page.totalPages}页
 		 (共 $!{page.totalRows} 条记录)
 		<div class="clear"></div>
@@ -112,10 +95,7 @@
 </div>
 
 <div class="warp1 mt" id="bottom">
-	<a href="$link.contextPath">XXX</a>版权所有
-	<br />
-	联系地址：石家庄市新华区  电话：15176190900<br />
-	Copyright © 2009 - 2016 HCH. All Rights Reserved
+	#parse("/home/bottom.vm")
 </div>
 
 </body>

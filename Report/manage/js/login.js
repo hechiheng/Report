@@ -1,5 +1,5 @@
 function change_code(obj){
-	$("#code").attr("src",obj.src+'#'+Math.random());
+	$("#code").attr("src",obj.src+'?'+Math.random());
 	return false;
 }
 //登录验证  1为空   2为错误

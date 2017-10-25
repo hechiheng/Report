@@ -69,7 +69,7 @@
 			scope="request"
 			validate="false"
 			parameter="load4Message">
-			<forward name="success" path="/home/messagelist.vm"/>
+			<forward name="success" path="/home/message_list.vm"/>
         </action>
         <action
         	path="/showMessage"
@@ -79,8 +79,53 @@
 			parameter="showMessage">
 			<forward name="success" path="/home/message.vm"/>
         </action>
-        
-        
+        <action
+        	path="/load4News"
+			type="com.report.home.action.HomeAction"
+			scope="request"
+			validate="false"
+			parameter="load4News">
+			<forward name="success" path="/home/news_list.vm"/>
+        </action>
+        <action
+        	path="/showNews"
+			type="com.report.home.action.HomeAction"
+			scope="request"
+			validate="false"
+			parameter="showNews">
+			<forward name="success" path="/home/news.vm"/>
+        </action>
+        <action
+        	path="/load4About"
+			type="com.report.home.action.HomeAction"
+			scope="request"
+			validate="false"
+			parameter="load4About">
+			<forward name="success" path="/home/about.vm"/>
+        </action>
+        <action
+        	path="/load4MemberReg"
+			type="com.report.home.action.MemberAction"
+			scope="request"
+			validate="false"
+			parameter="load4MemberReg">
+			<forward name="success" path="/home/member_reg.vm"/>
+        </action>
+        <action
+        	path="/load4MemberLogin"
+			type="com.report.home.action.MemberAction"
+			scope="request"
+			validate="false"
+			parameter="load4MemberLogin">
+			<forward name="success" path="/home/member_login.vm"/>
+        </action>
+        <action 
+			path="/verifyMember" 
+			type="com.report.home.action.MemberAction"
+			scope="request" 
+			parameter="verifyMember"
+			validate="false">
+		</action>
         
 		
 	</action-mappings>
@@ -94,7 +139,7 @@
 
 	<!-- ======================================== Message Resources Definitions -->
 
-	<message-resources parameter="resource.main.appResource" />
+	<message-resources parameter="resource.appResource" />
 
 
 	<!-- =============================================== Plug Ins Configuration -->

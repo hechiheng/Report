@@ -7,31 +7,6 @@
 	<!--<properties resource="config/database.properties"/>-->
 
 	<transactionManager type="JDBC">
-<!--		<dataSource type="JNDI">-->
-<!--			<property name="context.java.naming.factory.initial"-->
-<!--				value="weblogic.jndi.WLInitialContextFactory" />-->
-<!--			<property name="context.java.naming.provider.url"-->
-<!--				value="t3://10.44.28.18:9005" />-->
-<!--			<property name="DataSource" value="LMICore_JDBC" />-->
-<!--		</dataSource>	-->
-	
-<!--		<dataSource type="JNDI">-->
-<!--				<property name="context.java.naming.factory.initial"-->
-<!--					value="weblogic.jndi.WLInitialContextFactory" />-->
-<!--				<property name="context.java.naming.provider.url"-->
-<!--					value="t3://localhost:9005" />-->
-<!--				<property name="DataSource" value="LMICore_JDBC" />-->
-<!--		</dataSource>-->
-		
-		<!-- jboss数据源配置 -->
-<!-- 		<dataSource type="JNDI"> -->
-<!-- 			<property name="context.java.naming.factory.initial"  -->
-<!-- 			value="org.jnp.interfaces.NamingContextFactory" /> -->
-<!-- 			<property name="context.java.naming.provider.url" -->
-<!-- 			value="jnp://localhost:1099" /> -->
-<!-- 			<property name="DataSource" value="LMICore_JDBC" /> -->
-<!-- 		</dataSource> -->
- 		
 		<dataSource type="SIMPLE">  
 			<property name="JDBC.Driver" value="com.mysql.jdbc.Driver"/>  
 			<property name="JDBC.ConnectionURL" value="jdbc:mysql://127.0.0.1:3306/report"/>  
@@ -41,6 +16,9 @@
 	</transactionManager>
 
 	<sqlMap resource="com/report/home/dao/sqlmap/database/Home.xml" />
+	<sqlMap resource="com/report/home/dao/sqlmap/database/Member.xml" />
+	
+	
 	<sqlMap resource="com/report/manage/dao/sqlmap/database/Login.xml" />
 
 </sqlMapConfig>

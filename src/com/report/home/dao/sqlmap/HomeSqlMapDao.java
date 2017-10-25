@@ -8,6 +8,7 @@ import com.css.base.BaseException;
 import com.ibatis.dao.client.DaoException;
 import com.ibatis.dao.client.DaoManager;
 import com.ibatis.dao.client.template.SqlMapDaoTemplate;
+import com.report.home.bean.About;
 import com.report.home.bean.Announce;
 import com.report.home.bean.Link;
 import com.report.home.bean.Message;
@@ -88,6 +89,44 @@ public class HomeSqlMapDao extends SqlMapDaoTemplate implements HomeDao {
 		} catch (DaoException e) {
 			logger.error("home.HomeDao.getMessage", e);
 			throw new BaseException("home.HomeDao.getMessage", e);
+		}
+	}
+
+	public int getNewsListSize() throws BaseException {
+		try {
+			return (Integer) this.queryForObject(
+					"home.HomeDao.getNewsListSize", null);
+		} catch (DaoException e) {
+			logger.error("home.HomeDao.getNewsListSize", e);
+			throw new BaseException("home.HomeDao.getNewsListSize", e);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<News> getNewsList(News news) throws BaseException {
+		try {
+			return this.queryForList("home.HomeDao.getNewsList", news);
+		} catch (DaoException e) {
+			logger.error("home.HomeDao.getNewsList", e);
+			throw new BaseException("home.HomeDao.getNewsList", e);
+		}
+	}
+
+	public News getNews(int id) throws BaseException {
+		try {
+			return (News) this.queryForObject("home.HomeDao.getNews", id);
+		} catch (DaoException e) {
+			logger.error("home.HomeDao.getNews", e);
+			throw new BaseException("home.HomeDao.getNews", e);
+		}
+	}
+
+	public About getAbout() throws BaseException {
+		try {
+			return (About) this.queryForObject("home.HomeDao.getAbout", null);
+		} catch (DaoException e) {
+			logger.error("home.HomeDao.getAbout", e);
+			throw new BaseException("home.HomeDao.getAbout", e);
 		}
 	}
 

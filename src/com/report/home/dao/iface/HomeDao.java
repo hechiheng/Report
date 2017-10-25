@@ -3,6 +3,7 @@ package com.report.home.dao.iface;
 import java.util.List;
 
 import com.css.base.BaseException;
+import com.report.home.bean.About;
 import com.report.home.bean.Announce;
 import com.report.home.bean.Link;
 import com.report.home.bean.Message;
@@ -23,4 +24,12 @@ public interface HomeDao {
 	public List<Message> getMessageList(Message message) throws BaseException;
 
 	public Message getMessage(int id) throws BaseException;
+
+	public int getNewsListSize() throws BaseException;
+
+	public List<News> getNewsList(News news) throws BaseException;
+
+	public News getNews(int id) throws BaseException;
+
+	public About getAbout() throws BaseException;
 }

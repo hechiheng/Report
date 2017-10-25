@@ -7,7 +7,7 @@ import org.apache.commons.beanutils.BeanUtils;
 public class Page {
 
 	// 默认列表每页显示行数
-	private int listRows = 20;
+	private int listRows = 5;
 	// 起始行数
 	private int firstRow;
 	// 分页总页面数
@@ -28,7 +28,11 @@ public class Page {
 		} else {
 			nowPage = Integer.valueOf(page);
 		}
-		totalPages = totalRows / listRows;
+		if (this.totalRows % this.listRows == 0) {
+			this.totalPages = (this.totalRows / this.listRows);
+		} else {
+			this.totalPages = (this.totalRows / this.listRows + 1);
+		}
 		firstRow = (nowPage - 1) * listRows;
 		if (nowPage - 1 > 0) {
 			prePage = nowPage - 1;
@@ -69,16 +73,16 @@ public class Page {
 		return totalRows;
 	}
 
-	public String getNowPage() {
-		return String.valueOf(nowPage);
+	public int getNowPage() {
+		return nowPage;
 	}
 
-	public String getPrePage() {
-		return String.valueOf(prePage);
+	public int getPrePage() {
+		return prePage;
 	}
 
-	public String getNextPage() {
-		return String.valueOf(nextPage);
+	public int getNextPage() {
+		return nextPage;
 	}
 
 }

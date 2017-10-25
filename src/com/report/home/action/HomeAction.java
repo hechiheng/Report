@@ -11,6 +11,7 @@ import org.apache.struts.action.ActionMapping;
 
 import com.css.base.BaseAction;
 import com.css.base.BaseException;
+import com.report.home.bean.About;
 import com.report.home.bean.Announce;
 import com.report.home.bean.Link;
 import com.report.home.bean.Message;
@@ -63,6 +64,48 @@ public class HomeAction extends BaseAction {
 		List<Message> messageList = bo.getMessageList(message);
 		request.setAttribute("messageList", messageList);
 		request.setAttribute("page", page);
+
+		Announce announce = bo.getLatestAnnounce();
+		request.setAttribute("announce", announce);
+		return mapping.findForward("success");
+	}
+
+	public ActionForward showNews(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws BaseException {
+		String id = request.getParameter("id");
+		HomeBo bo = new HomeBo();
+		News news = bo.getNews(Integer.valueOf(id));
+		request.setAttribute("news", news);
+
+		Announce announce = bo.getLatestAnnounce();
+		request.setAttribute("announce", announce);
+		return mapping.findForward("success");
+	}
+
+	public ActionForward load4News(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws BaseException {
+		String p = request.getParameter("p");
+		News news = new News();
+		HomeBo bo = new HomeBo();
+		int total = bo.getNewsListSize();
+		Page page = new Page(total, p, news);
+		List<News> newsList = bo.getNewsList(news);
+		request.setAttribute("newsList", newsList);
+		request.setAttribute("page", page);
+
+		Announce announce = bo.getLatestAnnounce();
+		request.setAttribute("announce", announce);
+		return mapping.findForward("success");
+	}
+
+	public ActionForward load4About(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws BaseException {
+		HomeBo bo = new HomeBo();
+		About about = bo.getAbout();
+		request.setAttribute("about", about);
 
 		Announce announce = bo.getLatestAnnounce();
 		request.setAttribute("announce", announce);

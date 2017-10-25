@@ -4,181 +4,175 @@ import java.io.Serializable;
 
 public class Member implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private String id;
+	private String id;
 
-    private String username;
+	private String accountid;
 
-    private String password;
+	private String password;
 
-    private String nickname;
+	private String nickname;
 
-    private String regtime;
+	private String regtime;
 
-    private String updatetime;
+	private String updatetime;
 
-    private String logintime;
+	private String logintime;
 
-    private String loginip;
+	private String loginip;
 
-    private String loginnum;
+	private String loginnum;
 
-    private String isvalid;
+	private String isvalid;
 
-    private String islock;
+	private String islock;
 
-    /**
-     * id
-     */
-    public String getId() {
-        return id;
-    }
+	/**
+	 * id
+	 */
+	public String getId() {
+		return id;
+	}
 
-    /**
-     * id
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
+	/**
+	 * id
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    /**
-     * username
-     */
-    public String getUsername() {
-        return username;
-    }
+	/**
+	 * password
+	 */
+	public String getPassword() {
+		return password;
+	}
 
-    /**
-     * username
-     */
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	/**
+	 * password
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    /**
-     * password
-     */
-    public String getPassword() {
-        return password;
-    }
+	/**
+	 * nickname
+	 */
+	public String getNickname() {
+		return nickname;
+	}
 
-    /**
-     * password
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	/**
+	 * nickname
+	 */
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 
-    /**
-     * nickname
-     */
-    public String getNickname() {
-        return nickname;
-    }
+	/**
+	 * regtime
+	 */
+	public String getRegtime() {
+		return regtime;
+	}
 
-    /**
-     * nickname
-     */
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
+	/**
+	 * regtime
+	 */
+	public void setRegtime(String regtime) {
+		this.regtime = regtime;
+	}
 
-    /**
-     * regtime
-     */
-    public String getRegtime() {
-        return regtime;
-    }
+	/**
+	 * updatetime
+	 */
+	public String getUpdatetime() {
+		return updatetime;
+	}
 
-    /**
-     * regtime
-     */
-    public void setRegtime(String regtime) {
-        this.regtime = regtime;
-    }
+	/**
+	 * updatetime
+	 */
+	public void setUpdatetime(String updatetime) {
+		this.updatetime = updatetime;
+	}
 
-    /**
-     * updatetime
-     */
-    public String getUpdatetime() {
-        return updatetime;
-    }
+	/**
+	 * logintime
+	 */
+	public String getLogintime() {
+		return logintime;
+	}
 
-    /**
-     * updatetime
-     */
-    public void setUpdatetime(String updatetime) {
-        this.updatetime = updatetime;
-    }
+	/**
+	 * logintime
+	 */
+	public void setLogintime(String logintime) {
+		this.logintime = logintime;
+	}
 
-    /**
-     * logintime
-     */
-    public String getLogintime() {
-        return logintime;
-    }
+	/**
+	 * loginip
+	 */
+	public String getLoginip() {
+		return loginip;
+	}
 
-    /**
-     * logintime
-     */
-    public void setLogintime(String logintime) {
-        this.logintime = logintime;
-    }
+	/**
+	 * loginip
+	 */
+	public void setLoginip(String loginip) {
+		this.loginip = loginip;
+	}
 
-    /**
-     * loginip
-     */
-    public String getLoginip() {
-        return loginip;
-    }
+	/**
+	 * loginnum
+	 */
+	public String getLoginnum() {
+		return loginnum;
+	}
 
-    /**
-     * loginip
-     */
-    public void setLoginip(String loginip) {
-        this.loginip = loginip;
-    }
+	/**
+	 * loginnum
+	 */
+	public void setLoginnum(String loginnum) {
+		this.loginnum = loginnum;
+	}
 
-    /**
-     * loginnum
-     */
-    public String getLoginnum() {
-        return loginnum;
-    }
+	/**
+	 * isvalid
+	 */
+	public String getIsvalid() {
+		return isvalid;
+	}
 
-    /**
-     * loginnum
-     */
-    public void setLoginnum(String loginnum) {
-        this.loginnum = loginnum;
-    }
+	/**
+	 * isvalid
+	 */
+	public void setIsvalid(String isvalid) {
+		this.isvalid = isvalid;
+	}
 
-    /**
-     * isvalid
-     */
-    public String getIsvalid() {
-        return isvalid;
-    }
+	/**
+	 * islock
+	 */
+	public String getIslock() {
+		return islock;
+	}
 
-    /**
-     * isvalid
-     */
-    public void setIsvalid(String isvalid) {
-        this.isvalid = isvalid;
-    }
+	/**
+	 * islock
+	 */
+	public void setIslock(String islock) {
+		this.islock = islock;
+	}
 
-    /**
-     * islock
-     */
-    public String getIslock() {
-        return islock;
-    }
+	public void setAccountid(String accountid) {
+		this.accountid = accountid;
+	}
 
-    /**
-     * islock
-     */
-    public void setIslock(String islock) {
-        this.islock = islock;
-    }
+	public String getAccountid() {
+		return accountid;
+	}
 }

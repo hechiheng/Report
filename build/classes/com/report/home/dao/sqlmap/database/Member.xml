@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="home.Member">
+	<typeAlias alias="member" type="com.report.manage.bean.Member"/>
+	
+	<select id="home.MemberDao.getMemberCount" parameterClass="string" resultClass="int">
+	<![CDATA[
+		select count(id) from t_member where accountid = #accountid#
+	]]>
+	</select>
+	
+	
+</sqlMap>

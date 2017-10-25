@@ -41,7 +41,7 @@
 		<b>最新公告：</b>
 		<span>
 			<marquee>
-				#set($announce = $request.getAttribute("announce"))
+    			#set($announce = $request.getAttribute("announce"))
 				$!announce.content
 			</marquee>
     	</span>
@@ -63,30 +63,40 @@
 	  </p>
 	</div>
 </div>
+
 <div class="right f_r">
-	<h3 class="nybt">
-		<i>您当前的位置：<a href="$link.contextPath">首页</a> >> <a href="$link.setAction('load4Message')">通知</a></i>
+	<h3 class="nybt"><i>您当前的位置：<a href="$link.contextPath">首页</a> >> <a href="$link.setAction('load4Message')">通知</a></i>
 		<span>通知</span>
 	</h3>
-	<div class="xbox wzzw"> 
-		#set($message = $request.getAttribute("message"))
-		<div class="biaoti" align="center">$!message.title</div>
-		<div class="biaoti_sub">发布时间:$!message.publishtime</div>
-		<div class="wzzw lh">
-			$!message.content
-		</div>
+	<div class="xbox wzzw ">
+	
+	<ul class="wzli">	
+		#set($messageList = $request.getAttribute("messageList"))
+		#set($page = $request.getAttribute("page"))
+		#foreach($message in $messageList)
+			<li><span>$!message.publishtime</span><a href="$link.setAction('showMessage').addQueryData('id',$!message.id)">$!message.title</a></li>
+		#end
+	</ul>
+	<!--分页 -->
+	<div class="scott mt">
+		<a href="$link.setAction('load4Message').addQueryData('p','1')">首页</a>
+		<a href="$link.setAction('load4Message').addQueryData('p',$!{page.prePage})">上一页</a>
+		<a href="$link.setAction('load4Message').addQueryData('p',$!{page.nextPage})">下一页</a>
+		<a href="$link.setAction('load4Message').addQueryData('p',$!{page.totalPages})">尾页</a>
+		第$!{page.nowPage}页/共$!{page.totalPages}页
+		 (共 $!{page.totalRows} 条记录)
+		<div class="clear"></div>
 	</div>
-
+	
+	</div>
 	</div>
 <div class=" clear"></div>
 </div>
 </div>
 
-
 <div class="warp1 mt" id="bottom">
 	#parse("/home/bottom.vm")
 </div>
-
 
 </body>
 </html>
