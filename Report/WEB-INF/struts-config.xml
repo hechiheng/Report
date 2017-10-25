@@ -10,19 +10,15 @@
 	<!-- ================================================ Form Bean Definitions -->
 
 	<form-beans>
-		 <!-- 用户登录 --> 
-		<form-bean name="loginForm"
-        type="org.apache.struts.validator.DynaValidatorForm">
-        <form-property name="memberName" 
-                       type="java.lang.String"/>
-        <form-property name="password" 
-                       type="java.lang.String"/>
-        <form-property name="imageCheck" 
-                       type="java.lang.String"/>
+		<form-bean name="loginForm" type="org.apache.struts.validator.DynaValidatorForm">
+	        <form-property name="accountid" type="java.lang.String"/>
+	        <form-property name="password" type="java.lang.String"/>
+	        <form-property name="imagecode" type="java.lang.String"/>
         </form-bean>
         
-        <form-bean name="userForm"
-			type="com.css.main.form.UserForm"/>
+        <form-bean name="memberForm"
+			type="com.report.home.form.MemberForm">
+		</form-bean>
         
 	</form-beans>
 
@@ -31,10 +27,10 @@
 
 	<global-exceptions>
 		<exception
-        key="request.invalid"
-        type="com.css.base.BaseException"
-        handler="com.css.base.BaseExceptionHandler"
-        path="/error.do"/>
+	        key="request.invalid"
+	        type="com.css.base.BaseException"
+	        handler="com.css.base.BaseExceptionHandler"
+	        path="/error.do"/>
 	</global-exceptions>
 
 
@@ -42,8 +38,9 @@
 
 	<global-forwards>
 		<!-- 全局信息提示页面转向 -->
-        <forward name="error" path="/error.do"/>
-        <forward name="return2FavoriteIndex" path="/returnMain.do"/>
+        <forward name="error" path="/error.do" />
+		<forward name="info" path="/info.do" />
+		<forward name="index" path="/index.do" />
 	</global-forwards>
 
 
@@ -51,8 +48,8 @@
 
 	<action-mappings>
 
-		<!-- 将sys_message.vm映射为error.do -->
-		<action path="/error" forward="/sys_message.vm"/>
+		<action path="/error" forward="/sys_message1.vm"/>
+		<action path="/info" forward="/sys_message1.vm" />
 		<action path="/index" forward="/load4Home.do"/>
 		
 		<action
@@ -104,20 +101,12 @@
 			<forward name="success" path="/home/about.vm"/>
         </action>
         <action
-        	path="/load4MemberReg"
+        	path="/load4RegMember"
 			type="com.report.home.action.MemberAction"
 			scope="request"
 			validate="false"
-			parameter="load4MemberReg">
+			parameter="load4RegMember">
 			<forward name="success" path="/home/member_reg.vm"/>
-        </action>
-        <action
-        	path="/load4MemberLogin"
-			type="com.report.home.action.MemberAction"
-			scope="request"
-			validate="false"
-			parameter="load4MemberLogin">
-			<forward name="success" path="/home/member_login.vm"/>
         </action>
         <action 
 			path="/verifyMember" 
@@ -126,7 +115,35 @@
 			parameter="verifyMember"
 			validate="false">
 		</action>
-        
+		<action
+        	path="/regMember"
+			type="com.report.home.action.MemberAction"
+			scope="request"
+			input="/load4RegMember.do"
+			name="memberForm"
+			validate="true"
+			parameter="regMember">
+			<forward name="failure" path="/home/member_reg.vm"/>
+        </action>
+        <action
+        	path="/load4Login"
+			type="com.report.home.action.LoginAction"
+			scope="request"
+			validate="false"
+			parameter="load4Login">
+			<forward name="success" path="/home/login.vm"/>
+        </action>
+        <action	path="/login"
+			type="com.report.home.action.LoginAction"
+			scope="request"
+			input="/load4Login.do"
+			name="loginForm"
+			validate="true"
+			parameter="login">
+		
+			<forward name="failure" path="/home/login.vm" />
+			<forward name="success" path="/index.do" />
+		</action>
 		
 	</action-mappings>
 

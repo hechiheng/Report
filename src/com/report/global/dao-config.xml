@@ -14,6 +14,8 @@
 			implementation="com.report.home.dao.sqlmap.HomeSqlMapDao" />
 		<dao interface="com.report.home.dao.iface.MemberDao"
 			implementation="com.report.home.dao.sqlmap.MemberSqlMapDao" />
+		<dao interface="com.report.home.dao.iface.LoginDao"
+			implementation="com.report.home.dao.sqlmap.LoginSqlMapDao" />
 			
 			
 		<dao interface="com.report.manage.dao.iface.LoginDao"

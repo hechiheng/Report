@@ -26,7 +26,7 @@ public class LoginInterceptor extends BaseInterceptor {
 		ActionForward af = null;
 		Map map = SysGlobals.getSessionObj(request, Constants.MAIN_SESSION);
 		if (map == null) {
-			SysMessageBean smb = new SysMessageBean();
+			SysMessageBean smb = new SysMessageBean(true);
 			smb.setMessage(new ActionMessage("error.session.invalid"));
 			smb.setLinkText(new ActionMessage("btn.value.relogin"));
 			smb.setAction("/load4Login");

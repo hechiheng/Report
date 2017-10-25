@@ -33,7 +33,7 @@
 				<tr>
 					<th>验证码:</th>
 				  <td>
-						<input type="text" class="len220" name="code" autocomplete="off" />
+						<input type="text" class="len220" name="imagecode" autocomplete="off" />
 						<img src="$link.setAction('imageCode.do')" align="absmiddle" id="code"  class="vcode" onclick="change_code(this);"/>
 				  </td>
 				</tr>

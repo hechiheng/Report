@@ -9,7 +9,11 @@
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
 <script type="text/javascript" src="$link.setRelative('/home/js/jquery-1.7.2.min.js')" ></script>
 <link href="$link.setRelative('/home/theme/default/css/css.css')" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="$link.setRelative('/manage/js/calendar.config.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/calendar/calendar.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/calendar/lang/en.js')"></script>
+<link href="$link.setRelative('/manage/js/calendar/jscal2.css')" rel="stylesheet" type="text/css" />
+<link href="$link.setRelative('/manage/js/calendar/border-radius.css')" rel="stylesheet" type="text/css" />
+<link href="$link.setRelative('/manage/js/calendar/win2k.css')" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 function change_code(obj){
 	jQuery("#code").attr("src",obj.src+'?'+Math.random());
@@ -17,11 +21,11 @@ function change_code(obj){
 }
 
 jQuery(function () {
-	jQuery("input[name='accountid']").focus();
+	jQuery("input[name='member.accountid']").focus();
 	
 	//验证账号是否存在
-	jQuery("input[name='accountid']").blur(function(){
-		var accountid = jQuery("input[name='accountid']");
+	jQuery("input[name='member.accountid']").blur(function(){
+		var accountid = jQuery("input[name='member.accountid']");
 		if(jQuery.trim(accountid.val())==''){
 			accountid.parent().find("span").remove().end().append("<span class='error'>账号不能为空</span>");
 			return ;
@@ -39,11 +43,12 @@ jQuery(function () {
 	});
 	
 	jQuery("#form_do").submit(function(){
-		var accountid = jQuery("input[name='accountid']");
-		var password = jQuery("input[name='password']");
-		var password_re = jQuery("input[name='password_re']");
-		var nickname = jQuery("input[name='nickname']");
-		var code = jQuery("input[name='code']");
+		var accountid = jQuery("input[name='member.accountid']");
+		var password = jQuery("input[name='member.password']");
+		var password_re = jQuery("input[name='member.password_re']");
+		var factname = jQuery("input[name='member.factname']");
+		var email = jQuery("input[name='member.email']");
+		var imagecode = jQuery("input[name='member.imagecode']");
 		if(jQuery.trim(accountid.val())==''){
 			accountid.parent().find("span").remove().end().append("<span class='error'>账号不能为空</span>");
 			accountid.focus();
@@ -65,19 +70,26 @@ jQuery(function () {
 		}else {
 			password_re.parent().find("span").remove().end();
 		}
-		if(jQuery.trim(nickname.val())==''){
-			nickname.parent().find("span").remove().end().append("<span class='error'>昵称不能为空</span>");
-			nickname.focus();
+		if(jQuery.trim(factname.val())==''){
+			factname.parent().find("span").remove().end().append("<span class='error'>姓名不能为空</span>");
+			factname.focus();
 			return false;			
 		}else {
-			nickname.parent().find("span").remove().end();
+			factname.parent().find("span").remove().end();
 		}
-		if(jQuery.trim(code.val())==''){
-			code.parent().find("span").remove().end().append("<span class='error'>验证码不能为空</span>");
-			code.focus();
+		if(jQuery.trim(email.val())==''){
+			email.parent().find("span").remove().end().append("<span class='error'>邮箱不能为空</span>");
+			email.focus();
 			return false;			
 		}else {
-			code.parent().find("span").remove().end();
+			email.parent().find("span").remove().end();
+		}
+		if(jQuery.trim(imagecode.val())==''){
+			imagecode.parent().find("span").remove().end().append("<span class='error'>验证码不能为空</span>");
+			imagecode.focus();
+			return false;			
+		}else {
+			imagecode.parent().find("span").remove().end();
 		}
 
 	});
@@ -126,58 +138,52 @@ jQuery(function () {
 	<div class="right f_r" style="width:980px;">
 		<h3 class="nybt"><span>会员注册</span></h3>
 		<div class="form" style="width: 600px;margin: 10px auto;">
-			<form method='post' id="form_do" name="form_do" action="$link.setAction('memberReg')">
+			<form method='post' id="form_do" name="form_do" action="$link.setAction('regMember')">
 				<dl>
 					<dt>用户名：</dt>
 					<dd>
-						<input type="text" name="accountid" class="inp_one" />
+						<input type="text" name="member.accountid" class="inp_one" />
 						<span style="color: red;">*</span>
 					</dd>
 				</dl>
 				<dl>
 					<dt>登录密码：</dt>
 					<dd>
-						<input type="password" name="password" class="inp_one" value=""/>
+						<input type="password" name="member.password" class="inp_one" value=""/>
 						<span style="color: red;">*</span>
 					</dd>
 				</dl>
 				<dl>
 					<dt>确认密码：</dt>
 					<dd>
-						<input type="password" name="password_re" class="inp_one" value=""/>
-						<span style="color: red;">*</span>
-					</dd>
-				</dl>
-				<dl>
-					<dt>昵称：</dt>
-					<dd>
-						<input type="text" name="nickname" class="inp_one" />
+						<input type="password" name="member.password_re" class="inp_one" value=""/>
 						<span style="color: red;">*</span>
 					</dd>
 				</dl>
 				<dl>
 					<dt>姓名/单位名称：</dt>
 					<dd>
-						<input type="text" name="factname" class="inp_one" />
+						<input type="text" name="member.factname" class="inp_one" />
+						<span style="color: red;">*</span>
 					</dd>
 				</dl>
 				<dl>
         			<dt> 性别：</dt>
         			<dd>
-        				<label><input type="radio" name="sex" value="1" checked="checked"/>男&nbsp;</label>
-        				<label><input type="radio" name="sex" value="2" />女</label>
+        				<label><input type="radio" name="member.sex" value="1" checked="checked"/>男&nbsp;</label>
+        				<label><input type="radio" name="member.sex" value="2" />女</label>
         			</dd>
         		</dl>
 				<dl>
 					<dt>身份证号：</dt>
 					<dd>
-						<input type="text" name="idcard" class="inp_one" />
+						<input type="text" name="member.idcard" class="inp_one" />
 					</dd>
 				</dl>
 				<dl>
                     <dt> 出生日期：</dt>
                     <dd>
-                        <input type="text" class="inp_one" name="birthday" id="birthday" value="" readonly="readonly">
+                        <input type="text" class="inp_one" name="member.birthday" id="birthday" value="" readonly="readonly">
                         <span style="color: red;">*</span>
                         <script type="text/javascript">
                             Calendar.setup({
@@ -195,35 +201,39 @@ jQuery(function () {
 				<dl>
 					<dt>邮箱：</dt>
 					<dd>
-						<input type="text" name="email" class="inp_one" />
+						<input type="text" name="member.email" class="inp_one" />
+						<span style="color: red;">*</span>
 					</dd>
 				</dl>
 				<dl>
 					<dt>QQ：</dt>
 					<dd>
-						<input type="text" name="qq" class="inp_one" />
+						<input type="text" name="member.qq" class="inp_one" />
 					</dd>
 				</dl>
 				<dl>
 					<dt>电话：</dt>
 					<dd>
-						<input type="text" name="phone" class="inp_one" />
+						<input type="text" name="member.tel" class="inp_one" />
 					</dd>
 				</dl>
 				<dl>
 					<dt>所在地：</dt>
 					<dd>
-						<input type="text" name="location" class="inp_one" />
+						<input type="text" name="member.address" class="inp_one" />
 					</dd>
 				</dl>
 				<dl>
 					<dt>验证码：</dt>
 					<dd>
-						<input type="text" name="code" class="inp_small" />
+						<input type="text" name="member.imagecode" class="inp_small" />
 						<img src="$link.setAction('/manage/imageCode.do')" align="absmiddle" id="code"  class="vcode" onclick="change_code(this);"/>
 						<span style="color: red;">*</span>
 					</dd>
 				</dl>
+				<dl>
+    				<span class='error'>#errorMarkup()</span>
+                </dl>
 				<div class="form_b">		
 					<input type="submit" class="btn_blue" id="submit" value="注册">
 				</div>

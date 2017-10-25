@@ -17,6 +17,7 @@
 
 	<sqlMap resource="com/report/home/dao/sqlmap/database/Home.xml" />
 	<sqlMap resource="com/report/home/dao/sqlmap/database/Member.xml" />
+	<sqlMap resource="com/report/home/dao/sqlmap/database/Login.xml" />
 	
 	
 	<sqlMap resource="com/report/manage/dao/sqlmap/database/Login.xml" />

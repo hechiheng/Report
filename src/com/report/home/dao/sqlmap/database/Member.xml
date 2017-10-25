@@ -9,5 +9,9 @@
 	]]>
 	</select>
 	
+	<insert id="home.MemberDao.insertMember" parameterClass="member">
+		insert into t_member(accountid,password,sex,factname,idcard,birthday,address,qq,email,tel,regtime)
+		values(#accountid#,#password#,#sex#,#factname#,#idcard#,#birthday#,#address#,#qq#,#email#,#tel#,UNIX_TIMESTAMP(NOW()))
+	</insert>
 	
 </sqlMap>

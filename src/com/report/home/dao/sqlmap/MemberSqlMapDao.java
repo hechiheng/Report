@@ -7,6 +7,7 @@ import com.ibatis.dao.client.DaoException;
 import com.ibatis.dao.client.DaoManager;
 import com.ibatis.dao.client.template.SqlMapDaoTemplate;
 import com.report.home.dao.iface.MemberDao;
+import com.report.manage.bean.Member;
 
 public class MemberSqlMapDao extends SqlMapDaoTemplate implements MemberDao {
 
@@ -23,6 +24,15 @@ public class MemberSqlMapDao extends SqlMapDaoTemplate implements MemberDao {
 		} catch (DaoException e) {
 			logger.error("home.MemberDao.getMemberCount", e);
 			throw new BaseException("home.MemberDao.getMemberCount", e);
+		}
+	}
+
+	public void insertMember(Member member) throws BaseException {
+		try {
+			this.insert("home.MemberDao.insertMember", member);
+		} catch (DaoException e) {
+			logger.error("home.MemberDao.insertMember", e);
+			throw new BaseException("home.MemberDao.insertMember", e);
 		}
 	}
 

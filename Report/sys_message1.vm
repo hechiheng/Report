@@ -1,3 +1,4 @@
+#set($infoLink = $request.getAttribute("sysInfoLink"))
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,12 +46,14 @@ background-image: linear-gradient(top , #2b9ee4, #4fb7fe );}
 			
 			<div class="p10">
 			<div class="system-message">
-			<?php if(isset($message)): ?><p class="success">√ <?php echo($message); ?></p>
-			<?php else: ?>
-			<p class="error">× <?php echo($error); ?></p><?php endif; ?>
+				#if($infoLink.error)
+					<p class="error">× #errorMarkup() #messageMarkupForProperty("sysMessage")</p>
+				#else
+					<p class="success">√ #errorMarkup() #messageMarkupForProperty("sysMessage")</p>
+				#end
 			<p class="detail"></p>
 			<p class="jump">
-			页面自动 <a id="href" href="<?php echo($jumpUrl); ?>">跳转</a> 等待时间： <b id="wait"><?php echo($waitSecond); ?></b>
+			页面自动 <a id="href" href="#getActionLink($infoLink)">跳转</a> 等待时间： <b id="wait">${infoLink.timer}</b>
 			</p>
 			</div>
 			<script type="text/javascript">	

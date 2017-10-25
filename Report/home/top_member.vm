@@ -2,11 +2,11 @@
 	<div>
 		<a href="$link.setAction('logout')">退出登录</a>
 		<a href="$link.setAction('load4MemberIndex')">会员中心</a>
-		<span>欢迎您，$!loginInfo.nickname &nbsp</span>
+		<span>欢迎您，$!loginInfo.factname &nbsp</span>
 	</div>
 #else
 	<div>
-		<a href="$link.setAction('load4MemberReg')">会员注册</a>
-		<a href="$link.setAction('load4MemberLogin')">会员登录</a>
+		<a href="$link.setAction('load4RegMember')">会员注册</a>
+		<a href="$link.setAction('load4Login')">会员登录</a>
 	</div>
 #end

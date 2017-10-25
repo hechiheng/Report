@@ -10,11 +10,10 @@
 	<!-- ================================================ Form Bean Definitions-->
 
 	<form-beans>
-		 <!-- 用户登录 --> 
 		<form-bean name="loginForm" type="org.apache.struts.validator.DynaValidatorForm">
 	        <form-property name="username" type="java.lang.String"/>
 	        <form-property name="password" type="java.lang.String"/>
-	        <form-property name="code" type="java.lang.String"/>
+	        <form-property name="imagecode" type="java.lang.String"/>
         </form-bean>
         
 	</form-beans>
@@ -48,7 +47,6 @@
 		<action path="/error" forward="/sys_message.vm"/>
 		<action path="/index" forward="/load4Login.do"/>
 		
-		<!-- 用户登录 -->
 		<action	path="/login"
 			type="com.report.manage.action.LoginAction"
 			scope="request"
@@ -60,7 +58,6 @@
 			<forward name="failure" path="/../manage/login.vm" />
 			<forward name="success" path="/load4Index.do" />
 		</action>
-		<!-- 请求验证码 -->
 		<action
         	path="/imageCode"
 			type="com.report.manage.action.LoginAction"

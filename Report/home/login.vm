@@ -64,7 +64,7 @@ jQuery(function () {
 	<div class="right f_r" style="width:980px;">
 		<h3 class="nybt"><span>会员登录</span></h3>
 		<div class="form" style="width: 600px;margin: 10px auto;">
-			<form method='post' id="form_do" name="form_do" action="$link.setAction('memberLogin')">
+			<form method='post' id="form_do" name="form_do" action="$link.setAction('login')">
 			<dl>
 				<dt>用户名：</dt>
 				<dd>
@@ -80,9 +80,12 @@ jQuery(function () {
 			<dl>
 				<dt>验证码：</dt>
 				<dd>
-					<input type="text" name="code" class="inp_small" />
+					<input type="text" name="imagecode" class="inp_small" />
 					<img src="$link.setAction('/manage/imageCode.do')" align="absmiddle" id="code"  class="vcode" onclick="change_code(this);"/>
 				</dd>
+			</dl>
+            <dl>
+				<span class='error'>#errorMarkup()</span>
 			</dl>
 			<div class="form_b">		
 				<input type="submit" class="btn_blue" id="submit" value="登录">
