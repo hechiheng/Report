@@ -6,7 +6,7 @@
 	</div>
 #else
 	<div>
-		<a href="$link.setAction('load4RegMember')">会员注册</a>
+		<a href="$link.setAction('load4MemberReg')">会员注册</a>
 		<a href="$link.setAction('load4Login')">会员登录</a>
 	</div>
 #end

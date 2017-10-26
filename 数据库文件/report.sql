@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 127.0.0.1
+Source Server         : localhost
 Source Server Version : 50521
-Source Host           : 127.0.0.1:3306
+Source Host           : localhost:3306
 Source Database       : report
 
 Target Server Type    : MYSQL
 Target Server Version : 50521
 File Encoding         : 65001
 
-Date: 2017-10-25 23:24:16
+Date: 2017-10-26 17:29:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -994,7 +994,7 @@ CREATE TABLE `t_codelist` (
   `sort` smallint(6) NOT NULL DEFAULT '0' COMMENT '排序',
   `remark` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_codelist
@@ -1025,6 +1025,11 @@ INSERT INTO `t_codelist` VALUES ('48', '免费版', '1', 'copytype', '软件授�
 INSERT INTO `t_codelist` VALUES ('49', '共享版', '2', 'copytype', '软件授权', '0', '1', '0', null);
 INSERT INTO `t_codelist` VALUES ('50', '破解版', '3', 'copytype', '软件授权', '0', '1', '0', null);
 INSERT INTO `t_codelist` VALUES ('51', 'default', '1', 'themestyle', '主题样式', '0', '1', '0', null);
+INSERT INTO `t_codelist` VALUES ('52', '初级会员', '1', 'grouplevel', '会员级别', '0', '1', '0', null);
+INSERT INTO `t_codelist` VALUES ('53', '中级会员', '2', 'grouplevel', '会员级别', '0', '1', '0', null);
+INSERT INTO `t_codelist` VALUES ('54', '高级会员', '3', 'grouplevel', '会员级别', '0', '1', '0', null);
+INSERT INTO `t_codelist` VALUES ('55', '男', '1', 'sex', '性别', '0', '1', '0', null);
+INSERT INTO `t_codelist` VALUES ('56', '女', '2', 'sex', '性别', '0', '1', '0', null);
 
 -- ----------------------------
 -- Table structure for `t_comment`
@@ -1222,28 +1227,28 @@ CREATE TABLE `t_member` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `accountid` varchar(50) NOT NULL,
   `password` char(32) NOT NULL,
-  `sex` tinyint(1) DEFAULT NULL,
-  `factname` varchar(50) NOT NULL DEFAULT '',
-  `idcard` varchar(20) DEFAULT NULL,
-  `birthday` varchar(20) NOT NULL DEFAULT '',
-  `address` varchar(100) NOT NULL DEFAULT '0' COMMENT '积分',
-  `qq` varchar(20) NOT NULL DEFAULT '' COMMENT '头像',
-  `email` varchar(30) DEFAULT NULL,
-  `tel` varchar(20) DEFAULT NULL,
+  `encrypt` varchar(6) NOT NULL DEFAULT '',
+  `nickname` varchar(20) DEFAULT '',
+  `amount` decimal(8,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '总金额',
+  `score` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '积分',
+  `face` varchar(60) NOT NULL DEFAULT '' COMMENT '头像',
   `regtime` int(10) unsigned NOT NULL DEFAULT '0',
   `updatetime` int(10) DEFAULT NULL,
+  `logintime` int(10) unsigned DEFAULT '0',
+  `loginip` varchar(20) DEFAULT '',
+  `loginnum` mediumint(8) unsigned DEFAULT '0',
+  `groupid` smallint(6) unsigned DEFAULT '0',
+  `message` tinyint(1) DEFAULT '0',
   `isvalid` tinyint(1) NOT NULL DEFAULT '1',
+  `islock` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_member
 -- ----------------------------
-INSERT INTO `t_member` VALUES ('1', 'hch@qq.com', 'd31fa2d0f3cef21b3b53f1e4db56597e', null, 'hch', null, '', '0', '', null, null, '1471524159', null, '1');
-INSERT INTO `t_member` VALUES ('2', '111', '111', null, '111定点', null, '', '0', '', null, null, '1477466340', null, '1');
-INSERT INTO `t_member` VALUES ('3', '222', '232', '1', '2323', '2323', '2017-10-24', '', '', '2332', '', '1508942544', null, '1');
-INSERT INTO `t_member` VALUES ('4', '333', 'c4ca4238a0b923820dcc509a6f75849b', '1', '?????', '234324', '2017-10-18', '234', '234', '234324', '234', '1508942916', null, '1');
-INSERT INTO `t_member` VALUES ('5', '444', 'c4ca4238a0b923820dcc509a6f75849b', '1', '???', '2323', '2017-10-11', '???????????', '23', '23', '23', '1508944535', null, '1');
+INSERT INTO `t_member` VALUES ('1', 'hch@qq.com', 'd31fa2d0f3cef21b3b53f1e4db56597e', 'jldheZ', 'hch', '0.00', '0', '', '1471524159', null, '1471524172', '127.0.0.1', '1', '2', '0', '1', '0');
+INSERT INTO `t_member` VALUES ('2', '111', '111', '', '111定点', '0.00', '0', '', '1477466340', null, '0', '', '0', '1', '0', '1', '0');
 
 -- ----------------------------
 -- Table structure for `t_memberdetail`

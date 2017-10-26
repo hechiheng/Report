@@ -25,14 +25,14 @@
 	</object>
 	</div>
 	<div id="top_member">
-		#parse("/home/top_member.vm")
+		#parse("/home/include/top_member.vm")
 	</div>
 	<div id="top_logo"></div>
 </div>
 <!--menu -->
 <div id="menu">
 	<ul>
-		#parse("/home/menu.vm")
+		#parse("/home/include/menu.vm")
 	</ul>
 </div>
 
@@ -84,7 +84,7 @@
 
 
 <div class="warp1 mt" id="bottom">
-	#parse("/home/bottom.vm")
+	#parse("/home/include/bottom.vm")
 </div>
 
 

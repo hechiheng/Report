@@ -71,6 +71,13 @@ public class LoginAction extends BaseAction {
 		return mapping.findForward(flag);
 	}
 
+	public ActionForward logout(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws BaseException {
+		SysGlobals.removeSessionObj(request, Constants.MAIN_SESSION);
+		return mapping.findForward("success");
+	}
+
 	public ActionForward load4Index(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws BaseException {
@@ -83,13 +90,22 @@ public class LoginAction extends BaseAction {
 		return mapping.findForward("success");
 	}
 
-	public ActionForward logout(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws BaseException {
-		SysGlobals.removeSessionObj(request, Constants.MAIN_SESSION);
-		HttpSession session = request.getSession(false);
-		session.removeAttribute("queryString");
-		return mapping.findForward("logoutFrw");
+	public ActionForward load4MemberIndex(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws BaseException {
+		return mapping.findForward("success");
+	}
+
+	public ActionForward load4MemberChgPwd(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws BaseException {
+		return mapping.findForward("success");
+	}
+
+	public ActionForward load4MemberEdit(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws BaseException {
+		return mapping.findForward("success");
 	}
 
 }

@@ -9,4 +9,6 @@ public interface MemberDao {
 
 	public void insertMember(Member member) throws BaseException;
 
+	public Member getMember(int id) throws BaseException;
+
 }

@@ -101,11 +101,11 @@
 			<forward name="success" path="/home/about.vm"/>
         </action>
         <action
-        	path="/load4RegMember"
+        	path="/load4MemberReg"
 			type="com.report.home.action.MemberAction"
 			scope="request"
 			validate="false"
-			parameter="load4RegMember">
+			parameter="load4MemberReg">
 			<forward name="success" path="/home/member_reg.vm"/>
         </action>
         <action 
@@ -140,11 +140,41 @@
 			name="loginForm"
 			validate="true"
 			parameter="login">
-		
 			<forward name="failure" path="/home/login.vm" />
 			<forward name="success" path="/index.do" />
 		</action>
-		
+		<action
+        	path="/logout"
+			type="com.report.home.action.LoginAction"
+			scope="request"
+			validate="false"
+			parameter="logout">
+			<forward name="success" path="/load4Login.do"/>
+        </action>
+        <action
+        	path="/load4MemberIndex"
+			type="com.report.home.action.LoginAction"
+			scope="request"
+			validate="false"
+			parameter="load4MemberIndex">
+			<forward name="success" path="/home/member_index.vm"/>
+        </action>
+		<action
+        	path="/load4MemberChgPwd"
+			type="com.report.home.action.LoginAction"
+			scope="request"
+			validate="false"
+			parameter="load4MemberChgPwd">
+			<forward name="success" path="/home/member_chgpwd.vm"/>
+        </action>
+        <action
+        	path="/load4MemberEdit"
+			type="com.report.home.action.LoginAction"
+			scope="request"
+			validate="false"
+			parameter="load4MemberEdit">
+			<forward name="success" path="/home/member_chgpwd.vm"/>
+        </action>
 	</action-mappings>
 
 

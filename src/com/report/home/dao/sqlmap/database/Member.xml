@@ -14,4 +14,13 @@
 		values(#accountid#,#password#,#sex#,#factname#,#idcard#,#birthday#,#address#,#qq#,#email#,#tel#,UNIX_TIMESTAMP(NOW()))
 	</insert>
 	
+	<select id="home.MemberDao.getMember" parameterClass="int" resultClass="member">
+	<![CDATA[
+		select a.id,a.accountid,a.factname,b.code_name sex,a.idcard,DATE_FORMAT(b.birthday,'%Y-%m-%d') birthday,
+			a.qq,a.tel,a.email,a.address
+		from t_member a,t_codelist b 
+		where a.sex=b.code_value and b.code_type='sex' and id=#id# 
+	]]>
+	</select>
+	
 </sqlMap>

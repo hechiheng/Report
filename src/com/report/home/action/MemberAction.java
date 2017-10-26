@@ -1,6 +1,7 @@
 package com.report.home.action;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import org.apache.struts.validator.Resources;
 
 import com.css.base.BaseAction;
 import com.css.base.BaseException;
+import com.report.global.Constants;
 import com.report.global.SysGlobals;
 import com.report.global.SysMessageBean;
 import com.report.home.bean.Announce;
@@ -26,7 +28,7 @@ import com.report.manage.bean.Member;
 
 public class MemberAction extends BaseAction {
 
-	public ActionForward load4RegMember(ActionMapping mapping, ActionForm form,
+	public ActionForward load4MemberReg(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws BaseException {
 		HomeBo bo = new HomeBo();
@@ -50,41 +52,65 @@ public class MemberAction extends BaseAction {
 
 		return null;
 	}
-	
-	public ActionForward regMember(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-            HttpServletResponse response) throws BaseException {
-        MemberBo bo = new MemberBo();
-        MemberForm memberForm = (MemberForm) form;
-        Member member = memberForm.getMember();
-        HttpSession session = request.getSession(false);
-        String imagecode = (String) session.getAttribute("imagecode");
-        if (!imagecode.equals(member.getImagecode())) {
-            ActionMessages am = new ActionMessages();
-            am.add("sysMessage", new ActionMessage("MemberAction.regMember.imagecode"));
-            saveErrors(request, am);
-            return mapping.findForward("failure");
-        }
-        int cnt=bo.getMemberCount(member.getAccountid());
-        if (cnt > 0) {
-            ActionMessages am = new ActionMessages();
-            am.add("sysMessage", new ActionMessage("MemberAction.regMember.memberExists"));
-            saveErrors(request, am);
-            return mapping.findForward("failure");
-        }
-        if(!member.getPassword().equals(member.getPassword_re())){
-        	ActionMessages am = new ActionMessages();
-            am.add("sysMessage", new ActionMessage("MemberAction.regMember.password"));
-            saveErrors(request, am);
-            return mapping.findForward("failure");
-        }
-        bo.regMember(member);
 
-        SysMessageBean smb = new SysMessageBean(false);
-        smb.setMessage(new ActionMessage("MemberAction.regMember.regSuccess", member.getFactname()));
-        smb.setLinkText(new ActionMessage("MemberAction.regMember.returnLogin"));
-        smb.setAction("load4Login");
-        SysGlobals.setSysMessage(request, smb);
-        return mapping.findForward("info");
-    }
+	public ActionForward regMember(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws BaseException {
+		MemberBo bo = new MemberBo();
+		MemberForm memberForm = (MemberForm) form;
+		Member member = memberForm.getMember();
+		HttpSession session = request.getSession(false);
+		String imagecode = (String) session.getAttribute("imagecode");
+		if (!imagecode.equals(member.getImagecode())) {
+			ActionMessages am = new ActionMessages();
+			am.add("sysMessage", new ActionMessage(
+					"MemberAction.regMember.imagecode"));
+			saveErrors(request, am);
+			return mapping.findForward("failure");
+		}
+		int cnt = bo.getMemberCount(member.getAccountid());
+		if (cnt > 0) {
+			ActionMessages am = new ActionMessages();
+			am.add("sysMessage", new ActionMessage(
+					"MemberAction.regMember.memberExists"));
+			saveErrors(request, am);
+			return mapping.findForward("failure");
+		}
+		if (!member.getPassword().equals(member.getPassword_re())) {
+			ActionMessages am = new ActionMessages();
+			am.add("sysMessage", new ActionMessage(
+					"MemberAction.regMember.password"));
+			saveErrors(request, am);
+			return mapping.findForward("failure");
+		}
+		bo.regMember(member);
+
+		SysMessageBean smb = new SysMessageBean(false);
+		smb.setMessage(new ActionMessage("MemberAction.regMember.regSuccess",
+				member.getFactname()));
+		smb
+				.setLinkText(new ActionMessage(
+						"MemberAction.regMember.returnLogin"));
+		smb.setAction("load4Login");
+		SysGlobals.setSysMessage(request, smb);
+		return mapping.findForward("info");
+	}
+
+	@SuppressWarnings("unchecked")
+	public ActionForward load4MemberIndex(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws BaseException {
+		Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
+				Constants.MAIN_SESSION);
+		HomeBo homeBo = new HomeBo();
+		Announce announce = homeBo.getLatestAnnounce();
+		request.setAttribute("announce", announce);
+
+		MemberBo bo = new MemberBo();
+		int id = Integer.valueOf(sessionMap.get("memberid"));
+		Member member = bo.getMember(id);
+		request.setAttribute("member", member);
+		return mapping.findForward("success");
+	}
 
 }

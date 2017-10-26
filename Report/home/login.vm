@@ -40,7 +40,7 @@ jQuery(function () {
 <!--menu -->
 <div id="menu">
 	<ul>
-		#parse("/home/menu.vm")
+		#parse("/home/include/menu.vm")
 	</ul>
 </div>
 
@@ -99,7 +99,7 @@ jQuery(function () {
 </div>
 
 <div class="warp1 mt" id="bottom">
-	#parse("/home/bottom.vm")
+	#parse("/home/include/bottom.vm")
 </div>
 
 

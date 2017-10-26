@@ -33,6 +33,10 @@ public class MemberBo {
 		return dao.getMemberCount(accountid);
 	}
 
+	public Member getMember(int id) throws BaseException {
+		return dao.getMember(id);
+	}
+
 	public String verifyMember(String accountid) throws BaseException {
 		String key = "";
 		if (dao.getMemberCount(accountid) > 0) {

@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>大学生创新大赛网上申报系统-联系我们</title>
+<title>大学生创新大赛网上申报系统</title>
 <meta name="keywords" content="大学生创新大赛网上申报系统" />
 <meta name="description" content="大学生创新大赛网上申报系统" />
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
@@ -29,6 +29,7 @@
 	</div>
 	<div id="top_logo"></div>
 </div>
+
 <!--menu -->
 <div id="menu">
 	<ul>
@@ -43,9 +44,9 @@
 			<marquee>
 				#set($announce = $request.getAttribute("announce"))
 				$!announce.content
-			</marquee>
-    	</span>
-    </div>
+ 			</marquee>
+ 		</span>
+	</div>
 </div>
 <div class="clear"></div>
 
@@ -53,29 +54,52 @@
 
 <div class="content">
 	<div class="warp1 mt">
-
-<div class="right f_r" style="width:980px;">
+	<div class="left f_l">
+		<h3 class="flbt">会员中心</h3>
+		<div class="xbox">
+			<ul class="fllb">
+			<li><a href="$link.setAction('load4MemberIndex')">个人信息</a></li>
+			<li><a href="$link.setAction('load4MemberChgPwd')">修改密码</a></li>
+			<li><a href="$link.setAction('logout')">退出登录</a></li>
+			</ul>
+		</div>		
+	</div>
+<div class="right f_r">
 	<h3 class="nybt">
-		<i>您当前的位置：<a href="$link.contextPath">首页</a> >> <a href="$link.setAction('load4About')">联系我们</a></i>
-		<span>联系我们</span>
+		<i><a href="$link.setAction('load4MemberEdit')">修改</a></i>
+		<span>个人信息</span>
 	</h3>
-	<div class="xbox wzzw"> 
-		#set($about = $request.getAttribute("about"))
-		<div class="wzzw lh">
-			$!about.content
+	<div class="form">
+		<div class="h3">
+			<span>基本资料</span>
 		</div>
+		#set($member = $request.getAttribute("member"))
+		<ul class="personInfo">
+			<li>用户名：$!member.accountid</li>
+			<li>姓名/单位名称：$!member.nickname</li>
+			<li>性别：$!member.sex</li>
+			<li>身份证号：$!member.idcard</li>
+			<li>出生日期：$!member.birthday</li>
+   		</ul>
+   		<div class="h3">
+			<span>联系方式</span>
+		</div>
+		<ul class="personInfo">
+			<li>邮箱：$!member.email</li>
+			<li>QQ：$!member.qq</li>
+			<li>电话：$!member.tel</li>
+			<li>所在地：$!member.address</li>
+		</ul>
 	</div>
 
-	</div>
+</div>
 <div class=" clear"></div>
 </div>
 </div>
 
-
 <div class="warp1 mt" id="bottom">
 	#parse("/home/include/bottom.vm")
 </div>
-
 
 </body>
 </html>
