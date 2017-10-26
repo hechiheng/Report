@@ -1,4 +1,4 @@
-<a href="$link.contextPath">XXX</a>版权所有
+<a href="$link.setAction('admin.do')">管理登录</a>
 <br />
-联系地址：石家庄市新华区  电话：15176190900<br />
-Copyright © 2009 - 2016 HCH. All Rights Reserved
+联系地址：石家庄市新华区  电话：0000000000<br />
+Copyright © 2009 - 2016 XXX. All Rights Reserved

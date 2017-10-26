@@ -42,11 +42,18 @@
 	<!-- =========================================== Action Mapping Definitions-->
 
 	<action-mappings>
-
-		<!-- 将sys_message.vm映射为error.do -->
 		<action path="/error" forward="/sys_message.vm"/>
-		<action path="/index" forward="/load4Login.do"/>
+		<action path="/index" forward="/load4Index.do"/>
 		
+		<action
+        	path="/load4Login"
+			type="com.report.manage.action.LoginAction"
+			scope="request"
+			input="/loginOn.do"
+			validate="false"
+			parameter="load4Login">
+			<forward name="success" path="/../manage/login.vm"/>
+        </action>
 		<action	path="/login"
 			type="com.report.manage.action.LoginAction"
 			scope="request"
@@ -79,17 +86,7 @@
         
         <!-- 拦截器返回首页 -->
         <action path="/returnMain" forward="/pages/main/main.vm"/>
-        <!-- 后台登陆 -->
-		<action
-        	path="/load4Login"
-			type="com.report.manage.action.LoginAction"
-			scope="request"
-			input="/loginOn.do"
-			validate="false"
-			parameter="load4Login">
-			
-			<forward name="success" path="/../manage/login.vm"/>
-        </action>
+        
         
         <!-- 加载后台左侧列表 -->
 		<action

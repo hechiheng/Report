@@ -10,5 +10,9 @@ public interface MemberDao {
 	public void insertMember(Member member) throws BaseException;
 
 	public Member getMember(int id) throws BaseException;
+	
+	public void updateMember(Member member) throws BaseException;
+	
+	public void updateMemberPwd(Member member) throws BaseException;
 
 }

@@ -9,7 +9,7 @@ $(function(){
 	var $msg = $('.msg');	
 	var username=$("input[name='username']");
 	var password = $("input[name='password']");
-	var code = $("input[name='code']");
+	var imagecode = $("input[name='imagecode']");
 	$("#login").submit(function(){
 		
 		if($.trim(username.val())==''){
@@ -20,9 +20,9 @@ $(function(){
 			$msg.html("<span class='error'>密码不能为空</span>");
 			password.focus();
 			return false;
-		}else if($.trim(code.val())==''){
+		}else if($.trim(imagecode.val())==''){
 			$msg.html("<span class='error'>验证码不能为空</span>");
-			code.focus();
+			imagecode.focus();
 			return false;
 		}else{
 			$msg.html(' ');

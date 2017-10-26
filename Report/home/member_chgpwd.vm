@@ -11,28 +11,28 @@
 <script type="text/javascript" src="$link.setRelative('/home/js/jquery-1.7.2.min.js')" ></script>
 <link href="$link.setRelative('/home/theme/default/css/css.css')" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-jQurey(function () {
-	jQurey("input[name='password_old']").focus();
+jQuery(function () {
+	jQuery("input[name='member.password_old']").focus();
 	
-	jQurey("#form_do").submit(function(){
-		var password_old = jQurey("input[name='password_old']");
-		var password = jQurey("input[name='password']");
-		var password_re = jQurey("input[name='password_re']");
-		if(jQurey.trim(password_old.val())==''){
+	jQuery("#form_do").submit(function(){
+		var password_old = jQuery("input[name='member.password_old']");
+		var password = jQuery("input[name='member.password']");
+		var password_re = jQuery("input[name='member.password_re']");
+		if(jQuery.trim(password_old.val())==''){
 			password_old.parent().find("span").remove().end().append("<span class='error'>旧密码不能为空</span>");
 			password_old.focus();
 			return false;			
 		}else {
 			password_old.parent().find("span").remove().end();
 		}
-		if(jQurey.trim(password.val())==''){
+		if(jQuery.trim(password.val())==''){
 			password.parent().find("span").remove().end().append("<span class='error'>新密码不能为空</span>");
 			password.focus();
 			return false;			
 		}else {
 			password.parent().find("span").remove().end();
 		}
-		if(jQurey.trim(password_re.val())==''){
+		if(jQuery.trim(password_re.val())==''){
 			password_re.parent().find("span").remove().end().append("<span class='error'>确认密码不能为空</span>");
 			password_re.focus();
 			return false;			
@@ -59,7 +59,7 @@ jQurey(function () {
 	</object>
 	</div>
 	<div id="top_member">
-		#parse("/home/include/menu.vm")
+		#parse("/home/include/top_member.vm")
 	</div>
 	<div id="top_logo"></div>
 </div>
@@ -92,7 +92,7 @@ jQurey(function () {
 		<h3 class="flbt">会员中心</h3>
 		<div class="xbox">
 			<ul class="fllb">
-			<li><a href="$link.setAction('load4MemberIndex')">会员中心</a></li>
+			<li><a href="$link.setAction('load4MemberIndex')">个人信息</a></li>
 			<li><a href="$link.setAction('load4MemberChgPwd')">修改密码</a></li>
 			<li><a href="$link.setAction('logout')">退出登录</a></li>
 			</ul>
@@ -101,29 +101,32 @@ jQurey(function () {
 <div class="right f_r">
 <h3 class="nybt"><span>修改密码</span></h3>
 <div class="form">
-	<form method='post' id="form_do" name="form_do" action="$link.setAction('chgPwd')">
+	<form method='post' id="form_do" name="form_do" action="$link.setAction('chgMemberPwd')">
 		<dl>
 			<dt>当前密码：</dt>
 			<dd>
-				<input type="password" name="password_old" class="inp_one" />
+				<input type="password" name="member.password_old" class="inp_one" />
 				<span style="color: red;">*</span>
 			</dd>
 		</dl>
 		<dl>
 			<dt>新密码：</dt>
 			<dd>
-				<input type="password" name="password" class="inp_one" />
+				<input type="password" name="member.password" class="inp_one" />
 				<span style="color: red;">*</span>
 			</dd>
 		</dl>
 
 		<dl>
-			<dt>确认密码：</dt>
+			<dt>确认新密码：</dt>
 			<dd>
-				<input type="password" name="password_re" class="inp_one" />
+				<input type="password" name="member.password_re" class="inp_one" />
 				<span style="color: red;">*</span>
 			</dd>
 		</dl>
+		<dl>
+			<span class='error'>#errorMarkup()</span>
+        </dl>
 		<div class="form_b">
 			<input type="submit" class="btn_blue" id="submit" value="保存">		
 		</div>

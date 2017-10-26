@@ -102,7 +102,7 @@ jQurey(function () {
 		<h3 class="flbt">会员中心</h3>
 		<div class="xbox">
 			<ul class="fllb">
-			<li><a href="$link.setAction('load4MemberIndex')">会员中心</a></li>
+			<li><a href="$link.setAction('load4MemberIndex')">个人信息</a></li>
 			<li><a href="$link.setAction('load4MemberChgPwd')">修改密码</a></li>
 			<li><a href="$link.setAction('logout')">退出登录</a></li>
 			</ul>
@@ -121,7 +121,8 @@ jQurey(function () {
 		<dl>
 			<dt>姓名/单位名称：</dt>
 			<dd>
-				<input type="text" name="member.factname" class="inp_one" value="$!memberForm.member.factname"/>
+				<input type="text" name="member.factname" class="inp_one" value="$!editMemberForm.member.factname"/>
+				<span style="color: red;">*</span>
 			</dd>
 		</dl>
 		<dl>
@@ -134,13 +135,13 @@ jQurey(function () {
 		<dl>
 			<dt>身份证号：</dt>
 			<dd>
-				<input type="text" name="member.idcard" class="inp_one" value="$!memberForm.member.idcard"/>
+				<input type="text" name="member.idcard" class="inp_one" value="$!editMemberForm.member.idcard"/>
 			</dd>
 		</dl>
 		<dl>
             <dt> 出生日期：</dt>
             <dd>
-                <input type="text" class="inp_one" name="member.birthday" id="birthday" value="$!memberForm.member.birthday" readonly="readonly">
+                <input type="text" class="inp_one" name="member.birthday" id="birthday" value="$!editMemberForm.member.birthday" readonly="readonly">
                 <span style="color: red;">*</span>
                 <script type="text/javascript">
                     Calendar.setup({
@@ -158,25 +159,26 @@ jQurey(function () {
 		<dl>
 			<dt>邮箱：</dt>
 			<dd>
-				<input type="text" name="member.email" class="inp_one" value="$!memberForm.member.email"/>
+				<input type="text" name="member.email" class="inp_one" value="$!editMemberForm.member.email"/>
+				<span style="color: red;">*</span>
 			</dd>
 		</dl>
 		<dl>
 			<dt>QQ：</dt>
 			<dd>
-				<input type="text" name="member.qq" class="inp_one" value="$!memberForm.member.qq"/>
+				<input type="text" name="member.qq" class="inp_one" value="$!editMemberForm.member.qq"/>
 			</dd>
 		</dl>
 		<dl>
 			<dt>电话：</dt>
 			<dd>
-				<input type="text" name="member.tel" class="inp_one" value="$!memberForm.member.tel"/>
+				<input type="text" name="member.tel" class="inp_one" value="$!editMemberForm.member.tel"/>
 			</dd>
 		</dl>
 		<dl>
 			<dt>所在地：</dt>
 			<dd>
-				<input type="text" name="member.address" class="inp_one" value="$!memberForm.member.address"/>
+				<input type="text" name="member.address" class="inp_one" value="$!editMemberForm.member.address"/>
 			</dd>
 		</dl>
 		<dl>
@@ -187,6 +189,9 @@ jQurey(function () {
 				<span style="color: red;">*</span>
 			</dd>
 		</dl>
+		<dl>
+			<span class='error'>#errorMarkup()</span>
+        </dl>
 		<div class="form_b">
 			<input type="submit" class="btn_blue" id="submit" value="保存">		
 		</div>

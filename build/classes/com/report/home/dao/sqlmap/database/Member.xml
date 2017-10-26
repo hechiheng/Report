@@ -16,11 +16,20 @@
 	
 	<select id="home.MemberDao.getMember" parameterClass="int" resultClass="member">
 	<![CDATA[
-		select a.id,a.accountid,a.factname,b.code_name sex,a.idcard,DATE_FORMAT(b.birthday,'%Y-%m-%d') birthday,
-			a.qq,a.tel,a.email,a.address
+		select a.id,a.accountid,a.password,a.factname,b.code_name sex,a.idcard,a.birthday,a.qq,a.tel,a.email,a.address
 		from t_member a,t_codelist b 
-		where a.sex=b.code_value and b.code_type='sex' and id=#id# 
+		where a.sex=b.code_value and b.code_type='sex' and a.id=#id# 
 	]]>
 	</select>
+	
+	<update id="home.MemberDao.updateMember" parameterClass="member">
+		update t_member set factname=#factname#,idcard=#idcard#,birthday=#birthday#,address=#address#,
+			qq=#qq#,email=#email#,tel=#tel#,updatetime=UNIX_TIMESTAMP(NOW())
+		where id=#id#
+	</update>
+	
+	<update id="home.MemberDao.updateMemberPwd" parameterClass="member">
+		update t_member set password=#password# where id=#id#
+	</update>
 	
 </sqlMap>

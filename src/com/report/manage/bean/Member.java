@@ -6,10 +6,11 @@ public class Member implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String id;
+	private int id;
 	private String accountid;
 	private String password;
 	private String password_re;
+	private String password_old;
 	private String factname;
 	private String sex;
 	private String idcard;
@@ -23,14 +24,6 @@ public class Member implements Serializable {
 	private String imagecode;
 	private int firstRow;
 	private int listRows;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public String getAccountid() {
 		return accountid;
@@ -158,6 +151,22 @@ public class Member implements Serializable {
 
 	public String getPassword_re() {
 		return password_re;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setPassword_old(String password_old) {
+		this.password_old = password_old;
+	}
+
+	public String getPassword_old() {
+		return password_old;
 	}
 
 }

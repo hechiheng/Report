@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interceptor-config>
+	<interceptor name="member" type="com.report.home.interceptor.MemberInterceptor"/>
+
+	<action type="com.report.home.action.MemberAction">
+		<interceptor name="member"/>
+	</action>
+	
+</interceptor-config>

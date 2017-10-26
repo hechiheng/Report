@@ -3,9 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>后台管理</title>
-<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="js/login.js"></script>		
-<link rel="stylesheet" href="css/login.css" />
+<link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/login.js')"></script>		
+<link rel="stylesheet" href="$link.setRelative('/manage/css/login.css')" />
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 	  jQuery("#username").focus();

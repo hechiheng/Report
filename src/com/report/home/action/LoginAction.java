@@ -26,14 +26,12 @@ public class LoginAction extends BaseAction {
 	public ActionForward login(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws BaseException {
-
 		LoginBo loginBo = new LoginBo();
 		DynaValidatorForm loginForm = (DynaValidatorForm) form;
 		String accountid = loginForm.getString("accountid");
-
 		String password = loginForm.getString("password");
 		String imagecode = loginForm.getString("imagecode");
-		String flag = "success";
+		String flag = "index";
 		HttpSession session = request.getSession(false);
 
 		session.removeAttribute("accountid");
@@ -52,7 +50,8 @@ public class LoginAction extends BaseAction {
 				Member memberDB = loginBo.getMember(member);
 				if (memberDB != null) {
 					Map<String, String> sessionMap = new HashMap<String, String>();
-					sessionMap.put("memberid", memberDB.getId());
+					sessionMap
+							.put("memberid", String.valueOf(memberDB.getId()));
 					sessionMap.put("accountid", memberDB.getAccountid());
 					sessionMap.put("factname", memberDB.getFactname());
 					SysGlobals.setSessionObj(request, Constants.MAIN_SESSION,
@@ -87,24 +86,6 @@ public class LoginAction extends BaseAction {
 	public ActionForward load4Login(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws BaseException {
-		return mapping.findForward("success");
-	}
-
-	public ActionForward load4MemberIndex(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
-			HttpServletResponse response) throws BaseException {
-		return mapping.findForward("success");
-	}
-
-	public ActionForward load4MemberChgPwd(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
-			HttpServletResponse response) throws BaseException {
-		return mapping.findForward("success");
-	}
-
-	public ActionForward load4MemberEdit(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
-			HttpServletResponse response) throws BaseException {
 		return mapping.findForward("success");
 	}
 

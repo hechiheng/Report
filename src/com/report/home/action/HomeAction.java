@@ -11,6 +11,8 @@ import org.apache.struts.action.ActionMapping;
 
 import com.css.base.BaseAction;
 import com.css.base.BaseException;
+import com.report.global.Constants;
+import com.report.global.SysGlobals;
 import com.report.home.bean.About;
 import com.report.home.bean.Announce;
 import com.report.home.bean.Link;
@@ -37,6 +39,13 @@ public class HomeAction extends BaseAction {
 		List<Link> linkList = bo.getLinkList();
 		request.setAttribute("linkList", linkList);
 
+		return mapping.findForward("success");
+	}
+
+	public ActionForward load4Admin(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws BaseException {
+		SysGlobals.removeSessionObj(request, Constants.MAIN_SESSION);
 		return mapping.findForward("success");
 	}
 

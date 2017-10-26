@@ -76,7 +76,7 @@
 		#set($member = $request.getAttribute("member"))
 		<ul class="personInfo">
 			<li>用户名：$!member.accountid</li>
-			<li>姓名/单位名称：$!member.nickname</li>
+			<li>姓名/单位名称：$!member.factname</li>
 			<li>性别：$!member.sex</li>
 			<li>身份证号：$!member.idcard</li>
 			<li>出生日期：$!member.birthday</li>

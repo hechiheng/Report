@@ -16,7 +16,13 @@
 	        <form-property name="imagecode" type="java.lang.String"/>
         </form-bean>
         
-        <form-bean name="memberForm"
+        <form-bean name="regMemberForm"
+			type="com.report.home.form.MemberForm">
+		</form-bean>
+		<form-bean name="editMemberForm"
+			type="com.report.home.form.MemberForm">
+		</form-bean>
+		<form-bean name="chgMemberPwdForm"
 			type="com.report.home.form.MemberForm">
 		</form-bean>
         
@@ -40,7 +46,7 @@
 		<!-- 全局信息提示页面转向 -->
         <forward name="error" path="/error.do" />
 		<forward name="info" path="/info.do" />
-		<forward name="index" path="/index.do" />
+		<forward name="index" path="/index.do" redirect="true"/>
 	</global-forwards>
 
 
@@ -48,10 +54,19 @@
 
 	<action-mappings>
 
-		<action path="/error" forward="/sys_message1.vm"/>
-		<action path="/info" forward="/sys_message1.vm" />
+		<action path="/error" forward="/sys_message.vm"/>
+		<action path="/info" forward="/sys_message.vm" />
 		<action path="/index" forward="/load4Home.do"/>
+		<action path="/admin" forward="/load4Admin.do"/>
 		
+        <action
+        	path="/load4Admin"
+			type="com.report.home.action.HomeAction"
+			scope="request"
+			validate="false"
+			parameter="load4Admin">
+			<forward name="success" path="/manage/load4Login.do" redirect="true"/>
+        </action>
 		<action
         	path="/load4Home"
 			type="com.report.home.action.HomeAction"
@@ -120,7 +135,7 @@
 			type="com.report.home.action.MemberAction"
 			scope="request"
 			input="/load4RegMember.do"
-			name="memberForm"
+			name="regMemberForm"
 			validate="true"
 			parameter="regMember">
 			<forward name="failure" path="/home/member_reg.vm"/>
@@ -140,8 +155,7 @@
 			name="loginForm"
 			validate="true"
 			parameter="login">
-			<forward name="failure" path="/home/login.vm" />
-			<forward name="success" path="/index.do" />
+			<forward name="failure" path="/home/login.vm"/>
 		</action>
 		<action
         	path="/logout"
@@ -149,11 +163,11 @@
 			scope="request"
 			validate="false"
 			parameter="logout">
-			<forward name="success" path="/load4Login.do"/>
+			<forward name="success" path="/load4Login.do" redirect="true"/>
         </action>
         <action
         	path="/load4MemberIndex"
-			type="com.report.home.action.LoginAction"
+			type="com.report.home.action.MemberAction"
 			scope="request"
 			validate="false"
 			parameter="load4MemberIndex">
@@ -161,7 +175,7 @@
         </action>
 		<action
         	path="/load4MemberChgPwd"
-			type="com.report.home.action.LoginAction"
+			type="com.report.home.action.MemberAction"
 			scope="request"
 			validate="false"
 			parameter="load4MemberChgPwd">
@@ -169,12 +183,34 @@
         </action>
         <action
         	path="/load4MemberEdit"
-			type="com.report.home.action.LoginAction"
+			type="com.report.home.action.MemberAction"
 			scope="request"
+			name="editMemberForm"
 			validate="false"
 			parameter="load4MemberEdit">
-			<forward name="success" path="/home/member_chgpwd.vm"/>
+			<forward name="success" path="/home/member_edit.vm"/>
         </action>
+        <action
+        	path="/editMember"
+			type="com.report.home.action.MemberAction"
+			scope="request"
+			input="/load4RegMember.do"
+			name="editMemberForm"
+			validate="true"
+			parameter="editMember">
+			<forward name="failure" path="/home/member_edit.vm"/>
+        </action>
+        <action
+        	path="/chgMemberPwd"
+			type="com.report.home.action.MemberAction"
+			scope="request"
+			input="/load4RegMember.do"
+			name="chgMemberPwdForm"
+			validate="true"
+			parameter="chgMemberPwd">
+			<forward name="failure" path="/home/member_chgpwd.vm"/>
+        </action>
+        
 	</action-mappings>
 
 
@@ -201,10 +237,10 @@
 
 	<!-- =================================================== AOP plugin -->
 	<!-- 自动加载interceptor-config.xml的信息 -->
-<!--	<plug-in className="com.css.struts.aop.SAIFPlugin">-->
-<!--		<set-property property="interceptor-config"-->
-<!--			value="/WEB-INF/interceptor-config.xml"/>-->
-<!--		<set-property value="UTF-8" property="encoding" />-->
-<!--	</plug-in>-->
+	<plug-in className="com.css.struts.aop.SAIFPlugin">
+		<set-property property="interceptor-config"
+			value="/WEB-INF/interceptor-config.xml"/>
+		<set-property value="UTF-8" property="encoding" />
+	</plug-in>
 	
 </struts-config>

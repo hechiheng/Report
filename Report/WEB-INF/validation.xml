@@ -34,7 +34,7 @@
 			</field>
 		</form>
 		
-		<form name="memberForm">
+		<form name="regMemberForm">
 			<field property="member.accountid"
 				depends="required,bytemaxlength">
 				<arg key="member.accountid" />
@@ -138,7 +138,107 @@
 				<arg key="member.imagecode" />
 			</field>
 		</form>
-
+		<form name="editMemberForm">
+			<field property="member.factname"
+				depends="required,bytemaxlength">
+				<arg key="member.factname" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>50</var-value>
+				</var>
+			</field>
+			<field property="member.sex"
+				depends="required,bytemaxlength">
+				<arg key="member.sex" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>1</var-value>
+				</var>
+			</field>
+			<field property="member.idcard"
+				depends="bytemaxlength">
+				<arg key="member.idcard" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="member.birthday"
+				depends="bytemaxlength">
+				<arg key="member.birthday" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="member.email"
+				depends="bytemaxlength">
+				<arg key="member.email" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="member.qq"
+				depends="bytemaxlength">
+				<arg key="member.qq" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="member.tel"
+				depends="bytemaxlength">
+				<arg key="member.tel" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="member.address"
+				depends="bytemaxlength">
+				<arg key="member.address" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>100</var-value>
+				</var>
+			</field>
+			<field property="member.imagecode"
+				depends="required">
+				<arg key="member.imagecode" />
+			</field>
+		</form>
+		<form name="chgMemberPwdForm">
+			<field property="member.password"
+				depends="required">
+				<arg key="member.password" />
+			</field>
+			<field property="member.password_re"
+				depends="required">
+				<arg key="member.password_re" />
+			</field>
+			<field property="member.password_old"
+				depends="required">
+				<arg key="member.password_old" />
+			</field>
+		</form>
+		
 
 	</formset>
 

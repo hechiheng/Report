@@ -44,5 +44,23 @@ public class MemberSqlMapDao extends SqlMapDaoTemplate implements MemberDao {
 			throw new BaseException("home.MemberDao.getMember", e);
 		}
 	}
+	
+	public void updateMember(Member member) throws BaseException {
+		try {
+			this.insert("home.MemberDao.updateMember", member);
+		} catch (DaoException e) {
+			logger.error("home.MemberDao.updateMember", e);
+			throw new BaseException("home.MemberDao.updateMember", e);
+		}
+	}
+	
+	public void updateMemberPwd(Member member) throws BaseException {
+		try {
+			this.insert("home.MemberDao.updateMemberPwd", member);
+		} catch (DaoException e) {
+			logger.error("home.MemberDao.updateMemberPwd", e);
+			throw new BaseException("home.MemberDao.updateMemberPwd", e);
+		}
+	}
 
 }

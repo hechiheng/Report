@@ -29,6 +29,15 @@ public class MemberBo {
 		dao.insertMember(member);
 	}
 
+	public void editMember(Member member) throws BaseException {
+		dao.updateMember(member);
+	}
+
+	public void editMemberPwd(Member member) throws BaseException {
+		member.setPassword(DigestUtils.md5Hex(member.getPassword()));
+		dao.updateMemberPwd(member);
+	}
+
 	public int getMemberCount(String accountid) throws BaseException {
 		return dao.getMemberCount(accountid);
 	}

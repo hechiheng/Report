@@ -7,12 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.validator.DynaValidatorForm;
 import org.apache.struts.validator.Resources;
 
 import com.css.base.BaseAction;
@@ -86,12 +88,12 @@ public class MemberAction extends BaseAction {
 		bo.regMember(member);
 
 		SysMessageBean smb = new SysMessageBean(false);
-		smb.setMessage(new ActionMessage("MemberAction.regMember.regSuccess",
+		smb.setMessage(new ActionMessage("MemberAction.regMember.success",
 				member.getFactname()));
 		smb
 				.setLinkText(new ActionMessage(
 						"MemberAction.regMember.returnLogin"));
-		smb.setAction("load4Login");
+		smb.setAction("/load4Login");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
 	}
@@ -111,6 +113,102 @@ public class MemberAction extends BaseAction {
 		Member member = bo.getMember(id);
 		request.setAttribute("member", member);
 		return mapping.findForward("success");
+	}
+
+	public ActionForward load4MemberChgPwd(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws BaseException {
+		return mapping.findForward("success");
+	}
+
+	@SuppressWarnings("unchecked")
+	public ActionForward load4MemberEdit(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws BaseException {
+		MemberForm memberForm = (MemberForm) form;
+		Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
+				Constants.MAIN_SESSION);
+		HomeBo homeBo = new HomeBo();
+		Announce announce = homeBo.getLatestAnnounce();
+		request.setAttribute("announce", announce);
+
+		MemberBo bo = new MemberBo();
+		int id = Integer.valueOf(sessionMap.get("memberid"));
+		Member member = bo.getMember(id);
+		memberForm.setMember(member);
+		return mapping.findForward("success");
+	}
+
+	@SuppressWarnings("unchecked")
+	public ActionForward editMember(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws BaseException {
+		Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
+				Constants.MAIN_SESSION);
+		int id = Integer.valueOf(sessionMap.get("memberid"));
+		MemberBo bo = new MemberBo();
+		MemberForm memberForm = (MemberForm) form;
+		Member member = memberForm.getMember();
+		HttpSession session = request.getSession(false);
+		String imagecode = (String) session.getAttribute("imagecode");
+		if (!imagecode.equals(member.getImagecode())) {
+			ActionMessages am = new ActionMessages();
+			am.add("sysMessage", new ActionMessage(
+					"MemberAction.regMember.imagecode"));
+			saveErrors(request, am);
+			return mapping.findForward("failure");
+		}
+		member.setId(id);
+		bo.editMember(member);
+
+		SysMessageBean smb = new SysMessageBean(false);
+		smb.setMessage(new ActionMessage("MemberAction.editMember.success",
+				member.getFactname()));
+		smb.setLinkText(new ActionMessage("MemberAction.editMember.return"));
+		smb.setAction("/load4MemberIndex");
+		SysGlobals.setSysMessage(request, smb);
+		return mapping.findForward("info");
+	}
+
+	@SuppressWarnings("unchecked")
+	public ActionForward chgMemberPwd(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws BaseException {
+		Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
+				Constants.MAIN_SESSION);
+		int id = Integer.valueOf(sessionMap.get("memberid"));
+		MemberBo bo = new MemberBo();
+		MemberForm chgMemberPwdForm = (MemberForm) form;
+		Member member = chgMemberPwdForm.getMember();
+		String password_old = member.getPassword_old();
+		String password = member.getPassword();
+		String password_re = member.getPassword_re();
+		Member memberDB = bo.getMember(id);
+		String passwordDB = memberDB.getPassword();
+		if (!DigestUtils.md5Hex(password_old).equals(passwordDB)) {
+			ActionMessages am = new ActionMessages();
+			am.add("sysMessage", new ActionMessage(
+					"MemberAction.chgMemberPwd.wrong"));
+			saveErrors(request, am);
+			return mapping.findForward("failure");
+		}
+		if (!password.equals(password_re)) {
+			ActionMessages am = new ActionMessages();
+			am.add("sysMessage", new ActionMessage(
+					"MemberAction.regMember.password"));
+			saveErrors(request, am);
+			return mapping.findForward("failure");
+		}
+		member.setId(id);
+		bo.editMemberPwd(member);
+
+		SysMessageBean smb = new SysMessageBean(false);
+		smb.setMessage(new ActionMessage("MemberAction.chgMemberPwd.success",
+				member.getFactname()));
+		smb.setLinkText(new ActionMessage("MemberAction.chgMemberPwd.return"));
+		smb.setAction("/load4MemberIndex");
+		SysGlobals.setSysMessage(request, smb);
+		return mapping.findForward("info");
 	}
 
 }
