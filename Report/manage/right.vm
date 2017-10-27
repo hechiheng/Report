@@ -1,0 +1,56 @@
+#set($loginInfo = $session.getAttribute($MAIN_SESSION))
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台管理</title>
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
+
+</head>
+<body>
+<style type="text/css">
+	html{_overflow-y:scroll}
+</style>
+<div style="min-width:780px">
+
+<div class="column">
+	<dl class="dbox winbg1">
+	    <dt class="lside">
+	        <div class="l">我的个人信息</div>
+	    </dt>
+	    <dd>
+			<div class="content">
+				您好，$loginInfo.get("username")<br/>
+				<div class="clear"></div>
+				上次登录时间：$loginInfo.get("logintime")<br/>
+			</div>
+	    </dd>
+	</dl>
+	
+
+</div>
+
+
+<div class="column">
+
+  <dl class="dbox winbg5">
+	    <dt class="lside"><span class="l">关于作者</span></dt>
+	    <dd>
+	        <div class="content">
+			作者：XXX<br />
+			邮箱：xxxxxx@qq.com<br />
+			　QQ：100000000 <br />
+			</div>
+	    </dd>
+	</dl>
+
+
+
+</div>
+
+
+</div>
+</body>
+</html>

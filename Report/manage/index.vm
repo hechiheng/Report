@@ -24,7 +24,7 @@
       <ul>
 	    <li id="i_self">您好，$loginInfo.get("username")</li>
 		<li id="i_hide_menu"><a href="#" id="togglemenu">隐藏菜单</a></li>
-        <li id="i_home"><a href="<?php echo APP_PATH; ?>" target="_blank">首页</a></li> 
+        <li id="i_home"><a href="$link.contextPath" target="_blank">首页</a></li> 
         <li id="i_exit"><a href="$link.setAction('logout')" target="_top">退出</a></li>		
       </ul>
     </div>
@@ -35,70 +35,21 @@
 <div class="span"></div>
 <div class="menu" id="menu">
 <div>
-<?php
-	//菜单列表
-	$sql = "select a.* from cms_menu a, cms_access b, cms_role_user c where a.id=b.menuid and b.roleid=c.roleid and c.userid=$userid and a.pid=0 order by a.sort"; 
-	if($superadmin){
-		$sql = "select * from cms_menu t where t.pid=0 order by sort"; 
-	}
-	$result = mysql_query($sql);
-	while($data=mysql_fetch_array($result)){ 
-		if($data['id']=="6"){
-?>
+	#set($menuList = $request.getAttribute("menuList"))
+	#foreach($menu in $menuList)
+		<li><a href="$link.setAction('showMessage').addQueryData('id',$!message.id)">$!message.title</a></li>
 	<dl>
-		<dt><?php echo $data['name'] ?></dt>
+		<dt>$!munu.name</dt>
 		<dd>
 			<ul>
-				<?php 
-				$sql1 = "select * from cms_category t where t.pid=0 and t.modelid<>0 and t.isshow=1 and t.isvalid=1 order by sort"; 
-				$result1 = mysql_query($sql1);
-				while($data1=mysql_fetch_array($result1)){ 
-					switch($data1['modelid']){
-						case "1":
-							echo "<li><a href='article_index.php?cid=".$data1['id']."' target='right'>".$data1['name']."</a></li>";
-							break;
-						case "2":
-							echo "<li><a href='page_index.php?cid=".$data1['id']."' target='right'>".$data1['name']."</a></li>";
-							break;
-						case "3":
-							echo "<li><a href='product_index.php?cid=".$data1['id']."' target='right'>".$data1['name']."</a></li>";
-							break;
-						case "4":
-							echo "<li><a href='picture_index.php?cid=".$data1['id']."' target='right'>".$data1['name']."</a></li>";
-							break;
-						case "5":
-							echo "<li><a href='soft_index.php?cid=".$data1['id']."' target='right'>".$data1['name']."</a></li>";
-							break;
-					}
-				}
-				?>
+				#set($subMenuList = $menu.subMenuList)
+				#foreach($subMenu in $subMenuList)
+				<li><a href="$link.setAction($!subMenu.url)" target='right'>$!subMenu.name</a></li>
+				#end
 			</ul>
-		</dd>
-	</dl>
-<?php
-		}else{
-?>
-	<dl>
-		<dt><?php echo $data['name'] ?></dt>
-		<dd>
-			<ul>
-				<?php 
-				$sql1 = "select a.* from cms_menu a, cms_access b, cms_role_user c where a.id=b.menuid and b.roleid=c.roleid and c.userid=$userid and a.pid=".$data['id']." order by a.sort"; 
-				if($superadmin){
-					$sql1 = "select * from cms_menu t where t.pid=".$data['id']." order by sort"; 
-				}
-				$result1 = mysql_query($sql1);
-				while($data1=mysql_fetch_array($result1)){ 
-					echo "<li><a href='".$data1['url']."' target='right'>".$data1['name']."</a></li>";
-				}
-				?>
-			</ul>
-		</dd>
-	</dl>
-<?php
-		}
-	}
-?>
+		</dd>	
+    </dl>
+	#end
 </div>
 
 </div>
@@ -107,13 +58,13 @@
 
 <div class="right">
 	<div class="rightContent">
-	<iframe id="right" name="right" frameborder="0" scrolling="yes" src="right.php" ></iframe>
+	<iframe id="right" name="right" frameborder="0" scrolling="yes" src="$link.setRelative('/manage/right.vm')" ></iframe>
 	</div>    
 </div>
 <!-- right end -->
 
 <div class="bottom">
-<?php echo $cfg_powerby; ?>
+	#parse("/home/include/bottom.vm")
 </div>
 <!-- bottom end -->
 
