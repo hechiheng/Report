@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="manage.News">
+	<typeAlias alias="news" type="com.report.home.bean.News"/>
+	
+	<select id="manage.NewsDao.selectNewsListSize" parameterClass="news" resultClass="int">
+		select count(id)
+		from t_news t where t.isvalid=#isvalid# 
+		<isNotEmpty prepend="and" property="title">
+			title like CONCAT('%',#title#,'%')
+		</isNotEmpty>		
+	</select>
+	
+	<select id="manage.NewsDao.selectNewsList" parameterClass="news" resultClass="news">
+		select id,title,color,ispublish,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d %H:%i:%s') publishtime,
+		DATE_FORMAT(FROM_UNIXTIME(updatetime),'%Y-%m-%d %H:%i:%s') updatetime
+		from t_news t where t.isvalid=#isvalid# 
+		<isNotEmpty prepend="and" property="title">
+			title like CONCAT('%',#title#,'%')
+		</isNotEmpty>		
+		order by updatetime desc
+		limit $firstRow$,$listRows$
+	</select>
+	
+	<select id="manage.NewsDao.selectNews" parameterClass="int" resultClass="news">
+		select id,title,color,author,keywords,description,content,ispublish,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d %H:%i:%s') publishtime,
+		DATE_FORMAT(FROM_UNIXTIME(updatetime),'%Y-%m-%d %H:%i:%s') updatetime 
+		from t_news t where t.id=#id#
+	</select>
+	
+	<insert id="manage.NewsDao.insertNews" parameterClass="news">
+		insert into t_news(title,color,author,keywords,description,content,ispublish,
+		<isNotEmpty property="publishtime">
+		publishtime,
+		</isNotEmpty>
+		updatetime,userid)
+		values(#title#,#color#,#author#,#keywords#,#description#,#content#,#ispublish#,
+		<isNotEmpty property="publishtime">
+		UNIX_TIMESTAMP(#publishtime#),
+		</isNotEmpty>
+		UNIX_TIMESTAMP(NOW()),#userid#)
+	</insert>
+	
+	<update id="manage.NewsDao.updateNews" parameterClass="news">
+		update t_news set title=#title#,color=#color#,author=#author#,keywords=#keywords#,
+			description=#description#,content=#content#,ispublish=#ispublish#,
+			<isNotEmpty property="publishtime">
+			publishtime=UNIX_TIMESTAMP(#publishtime#),
+			</isNotEmpty>
+			updatetime=UNIX_TIMESTAMP(NOW()),userid=#userid# 
+		where id=#id#
+	</update>
+	
+	<update id="manage.NewsDao.updateNewsIsvalid" parameterClass="news">
+		update t_news set isvalid=#isvalid#,userid=#userid# where id=#id#
+	</update>
+	
+	<delete id="manage.NewsDao.deleteNews" parameterClass="int">
+		delete from t_news where id=#id#
+	</delete>
+	
+</sqlMap>

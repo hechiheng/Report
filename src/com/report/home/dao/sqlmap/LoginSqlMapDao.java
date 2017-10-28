@@ -6,8 +6,8 @@ import com.css.base.BaseException;
 import com.ibatis.dao.client.DaoException;
 import com.ibatis.dao.client.DaoManager;
 import com.ibatis.dao.client.template.SqlMapDaoTemplate;
+import com.report.home.bean.Member;
 import com.report.home.dao.iface.LoginDao;
-import com.report.manage.bean.Member;
 
 public class LoginSqlMapDao extends SqlMapDaoTemplate implements LoginDao {
 
@@ -17,13 +17,13 @@ public class LoginSqlMapDao extends SqlMapDaoTemplate implements LoginDao {
 		super(arg0);
 	}
 
-	public Member getMember(Member member) throws BaseException {
+	public Member selectMember(Member member) throws BaseException {
 		try {
-			return (Member) this.queryForObject("home.LoginDao.getMember",
+			return (Member) this.queryForObject("home.LoginDao.selectMember",
 					member);
 		} catch (DaoException e) {
-			logger.error("home.LoginDao.getMember", e);
-			throw new BaseException("home.LoginDao.getMember", e);
+			logger.error("home.LoginDao.selectMember", e);
+			throw new BaseException("home.LoginDao.selectMember", e);
 		}
 	}
 

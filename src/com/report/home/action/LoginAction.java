@@ -18,8 +18,8 @@ import com.css.base.BaseAction;
 import com.css.base.BaseException;
 import com.report.global.Constants;
 import com.report.global.SysGlobals;
+import com.report.home.bean.Member;
 import com.report.home.bo.LoginBo;
-import com.report.manage.bean.Member;
 
 public class LoginAction extends BaseAction {
 
@@ -54,7 +54,7 @@ public class LoginAction extends BaseAction {
 							.put("memberid", String.valueOf(memberDB.getId()));
 					sessionMap.put("accountid", memberDB.getAccountid());
 					sessionMap.put("factname", memberDB.getFactname());
-					SysGlobals.setSessionObj(request, Constants.MAIN_SESSION,
+					SysGlobals.setSessionObj(request, Constants.HOME_SESSION,
 							sessionMap);
 				} else {
 					ActionMessages msg = new ActionMessages();
@@ -73,7 +73,7 @@ public class LoginAction extends BaseAction {
 	public ActionForward logout(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws BaseException {
-		SysGlobals.removeSessionObj(request, Constants.MAIN_SESSION);
+		SysGlobals.removeSessionObj(request, Constants.HOME_SESSION);
 		return mapping.findForward("success");
 	}
 

@@ -12,9 +12,9 @@ public class News implements Serializable {
 	private String keywords;
 	private String content;
 	private String description;
-	private String isvalid;
+	private int isvalid;
 	private String publishtime;
-	private String ispublish;
+	private int ispublish;
 	private String updatetime;
 	private int userid;
 	private int firstRow;
@@ -36,28 +36,12 @@ public class News implements Serializable {
 		this.content = content;
 	}
 
-	public String getIsvalid() {
-		return isvalid;
-	}
-
-	public void setIsvalid(String isvalid) {
-		this.isvalid = isvalid;
-	}
-
 	public String getPublishtime() {
 		return publishtime;
 	}
 
 	public void setPublishtime(String publishtime) {
 		this.publishtime = publishtime;
-	}
-
-	public String getIspublish() {
-		return ispublish;
-	}
-
-	public void setIspublish(String ispublish) {
-		this.ispublish = ispublish;
 	}
 
 	public String getUpdatetime() {
@@ -130,6 +114,22 @@ public class News implements Serializable {
 
 	public int getListRows() {
 		return listRows;
+	}
+
+	public void setIsvalid(int isvalid) {
+		this.isvalid = isvalid;
+	}
+
+	public int getIsvalid() {
+		return isvalid;
+	}
+
+	public void setIspublish(int ispublish) {
+		this.ispublish = ispublish;
+	}
+
+	public int getIspublish() {
+		return ispublish;
 	}
 
 }

@@ -1,13 +1,14 @@
-#set($loginInfo = $session.getAttribute($MAIN_SESSION))
+#set($loginInfo = $session.getAttribute($MANAGE_SESSION))
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>后台管理</title>
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
-<script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
-<script type="text/javascript" src="$link.setRelative('/manage/js/login.js')"></script>		
-<link rel="stylesheet" href="$link.setRelative('/manage/css/login.css')" />
+<script language="javascript" type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
+<script src="$link.setRelative('/manage/js/frame.js')" language="javascript" type="text/javascript"></script>
+<link href="$link.setRelative('/manage/css/frame.css')" rel="stylesheet" type="text/css" />
+
 <!--[if IE 6]>
 <script src="js/DD_belatedPNG_0.0.8a-min.js" language="javascript" type="text/javascript"></script>
 <script>
@@ -37,18 +38,17 @@
 <div>
 	#set($menuList = $request.getAttribute("menuList"))
 	#foreach($menu in $menuList)
-		<li><a href="$link.setAction('showMessage').addQueryData('id',$!message.id)">$!message.title</a></li>
-	<dl>
-		<dt>$!munu.name</dt>
-		<dd>
-			<ul>
-				#set($subMenuList = $menu.subMenuList)
-				#foreach($subMenu in $subMenuList)
-				<li><a href="$link.setAction($!subMenu.url)" target='right'>$!subMenu.name</a></li>
-				#end
-			</ul>
-		</dd>	
-    </dl>
+    	<dl>
+    		<dt>$!menu.name</dt>
+    		<dd>
+    			<ul>
+    				#set($subMenuList = $menu.subMenuList)
+    				#foreach($subMenu in $subMenuList)
+    				<li><a href="$!subMenu.url" target='right'>$!subMenu.name</a></li>
+    				#end
+    			</ul>
+    		</dd>	
+        </dl>
 	#end
 </div>
 
@@ -64,7 +64,7 @@
 <!-- right end -->
 
 <div class="bottom">
-	#parse("/home/include/bottom.vm")
+	#parse("/manage/include/bottom.vm")
 </div>
 <!-- bottom end -->
 

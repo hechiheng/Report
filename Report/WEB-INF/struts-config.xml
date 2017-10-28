@@ -17,13 +17,13 @@
         </form-bean>
         
         <form-bean name="regMemberForm"
-			type="com.report.home.form.MemberForm">
+			type="com.report.manage.form.MemberForm">
 		</form-bean>
-		<form-bean name="editMemberForm"
-			type="com.report.home.form.MemberForm">
+		<form-bean name="modifyMemberForm"
+			type="com.report.manage.form.MemberForm">
 		</form-bean>
 		<form-bean name="chgMemberPwdForm"
-			type="com.report.home.form.MemberForm">
+			type="com.report.manage.form.MemberForm">
 		</form-bean>
         
 	</form-beans>
@@ -134,7 +134,7 @@
         	path="/regMember"
 			type="com.report.home.action.MemberAction"
 			scope="request"
-			input="/load4RegMember.do"
+			input="/load4MemberReg.do"
 			name="regMemberForm"
 			validate="true"
 			parameter="regMember">
@@ -182,29 +182,29 @@
 			<forward name="success" path="/home/member_chgpwd.vm"/>
         </action>
         <action
-        	path="/load4MemberEdit"
+        	path="/load4MemberModify"
 			type="com.report.home.action.MemberAction"
 			scope="request"
-			name="editMemberForm"
+			name="modifyMemberForm"
 			validate="false"
-			parameter="load4MemberEdit">
-			<forward name="success" path="/home/member_edit.vm"/>
+			parameter="load4MemberModify">
+			<forward name="success" path="/home/member_modify.vm"/>
         </action>
         <action
-        	path="/editMember"
+        	path="/modifyMember"
 			type="com.report.home.action.MemberAction"
 			scope="request"
-			input="/load4RegMember.do"
-			name="editMemberForm"
+			input="/load4MemberModify.do"
+			name="modifyMemberForm"
 			validate="true"
-			parameter="editMember">
-			<forward name="failure" path="/home/member_edit.vm"/>
+			parameter="modifyMember">
+			<forward name="failure" path="/home/member_modify.vm"/>
         </action>
         <action
         	path="/chgMemberPwd"
 			type="com.report.home.action.MemberAction"
 			scope="request"
-			input="/load4RegMember.do"
+			input="/load4MemberChgPwd.do"
 			name="chgMemberPwdForm"
 			validate="true"
 			parameter="chgMemberPwd">

@@ -21,5 +21,6 @@
 	
 	
 	<sqlMap resource="com/report/manage/dao/sqlmap/database/Login.xml" />
+	<sqlMap resource="com/report/manage/dao/sqlmap/database/News.xml" />
 
 </sqlMapConfig>

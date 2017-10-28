@@ -45,7 +45,7 @@ public class HomeAction extends BaseAction {
 	public ActionForward load4Admin(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws BaseException {
-		SysGlobals.removeSessionObj(request, Constants.MAIN_SESSION);
+		SysGlobals.removeSessionObj(request, Constants.HOME_SESSION);
 		return mapping.findForward("success");
 	}
 
@@ -69,7 +69,7 @@ public class HomeAction extends BaseAction {
 		Message message = new Message();
 		HomeBo bo = new HomeBo();
 		int total = bo.getMessageListSize();
-		Page page = new Page(total, p, message);
+		Page page = new Page(total, p, message, "load4Message.do");
 		List<Message> messageList = bo.getMessageList(message);
 		request.setAttribute("messageList", messageList);
 		request.setAttribute("page", page);
@@ -99,7 +99,7 @@ public class HomeAction extends BaseAction {
 		News news = new News();
 		HomeBo bo = new HomeBo();
 		int total = bo.getNewsListSize();
-		Page page = new Page(total, p, news);
+		Page page = new Page(total, p, news, "load4News.do");
 		List<News> newsList = bo.getNewsList(news);
 		request.setAttribute("newsList", newsList);
 		request.setAttribute("page", page);

@@ -3,12 +3,10 @@
 PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 "http://www.ibatis.com/dtd/sql-map-2.dtd">
 <sqlMap namespace="home.Login">
-	<typeAlias alias="member" type="com.report.manage.bean.Member"/>
+	<typeAlias alias="member" type="com.report.home.bean.Member"/>
 	
-	<select id="home.LoginDao.getMember" parameterClass="member" resultClass="member">
-	<![CDATA[
+	<select id="home.LoginDao.selectMember" parameterClass="member" resultClass="member">
 		select id,accountid,factname from t_member where accountid=#accountid# and password=#password# 
-	]]>
 	</select>
 	
 </sqlMap>

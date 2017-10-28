@@ -23,110 +23,114 @@ public class HomeSqlMapDao extends SqlMapDaoTemplate implements HomeDao {
 		super(arg0);
 	}
 
-	public Announce getLatestAnnounce() throws BaseException {
+	public Announce selectLatestAnnounce() throws BaseException {
 		try {
 			return (Announce) this.queryForObject(
-					"home.HomeDao.getLatestAnnounce", null);
+					"home.HomeDao.selectLatestAnnounce", null);
 		} catch (DaoException e) {
-			logger.error("home.HomeDao.getLatestAnnounce", e);
-			throw new BaseException("home.HomeDao.getLatestAnnounce", e);
+			logger.error("home.HomeDao.selectLatestAnnounce", e);
+			throw new BaseException("home.HomeDao.selectLatestAnnounce", e);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Message> getLatestMessageList() throws BaseException {
+	public List<Message> selectLatestMessageList() throws BaseException {
 		try {
-			return this.queryForList("home.HomeDao.getLatestMessageList", null);
+			return this.queryForList("home.HomeDao.selectLatestMessageList",
+					null);
 		} catch (DaoException e) {
-			logger.error("home.HomeDao.getLatestMessageList", e);
-			throw new BaseException("home.HomeDao.getLatestMessageList", e);
+			logger.error("home.HomeDao.selectLatestMessageList", e);
+			throw new BaseException("home.HomeDao.selectLatestMessageList", e);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<News> getLatestNewsList() throws BaseException {
+	public List<News> selectLatestNewsList() throws BaseException {
 		try {
-			return this.queryForList("home.HomeDao.getLatestNewsList", null);
+			return this.queryForList("home.HomeDao.selectLatestNewsList", null);
 		} catch (DaoException e) {
-			logger.error("home.HomeDao.getLatestNewsList", e);
-			throw new BaseException("home.HomeDao.getLatestNewsList", e);
+			logger.error("home.HomeDao.selectLatestNewsList", e);
+			throw new BaseException("home.HomeDao.selectLatestNewsList", e);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Link> getLinkList() throws BaseException {
+	public List<Link> selectLinkList() throws BaseException {
 		try {
-			return this.queryForList("home.HomeDao.getLinkList", null);
+			return this.queryForList("home.HomeDao.selectLinkList", null);
 		} catch (DaoException e) {
-			logger.error("home.HomeDao.getLinkList", e);
-			throw new BaseException("home.HomeDao.getLinkList", e);
+			logger.error("home.HomeDao.selectLinkList", e);
+			throw new BaseException("home.HomeDao.selectLinkList", e);
 		}
 	}
 
-	public int getMessageListSize() throws BaseException {
+	public int selectMessageListSize() throws BaseException {
 		try {
 			return (Integer) this.queryForObject(
-					"home.HomeDao.getMessageListSize", null);
+					"home.HomeDao.selectMessageListSize", null);
 		} catch (DaoException e) {
-			logger.error("home.HomeDao.getMessageListSize", e);
-			throw new BaseException("home.HomeDao.getMessageListSize", e);
+			logger.error("home.HomeDao.selectMessageListSize", e);
+			throw new BaseException("home.HomeDao.selectMessageListSize", e);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Message> getMessageList(Message message) throws BaseException {
+	public List<Message> selectMessageList(Message message)
+			throws BaseException {
 		try {
-			return this.queryForList("home.HomeDao.getMessageList", message);
+			return this.queryForList("home.HomeDao.selectMessageList", message);
 		} catch (DaoException e) {
-			logger.error("home.HomeDao.getMessageList", e);
-			throw new BaseException("home.HomeDao.getMessageList", e);
+			logger.error("home.HomeDao.selectMessageList", e);
+			throw new BaseException("home.HomeDao.selectMessageList", e);
 		}
 	}
 
-	public Message getMessage(int id) throws BaseException {
+	public Message selectMessage(int id) throws BaseException {
 		try {
-			return (Message) this.queryForObject("home.HomeDao.getMessage", id);
+			return (Message) this.queryForObject("home.HomeDao.selectMessage",
+					id);
 		} catch (DaoException e) {
-			logger.error("home.HomeDao.getMessage", e);
-			throw new BaseException("home.HomeDao.getMessage", e);
+			logger.error("home.HomeDao.selectMessage", e);
+			throw new BaseException("home.HomeDao.selectMessage", e);
 		}
 	}
 
-	public int getNewsListSize() throws BaseException {
+	public int selectNewsListSize() throws BaseException {
 		try {
 			return (Integer) this.queryForObject(
-					"home.HomeDao.getNewsListSize", null);
+					"home.HomeDao.selectNewsListSize", null);
 		} catch (DaoException e) {
-			logger.error("home.HomeDao.getNewsListSize", e);
-			throw new BaseException("home.HomeDao.getNewsListSize", e);
+			logger.error("home.HomeDao.selectNewsListSize", e);
+			throw new BaseException("home.HomeDao.selectNewsListSize", e);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<News> getNewsList(News news) throws BaseException {
+	public List<News> selectNewsList(News news) throws BaseException {
 		try {
-			return this.queryForList("home.HomeDao.getNewsList", news);
+			return this.queryForList("home.HomeDao.selectNewsList", news);
 		} catch (DaoException e) {
-			logger.error("home.HomeDao.getNewsList", e);
-			throw new BaseException("home.HomeDao.getNewsList", e);
+			logger.error("home.HomeDao.selectNewsList", e);
+			throw new BaseException("home.HomeDao.selectNewsList", e);
 		}
 	}
 
-	public News getNews(int id) throws BaseException {
+	public News selectNews(int id) throws BaseException {
 		try {
-			return (News) this.queryForObject("home.HomeDao.getNews", id);
+			return (News) this.queryForObject("home.HomeDao.selectNews", id);
 		} catch (DaoException e) {
-			logger.error("home.HomeDao.getNews", e);
-			throw new BaseException("home.HomeDao.getNews", e);
+			logger.error("home.HomeDao.selectNews", e);
+			throw new BaseException("home.HomeDao.selectNews", e);
 		}
 	}
 
-	public About getAbout() throws BaseException {
+	public About selectAbout() throws BaseException {
 		try {
-			return (About) this.queryForObject("home.HomeDao.getAbout", null);
+			return (About) this
+					.queryForObject("home.HomeDao.selectAbout", null);
 		} catch (DaoException e) {
-			logger.error("home.HomeDao.getAbout", e);
-			throw new BaseException("home.HomeDao.getAbout", e);
+			logger.error("home.HomeDao.selectAbout", e);
+			throw new BaseException("home.HomeDao.selectAbout", e);
 		}
 	}
 

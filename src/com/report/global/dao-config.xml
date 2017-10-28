@@ -20,6 +20,8 @@
 			
 		<dao interface="com.report.manage.dao.iface.LoginDao"
 			implementation="com.report.manage.dao.sqlmap.LoginSqlMapDao" />
+		<dao interface="com.report.manage.dao.iface.NewsDao"
+			implementation="com.report.manage.dao.sqlmap.NewsSqlMapDao" />
 		    
 	</context>
 </daoConfig>

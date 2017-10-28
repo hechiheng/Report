@@ -1,3 +1,4 @@
+#set($loginInfo = $session.getAttribute($HOME_SESSION))
 #if($loginInfo)
 	<div>
 		<a href="$link.setAction('logout')">退出登录</a>

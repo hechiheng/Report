@@ -6,8 +6,8 @@ import org.apache.log4j.Logger;
 import com.css.base.BaseException;
 import com.ibatis.dao.client.DaoManager;
 import com.report.global.DaoConfig;
+import com.report.home.bean.Member;
 import com.report.home.dao.iface.LoginDao;
-import com.report.manage.bean.Member;
 
 public class LoginBo {
 	private DaoManager daoManager;
@@ -23,6 +23,6 @@ public class LoginBo {
 
 	public Member getMember(Member member) throws BaseException {
 		member.setPassword(DigestUtils.md5Hex(member.getPassword()));
-		return dao.getMember(member);
+		return dao.selectMember(member);
 	}
 }

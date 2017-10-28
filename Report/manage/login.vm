@@ -22,13 +22,13 @@
 				<tr>
 					<th>用户名:</th>
 					<td>
-						<input type="text" id="username" name="username" class="len220"/>
+						<input type="text" id="username" name="username" class="len220" value="admin"/>
 					</td>
 				</tr>
 				<tr>
 					<th>密码:</th>
 					<td>
-						<input type="password" class="len220" name="password"/>
+						<input type="password" class="len220" name="password" value="1"/>
 					</td>
 				</tr>
 				<tr>

@@ -27,46 +27,46 @@ public class HomeBo {
 	}
 
 	public Announce getLatestAnnounce() throws BaseException {
-		return dao.getLatestAnnounce();
+		return dao.selectLatestAnnounce();
 	}
 
 	public List<Message> getLatestMessageList() throws BaseException {
-		return dao.getLatestMessageList();
+		return dao.selectLatestMessageList();
 	}
 
 	public List<News> getLatestNewsList() throws BaseException {
-		return dao.getLatestNewsList();
+		return dao.selectLatestNewsList();
 	}
 
 	public List<Link> getLinkList() throws BaseException {
-		return dao.getLinkList();
+		return dao.selectLinkList();
 	}
 
 	public int getMessageListSize() throws BaseException {
-		return dao.getMessageListSize();
+		return dao.selectMessageListSize();
 	}
 
 	public List<Message> getMessageList(Message message) throws BaseException {
-		return dao.getMessageList(message);
+		return dao.selectMessageList(message);
 	}
 
 	public Message getMessage(int id) throws BaseException {
-		return dao.getMessage(id);
+		return dao.selectMessage(id);
 	}
 
 	public int getNewsListSize() throws BaseException {
-		return dao.getNewsListSize();
+		return dao.selectNewsListSize();
 	}
 
 	public List<News> getNewsList(News news) throws BaseException {
-		return dao.getNewsList(news);
+		return dao.selectNewsList(news);
 	}
 
 	public News getNews(int id) throws BaseException {
-		return dao.getNews(id);
+		return dao.selectNews(id);
 	}
 
 	public About getAbout() throws BaseException {
-		return dao.getAbout();
+		return dao.selectAbout();
 	}
 }

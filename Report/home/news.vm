@@ -1,4 +1,3 @@
-#set($loginInfo = $session.getAttribute($MAIN_SESSION))
 <!doctype html>
 <html>
 <head>
@@ -70,8 +69,11 @@
 	</h3>
 	<div class="xbox wzzw"> 
 		#set($news = $request.getAttribute("news"))
-		<div class="biaoti" align="center">$!news.title</div>
-		<div class="biaoti_sub">发布时间:$!news.publishtime</div>
+		<div class="biaoti" align="center" style="color:$!news.color">$!news.title</div>
+		<div class="biaoti_sub">
+			<span>$!news.author</span>
+			<span>$!news.publishtime</span>
+		</div>
 		<div class="wzzw lh">
 			$!news.content
 		</div>

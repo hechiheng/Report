@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'/> 
 <title>系统信息提示</title>
-
 <style type="text/css">
 body{background:#fff;padding:0px;margin: 0px;font-family: 'Microsoft YaHei'; color: #333;}
 input,button{ border:solid 1px #dcdcdc;height:30px; line-height:30px; padding:3px 6px;color:#999;background:#fff; vertical-align: middle;}
@@ -52,22 +51,37 @@ background-image: linear-gradient(top , #2b9ee4, #4fb7fe );}
 					<p class="success">√ #errorMarkup() #messageMarkupForProperty("sysMessage")</p>
 				#end
 			<p class="detail"></p>
-			<p class="jump">
-			页面自动 <a id="href" href="#getActionLink($infoLink)">跳转</a> 等待时间： <b id="wait">${infoLink.timer}</b> 秒
+			#if($messages.exist("sysLinkText"))
+			#if($infoLink.action != "")
+			<p class="jump" style="text-align: center;">
+				#if($infoLink.timer != "")
+					系统将在<b id="wait">${infoLink.timer}</b>秒内自动跳转,如果没有跳转,请点下面的链接:<br><br>
+				#end
+				<a id="href" href="#getActionLink($infoLink)" target="$infoLink.linkTarget">#messageMarkupForProperty("sysLinkText")</a>
+				#if($infoLink.timer != "")
+				<script type="text/javascript">	
+                	(function(){
+                	var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+                	var interval = setInterval(function(){
+                		var time = --wait.innerHTML;
+                		if(time <= 0) {
+							#if($infoLink.linkTarget=="_self")
+                			location.href = href;
+							#elseif($infoLink.linkTarget=="_parent")
+							window.parent.location.href = href;
+							#else
+							location.href = href;
+							#end
+                			clearInterval(interval);
+                		};
+                	}, 1000);
+                	})();	
+                </script>
+				#end
 			</p>
+			#end
+			#end
 			</div>
-			<script type="text/javascript">	
-			(function(){
-			var wait = document.getElementById('wait'),href = document.getElementById('href').href;
-			var interval = setInterval(function(){
-				var time = --wait.innerHTML;
-				if(time <= 0) {
-					location.href = href;
-					clearInterval(interval);
-				};
-			}, 1000);
-			})();	
-			</script>
 			</div>
 		
 		</div>

@@ -1,4 +1,4 @@
-#set($loginInfo = $session.getAttribute($MAIN_SESSION))
+#set($loginInfo = $session.getAttribute($MANAGE_SESSION))
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -22,9 +22,9 @@
 	    </dt>
 	    <dd>
 			<div class="content">
-				您好，$loginInfo.get("username")<br/>
+				您好，$!loginInfo.get("username")<br/>
 				<div class="clear"></div>
-				上次登录时间：$loginInfo.get("logintime")<br/>
+				上次登录时间：$!loginInfo.get("logintime")<br/>
 			</div>
 	    </dd>
 	</dl>

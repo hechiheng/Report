@@ -20,10 +20,12 @@ public class Page {
 	private int prePage;
 	// 下一页
 	private int nextPage;
+	private String href;
 
-	public Page(int total, String page, Object o) {
+	public Page(int total, String page, Object o, String href) {
 		totalRows = total;
-		if (page == null) {
+		this.href = href;
+		if (page == null || page.equals("0")) {
 			nowPage = 1;
 		} else {
 			nowPage = Integer.valueOf(page);
@@ -83,6 +85,14 @@ public class Page {
 
 	public int getNextPage() {
 		return nextPage;
+	}
+
+	public void setHref(String href) {
+		this.href = href;
+	}
+
+	public String getHref() {
+		return href;
 	}
 
 }

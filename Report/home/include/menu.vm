@@ -1,7 +1,7 @@
 <li><a href="$link.contextPath">首 页</a></li>
 <li><a href="$link.setAction('load4News')">新闻资讯</a></li>
-<li><a href="$link.setAction('load4Message')">通知</a></li>
+<li><a href="$link.setAction('load4Message')">最新通知</a></li>
 <li><a href="$link.setAction('load4Notice')">报名须知</a></li>
-<li><a href="$link.setAction('load4Board')">公告</a></li>
+<li><a href="$link.setAction('load4Board')">最新公告</a></li>
 <li><a href="$link.setAction('load4Search')">参赛查询</a></li>
 <li><a href="$link.setAction('load4About')">联系我们</a></li>

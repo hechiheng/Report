@@ -88,8 +88,12 @@
 	
 	<!--Session对象key-->
 	<data type="string">
-        <key>MAIN_SESSION</key>
-        <value>LOGIN_INFO</value>
+        <key>HOME_SESSION</key>
+        <value>LOGIN_HOME</value>
+  	</data>
+  	<data type="string">
+        <key>MANAGE_SESSION</key>
+        <value>LOGIN_MANAGE</value>
   	</data>
 	
 	

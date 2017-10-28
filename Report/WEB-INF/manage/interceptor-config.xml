@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <interceptor-config>
 	<interceptor name="login" type="com.report.manage.interceptor.LoginInterceptor"/>
+	<interceptor name="news" type="com.report.manage.interceptor.NewsInterceptor"/>
 
 	<action type="com.report.manage.action.LoginAction">
 		<interceptor name="login"/>
+	</action>
+	
+	<action type="com.report.manage.action.NewsAction">
+		<interceptor name="news"/>
 	</action>
 	
 </interceptor-config>

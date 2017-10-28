@@ -1,4 +1,3 @@
-#set($loginInfo = $session.getAttribute($MAIN_SESSION))
 <!doctype html>
 <html>
 <head>
@@ -59,6 +58,7 @@
 		<div class="xbox">
 			<ul class="fllb">
 			<li><a href="$link.setAction('load4MemberIndex')">个人信息</a></li>
+			<li><a href="$link.setAction('load4MemberModify')">修改资料</a></li>
 			<li><a href="$link.setAction('load4MemberChgPwd')">修改密码</a></li>
 			<li><a href="$link.setAction('logout')">退出登录</a></li>
 			</ul>
@@ -66,7 +66,6 @@
 	</div>
 <div class="right f_r">
 	<h3 class="nybt">
-		<i><a href="$link.setAction('load4MemberEdit')">修改</a></i>
 		<span>个人信息</span>
 	</h3>
 	<div class="form">

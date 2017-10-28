@@ -7,7 +7,7 @@
 <struts-config>
 
 
-	<!-- ================================================ Form Bean Definitions-->
+	<!-- ================================================ Form Bean Definitions -->
 
 	<form-beans>
 		<form-bean name="loginForm" type="org.apache.struts.validator.DynaValidatorForm">
@@ -15,6 +15,12 @@
 	        <form-property name="password" type="java.lang.String"/>
 	        <form-property name="imagecode" type="java.lang.String"/>
         </form-bean>
+        <form-bean name="addNewsForm"
+			type="com.report.manage.form.NewsForm">
+		</form-bean>
+		<form-bean name="modifyNewsForm"
+			type="com.report.manage.form.NewsForm">
+		</form-bean>
         
 	</form-beans>
 
@@ -23,10 +29,10 @@
 
 	<global-exceptions>
 		<exception
-        key="request.invalid"
-        type="com.css.base.BaseException"
-        handler="com.css.base.BaseExceptionHandler"
-        path="/error.do"/>
+	        key="request.invalid"
+	        type="com.css.base.BaseException"
+	        handler="com.css.base.BaseExceptionHandler"
+	        path="/error.do"/>
 	</global-exceptions>
 
 
@@ -34,15 +40,17 @@
 
 	<global-forwards>
 		<!-- 全局信息提示页面转向 -->
-        <forward name="error" path="/error.do"/>
-        <forward name="return2FavoriteIndex" path="/returnMain.do"/>
+        <forward name="error" path="/error.do" />
+		<forward name="info" path="/info.do" />
+		<forward name="index" path="/index.do" redirect="true"/>
 	</global-forwards>
 
 
 	<!-- =========================================== Action Mapping Definitions-->
 
 	<action-mappings>
-		<action path="/error" forward="/sys_message.vm"/>
+		<action path="/error" forward="/../sys_message.vm"/>
+		<action path="/info" forward="/../sys_message.vm" />
 		<action path="/index" forward="/load4Index.do"/>
 		
 		<action
@@ -61,9 +69,7 @@
 			name="loginForm"
 			validate="true"
 			parameter="login">
-		
 			<forward name="failure" path="/../manage/login.vm" />
-			<forward name="success" path="/load4Index.do" />
 		</action>
 		<action
         	path="/imageCode"
@@ -73,75 +79,85 @@
 			validate="false"
 			parameter="imageCode">
         </action>
-        <!-- 后台首页 -->
 		<action
         	path="/load4Index"
 			type="com.report.manage.action.LoginAction"
 			scope="request"
-			input="/load4Login.do"
 			validate="false"
 			parameter="load4Index">
 			<forward name="success" path="/../manage/index.vm"/>
         </action>
-        
-        <!-- 拦截器返回首页 -->
-        <action path="/returnMain" forward="/pages/main/main.vm"/>
-        
-        
-        <!-- 加载后台左侧列表 -->
-		<action
-        	path="/load4Left"
-			type="com.report.manage.action.LoginAction"
-			scope="request"
-			input="/loginOn.do"
-			validate="false"
-			parameter="load4Left">
-			
-			<forward name="load4Left" path="/pages/main/left.vm"/>
-        </action>
-        <!-- 加载后台右侧页面 -->
-        <action
-        	path="/load4Right"
-			type="com.report.manage.action.LoginAction"
-			scope="request"
-			input="/loginOn.do"
-			validate="false"
-			parameter="load4Right">
-			
-			<forward name="load4Right" path="/pages/main/adminIndex.vm"/>
-        </action>
-        <!-- 退出 -->
 		<action
         	path="/logout"
 			type="com.report.manage.action.LoginAction"
 			scope="request"
-			input="/loginOn.do"
 			validate="false"
 			parameter="logout">
-			
-			<forward name="logoutFrw" path="/load4Login.do"/>
-        </action>
-        
-		<action
-        	path="/getTest"
-			type="com.css.permit.action.TestAction"
-			scope="request"
-			input="/loginOn.do"
-			validate="false"
-			parameter="getTest">
-			
-			<forward name="getTest" path="/pages/main/echo.vm"/>
+			<forward name="success" path="/load4Login.do" redirect="true"/>
         </action>
         <action
-        	path="/getForm"
-			type="com.css.permit.action.TestAction"
+        	path="/load4NewsIndex"
+			type="com.report.manage.action.NewsAction"
 			scope="request"
-			input="/pages/permit/test.vm"
-			name="testForm"
+			validate="false"
+			parameter="load4NewsIndex">
+			<forward name="success" path="/../manage/news_index.vm"/>
+        </action>
+        <action
+        	path="/load4NewsAdd"
+			type="com.report.manage.action.NewsAction"
+			scope="request"
+			validate="false"
+			parameter="load4NewsAdd">
+			<forward name="success" path="/../manage/news_add.vm"/>
+        </action>
+        <action
+        	path="/addNews"
+			type="com.report.manage.action.NewsAction"
+			scope="request"
+			input="/load4NewsAdd.do"
+			name="addNewsForm"
 			validate="true"
-			parameter="getForm">
-			
-			<forward name="getForm" path="/pages/permit/test.vm"/>
+			parameter="addNews">
+        </action>
+        <action
+        	path="/load4NewsModify"
+			type="com.report.manage.action.NewsAction"
+			scope="request"
+			name="modifyNewsForm"
+			validate="false"
+			parameter="load4NewsModify">
+			<forward name="success" path="/../manage/news_modify.vm"/>
+        </action>
+        <action
+        	path="/modifyNews"
+			type="com.report.manage.action.NewsAction"
+			scope="request"
+			input="/load4NewsAdd.do"
+			name="modifyNewsForm"
+			validate="true"
+			parameter="modifyNews">
+        </action>
+        <action
+        	path="/trashNews"
+			type="com.report.manage.action.NewsAction"
+			scope="request"
+			validate="false"
+			parameter="trashNews">
+        </action>
+        <action
+        	path="/restoreNews"
+			type="com.report.manage.action.NewsAction"
+			scope="request"
+			validate="false"
+			parameter="restoreNews">
+        </action>
+        <action
+        	path="/removeNews"
+			type="com.report.manage.action.NewsAction"
+			scope="request"
+			validate="false"
+			parameter="removeNews">
         </action>
 	</action-mappings>
 

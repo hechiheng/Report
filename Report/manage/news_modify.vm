@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/ueditor/ueditor.config.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/ueditor/ueditor.all.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/jBox.config.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/calendar.config.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/jq_plugins/iColorPicker/iColorPicker.js')"></script>
+<script type="text/javascript">
+	window.UEDITOR_HOME_URL = "ueditor/";
+	window.onload = function() {
+		window.UEDITOR_CONFIG.initialFrameWidth="600";
+		window.UEDITOR_CONFIG.initialFrameHeight="300";
+
+        UE.getEditor('content');
+    }
+
+
+</script>
+
+<script type="text/javascript">
+jQuery(function () {
+     jQuery("input[name='news.title']").focus();
+	 
+	 jQuery("input[name='news.ispublish']").click(function(){
+	   var v=jQuery(this).val();
+	   var publishtime = jQuery("input[name='news.publishtime']");
+	   if(v=='1'){
+	   		publishtime.parent().find("span").remove().end().append("<span class='error'>*</span>");
+	   }else{
+	   		publishtime.parent().find("span").remove();
+	   }
+     });
+     
+     jQuery("#form_do").submit(function(){
+		var title = jQuery("input[name='news.title']");
+		var ispublish = jQuery("input[name='news.ispublish']:checked");
+		var publishtime = jQuery("input[name='news.publishtime']");
+		if(jQuery.trim(title.val())==''){
+			title.parent().find("span").remove().end().append("<span class='error'>标题不能为空</span>");
+			title.focus();
+			return false;			
+		}else {
+			title.parent().find("span").remove().end();
+		}
+		if(ispublish.val()=='1'){
+			if(jQuery.trim(publishtime.val())==''){
+				publishtime.parent().find("span").remove().end().append("<span class='error'>发布时间不能为空</span>");
+				return false;	
+			}else {
+    			publishtime.parent().find("span").remove().end();
+    		}
+		}
+	});
+	
+});
+
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="pos">修改新闻资讯</div>
+	<div class="form">
+		<form method='post' id="form_do" name="form_do" action="$link.setAction('modifyNews')">
+		<dl>
+			<dt> 标题：</dt>
+			<dd>
+				<input type="text" name="news.title" class="inp_large" value="$!modifyNewsForm.news.title"/>
+				<span style="color: red;">*</span>
+			</dd>
+		</dl>
+		<dl>
+			<dt> 标题颜色：</dt>
+			<dd>
+				<input type="text" name="news.color" id="color" class="inp_small iColorPicker" readonly="readonly" value="$!modifyNewsForm.news.color"/>
+			</dd>
+		</dl>
+		<dl>
+			<dt> 关键词：</dt>
+			<dd>
+				<input type="text" name="news.keywords" class="inp_w250" value="$!modifyNewsForm.news.keywords"/><span class="tip">多关键词之间用“,”隔开</span>
+			</dd>
+		</dl>
+		<dl>
+			<dt> 摘要：</dt>
+			<dd>
+				<textarea name="news.description" id="description" class="tarea_default">$!modifyNewsForm.news.description</textarea>
+			</dd>
+		</dl>
+		<dl>
+			<dt> 作者：</dt>
+			<dd>
+				<input type="text" name="news.author" class="inp_w250" value="$!modifyNewsForm.news.author"/><span class="tip"></span>
+			</dd>
+		</dl>
+		<dl>
+			<dt> 内容：</dt>
+			<dd>
+				<textarea name="news.content" id="content">$!modifyNewsForm.news.content</textarea>
+			</dd>
+		</dl>		
+		<dl>
+			<dt> 是否发布：</dt>
+			<dd>
+				<label><input type="radio" name="news.ispublish" value="1" #if($!modifyNewsForm.news.ispublish==1) checked="checked" #end/>立即发布&nbsp;</label>
+				<label><input type="radio" name="news.ispublish" value="0" #if($!modifyNewsForm.news.ispublish==0) checked="checked" #end/>暂不发布</label>
+			</dd>
+		</dl>
+		<dl>
+            <dt> 发布时间：</dt>
+            <dd>
+                <input type="text" class="inp_one" name="news.publishtime" id="publishtime" readonly="readonly" value="$!modifyNewsForm.news.publishtime" />
+				#if($!modifyNewsForm.news.ispublish==1) <span style="color: red;">*</span> #end
+                <script type="text/javascript">
+                    Calendar.setup({
+                        weekNumbers: true,
+                        inputField : "publishtime",
+                        trigger    : "publishtime",
+                        dateFormat: "%Y-%m-%d %H:%M:%S",
+                        showTime: true,
+                        minuteStep: 1,
+                        onSelect   : function() {this.hide();}
+                    });
+                </script>
+            </dd>
+        </dl>	
+		<dl>
+			<span class='error'>#errorMarkup()</span>
+        </dl>
+		<div class="form_b">		
+			<input type="hidden" name="news.id" value="$!modifyNewsForm.news.id" />
+			<input type="submit" class="btn_blue" id="submit" value="提 交">
+			<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
+		</div>
+	   </form>
+	</div>
+</div>
+
+
+</body>
+</html>

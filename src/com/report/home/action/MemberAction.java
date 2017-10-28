@@ -14,7 +14,6 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.validator.DynaValidatorForm;
 import org.apache.struts.validator.Resources;
 
 import com.css.base.BaseAction;
@@ -23,10 +22,10 @@ import com.report.global.Constants;
 import com.report.global.SysGlobals;
 import com.report.global.SysMessageBean;
 import com.report.home.bean.Announce;
+import com.report.home.bean.Member;
 import com.report.home.bo.HomeBo;
 import com.report.home.bo.MemberBo;
-import com.report.home.form.MemberForm;
-import com.report.manage.bean.Member;
+import com.report.manage.form.MemberForm;
 
 public class MemberAction extends BaseAction {
 
@@ -103,7 +102,7 @@ public class MemberAction extends BaseAction {
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws BaseException {
 		Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
-				Constants.MAIN_SESSION);
+				Constants.HOME_SESSION);
 		HomeBo homeBo = new HomeBo();
 		Announce announce = homeBo.getLatestAnnounce();
 		request.setAttribute("announce", announce);
@@ -122,12 +121,12 @@ public class MemberAction extends BaseAction {
 	}
 
 	@SuppressWarnings("unchecked")
-	public ActionForward load4MemberEdit(ActionMapping mapping,
+	public ActionForward load4MemberModify(ActionMapping mapping,
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws BaseException {
 		MemberForm memberForm = (MemberForm) form;
 		Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
-				Constants.MAIN_SESSION);
+				Constants.HOME_SESSION);
 		HomeBo homeBo = new HomeBo();
 		Announce announce = homeBo.getLatestAnnounce();
 		request.setAttribute("announce", announce);
@@ -140,11 +139,11 @@ public class MemberAction extends BaseAction {
 	}
 
 	@SuppressWarnings("unchecked")
-	public ActionForward editMember(ActionMapping mapping, ActionForm form,
+	public ActionForward modifyMember(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws BaseException {
 		Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
-				Constants.MAIN_SESSION);
+				Constants.HOME_SESSION);
 		int id = Integer.valueOf(sessionMap.get("memberid"));
 		MemberBo bo = new MemberBo();
 		MemberForm memberForm = (MemberForm) form;
@@ -159,12 +158,12 @@ public class MemberAction extends BaseAction {
 			return mapping.findForward("failure");
 		}
 		member.setId(id);
-		bo.editMember(member);
+		bo.modifyMember(member);
 
 		SysMessageBean smb = new SysMessageBean(false);
-		smb.setMessage(new ActionMessage("MemberAction.editMember.success",
+		smb.setMessage(new ActionMessage("MemberAction.modifyMember.success",
 				member.getFactname()));
-		smb.setLinkText(new ActionMessage("MemberAction.editMember.return"));
+		smb.setLinkText(new ActionMessage("MemberAction.modifyMember.return"));
 		smb.setAction("/load4MemberIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -175,7 +174,7 @@ public class MemberAction extends BaseAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws BaseException {
 		Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
-				Constants.MAIN_SESSION);
+				Constants.HOME_SESSION);
 		int id = Integer.valueOf(sessionMap.get("memberid"));
 		MemberBo bo = new MemberBo();
 		MemberForm chgMemberPwdForm = (MemberForm) form;
@@ -200,7 +199,7 @@ public class MemberAction extends BaseAction {
 			return mapping.findForward("failure");
 		}
 		member.setId(id);
-		bo.editMemberPwd(member);
+		bo.modifyMemberPwd(member);
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("MemberAction.chgMemberPwd.success",

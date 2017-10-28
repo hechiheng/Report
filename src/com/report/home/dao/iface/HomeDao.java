@@ -11,25 +11,25 @@ import com.report.home.bean.News;
 
 public interface HomeDao {
 
-	public Announce getLatestAnnounce() throws BaseException;
+	public Announce selectLatestAnnounce() throws BaseException;
 
-	public List<Message> getLatestMessageList() throws BaseException;
+	public List<Message> selectLatestMessageList() throws BaseException;
 
-	public List<News> getLatestNewsList() throws BaseException;
+	public List<News> selectLatestNewsList() throws BaseException;
 
-	public List<Link> getLinkList() throws BaseException;
+	public List<Link> selectLinkList() throws BaseException;
 
-	public int getMessageListSize() throws BaseException;
+	public int selectMessageListSize() throws BaseException;
 
-	public List<Message> getMessageList(Message message) throws BaseException;
+	public List<Message> selectMessageList(Message message) throws BaseException;
 
-	public Message getMessage(int id) throws BaseException;
+	public Message selectMessage(int id) throws BaseException;
 
-	public int getNewsListSize() throws BaseException;
+	public int selectNewsListSize() throws BaseException;
 
-	public List<News> getNewsList(News news) throws BaseException;
+	public List<News> selectNewsList(News news) throws BaseException;
 
-	public News getNews(int id) throws BaseException;
+	public News selectNews(int id) throws BaseException;
 
-	public About getAbout() throws BaseException;
+	public About selectAbout() throws BaseException;
 }

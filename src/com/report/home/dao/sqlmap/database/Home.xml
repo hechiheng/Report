@@ -7,70 +7,53 @@
 	<typeAlias alias="link" type="com.report.home.bean.Link"/>
 	<typeAlias alias="about" type="com.report.home.bean.About"/>
 	
-	<select id="home.HomeDao.getLatestAnnounce" resultClass="announce">
+	<select id="home.HomeDao.selectLatestAnnounce" resultClass="announce">
 	<![CDATA[
 		select content from t_announce t where t.isvalid=1 and t.ispublish=1 and t.starttime<UNIX_TIMESTAMP(NOW()) and t.endtime>UNIX_TIMESTAMP(NOW()) limit 1
 	]]>
 	</select>
 	
-	<select id="home.HomeDao.getLatestMessageList" resultClass="message">
-	<![CDATA[
+	<select id="home.HomeDao.selectLatestMessageList" resultClass="message">
 		select id,title from t_message t where t.isvalid=1 and t.ispublish=1 and t.publishtime>UNIX_TIMESTAMP(date_add(NOW(), interval -10 day))
-	]]>
+		order by t.publishtime desc
 	</select>
 	
-	<select id="home.HomeDao.getLatestNewsList" resultClass="news">
-	<![CDATA[
-		select id,title,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d') publishtime from t_news t where t.isvalid=1 and t.ispublish=1 and t.publishtime>UNIX_TIMESTAMP(date_add(NOW(), interval -10 day))
-	]]>
+	<select id="home.HomeDao.selectLatestNewsList" resultClass="news">
+		select id,title,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d') publishtime from t_news t 
+		where t.isvalid=1 and t.ispublish=1 and t.publishtime>UNIX_TIMESTAMP(date_add(NOW(), interval -10 day))
+		order by t.publishtime desc
 	</select>
 	
-	<select id="home.HomeDao.getLinkList" resultClass="link">
-	<![CDATA[
+	<select id="home.HomeDao.selectLinkList" resultClass="link">
 		select name,url from t_link a where a.isvalid=1 order by a.sort
-	]]>
 	</select>
 	
-	<select id="home.HomeDao.getMessage" parameterClass="int" resultClass="message">
-	<![CDATA[
-		select id,title,content,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d') publishtime from t_message t where t.id=#id#
-	]]>
+	<select id="home.HomeDao.selectMessage" parameterClass="int" resultClass="message">
+		select id,title,content,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d %H:%i:%s') publishtime from t_message t where t.id=#id#
 	</select>
 	
-	<select id="home.HomeDao.getMessageListSize" resultClass="int">
-	<![CDATA[
+	<select id="home.HomeDao.selectMessageListSize" resultClass="int">
 		select count(id) cnt from t_message t where t.isvalid=1 and t.ispublish=1
-	]]>
 	</select>
 	
-	<select id="home.HomeDao.getMessageList" resultClass="message">
-	<![CDATA[
+	<select id="home.HomeDao.selectMessageList" resultClass="message">
 		select id,title,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d') publishtime from t_message t where t.isvalid=1 and t.ispublish=1 order by t.publishtime desc limit $firstRow$,$listRows$
-	]]>
 	</select>
 	
-	<select id="home.HomeDao.getNewsListSize" resultClass="int">
-	<![CDATA[
+	<select id="home.HomeDao.selectNewsListSize" resultClass="int">
 		select count(id) cnt from t_news t where t.isvalid=1 and t.ispublish=1
-	]]>
 	</select>
 	
-	<select id="home.HomeDao.getNewsList" resultClass="news">
-	<![CDATA[
+	<select id="home.HomeDao.selectNewsList" resultClass="news">
 		select id,title,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d') publishtime from t_news t where t.isvalid=1 and t.ispublish=1 order by t.publishtime desc limit $firstRow$,$listRows$
-	]]>
 	</select>
 	
-	<select id="home.HomeDao.getNews" parameterClass="int" resultClass="news">
-	<![CDATA[
-		select id,title,content,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d') publishtime from t_news t where t.id=#id#
-	]]>
+	<select id="home.HomeDao.selectNews" parameterClass="int" resultClass="news">
+		select id,title,color,author,description,content,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d %H:%i:%s') publishtime from t_news t where t.id=#id#
 	</select>
 	
-	<select id="home.HomeDao.getAbout" resultClass="about">
-	<![CDATA[
+	<select id="home.HomeDao.selectAbout" resultClass="about">
 		select id,title,content from t_about 
-	]]>
 	</select>
 	
 </sqlMap>

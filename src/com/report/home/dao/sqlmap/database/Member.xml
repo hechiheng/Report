@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
 <sqlMap namespace="home.Member">
-	<typeAlias alias="member" type="com.report.manage.bean.Member"/>
+	<typeAlias alias="member" type="com.report.home.bean.Member"/>
 	
-	<select id="home.MemberDao.getMemberCount" parameterClass="string" resultClass="int">
-	<![CDATA[
+	<select id="home.MemberDao.selectMemberCount" parameterClass="string" resultClass="int">
 		select count(id) from t_member where accountid = #accountid#
-	]]>
 	</select>
 	
 	<insert id="home.MemberDao.insertMember" parameterClass="member">
@@ -14,12 +12,10 @@
 		values(#accountid#,#password#,#sex#,#factname#,#idcard#,#birthday#,#address#,#qq#,#email#,#tel#,UNIX_TIMESTAMP(NOW()))
 	</insert>
 	
-	<select id="home.MemberDao.getMember" parameterClass="int" resultClass="member">
-	<![CDATA[
+	<select id="home.MemberDao.selectMember" parameterClass="int" resultClass="member">
 		select a.id,a.accountid,a.password,a.factname,b.code_name sex,a.idcard,a.birthday,a.qq,a.tel,a.email,a.address
 		from t_member a,t_codelist b 
 		where a.sex=b.code_value and b.code_type='sex' and a.id=#id# 
-	]]>
 	</select>
 	
 	<update id="home.MemberDao.updateMember" parameterClass="member">

@@ -32,6 +32,121 @@
 				<arg key="loginForm.imagecode" />
 			</field>
 		</form>
+		<form name="addNewsForm">
+			<field property="news.title"
+				depends="required,bytemaxlength">
+				<arg key="news.title" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>60</var-value>
+				</var>
+			</field>
+			<field property="news.color"
+				depends="bytemaxlength">
+				<arg key="news.color" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="news.keywords"
+				depends="bytemaxlength">
+				<arg key="news.keywords" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>50</var-value>
+				</var>
+			</field>
+			<field property="news.description"
+				depends="bytemaxlength">
+				<arg key="news.description" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>200</var-value>
+				</var>
+			</field>
+			<field property="news.ispublish"
+				depends="bytemaxlength">
+				<arg key="news.ispublish" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>1</var-value>
+				</var>
+			</field>
+		</form>
+		<form name="modifyNewsForm">
+			<field property="news.id"
+				depends="required,bytemaxlength">
+				<arg key="news.id" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="news.title"
+				depends="required,bytemaxlength">
+				<arg key="news.title" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>60</var-value>
+				</var>
+			</field>
+			<field property="news.color"
+				depends="bytemaxlength">
+				<arg key="news.color" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="news.keywords"
+				depends="bytemaxlength">
+				<arg key="news.keywords" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>50</var-value>
+				</var>
+			</field>
+			<field property="news.description"
+				depends="bytemaxlength">
+				<arg key="news.description" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>200</var-value>
+				</var>
+			</field>
+			<field property="news.ispublish"
+				depends="bytemaxlength">
+				<arg key="news.ispublish" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>1</var-value>
+				</var>
+			</field>
+		</form>
+		
 
 	</formset>
 

@@ -20,7 +20,7 @@ import com.report.global.SysMessageBean;
 
 public class MemberInterceptor extends BaseInterceptor {
 	private boolean sessionInValid(HttpServletRequest request) {
-		Map map = SysGlobals.getSessionObj(request, Constants.MAIN_SESSION);
+		Map map = SysGlobals.getSessionObj(request, Constants.HOME_SESSION);
 		if (map == null) {
 			SysMessageBean smb = new SysMessageBean(true);
 			smb.setMessage(new ActionMessage("error.session.invalid"));

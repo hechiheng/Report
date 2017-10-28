@@ -4,102 +4,96 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private String id;
+	private int id;
 
-    private String username;
+	private String username;
 
-    private String password;
+	private String password;
 
-    private String realname;
+	private String realname;
 
-    private String email;
+	private String email;
 
-    private String usertype;
+	private String usertype;
 
-    /**
-     * id
-     */
-    public String getId() {
-        return id;
-    }
+	/**
+	 * username
+	 */
+	public String getUsername() {
+		return username;
+	}
 
-    /**
-     * id
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
+	/**
+	 * username
+	 */
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    /**
-     * username
-     */
-    public String getUsername() {
-        return username;
-    }
+	/**
+	 * password
+	 */
+	public String getPassword() {
+		return password;
+	}
 
-    /**
-     * username
-     */
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	/**
+	 * password
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    /**
-     * password
-     */
-    public String getPassword() {
-        return password;
-    }
+	/**
+	 * realname
+	 */
+	public void setRealname(String realname) {
+		this.realname = realname;
+	}
 
-    /**
-     * password
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	/**
+	 * realname
+	 */
+	public String getRealname() {
+		return realname;
+	}
 
-    /**
-     * realname
-     */
-    public void setRealname(String realname) {
-        this.realname = realname;
-    }
+	/**
+	 * email
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    /**
-     * realname
-     */
-    public String getRealname() {
-        return realname;
-    }
+	/**
+	 * email
+	 */
+	public String getEmail() {
+		return email;
+	}
 
-    /**
-     * email
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	/**
+	 * usertype
+	 */
+	public void setUsertype(String usertype) {
+		this.usertype = usertype;
+	}
 
-    /**
-     * email
-     */
-    public String getEmail() {
-        return email;
-    }
+	/**
+	 * usertype
+	 */
+	public String getUsertype() {
+		return usertype;
+	}
 
-    /**
-     * usertype
-     */
-    public void setUsertype(String usertype) {
-        this.usertype = usertype;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    /**
-     * usertype
-     */
-    public String getUsertype() {
-        return usertype;
-    }
+	public int getId() {
+		return id;
+	}
 
 }

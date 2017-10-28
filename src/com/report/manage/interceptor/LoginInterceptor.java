@@ -24,7 +24,7 @@ public class LoginInterceptor extends BaseInterceptor {
 			ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
 		ActionForward af = null;
-		Map map = SysGlobals.getSessionObj(request, Constants.MAIN_SESSION);
+		Map map = SysGlobals.getSessionObj(request, Constants.MANAGE_SESSION);
 		if (map == null) {
 			SysMessageBean smb = new SysMessageBean(true);
 			smb.setMessage(new ActionMessage("error.session.invalid"));

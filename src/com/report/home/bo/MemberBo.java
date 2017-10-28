@@ -9,8 +9,8 @@ import org.apache.log4j.Logger;
 import com.css.base.BaseException;
 import com.ibatis.dao.client.DaoManager;
 import com.report.global.DaoConfig;
+import com.report.home.bean.Member;
 import com.report.home.dao.iface.MemberDao;
-import com.report.manage.bean.Member;
 
 public class MemberBo {
 	private DaoManager daoManager;
@@ -29,26 +29,26 @@ public class MemberBo {
 		dao.insertMember(member);
 	}
 
-	public void editMember(Member member) throws BaseException {
+	public void modifyMember(Member member) throws BaseException {
 		dao.updateMember(member);
 	}
 
-	public void editMemberPwd(Member member) throws BaseException {
+	public void modifyMemberPwd(Member member) throws BaseException {
 		member.setPassword(DigestUtils.md5Hex(member.getPassword()));
 		dao.updateMemberPwd(member);
 	}
 
 	public int getMemberCount(String accountid) throws BaseException {
-		return dao.getMemberCount(accountid);
+		return dao.selectMemberCount(accountid);
 	}
 
 	public Member getMember(int id) throws BaseException {
-		return dao.getMember(id);
+		return dao.selectMember(id);
 	}
 
 	public String verifyMember(String accountid) throws BaseException {
 		String key = "";
-		if (dao.getMemberCount(accountid) > 0) {
+		if (dao.selectMemberCount(accountid) > 0) {
 			key = "member.exist";
 		} else if (!this.verify(accountid)) {
 			key = "member.invalid";

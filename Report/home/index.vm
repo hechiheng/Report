@@ -1,4 +1,3 @@
-#set($loginInfo = $session.getAttribute($MAIN_SESSION))
 <!doctype html>
 <html>
 <head>

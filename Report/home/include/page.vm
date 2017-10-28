@@ -1,0 +1,5 @@
+<a href="$link.setRelative($!page.href).addQueryData('p','1')">首页</a>
+<a href="$link.setRelative($!page.href).addQueryData('p',$!{page.prePage})">上一页</a>
+<a href="$link.setRelative($!page.href).addQueryData('p',$!{page.nextPage})">下一页</a>
+<a href="$link.setRelative($!page.href).addQueryData('p',$!{page.totalPages})">尾页</a>
+第$!{page.nowPage}页/共$!{page.totalPages}页  (共 $!{page.totalRows} 条记录)
