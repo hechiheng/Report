@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="manage.Message">
+	<typeAlias alias="message" type="com.report.home.bean.Message"/>
+	
+	<select id="manage.MessageDao.selectMessageListSize" parameterClass="message" resultClass="int">
+		select count(id)
+		from t_message t where t.isvalid=#isvalid# 
+		<isNotEmpty prepend="and" property="title">
+			title like CONCAT('%',#title#,'%')
+		</isNotEmpty>		
+	</select>
+	
+	<select id="manage.MessageDao.selectMessageList" parameterClass="message" resultClass="message">
+		select id,title,ispublish,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d %H:%i:%s') publishtime,
+		DATE_FORMAT(FROM_UNIXTIME(updatetime),'%Y-%m-%d %H:%i:%s') updatetime
+		from t_message t where t.isvalid=#isvalid# 
+		<isNotEmpty prepend="and" property="title">
+			title like CONCAT('%',#title#,'%')
+		</isNotEmpty>		
+		order by updatetime desc
+		limit $firstRow$,$listRows$
+	</select>
+	
+	<select id="manage.MessageDao.selectMessage" parameterClass="int" resultClass="message">
+		select id,title,author,content,ispublish,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d %H:%i:%s') publishtime,
+		DATE_FORMAT(FROM_UNIXTIME(updatetime),'%Y-%m-%d %H:%i:%s') updatetime 
+		from t_message t where t.id=#id#
+	</select>
+	
+	<insert id="manage.MessageDao.insertMessage" parameterClass="message">
+		insert into t_message(title,author,content,ispublish,
+		<isNotEmpty property="publishtime">
+		publishtime,
+		</isNotEmpty>
+		updatetime,userid)
+		values(#title#,#author#,#content#,#ispublish#,
+		<isNotEmpty property="publishtime">
+		UNIX_TIMESTAMP(#publishtime#),
+		</isNotEmpty>
+		UNIX_TIMESTAMP(NOW()),#userid#)
+	</insert>
+	
+	<update id="manage.MessageDao.updateMessage" parameterClass="message">
+		update t_message set title=#title#,author=#author#,
+			content=#content#,ispublish=#ispublish#,
+			<isNotEmpty property="publishtime">
+			publishtime=UNIX_TIMESTAMP(#publishtime#),
+			</isNotEmpty>
+			updatetime=UNIX_TIMESTAMP(NOW()),userid=#userid# 
+		where id=#id#
+	</update>
+	
+	<update id="manage.MessageDao.updateMessageIsvalid" parameterClass="message">
+		update t_message set isvalid=#isvalid#,userid=#userid# where id=#id#
+	</update>
+	
+	<delete id="manage.MessageDao.deleteMessage" parameterClass="int">
+		delete from t_message where id=#id#
+	</delete>
+	
+</sqlMap>

@@ -69,4 +69,8 @@ public class HomeBo {
 	public About getAbout() throws BaseException {
 		return dao.selectAbout();
 	}
+
+	public Announce getAnnounce(int id) throws BaseException {
+		return dao.selectAnnounce(id);
+	}
 }

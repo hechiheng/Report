@@ -135,6 +135,10 @@
 					<var-value>200</var-value>
 				</var>
 			</field>
+			<field property="news.content"
+				depends="required">
+				<arg key="news.content" />
+			</field>
 			<field property="news.ispublish"
 				depends="bytemaxlength">
 				<arg key="news.ispublish" />
@@ -144,6 +148,178 @@
 					<var-name>bytemaxlength</var-name>
 					<var-value>1</var-value>
 				</var>
+			</field>
+		</form>
+		<form name="addMessageForm">
+			<field property="message.title"
+				depends="required,bytemaxlength">
+				<arg key="message.title" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>60</var-value>
+				</var>
+			</field>
+			<field property="message.content"
+				depends="required">
+				<arg key="message.content" />
+			</field>
+			<field property="message.ispublish"
+				depends="bytemaxlength">
+				<arg key="message.ispublish" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>1</var-value>
+				</var>
+			</field>
+			<field property="message.content"
+				depends="required">
+				<arg key="message.content" />
+			</field>
+		</form>
+		<form name="modifyMessageForm">
+			<field property="message.id"
+				depends="required,bytemaxlength">
+				<arg key="message.id" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="message.title"
+				depends="required,bytemaxlength">
+				<arg key="message.title" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>60</var-value>
+				</var>
+			</field>
+			<field property="message.content"
+				depends="required">
+				<arg key="message.content" />
+			</field>
+			<field property="message.ispublish"
+				depends="bytemaxlength">
+				<arg key="message.ispublish" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>1</var-value>
+				</var>
+			</field>
+			<field property="message.content"
+				depends="required">
+				<arg key="message.content" />
+			</field>
+		</form>
+		<form name="addAnnounceForm">
+			<field property="announce.title"
+				depends="required,bytemaxlength">
+				<arg key="announce.title" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>60</var-value>
+				</var>
+			</field>
+			<field property="announce.content"
+				depends="required">
+				<arg key="announce.content" />
+			</field>
+			<field property="announce.starttime"
+				depends="required">
+				<arg key="announce.starttime" />
+			</field>
+			<field property="announce.endtime"
+				depends="required">
+				<arg key="announce.endtime" />
+			</field>
+			<field property="announce.ispublish"
+				depends="bytemaxlength">
+				<arg key="announce.ispublish" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>1</var-value>
+				</var>
+			</field>
+		</form>
+		<form name="modifyAnnounceForm">
+			<field property="announce.id"
+				depends="required,bytemaxlength">
+				<arg key="announce.id" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="announce.title"
+				depends="required,bytemaxlength">
+				<arg key="announce.title" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>60</var-value>
+				</var>
+			</field>
+			<field property="announce.content"
+				depends="required">
+				<arg key="announce.content" />
+			</field>
+			<field property="announce.starttime"
+				depends="required">
+				<arg key="announce.starttime" />
+			</field>
+			<field property="announce.endtime"
+				depends="required">
+				<arg key="announce.endtime" />
+			</field>
+			<field property="announce.ispublish"
+				depends="bytemaxlength">
+				<arg key="announce.ispublish" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>1</var-value>
+				</var>
+			</field>
+		</form>
+		<form name="publishAnnounceForm">
+			<field property="announce.id"
+				depends="required,bytemaxlength">
+				<arg key="announce.id" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="announce.starttime"
+				depends="required">
+				<arg key="announce.starttime" />
+			</field>
+			<field property="announce.endtime"
+				depends="required">
+				<arg key="announce.endtime" />
+			</field>
+			<field property="announce.publishtime"
+				depends="required">
+				<arg key="announce.publishtime" />
 			</field>
 		</form>
 		

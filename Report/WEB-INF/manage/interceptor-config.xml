@@ -2,13 +2,20 @@
 <interceptor-config>
 	<interceptor name="login" type="com.report.manage.interceptor.LoginInterceptor"/>
 	<interceptor name="news" type="com.report.manage.interceptor.NewsInterceptor"/>
+	<interceptor name="message" type="com.report.manage.interceptor.MessageInterceptor"/>
+	<interceptor name="announce" type="com.report.manage.interceptor.AnnounceInterceptor"/>
 
 	<action type="com.report.manage.action.LoginAction">
 		<interceptor name="login"/>
 	</action>
-	
 	<action type="com.report.manage.action.NewsAction">
 		<interceptor name="news"/>
+	</action>
+	<action type="com.report.manage.action.MessageAction">
+		<interceptor name="message"/>
+	</action>
+	<action type="com.report.manage.action.AnnounceAction">
+		<interceptor name="announce"/>
 	</action>
 	
 </interceptor-config>

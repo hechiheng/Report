@@ -40,14 +40,22 @@ jQuery(function () {
      
      jQuery("#form_do").submit(function(){
 		var title = jQuery("input[name='news.title']");
+		var content = jQuery("#content");
 		var ispublish = jQuery("input[name='news.ispublish']:checked");
 		var publishtime = jQuery("input[name='news.publishtime']");
 		if(jQuery.trim(title.val())==''){
-			title.parent().find("span").remove().end().append("<span class='error'>标题不能为空</span>");
+			title.parent().find("span").remove().end().append("<span class='error'>新闻标题不能为空</span>");
 			title.focus();
 			return false;			
 		}else {
 			title.parent().find("span").remove().end();
+		}
+		if(!UE.getEditor('content').hasContents()){
+			content.parent().find("span").remove().end().append("<span class='error'>新闻内容不能为空</span>");
+			content.focus();
+			return false;			
+		}else {
+			content.parent().find("span").remove().end();
 		}
 		if(ispublish.val()=='1'){
 			if(jQuery.trim(publishtime.val())==''){
@@ -66,11 +74,11 @@ jQuery(function () {
 </head>
 <body>
 <div class="main">
-    <div class="pos">添加新闻资讯</div>
+    <div class="pos">添加新闻</div>
 	<div class="form">
 		<form method='post' id="form_do" name="form_do" action="$link.setAction('addNews')">
 		<dl>
-			<dt> 标题：</dt>
+			<dt> 新闻标题：</dt>
 			<dd>
 				<input type="text" name="news.title" class="inp_large" value="$!addNewsForm.news.title"/>
 				<span style="color: red;">*</span>
@@ -89,7 +97,7 @@ jQuery(function () {
 			</dd>
 		</dl>
 		<dl>
-			<dt> 摘要：</dt>
+			<dt> 新闻摘要：</dt>
 			<dd>
 				<textarea name="news.description" id="description" class="tarea_default">$!addNewsForm.news.description</textarea>
 			</dd>
@@ -101,7 +109,7 @@ jQuery(function () {
 			</dd>
 		</dl>
 		<dl>
-			<dt> 内容：</dt>
+			<dt> 新闻内容：</dt>
 			<dd>
 				<textarea name="news.content" id="content">$!addNewsForm.news.content</textarea>
 			</dd>

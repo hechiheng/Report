@@ -124,6 +124,16 @@ public class HomeSqlMapDao extends SqlMapDaoTemplate implements HomeDao {
 		}
 	}
 
+	public Announce selectAnnounce(int id) throws BaseException {
+		try {
+			return (Announce) this.queryForObject(
+					"home.HomeDao.selectAnnounce", id);
+		} catch (DaoException e) {
+			logger.error("home.HomeDao.selectAnnounce", e);
+			throw new BaseException("home.HomeDao.selectAnnounce", e);
+		}
+	}
+
 	public About selectAbout() throws BaseException {
 		try {
 			return (About) this

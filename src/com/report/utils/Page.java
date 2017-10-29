@@ -1,6 +1,7 @@
 package com.report.utils;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -20,11 +21,15 @@ public class Page {
 	private int prePage;
 	// 下一页
 	private int nextPage;
-	private String href;
 
-	public Page(int total, String page, Object o, String href) {
+	private HashMap<String, String> queryData;
+	private String action;
+
+	public Page(int total, String page, Object o, String action) {
 		totalRows = total;
-		this.href = href;
+		this.setAction(action);
+		queryData = new HashMap<String, String>();
+
 		if (page == null || page.equals("0")) {
 			nowPage = 1;
 		} else {
@@ -87,12 +92,20 @@ public class Page {
 		return nextPage;
 	}
 
-	public void setHref(String href) {
-		this.href = href;
+	public void setAction(String action) {
+		this.action = action;
 	}
 
-	public String getHref() {
-		return href;
+	public String getAction() {
+		return action;
+	}
+
+	public void setQueryData(String key, String value) {
+		queryData.put(key, value);
+	}
+
+	public HashMap getQueryData() {
+		return this.queryData;
 	}
 
 }

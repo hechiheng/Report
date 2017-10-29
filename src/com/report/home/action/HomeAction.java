@@ -121,4 +121,23 @@ public class HomeAction extends BaseAction {
 		return mapping.findForward("success");
 	}
 
+	public ActionForward load4LatestAnnounce(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws BaseException {
+		HomeBo bo = new HomeBo();
+		Announce announce = bo.getLatestAnnounce();
+		request.setAttribute("announce", announce);
+		return mapping.findForward("success");
+	}
+
+	public ActionForward showAnnounce(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws BaseException {
+		String id = request.getParameter("id");
+		HomeBo bo = new HomeBo();
+		Announce announce = bo.getAnnounce(Integer.valueOf(id));
+		request.setAttribute("announce", announce);
+		return mapping.findForward("success");
+	}
+
 }

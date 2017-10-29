@@ -26,19 +26,17 @@ public class NewsAction extends BaseAction {
 	public ActionForward load4NewsIndex(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws BaseException {
+		NewsForm newsForm = (NewsForm) form;
+		News news = newsForm.getNews();
 		String istrash = request.getParameter("istrash");
-		String keyword = request.getParameter("keyword");
+		String title = news.getTitle();
 		String p = request.getParameter("p");
 		NewsBo bo = new NewsBo();
-		News news = new News();
-		news.setTitle(keyword);
 		news.setIsvalid("1".equals(istrash) ? 0 : 1);
 		int total = bo.getNewsListSize(news);
-		istrash = istrash == null ? "" : istrash;
-		keyword = keyword == null ? "" : keyword;
-		Page page = new Page(total, p, news,
-				"/manage/load4NewsIndex.do?istrash=" + istrash + "&keyword="
-						+ keyword);
+		Page page = new Page(total, p, news, "load4NewsIndex");
+		page.setQueryData("istrash", istrash == null ? "" : istrash);
+		page.setQueryData("news.title", title == null ? "" : title);
 		List<News> newsList = bo.getNewsList(news);
 		request.setAttribute("newsList", newsList);
 		request.setAttribute("page", page);

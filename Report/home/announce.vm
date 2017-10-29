@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>大学生创新大赛网上申报系统-通知</title>
+<title>大学生创新大赛网上申报系统-最新公告</title>
 <meta name="keywords" content="大学生创新大赛网上申报系统" />
 <meta name="description" content="大学生创新大赛网上申报系统" />
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
@@ -40,8 +40,8 @@
 		<b>最新公告：</b>
 		<span>
 			<marquee>
-				#set($announce = $request.getAttribute("announce"))
-				$!announce.content
+				##set($announce = $request.getAttribute("announce"))
+				##$!announce.content
 			</marquee>
     	</span>
     </div>
@@ -64,18 +64,24 @@
 </div>
 <div class="right f_r">
 	<h3 class="nybt">
-		<i>您当前的位置：<a href="$link.contextPath">首页</a> >> <a href="$link.setAction('load4Message')">通知</a></i>
-		<span>通知</span>
+		<i>您当前的位置：<a href="$link.contextPath">首页</a> >> <a href="#">公告</a></i>
+		<span>公告</span>
 	</h3>
 	<div class="xbox wzzw"> 
-		#set($message = $request.getAttribute("message"))
-		<div class="biaoti" align="center">$!message.title</div>
+		#set($announce = $request.getAttribute("announce"))
+		<div class="biaoti" align="center">$!announce.title</div>
 		<div class="biaoti_sub">
-			<span>$!message.author</span>
-			<span>$!message.publishtime</span>
+			<span>$!announce.publishtime</span>
+		</div>
+		<div class="biaoti_sub">
+			<span>起始日期：$!announce.starttime</span>
+			<span>截止日期：$!announce.endtime</span>
+			#if($!announce.isexpire==1)
+				<span style='color: red;'>已过期</span>
+			#end
 		</div>
 		<div class="wzzw lh">
-			$!message.content
+			$!announce.content
 		</div>
 	</div>
 

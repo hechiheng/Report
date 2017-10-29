@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="manage.Announce">
+	<typeAlias alias="announce" type="com.report.home.bean.Announce"/>
+	
+	<select id="manage.AnnounceDao.selectAnnounceListSize" parameterClass="announce" resultClass="int">
+		select count(id)
+		from t_announce t where t.isvalid=#isvalid# 
+		<isNotEmpty prepend="and" property="title">
+			title like CONCAT('%',#title#,'%')
+		</isNotEmpty>		
+	</select>
+	
+	<select id="manage.AnnounceDao.selectAnnounceList" parameterClass="announce" resultClass="announce">
+		select id,title,ispublish,DATE_FORMAT(FROM_UNIXTIME(starttime),'%Y-%m-%d %H:%i:%s') starttime,
+		DATE_FORMAT(FROM_UNIXTIME(endtime),'%Y-%m-%d %H:%i:%s') endtime,
+		<![CDATA[ if(UNIX_TIMESTAMP(NOW())>starttime and UNIX_TIMESTAMP(NOW())<endtime,0,1) as isexpire,]]>
+		DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d %H:%i:%s') publishtime,
+		DATE_FORMAT(FROM_UNIXTIME(updatetime),'%Y-%m-%d %H:%i:%s') updatetime
+		from t_announce t where t.isvalid=#isvalid# 
+		<isNotEmpty prepend="and" property="title">
+			title like CONCAT('%',#title#,'%')
+		</isNotEmpty>		
+		order by ispublish desc,updatetime desc
+		limit $firstRow$,$listRows$
+	</select>
+	
+	<select id="manage.AnnounceDao.selectAnnounce" parameterClass="int" resultClass="announce">
+		select id,title,content,ispublish,DATE_FORMAT(FROM_UNIXTIME(starttime),'%Y-%m-%d %H:%i:%s') starttime,
+		DATE_FORMAT(FROM_UNIXTIME(endtime),'%Y-%m-%d %H:%i:%s') endtime,
+		DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d %H:%i:%s') publishtime,
+		DATE_FORMAT(FROM_UNIXTIME(updatetime),'%Y-%m-%d %H:%i:%s') updatetime 
+		from t_announce t where t.id=#id#
+	</select>
+	
+	<insert id="manage.AnnounceDao.insertAnnounce" parameterClass="announce">
+		insert into t_announce(title,content,starttime,endtime,ispublish,
+		<isNotEmpty property="publishtime">
+		publishtime,
+		</isNotEmpty>
+		updatetime,userid)
+		values(#title#,#content#,UNIX_TIMESTAMP(#starttime#),UNIX_TIMESTAMP(#endtime#),#ispublish#,
+		<isNotEmpty property="publishtime">
+		UNIX_TIMESTAMP(#publishtime#),
+		</isNotEmpty>
+		UNIX_TIMESTAMP(NOW()),#userid#)
+	</insert>
+	
+	<update id="manage.AnnounceDao.updateAnnounce" parameterClass="announce">
+		update t_announce set title=#title#,content=#content#,
+			starttime=UNIX_TIMESTAMP(#starttime#),endtime=UNIX_TIMESTAMP(#endtime#),
+			ispublish=#ispublish#,
+			<isNotEmpty property="publishtime">
+			publishtime=UNIX_TIMESTAMP(#publishtime#),
+			</isNotEmpty>
+			updatetime=UNIX_TIMESTAMP(NOW()),userid=#userid# 
+		where id=#id#
+	</update>
+	
+	<update id="manage.AnnounceDao.updateAnnounceIsvalid" parameterClass="announce">
+		update t_announce set isvalid=#isvalid#,userid=#userid# where id=#id#
+	</update>
+	
+	<update id="manage.AnnounceDao.updateAnnounceUnpublish" parameterClass="int">
+		<![CDATA[ update t_announce set ispublish='0',userid=#userid# where id<>#id# and isvalid=1]]>
+	</update>
+	
+	<update id="manage.AnnounceDao.updateAnnouncePublish" parameterClass="announce">
+		update t_announce set ispublish='1',
+		starttime=UNIX_TIMESTAMP(#starttime#),endtime=UNIX_TIMESTAMP(#endtime#),
+		publishtime=UNIX_TIMESTAMP(#publishtime#),
+		userid=#userid# where id=#id# 
+	</update>
+	
+	<delete id="manage.AnnounceDao.deleteAnnounce" parameterClass="int">
+		delete from t_announce where id=#id#
+	</delete>
+	
+</sqlMap>

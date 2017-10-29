@@ -9,7 +9,8 @@
 	
 	<select id="home.HomeDao.selectLatestAnnounce" resultClass="announce">
 	<![CDATA[
-		select content from t_announce t where t.isvalid=1 and t.ispublish=1 and t.starttime<UNIX_TIMESTAMP(NOW()) and t.endtime>UNIX_TIMESTAMP(NOW()) limit 1
+		select title,content,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d %H:%i') publishtime 
+		from t_announce t where t.isvalid=1 and t.ispublish=1 and t.starttime<UNIX_TIMESTAMP(NOW()) and t.endtime>UNIX_TIMESTAMP(NOW()) limit 1
 	]]>
 	</select>
 	
@@ -29,7 +30,7 @@
 	</select>
 	
 	<select id="home.HomeDao.selectMessage" parameterClass="int" resultClass="message">
-		select id,title,content,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d %H:%i:%s') publishtime from t_message t where t.id=#id#
+		select id,title,author,content,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d %H:%i') publishtime from t_message t where t.id=#id#
 	</select>
 	
 	<select id="home.HomeDao.selectMessageListSize" resultClass="int">
@@ -49,7 +50,15 @@
 	</select>
 	
 	<select id="home.HomeDao.selectNews" parameterClass="int" resultClass="news">
-		select id,title,color,author,description,content,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d %H:%i:%s') publishtime from t_news t where t.id=#id#
+		select id,title,color,author,description,content,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d %H:%i') publishtime from t_news t where t.id=#id#
+	</select>
+	
+	<select id="home.HomeDao.selectAnnounce" parameterClass="int" resultClass="announce">
+		select id,title,content,DATE_FORMAT(FROM_UNIXTIME(starttime),'%Y-%m-%d %H:%i:%s') starttime,
+		DATE_FORMAT(FROM_UNIXTIME(endtime),'%Y-%m-%d %H:%i:%s') endtime,
+		<![CDATA[ if(UNIX_TIMESTAMP(NOW())>starttime and UNIX_TIMESTAMP(NOW())<endtime,0,1) as isexpire,]]>
+		DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d %H:%i') publishtime 
+		from t_announce t where t.id=#id#
 	</select>
 	
 	<select id="home.HomeDao.selectAbout" resultClass="about">

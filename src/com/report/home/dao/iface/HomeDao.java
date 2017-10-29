@@ -21,7 +21,8 @@ public interface HomeDao {
 
 	public int selectMessageListSize() throws BaseException;
 
-	public List<Message> selectMessageList(Message message) throws BaseException;
+	public List<Message> selectMessageList(Message message)
+			throws BaseException;
 
 	public Message selectMessage(int id) throws BaseException;
 
@@ -30,6 +31,8 @@ public interface HomeDao {
 	public List<News> selectNewsList(News news) throws BaseException;
 
 	public News selectNews(int id) throws BaseException;
+
+	public Announce selectAnnounce(int id) throws BaseException;
 
 	public About selectAbout() throws BaseException;
 }

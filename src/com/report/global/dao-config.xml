@@ -22,6 +22,10 @@
 			implementation="com.report.manage.dao.sqlmap.LoginSqlMapDao" />
 		<dao interface="com.report.manage.dao.iface.NewsDao"
 			implementation="com.report.manage.dao.sqlmap.NewsSqlMapDao" />
+		<dao interface="com.report.manage.dao.iface.MessageDao"
+			implementation="com.report.manage.dao.sqlmap.MessageSqlMapDao" />
+		<dao interface="com.report.manage.dao.iface.AnnounceDao"
+			implementation="com.report.manage.dao.sqlmap.AnnounceSqlMapDao" />
 		    
 	</context>
 </daoConfig>

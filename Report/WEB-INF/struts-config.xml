@@ -210,6 +210,23 @@
 			parameter="chgMemberPwd">
 			<forward name="failure" path="/home/member_chgpwd.vm"/>
         </action>
+        <action
+        	path="/showAnnounce"
+			type="com.report.home.action.HomeAction"
+			scope="request"
+			validate="false"
+			parameter="showAnnounce">
+			<forward name="success" path="/home/announce.vm"/>
+        </action>
+        <action
+        	path="/load4LatestAnnounce"
+			type="com.report.home.action.HomeAction"
+			scope="request"
+			validate="false"
+			parameter="load4LatestAnnounce">
+			<forward name="success" path="/home/announce_latest.vm"/>
+        </action>
+        
         
 	</action-mappings>
 

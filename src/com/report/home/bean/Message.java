@@ -7,14 +7,13 @@ public class Message implements Serializable {
 
 	private int id;
 	private String title;
+	private String author;
 	private String content;
-	private String starttime;
-	private String endtime;
-	private String isvalid;
+	private int isvalid;
 	private String publishtime;
-	private String ispublish;
+	private int ispublish;
 	private String updatetime;
-	private String userid;
+	private int userid;
 	private int firstRow;
 	private int listRows;
 
@@ -32,62 +31,6 @@ public class Message implements Serializable {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public String getStarttime() {
-		return starttime;
-	}
-
-	public void setStarttime(String starttime) {
-		this.starttime = starttime;
-	}
-
-	public String getEndtime() {
-		return endtime;
-	}
-
-	public void setEndtime(String endtime) {
-		this.endtime = endtime;
-	}
-
-	public String getIsvalid() {
-		return isvalid;
-	}
-
-	public void setIsvalid(String isvalid) {
-		this.isvalid = isvalid;
-	}
-
-	public String getPublishtime() {
-		return publishtime;
-	}
-
-	public void setPublishtime(String publishtime) {
-		this.publishtime = publishtime;
-	}
-
-	public String getIspublish() {
-		return ispublish;
-	}
-
-	public void setIspublish(String ispublish) {
-		this.ispublish = ispublish;
-	}
-
-	public String getUpdatetime() {
-		return updatetime;
-	}
-
-	public void setUpdatetime(String updatetime) {
-		this.updatetime = updatetime;
-	}
-
-	public String getUserid() {
-		return userid;
-	}
-
-	public void setUserid(String userid) {
-		this.userid = userid;
 	}
 
 	public void setId(int id) {
@@ -112,6 +55,54 @@ public class Message implements Serializable {
 
 	public int getListRows() {
 		return listRows;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public int getIsvalid() {
+		return isvalid;
+	}
+
+	public void setIsvalid(int isvalid) {
+		this.isvalid = isvalid;
+	}
+
+	public String getPublishtime() {
+		return publishtime;
+	}
+
+	public void setPublishtime(String publishtime) {
+		this.publishtime = publishtime;
+	}
+
+	public int getIspublish() {
+		return ispublish;
+	}
+
+	public void setIspublish(int ispublish) {
+		this.ispublish = ispublish;
+	}
+
+	public String getUpdatetime() {
+		return updatetime;
+	}
+
+	public void setUpdatetime(String updatetime) {
+		this.updatetime = updatetime;
+	}
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 
 }

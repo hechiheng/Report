@@ -14,7 +14,7 @@
 <body>
 <div class="main">
     <div class="pos">
-    	<a href="$link.setAction('load4NewsIndex')">新闻资讯</a>
+    	<a href="$link.setAction('load4NewsIndex')">新闻管理</a>
     </div>
     <div class="operate">
         <div class="left">
@@ -32,7 +32,7 @@
 		<div class="left_pad">
             <form method="get" action="$link.setAction('load4NewsIndex')">
             	<span style='font-size: 14px;vertical-align: middle;'>标题：</span>
-                <input type="text" name="keyword" title="关键字" class="inp_default" value="">
+                <input type="text" name="news.title" title="关键字" class="inp_default" value="$!queryNewsForm.news.title">
                 <input type="submit" class="btn_blue" value="查  询">
             </form>
         </div>
@@ -53,7 +53,13 @@
 			<tr>
 				<td>$!news.id</td>
 				<td class='aleft' style="color:$!news.color">$!news.title</td>
-				<td>#if($!news.ispublish==0) 未发布 #else 已发布 #end</td>
+				<td>
+					#if($!news.ispublish==0) 
+                    <span style='color: blue;'>未发布</span> 
+					#else 
+                    <span style='color: green;'>已发布</span> 
+					#end
+				</td>
 				<td>$!news.publishtime</td>
 				<td>$!news.updatetime</td>
 				<td>

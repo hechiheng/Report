@@ -26,11 +26,11 @@
 
 <script type="text/javascript">
 jQuery(function () {
-     jQuery("input[name='news.title']").focus();
+     jQuery("input[name='message.title']").focus();
 	 
-	 jQuery("input[name='news.ispublish']").click(function(){
+	 jQuery("input[name='message.ispublish']").click(function(){
 	   var v=jQuery(this).val();
-	   var publishtime = jQuery("input[name='news.publishtime']");
+	   var publishtime = jQuery("input[name='message.publishtime']");
 	   if(v=='1'){
 	   		publishtime.parent().find("span").remove().end().append("<span class='error'>*</span>");
 	   }else{
@@ -39,19 +39,19 @@ jQuery(function () {
      });
      
      jQuery("#form_do").submit(function(){
-		var title = jQuery("input[name='news.title']");
+		var title = jQuery("input[name='message.title']");
 		var content = jQuery("#content");
-		var ispublish = jQuery("input[name='news.ispublish']:checked");
-		var publishtime = jQuery("input[name='news.publishtime']");
+		var ispublish = jQuery("input[name='message.ispublish']:checked");
+		var publishtime = jQuery("input[name='message.publishtime']");
 		if(jQuery.trim(title.val())==''){
-			title.parent().find("span").remove().end().append("<span class='error'>新闻标题不能为空</span>");
+			title.parent().find("span").remove().end().append("<span class='error'>通知标题不能为空</span>");
 			title.focus();
 			return false;			
 		}else {
 			title.parent().find("span").remove().end();
 		}
 		if(!UE.getEditor('content').hasContents()){
-			content.parent().find("span").remove().end().append("<span class='error'>新闻内容不能为空</span>");
+			content.parent().find("span").remove().end().append("<span class='error'>通知内容不能为空</span>");
 			content.focus();
 			return false;			
 		}else {
@@ -74,58 +74,40 @@ jQuery(function () {
 </head>
 <body>
 <div class="main">
-    <div class="pos">修改新闻</div>
+    <div class="pos">添加通知</div>
 	<div class="form">
-		<form method='post' id="form_do" name="form_do" action="$link.setAction('modifyNews')">
+		<form method='post' id="form_do" name="form_do" action="$link.setAction('addMessage')">
 		<dl>
-			<dt> 新闻标题：</dt>
+			<dt> 通知标题：</dt>
 			<dd>
-				<input type="text" name="news.title" class="inp_large" value="$!modifyNewsForm.news.title"/>
+				<input type="text" name="message.title" class="inp_large" value="$!addMessageForm.message.title"/>
 				<span style="color: red;">*</span>
-			</dd>
-		</dl>
-		<dl>
-			<dt> 标题颜色：</dt>
-			<dd>
-				<input type="text" name="news.color" id="color" class="inp_small iColorPicker" readonly="readonly" value="$!modifyNewsForm.news.color"/>
-			</dd>
-		</dl>
-		<dl>
-			<dt> 关键词：</dt>
-			<dd>
-				<input type="text" name="news.keywords" class="inp_w250" value="$!modifyNewsForm.news.keywords"/><span class="tip">多关键词之间用“,”隔开</span>
-			</dd>
-		</dl>
-		<dl>
-			<dt> 新闻摘要：</dt>
-			<dd>
-				<textarea name="news.description" id="description" class="tarea_default">$!modifyNewsForm.news.description</textarea>
 			</dd>
 		</dl>
 		<dl>
 			<dt> 作者：</dt>
 			<dd>
-				<input type="text" name="news.author" class="inp_w250" value="$!modifyNewsForm.news.author"/><span class="tip"></span>
+				<input type="text" name="message.author" class="inp_w250" value="$!addMessageForm.message.author"/><span class="tip"></span>
 			</dd>
 		</dl>
 		<dl>
-			<dt> 新闻内容：</dt>
+			<dt> 通知内容：</dt>
 			<dd>
-				<textarea name="news.content" id="content">$!modifyNewsForm.news.content</textarea>
+				<textarea name="message.content" id="content">$!addMessageForm.message.content</textarea>
 			</dd>
 		</dl>		
 		<dl>
 			<dt> 是否发布：</dt>
 			<dd>
-				<label><input type="radio" name="news.ispublish" value="1" #if($!modifyNewsForm.news.ispublish==1) checked="checked" #end/>立即发布&nbsp;</label>
-				<label><input type="radio" name="news.ispublish" value="0" #if($!modifyNewsForm.news.ispublish==0) checked="checked" #end/>暂不发布</label>
+				<label><input type="radio" name="message.ispublish" value="1" checked="checked" />立即发布&nbsp;</label>
+				<label><input type="radio" name="message.ispublish" value="0" />暂不发布</label>
 			</dd>
 		</dl>
 		<dl>
             <dt> 发布时间：</dt>
             <dd>
-                <input type="text" class="inp_one" name="news.publishtime" id="publishtime" readonly="readonly" value="$!modifyNewsForm.news.publishtime" />
-				#if($!modifyNewsForm.news.ispublish==1) <span style="color: red;">*</span> #end
+                <input type="text" class="inp_one" name="message.publishtime" id="publishtime" readonly="readonly" value="$!addMessageForm.message.publishtime"/>
+				<span style="color: red;">*</span>
                 <script type="text/javascript">
                     Calendar.setup({
                         weekNumbers: true,
@@ -143,7 +125,6 @@ jQuery(function () {
 			<span class='error'>#errorMarkup()</span>
         </dl>
 		<div class="form_b">		
-			<input type="hidden" name="news.id" value="$!modifyNewsForm.news.id" />
 			<input type="submit" class="btn_blue" id="submit" value="提 交">
 			<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
 		</div>

@@ -10,11 +10,14 @@ public class Announce implements Serializable {
 	private String content;
 	private String starttime;
 	private String endtime;
-	private String isvalid;
+	private int isvalid;
 	private String publishtime;
-	private String ispublish;
+	private int ispublish;
+	private int isexpire;
 	private String updatetime;
 	private int userid;
+	private int firstRow;
+	private int listRows;
 
 	public String getTitle() {
 		return title;
@@ -48,28 +51,12 @@ public class Announce implements Serializable {
 		this.endtime = endtime;
 	}
 
-	public String getIsvalid() {
-		return isvalid;
-	}
-
-	public void setIsvalid(String isvalid) {
-		this.isvalid = isvalid;
-	}
-
 	public String getPublishtime() {
 		return publishtime;
 	}
 
 	public void setPublishtime(String publishtime) {
 		this.publishtime = publishtime;
-	}
-
-	public String getIspublish() {
-		return ispublish;
-	}
-
-	public void setIspublish(String ispublish) {
-		this.ispublish = ispublish;
 	}
 
 	public String getUpdatetime() {
@@ -94,6 +81,46 @@ public class Announce implements Serializable {
 
 	public int getUserid() {
 		return userid;
+	}
+
+	public int getIsvalid() {
+		return isvalid;
+	}
+
+	public void setIsvalid(int isvalid) {
+		this.isvalid = isvalid;
+	}
+
+	public int getIspublish() {
+		return ispublish;
+	}
+
+	public void setIspublish(int ispublish) {
+		this.ispublish = ispublish;
+	}
+
+	public int getFirstRow() {
+		return firstRow;
+	}
+
+	public void setFirstRow(int firstRow) {
+		this.firstRow = firstRow;
+	}
+
+	public int getListRows() {
+		return listRows;
+	}
+
+	public void setListRows(int listRows) {
+		this.listRows = listRows;
+	}
+
+	public void setIsexpire(int isexpire) {
+		this.isexpire = isexpire;
+	}
+
+	public int getIsexpire() {
+		return isexpire;
 	}
 
 }

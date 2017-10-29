@@ -15,13 +15,37 @@
 	        <form-property name="password" type="java.lang.String"/>
 	        <form-property name="imagecode" type="java.lang.String"/>
         </form-bean>
+        <form-bean name="queryNewsForm"
+			type="com.report.manage.form.NewsForm">
+		</form-bean>
         <form-bean name="addNewsForm"
 			type="com.report.manage.form.NewsForm">
 		</form-bean>
 		<form-bean name="modifyNewsForm"
 			type="com.report.manage.form.NewsForm">
 		</form-bean>
-        
+		<form-bean name="queryMessageForm"
+			type="com.report.manage.form.MessageForm">
+		</form-bean>
+        <form-bean name="addMessageForm"
+			type="com.report.manage.form.MessageForm">
+		</form-bean>
+		<form-bean name="modifyMessageForm"
+			type="com.report.manage.form.MessageForm">
+		</form-bean>
+		
+		<form-bean name="queryAnnounceForm"
+			type="com.report.manage.form.AnnounceForm">
+		</form-bean>
+        <form-bean name="addAnnounceForm"
+			type="com.report.manage.form.AnnounceForm">
+		</form-bean>
+		<form-bean name="modifyAnnounceForm"
+			type="com.report.manage.form.AnnounceForm">
+		</form-bean>
+		<form-bean name="publishAnnounceForm"
+			type="com.report.manage.form.AnnounceForm">
+		</form-bean>
 	</form-beans>
 
 
@@ -99,6 +123,7 @@
         	path="/load4NewsIndex"
 			type="com.report.manage.action.NewsAction"
 			scope="request"
+			name="queryNewsForm"
 			validate="false"
 			parameter="load4NewsIndex">
 			<forward name="success" path="/../manage/news_index.vm"/>
@@ -159,6 +184,155 @@
 			validate="false"
 			parameter="removeNews">
         </action>
+        <action
+        	path="/load4MessageIndex"
+			type="com.report.manage.action.MessageAction"
+			scope="request"
+			name="queryMessageForm"
+			validate="false"
+			parameter="load4MessageIndex">
+			<forward name="success" path="/../manage/message_index.vm"/>
+        </action>
+        <action
+        	path="/load4MessageAdd"
+			type="com.report.manage.action.MessageAction"
+			scope="request"
+			validate="false"
+			parameter="load4MessageAdd">
+			<forward name="success" path="/../manage/message_add.vm"/>
+        </action>
+        <action
+        	path="/addMessage"
+			type="com.report.manage.action.MessageAction"
+			scope="request"
+			input="/load4MessageAdd.do"
+			name="addMessageForm"
+			validate="true"
+			parameter="addMessage">
+        </action>
+        <action
+        	path="/load4MessageModify"
+			type="com.report.manage.action.MessageAction"
+			scope="request"
+			name="modifyMessageForm"
+			validate="false"
+			parameter="load4MessageModify">
+			<forward name="success" path="/../manage/message_modify.vm"/>
+        </action>
+        <action
+        	path="/modifyMessage"
+			type="com.report.manage.action.MessageAction"
+			scope="request"
+			input="/load4MessageAdd.do"
+			name="modifyMessageForm"
+			validate="true"
+			parameter="modifyMessage">
+        </action>
+        <action
+        	path="/trashMessage"
+			type="com.report.manage.action.MessageAction"
+			scope="request"
+			validate="false"
+			parameter="trashMessage">
+        </action>
+        <action
+        	path="/restoreMessage"
+			type="com.report.manage.action.MessageAction"
+			scope="request"
+			validate="false"
+			parameter="restoreMessage">
+        </action>
+        <action
+        	path="/removeMessage"
+			type="com.report.manage.action.MessageAction"
+			scope="request"
+			validate="false"
+			parameter="removeMessage">
+        </action>
+        <action
+        	path="/load4AnnounceIndex"
+			type="com.report.manage.action.AnnounceAction"
+			scope="request"
+			name="queryAnnounceForm"
+			validate="false"
+			parameter="load4AnnounceIndex">
+			<forward name="success" path="/../manage/announce_index.vm"/>
+        </action>
+        <action
+        	path="/load4AnnounceAdd"
+			type="com.report.manage.action.AnnounceAction"
+			scope="request"
+			validate="false"
+			parameter="load4AnnounceAdd">
+			<forward name="success" path="/../manage/announce_add.vm"/>
+        </action>
+        <action
+        	path="/addAnnounce"
+			type="com.report.manage.action.AnnounceAction"
+			scope="request"
+			input="/load4AnnounceAdd.do"
+			name="addAnnounceForm"
+			validate="true"
+			parameter="addAnnounce">
+        </action>
+        <action
+        	path="/load4AnnounceModify"
+			type="com.report.manage.action.AnnounceAction"
+			scope="request"
+			name="modifyAnnounceForm"
+			validate="false"
+			parameter="load4AnnounceModify">
+			<forward name="success" path="/../manage/announce_modify.vm"/>
+        </action>
+        <action
+        	path="/modifyAnnounce"
+			type="com.report.manage.action.AnnounceAction"
+			scope="request"
+			input="/load4AnnounceModify.do"
+			name="modifyAnnounceForm"
+			validate="true"
+			parameter="modifyAnnounce">
+        </action>
+        <action
+        	path="/trashAnnounce"
+			type="com.report.manage.action.AnnounceAction"
+			scope="request"
+			validate="false"
+			parameter="trashAnnounce">
+        </action>
+        <action
+        	path="/restoreAnnounce"
+			type="com.report.manage.action.AnnounceAction"
+			scope="request"
+			validate="false"
+			parameter="restoreAnnounce">
+        </action>
+        <action
+        	path="/removeAnnounce"
+			type="com.report.manage.action.AnnounceAction"
+			scope="request"
+			validate="false"
+			parameter="removeAnnounce">
+        </action>
+        <action
+        	path="/load4AnnouncePublish"
+			type="com.report.manage.action.AnnounceAction"
+			scope="request"
+			name="publishAnnounceForm"
+			validate="false"
+			parameter="load4AnnouncePublish">
+			<forward name="success" path="/../manage/announce_publish.vm"/>
+        </action>
+        <action
+        	path="/publishAnnounce"
+			type="com.report.manage.action.AnnounceAction"
+			scope="request"
+			input="/load4AnnouncePublish.do"
+			name="publishAnnounceForm"
+			validate="true"
+			parameter="publishAnnounce">
+        </action>
+        
 	</action-mappings>
 
 
