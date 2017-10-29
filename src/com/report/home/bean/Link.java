@@ -5,23 +5,15 @@ import java.io.Serializable;
 public class Link implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private String id;
+	private int id;
 	private String name;
 	private String url;
 	private String logo;
 	private String description;
-	private String isvalid;
-	private String sort;
+	private int isvalid;
+	private int sort;
 	private String updatetime;
-	private String userid;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
+	private int userid;
 
 	public String getName() {
 		return name;
@@ -55,19 +47,27 @@ public class Link implements Serializable {
 		this.description = description;
 	}
 
-	public String getIsvalid() {
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getIsvalid() {
 		return isvalid;
 	}
 
-	public void setIsvalid(String isvalid) {
+	public void setIsvalid(int isvalid) {
 		this.isvalid = isvalid;
 	}
 
-	public String getSort() {
+	public int getSort() {
 		return sort;
 	}
 
-	public void setSort(String sort) {
+	public void setSort(int sort) {
 		this.sort = sort;
 	}
 
@@ -79,11 +79,11 @@ public class Link implements Serializable {
 		this.updatetime = updatetime;
 	}
 
-	public String getUserid() {
+	public int getUserid() {
 		return userid;
 	}
 
-	public void setUserid(String userid) {
+	public void setUserid(int userid) {
 		this.userid = userid;
 	}
 

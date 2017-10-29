@@ -59,6 +59,9 @@ public class HomeAction extends BaseAction {
 
 		Announce announce = bo.getLatestAnnounce();
 		request.setAttribute("announce", announce);
+
+		About about = bo.getAbout();
+		request.setAttribute("about", about);
 		return mapping.findForward("success");
 	}
 
@@ -76,6 +79,9 @@ public class HomeAction extends BaseAction {
 
 		Announce announce = bo.getLatestAnnounce();
 		request.setAttribute("announce", announce);
+
+		About about = bo.getAbout();
+		request.setAttribute("about", about);
 		return mapping.findForward("success");
 	}
 
@@ -89,6 +95,9 @@ public class HomeAction extends BaseAction {
 
 		Announce announce = bo.getLatestAnnounce();
 		request.setAttribute("announce", announce);
+
+		About about = bo.getAbout();
+		request.setAttribute("about", about);
 		return mapping.findForward("success");
 	}
 
@@ -106,6 +115,9 @@ public class HomeAction extends BaseAction {
 
 		Announce announce = bo.getLatestAnnounce();
 		request.setAttribute("announce", announce);
+
+		About about = bo.getAbout();
+		request.setAttribute("about", about);
 		return mapping.findForward("success");
 	}
 
@@ -127,6 +139,9 @@ public class HomeAction extends BaseAction {
 		HomeBo bo = new HomeBo();
 		Announce announce = bo.getLatestAnnounce();
 		request.setAttribute("announce", announce);
+
+		About about = bo.getAbout();
+		request.setAttribute("about", about);
 		return mapping.findForward("success");
 	}
 
@@ -137,6 +152,9 @@ public class HomeAction extends BaseAction {
 		HomeBo bo = new HomeBo();
 		Announce announce = bo.getAnnounce(Integer.valueOf(id));
 		request.setAttribute("announce", announce);
+
+		About about = bo.getAbout();
+		request.setAttribute("about", about);
 		return mapping.findForward("success");
 	}
 

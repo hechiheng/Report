@@ -8,17 +8,15 @@ public class Menu implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int id;
-
 	private String name;
-
+	private String keyword;
 	private int pid;
-
-	private int isleaf;
-
 	private int isshow;
-
 	private int sort;
+	private int isvalid;
 	private String url;
+	private int level;
+	private String delimiter;
 	private List<Menu> subMenuList;
 
 	public int getId() {
@@ -43,14 +41,6 @@ public class Menu implements Serializable {
 
 	public void setPid(int pid) {
 		this.pid = pid;
-	}
-
-	public int getIsleaf() {
-		return isleaf;
-	}
-
-	public void setIsleaf(int isleaf) {
-		this.isleaf = isleaf;
 	}
 
 	public int getIsshow() {
@@ -83,6 +73,38 @@ public class Menu implements Serializable {
 
 	public List<Menu> getSubMenuList() {
 		return subMenuList;
+	}
+
+	public void setIsvalid(int isvalid) {
+		this.isvalid = isvalid;
+	}
+
+	public int getIsvalid() {
+		return isvalid;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setDelimiter(String delimiter) {
+		this.delimiter = delimiter;
+	}
+
+	public String getDelimiter() {
+		return delimiter;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public String getKeyword() {
+		return keyword;
 	}
 
 }

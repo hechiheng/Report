@@ -24,5 +24,9 @@
 	<sqlMap resource="com/report/manage/dao/sqlmap/database/News.xml" />
 	<sqlMap resource="com/report/manage/dao/sqlmap/database/Message.xml" />
 	<sqlMap resource="com/report/manage/dao/sqlmap/database/Announce.xml" />
+	<sqlMap resource="com/report/manage/dao/sqlmap/database/About.xml" />
+	<sqlMap resource="com/report/manage/dao/sqlmap/database/Website.xml" />
+	<sqlMap resource="com/report/manage/dao/sqlmap/database/Menu.xml" />
+	<sqlMap resource="com/report/manage/dao/sqlmap/database/Link.xml" />
 
 </sqlMapConfig>

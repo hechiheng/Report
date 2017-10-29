@@ -1,0 +1,4 @@
+#set($linkList = $request.getAttribute("linkList"))
+#foreach($linkInfo in $linkList)
+	<a href="$!linkInfo.url" target="_blank">$!linkInfo.name</a>
+#end

@@ -33,7 +33,6 @@
 		<form-bean name="modifyMessageForm"
 			type="com.report.manage.form.MessageForm">
 		</form-bean>
-		
 		<form-bean name="queryAnnounceForm"
 			type="com.report.manage.form.AnnounceForm">
 		</form-bean>
@@ -45,6 +44,30 @@
 		</form-bean>
 		<form-bean name="publishAnnounceForm"
 			type="com.report.manage.form.AnnounceForm">
+		</form-bean>
+		<form-bean name="aboutForm"
+			type="com.report.manage.form.AboutForm">
+		</form-bean>
+		<form-bean name="websiteForm"
+			type="com.report.manage.form.WebsiteForm">
+		</form-bean>
+		<form-bean name="queryMenuForm"
+			type="com.report.manage.form.MenuForm">
+		</form-bean>
+		<form-bean name="addMenuForm"
+			type="com.report.manage.form.MenuForm">
+		</form-bean>
+		<form-bean name="modifyMenuForm"
+			type="com.report.manage.form.MenuForm">
+		</form-bean>
+		<form-bean name="queryLinkForm"
+			type="com.report.manage.form.LinkForm">
+		</form-bean>
+		<form-bean name="addLinkForm"
+			type="com.report.manage.form.LinkForm">
+		</form-bean>
+		<form-bean name="modifyLinkForm"
+			type="com.report.manage.form.LinkForm">
 		</form-bean>
 	</form-beans>
 
@@ -332,7 +355,146 @@
 			validate="true"
 			parameter="publishAnnounce">
         </action>
-        
+        <action
+        	path="/load4AboutModify"
+			type="com.report.manage.action.AboutAction"
+			scope="request"
+			name="aboutForm"
+			validate="false"
+			parameter="load4AboutModify">
+			<forward name="success" path="/../manage/about_modify.vm"/>
+        </action>
+        <action
+        	path="/modifyAbout"
+			type="com.report.manage.action.AboutAction"
+			scope="request"
+			input="/load4AboutModify.do"
+			name="aboutForm"
+			validate="true"
+			parameter="modifyAbout">
+        </action>
+        <action
+        	path="/load4WebsiteModify"
+			type="com.report.manage.action.WebsiteAction"
+			scope="request"
+			name="websiteForm"
+			validate="false"
+			parameter="load4WebsiteModify">
+			<forward name="success" path="/../manage/website_config.vm"/>
+        </action>
+        <action
+        	path="/modifyWebsite"
+			type="com.report.manage.action.WebsiteAction"
+			scope="request"
+			input="/load4WebsiteModify.do"
+			name="websiteForm"
+			validate="true"
+			parameter="modifyWebsite">
+        </action>
+        <action
+        	path="/load4MenuIndex"
+			type="com.report.manage.action.MenuAction"
+			scope="request"
+			name="queryMenuForm"
+			validate="false"
+			parameter="load4MenuIndex">
+			<forward name="success" path="/../manage/menu_index.vm"/>
+        </action>
+        <action
+        	path="/load4MenuAdd"
+			type="com.report.manage.action.MenuAction"
+			scope="request"
+			name="addMenuForm"
+			validate="false"
+			parameter="load4MenuAdd">
+			<forward name="success" path="/../manage/menu_add.vm"/>
+        </action>
+        <action
+        	path="/addMenu"
+			type="com.report.manage.action.MenuAction"
+			scope="request"
+			input="/load4MenuAdd.do"
+			name="addMenuForm"
+			validate="true"
+			parameter="addMenu">
+        </action>
+        <action
+        	path="/load4MenuModify"
+			type="com.report.manage.action.MenuAction"
+			scope="request"
+			name="modifyMenuForm"
+			validate="false"
+			parameter="load4MenuModify">
+			<forward name="success" path="/../manage/menu_modify.vm"/>
+        </action>
+        <action
+        	path="/modifyMenu"
+			type="com.report.manage.action.MenuAction"
+			scope="request"
+			input="/load4MenuModify.do"
+			name="modifyMenuForm"
+			validate="true"
+			parameter="modifyMenu">
+        </action>
+        <action
+        	path="/trashMenu"
+			type="com.report.manage.action.MenuAction"
+			scope="request"
+			validate="false"
+			parameter="trashMenu">
+        </action>
+        <action
+        	path="/load4LinkIndex"
+			type="com.report.manage.action.LinkAction"
+			scope="request"
+			name="queryLinkForm"
+			validate="false"
+			parameter="load4LinkIndex">
+			<forward name="success" path="/../manage/link_index.vm"/>
+        </action>
+        <action
+        	path="/load4LinkAdd"
+			type="com.report.manage.action.LinkAction"
+			scope="request"
+			name="addLinkForm"
+			validate="false"
+			parameter="load4LinkAdd">
+			<forward name="success" path="/../manage/link_add.vm"/>
+        </action>
+        <action
+        	path="/addLink"
+			type="com.report.manage.action.LinkAction"
+			scope="request"
+			input="/load4LinkAdd.do"
+			name="addLinkForm"
+			validate="true"
+			parameter="addLink">
+        </action>
+        <action
+        	path="/load4LinkModify"
+			type="com.report.manage.action.LinkAction"
+			scope="request"
+			name="modifyLinkForm"
+			validate="false"
+			parameter="load4LinkModify">
+			<forward name="success" path="/../manage/link_modify.vm"/>
+        </action>
+        <action
+        	path="/modifyLink"
+			type="com.report.manage.action.LinkAction"
+			scope="request"
+			input="/load4LinkModify.do"
+			name="modifyLinkForm"
+			validate="true"
+			parameter="modifyLink">
+        </action>
+        <action
+        	path="/trashLink"
+			type="com.report.manage.action.LinkAction"
+			scope="request"
+			validate="false"
+			parameter="trashLink">
+        </action>
 	</action-mappings>
 
 

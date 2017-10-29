@@ -38,10 +38,11 @@
         <table width="100%">
             <tr>
                 <th>编号</th>
-                <th class="aleft">公告标题</th>
+                <th class="aleft" width="35%">公告标题</th>
+				<th>开始时间</th>
+                <th>结束时间</th>
                 <th>发布状态</th>
                 <th>发布时间</th>
-                <th>更新时间</th>
                 <th>操作</th>
             </tr>
 			#set($announceList = $request.getAttribute("announceList"))
@@ -49,6 +50,8 @@
 			<tr>
 				<td>$!announce.id</td>
 				<td class='aleft' style="color:$!announce.color">$!announce.title</td>
+				<td>$!announce.starttime</td>
+				<td>$!announce.endtime</td>
 				<td>
 					#if($!announce.isexpire==1)
 						<span style='color: red;'>已过期</span>
@@ -61,7 +64,6 @@
 					#end
 				</td>
 				<td>$!announce.publishtime</td>
-				<td>$!announce.updatetime</td>
 				<td>
 					<a href="$link.setRelative('/showAnnounce.do').addQueryData('id',$!announce.id)" target='_blank'>查看</a>
 				#if($istrash=="1")

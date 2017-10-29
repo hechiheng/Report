@@ -62,7 +62,7 @@
 	</select>
 	
 	<select id="home.HomeDao.selectAbout" resultClass="about">
-		select id,title,content from t_about 
+		select id,description,content from t_about 
 	</select>
 	
 </sqlMap>

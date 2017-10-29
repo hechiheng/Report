@@ -36,15 +36,6 @@
 </div>
 
 <div class="warp1 mt">
-	<div id="ggao">
-		<b>最新公告：</b>
-		<span>
-			<marquee>
-				##set($announce = $request.getAttribute("announce"))
-				##$!announce.content
-			</marquee>
-    	</span>
-    </div>
 </div>
 <div class="clear"></div>
 

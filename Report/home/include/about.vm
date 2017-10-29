@@ -1,0 +1,2 @@
+#set($about = $request.getAttribute("about"))
+$!about.description

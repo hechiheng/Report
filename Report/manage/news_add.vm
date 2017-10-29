@@ -20,8 +20,6 @@
 
         UE.getEditor('content');
     }
-
-
 </script>
 
 <script type="text/javascript">
@@ -149,7 +147,6 @@ jQuery(function () {
 	   </form>
 	</div>
 </div>
-
 
 </body>
 </html>

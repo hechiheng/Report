@@ -4,6 +4,10 @@
 	<interceptor name="news" type="com.report.manage.interceptor.NewsInterceptor"/>
 	<interceptor name="message" type="com.report.manage.interceptor.MessageInterceptor"/>
 	<interceptor name="announce" type="com.report.manage.interceptor.AnnounceInterceptor"/>
+	<interceptor name="about" type="com.report.manage.interceptor.AboutInterceptor"/>
+	<interceptor name="website" type="com.report.manage.interceptor.WebsiteInterceptor"/>
+	<interceptor name="menu" type="com.report.manage.interceptor.MenuInterceptor"/>
+	<interceptor name="link" type="com.report.manage.interceptor.LinkInterceptor"/>
 
 	<action type="com.report.manage.action.LoginAction">
 		<interceptor name="login"/>
@@ -16,6 +20,18 @@
 	</action>
 	<action type="com.report.manage.action.AnnounceAction">
 		<interceptor name="announce"/>
+	</action>
+	<action type="com.report.manage.action.AboutAction">
+		<interceptor name="about"/>
+	</action>
+	<action type="com.report.manage.action.WebsiteAction">
+		<interceptor name="website"/>
+	</action>
+	<action type="com.report.manage.action.MenuAction">
+		<interceptor name="menu"/>
+	</action>
+	<action type="com.report.manage.action.LinkAction">
+		<interceptor name="link"/>
 	</action>
 	
 </interceptor-config>

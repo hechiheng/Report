@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="manage.Website">
+	<typeAlias alias="website" type="com.report.manage.bean.Website"/>
+	
+	<select id="manage.WebsiteDao.selectWebsite" resultClass="website">
+		select cfg_webname,cfg_webtitle,cfg_themestyle,cfg_keywords,cfg_description,cfg_powerby,
+			cfg_recordno,cfg_address,cfg_phone,cfg_qq,cfg_email,cfg_website_close,cfg_website_close_info
+		 from t_siteconfig 
+	</select>
+	
+	<update id="manage.WebsiteDao.updateWebsite" parameterClass="website">
+		update t_siteconfig set cfg_webname=#cfg_webname#,cfg_webtitle=#cfg_webtitle#,cfg_themestyle=#cfg_themestyle#,
+			cfg_keywords=#cfg_keywords#,cfg_description=#cfg_description#,cfg_powerby=#cfg_powerby#,
+			cfg_recordno=#cfg_recordno#,cfg_address=#cfg_address#,cfg_phone=#cfg_phone#,cfg_qq=#cfg_qq#,
+			cfg_email=#cfg_email#,cfg_website_close=#cfg_website_close#,cfg_website_close_info=#cfg_website_close_info#
+	</update>
+	
+</sqlMap>

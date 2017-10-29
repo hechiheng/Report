@@ -36,15 +36,7 @@
 </div>
 
 <div class="warp1 mt">
-	<div id="ggao">
-		<b>最新公告：</b>
-		<span>
-			<marquee>
-    			#set($announce = $request.getAttribute("announce"))
-				$!announce.content
-			</marquee>
-    	</span>
-    </div>
+	#parse("/home/include/announce.vm")
 </div>
 <div class="clear"></div>
 
@@ -56,10 +48,7 @@
 <div class="left f_l">
 	<h3 class="left_bt">联系我们</h3>
 	<div class="xbox left_contactbox">
-	  <p>
-		联系地址：石家庄市新华区<br />
-		电话：15176190900
-	  </p>
+	  #parse("/home/include/about.vm")
 	</div>
 </div>
 

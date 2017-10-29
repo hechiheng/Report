@@ -26,6 +26,14 @@
 			implementation="com.report.manage.dao.sqlmap.MessageSqlMapDao" />
 		<dao interface="com.report.manage.dao.iface.AnnounceDao"
 			implementation="com.report.manage.dao.sqlmap.AnnounceSqlMapDao" />
+		<dao interface="com.report.manage.dao.iface.AboutDao"
+			implementation="com.report.manage.dao.sqlmap.AboutSqlMapDao" />
+		<dao interface="com.report.manage.dao.iface.WebsiteDao"
+			implementation="com.report.manage.dao.sqlmap.WebsiteSqlMapDao" />
+		<dao interface="com.report.manage.dao.iface.MenuDao"
+			implementation="com.report.manage.dao.sqlmap.MenuSqlMapDao" />
+		<dao interface="com.report.manage.dao.iface.LinkDao"
+			implementation="com.report.manage.dao.sqlmap.LinkSqlMapDao" />
 		    
 	</context>
 </daoConfig>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="manage.Link">
+	<typeAlias alias="link" type="com.report.home.bean.Link"/>
+	
+	<select id="manage.LinkDao.selectLinkList" parameterClass="link" resultClass="link">
+		select id,name,url,DATE_FORMAT(FROM_UNIXTIME(updatetime),'%Y-%m-%d %H:%i:%s') updatetime,sort 
+		from t_link t where t.isvalid=1 
+		<isNotEmpty prepend="and" property="name">
+			name like CONCAT('%',#name#,'%')
+		</isNotEmpty>		
+		order by sort
+	</select>
+	
+	<select id="manage.LinkDao.selectLink" parameterClass="int" resultClass="link">
+		select id,name,url,description,DATE_FORMAT(FROM_UNIXTIME(updatetime),'%Y-%m-%d %H:%i:%s') updatetime,sort 
+		from t_link t where t.id=#id#
+	</select>
+	
+	<insert id="manage.LinkDao.insertLink" parameterClass="link">
+		insert into t_link(name,url,description,updatetime,sort,userid)
+		values(#name#,#url#,#description#,UNIX_TIMESTAMP(NOW()),#sort#,#userid#)
+	</insert>
+	
+	<update id="manage.LinkDao.updateLink" parameterClass="link">
+		update t_link set name=#name#,url=#url#,description=#description#,sort=#sort#,
+			updatetime=UNIX_TIMESTAMP(NOW()),userid=#userid# 
+		where id=#id#
+	</update>
+	
+	<update id="manage.LinkDao.updateLinkIsvalid" parameterClass="link">
+		update t_link set isvalid=#isvalid#,userid=#userid# where id=#id#
+	</update>
+	
+	<delete id="manage.LinkDao.deleteLink" parameterClass="int">
+		delete from t_link where id=#id#
+	</delete>
+	
+</sqlMap>

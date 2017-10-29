@@ -35,19 +35,11 @@
 	</ul>
 </div>
 <div class="warp1 mt">
-	<div id="ggao">
-		<b>最新公告：</b>
-		<span>
-			<marquee>
-				#set($announce = $request.getAttribute("announce"))
-				$!announce.content
- 			</marquee>
- 		</span>
- 	 </div>
+	#parse("/home/include/announce.vm")
 
 	<div id="syxw" class="f_l">
 	<p>
-		网站介绍
+		网站介绍11
 	</p>
 	</div>
 	<div id="banner" class="f_r">
@@ -102,10 +94,7 @@
 <div class="warp1 mt">
 <h3 class="r_bt"><span>友情链接</span></h3>
 <div class="xbox" id="yqlj">
-	#set($linkList = $request.getAttribute("linkList"))
-	#foreach($linkInfo in $linkList)
-		<a href="$!linkInfo.url" target="_blank">$!linkInfo.name</a>
-	#end
+	#parse("/home/include/link.vm")
 <div class="clear"></div>
 </div>
 </div>

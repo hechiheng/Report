@@ -6,18 +6,10 @@ public class About implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int id;
-	private String title;
+	private String description;
 	private String content;
 	private String updatetime;
-	private String userid;
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
+	private int userid;
 
 	public String getContent() {
 		return content;
@@ -35,20 +27,28 @@ public class About implements Serializable {
 		this.updatetime = updatetime;
 	}
 
-	public String getUserid() {
-		return userid;
-	}
-
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	public int getId() {
 		return id;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public int getUserid() {
+		return userid;
 	}
 
 }

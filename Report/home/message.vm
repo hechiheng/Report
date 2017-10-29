@@ -9,6 +9,7 @@
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
 <script type="text/javascript" src="$link.setRelative('/home/js/jquery-1.7.2.min.js')" ></script>
 <link href="$link.setRelative('/home/theme/default/css/css.css')" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="$link.setRelative('/manage/ueditor/ueditor.parse.min.js')"></script>
 </head>
 
 <body>
@@ -36,15 +37,7 @@
 </div>
 
 <div class="warp1 mt">
-	<div id="ggao">
-		<b>最新公告：</b>
-		<span>
-			<marquee>
-				#set($announce = $request.getAttribute("announce"))
-				$!announce.content
-			</marquee>
-    	</span>
-    </div>
+	#parse("/home/include/announce.vm")
 </div>
 <div class="clear"></div>
 
@@ -56,10 +49,7 @@
 <div class="left f_l">
 	<h3 class="left_bt">联系我们</h3>
 	<div class="xbox left_contactbox">
-	  <p>
-		联系地址：石家庄市新华区<br />
-		电话：15176190900
-	  </p>
+	  #parse("/home/include/about.vm")
 	</div>
 </div>
 <div class="right f_r">
@@ -74,7 +64,7 @@
 			<span>$!message.author</span>
 			<span>$!message.publishtime</span>
 		</div>
-		<div class="wzzw lh">
+		<div class="wzzw lh" id="content">
 			$!message.content
 		</div>
 	</div>
@@ -88,7 +78,12 @@
 <div class="warp1 mt" id="bottom">
 	#parse("/home/include/bottom.vm")
 </div>
+<script type="text/javascript">
+	uParse('#content', {
+        rootPath: '../'
+    });
 
+</script>
 
 </body>
 </html>

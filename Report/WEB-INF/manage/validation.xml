@@ -322,7 +322,171 @@
 				<arg key="announce.publishtime" />
 			</field>
 		</form>
+		<form name="aboutForm">
+			<field property="about.description"
+				depends="required,bytemaxlength">
+				<arg key="about.description" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>100</var-value>
+				</var>
+			</field>
+			<field property="about.content"
+				depends="required">
+				<arg key="about.content" />
+			</field>
+		</form>
+		<form name="addMenuForm">
+			<field property="menu.name"
+				depends="required,bytemaxlength">
+				<arg key="menu.name" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>30</var-value>
+				</var>
+			</field>
+			<field property="menu.pid"
+				depends="required,bytemaxlength">
+				<arg key="menu.pid" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="menu.isshow"
+				depends="required,bytemaxlength">
+				<arg key="menu.isshow" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>1</var-value>
+				</var>
+			</field>
+			<field property="menu.sort"
+				depends="required,bytemaxlength">
+				<arg key="menu.sort" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>6</var-value>
+				</var>
+			</field>
+		</form>
+		<form name="modifyMenuForm">
+			<field property="menu.id"
+				depends="required,bytemaxlength">
+				<arg key="menu.id" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="menu.name"
+				depends="required,bytemaxlength">
+				<arg key="menu.name" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>30</var-value>
+				</var>
+			</field>
+			<field property="menu.pid"
+				depends="required,bytemaxlength">
+				<arg key="menu.pid" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="menu.isshow"
+				depends="required,bytemaxlength">
+				<arg key="menu.isshow" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>1</var-value>
+				</var>
+			</field>
+			<field property="menu.sort"
+				depends="required,bytemaxlength">
+				<arg key="menu.sort" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>6</var-value>
+				</var>
+			</field>
+		</form>
 		
+		<form name="addLinkForm">
+			<field property="link.name"
+				depends="required,bytemaxlength">
+				<arg key="link.name" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>50</var-value>
+				</var>
+			</field>
+			<field property="link.url"
+				depends="required,bytemaxlength">
+				<arg key="link.url" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+		</form>
+		<form name="modifyLinkForm">
+			<field property="link.id"
+				depends="required,bytemaxlength">
+				<arg key="link.id" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="link.name"
+				depends="required,bytemaxlength">
+				<arg key="link.name" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>30</var-value>
+				</var>
+			</field>
+			<field property="link.url"
+				depends="required,bytemaxlength">
+				<arg key="link.url" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+		</form>
 
 	</formset>
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="manage.About">
+	<typeAlias alias="about" type="com.report.home.bean.About"/>
+	
+	<select id="manage.AboutDao.selectAbout" resultClass="about">
+		select id,description,content from t_about t 
+	</select>
+	
+	<insert id="manage.AboutDao.insertAbout" parameterClass="about">
+		insert into t_about(description,content,updatetime,userid)
+		values(#description#,#content#,UNIX_TIMESTAMP(NOW()),#userid#)
+	</insert>
+	
+	<update id="manage.AboutDao.updateAbout" parameterClass="about">
+		update t_about set description=#description#,content=#content#,
+			updatetime=UNIX_TIMESTAMP(NOW()),userid=#userid# 
+	</update>
+	
+</sqlMap>

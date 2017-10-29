@@ -9,6 +9,7 @@
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
 <script type="text/javascript" src="$link.setRelative('/home/js/jquery-1.7.2.min.js')" ></script>
 <link href="$link.setRelative('/home/theme/default/css/css.css')" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="$link.setRelative('/manage/ueditor/ueditor.parse.min.js')"></script>
 </head>
 
 <body>
@@ -36,15 +37,7 @@
 </div>
 
 <div class="warp1 mt">
-	<div id="ggao">
-		<b>最新公告：</b>
-		<span>
-			<marquee>
-				#set($announce = $request.getAttribute("announce"))
-				$!announce.content
-			</marquee>
-    	</span>
-    </div>
+	#parse("/home/include/announce.vm")
 </div>
 <div class="clear"></div>
 
@@ -60,7 +53,7 @@
 	</h3>
 	<div class="xbox wzzw"> 
 		#set($about = $request.getAttribute("about"))
-		<div class="wzzw lh">
+		<div class="wzzw lh" id="content">
 			$!about.content
 		</div>
 	</div>
@@ -74,7 +67,12 @@
 <div class="warp1 mt" id="bottom">
 	#parse("/home/include/bottom.vm")
 </div>
+<script type="text/javascript">
+	uParse('#content', {
+        rootPath: '../'
+    });
 
+</script>
 
 </body>
 </html>

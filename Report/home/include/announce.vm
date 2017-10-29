@@ -1,0 +1,11 @@
+#set($announce = $request.getAttribute("announce"))
+#if($announce)
+<div id="ggao">
+	<b>最新公告：</b>
+	<span>
+		<marquee>
+			$!announce.content
+		</marquee>
+	</span>
+</div>
+#end
