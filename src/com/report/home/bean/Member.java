@@ -20,7 +20,15 @@ public class Member implements Serializable {
 	private String email;
 	private String tel;
 	private String regtime;
-	private String isvalid;
+	private String logintime;
+	private String updatetime;
+	private int isvalid;
+
+	public int getIsvalid() {
+		return isvalid;
+	}
+
+	private int islock;
 	private String imagecode;
 	private int firstRow;
 	private int listRows;
@@ -113,14 +121,6 @@ public class Member implements Serializable {
 		this.regtime = regtime;
 	}
 
-	public String getIsvalid() {
-		return isvalid;
-	}
-
-	public void setIsvalid(String isvalid) {
-		this.isvalid = isvalid;
-	}
-
 	public void setFirstRow(int firstRow) {
 		this.firstRow = firstRow;
 	}
@@ -167,6 +167,34 @@ public class Member implements Serializable {
 
 	public String getPassword_old() {
 		return password_old;
+	}
+
+	public String getLogintime() {
+		return logintime;
+	}
+
+	public void setLogintime(String logintime) {
+		this.logintime = logintime;
+	}
+
+	public String getUpdatetime() {
+		return updatetime;
+	}
+
+	public void setUpdatetime(String updatetime) {
+		this.updatetime = updatetime;
+	}
+
+	public int getIslock() {
+		return islock;
+	}
+
+	public void setIslock(int islock) {
+		this.islock = islock;
+	}
+
+	public void setIsvalid(int isvalid) {
+		this.isvalid = isvalid;
 	}
 
 }

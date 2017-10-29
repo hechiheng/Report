@@ -34,6 +34,8 @@
 			implementation="com.report.manage.dao.sqlmap.MenuSqlMapDao" />
 		<dao interface="com.report.manage.dao.iface.LinkDao"
 			implementation="com.report.manage.dao.sqlmap.LinkSqlMapDao" />
+		<dao interface="com.report.manage.dao.iface.MemberDao"
+			implementation="com.report.manage.dao.sqlmap.MemberSqlMapDao" />
 		    
 	</context>
 </daoConfig>

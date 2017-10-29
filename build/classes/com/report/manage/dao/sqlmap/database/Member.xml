@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="manage.Member">
+	<typeAlias alias="member" type="com.report.home.bean.Member"/>
+	
+	<select id="manage.MemberDao.selectMemberListSize" parameterClass="member" resultClass="int">
+		select count(a.id)
+		from t_member a,t_codelist b 
+		where a.sex=b.code_value and b.code_type='sex'
+		and a.isvalid=#isvalid# 
+		<isNotEmpty prepend="and" property="accountid">
+			accountid like CONCAT('%',#accountid#,'%')
+		</isNotEmpty>		
+	</select>
+	
+	<select id="manage.MemberDao.selectMemberList" parameterClass="member" resultClass="member">
+		select a.id,a.accountid,a.password,a.factname,b.code_name sex,a.idcard,a.birthday,a.qq,a.tel,a.email,a.address,
+		DATE_FORMAT(FROM_UNIXTIME(logintime),'%Y-%m-%d %H:%i:%s') logintime,a.islock
+		from t_member a,t_codelist b 
+		where a.sex=b.code_value and b.code_type='sex'
+		and a.isvalid=#isvalid# 
+		<isNotEmpty prepend="and" property="accountid">
+			a.accountid like CONCAT('%',#accountid#,'%')
+		</isNotEmpty>
+		order by a.logintime desc
+		limit $firstRow$,$listRows$
+	</select>
+	
+	<insert id="manage.MemberDao.insertMember" parameterClass="member">
+		insert into t_member(accountid,password,sex,factname,idcard,birthday,address,qq,email,tel,regtime)
+		values(#accountid#,#password#,#sex#,#factname#,#idcard#,#birthday#,#address#,#qq#,#email#,#tel#,UNIX_TIMESTAMP(NOW()))
+	</insert>
+	
+	<select id="manage.MemberDao.selectMember" parameterClass="int" resultClass="member">
+		select a.id,a.accountid,a.password,a.factname,b.code_name sex,a.idcard,a.birthday,a.qq,a.tel,a.email,a.address
+		from t_member a,t_codelist b 
+		where a.sex=b.code_value and b.code_type='sex' and a.id=#id# 
+	</select>
+	
+	<update id="manage.MemberDao.updateMember" parameterClass="member">
+		update t_member set factname=#factname#,idcard=#idcard#,birthday=#birthday#,address=#address#,
+			qq=#qq#,email=#email#,tel=#tel#,updatetime=UNIX_TIMESTAMP(NOW())
+		where id=#id#
+	</update>
+	
+	<update id="manage.MemberDao.updateMemberPwd" parameterClass="member">
+		update t_member set password=#password# where id=#id#
+	</update>
+	
+	<update id="manage.MemberDao.updateMemberIsvalid" parameterClass="member">
+		update t_member set isvalid=#isvalid# where id=#id#
+	</update>
+	
+	<delete id="manage.MemberDao.deleteMember" parameterClass="int">
+		delete from t_member where id=#id#
+	</delete>
+	
+</sqlMap>

@@ -69,6 +69,16 @@
 		<form-bean name="modifyLinkForm"
 			type="com.report.manage.form.LinkForm">
 		</form-bean>
+		
+		<form-bean name="queryMemberForm"
+			type="com.report.manage.form.MemberForm">
+		</form-bean>
+        <form-bean name="addMemberForm"
+			type="com.report.manage.form.MemberForm">
+		</form-bean>
+		<form-bean name="modifyMemberForm"
+			type="com.report.manage.form.MemberForm">
+		</form-bean>
 	</form-beans>
 
 
@@ -494,6 +504,78 @@
 			scope="request"
 			validate="false"
 			parameter="trashLink">
+        </action>
+        <action
+        	path="/load4MemberIndex"
+			type="com.report.manage.action.MemberAction"
+			scope="request"
+			name="queryMemberForm"
+			validate="false"
+			parameter="load4MemberIndex">
+			<forward name="success" path="/../manage/member_index.vm"/>
+        </action>
+        <action
+        	path="/load4MemberAdd"
+			type="com.report.manage.action.MemberAction"
+			scope="request"
+			validate="false"
+			parameter="load4MemberAdd">
+			<forward name="success" path="/../manage/member_add.vm"/>
+        </action>
+        <action
+        	path="/addMember"
+			type="com.report.manage.action.MemberAction"
+			scope="request"
+			input="/load4MemberAdd.do"
+			name="addMemberForm"
+			validate="true"
+			parameter="addMember">
+        </action>
+        <action
+        	path="/load4MemberModify"
+			type="com.report.manage.action.MemberAction"
+			scope="request"
+			name="modifyMemberForm"
+			validate="false"
+			parameter="load4MemberModify">
+			<forward name="success" path="/../manage/member_modify.vm"/>
+        </action>
+        <action
+        	path="/modifyMember"
+			type="com.report.manage.action.MemberAction"
+			scope="request"
+			input="/load4MemberModify.do"
+			name="modifyMemberForm"
+			validate="true"
+			parameter="modifyMember">
+        </action>
+        <action
+        	path="/trashMember"
+			type="com.report.manage.action.MemberAction"
+			scope="request"
+			validate="false"
+			parameter="trashMember">
+        </action>
+        <action
+        	path="/restoreMember"
+			type="com.report.manage.action.MemberAction"
+			scope="request"
+			validate="false"
+			parameter="restoreMember">
+        </action>
+        <action
+        	path="/removeMember"
+			type="com.report.manage.action.MemberAction"
+			scope="request"
+			validate="false"
+			parameter="removeMember">
+        </action>
+        <action
+        	path="/resetMemberPwd"
+			type="com.report.manage.action.MemberAction"
+			scope="request"
+			validate="false"
+			parameter="resetMemberPwd">
         </action>
 	</action-mappings>
 

@@ -28,5 +28,6 @@
 	<sqlMap resource="com/report/manage/dao/sqlmap/database/Website.xml" />
 	<sqlMap resource="com/report/manage/dao/sqlmap/database/Menu.xml" />
 	<sqlMap resource="com/report/manage/dao/sqlmap/database/Link.xml" />
+	<sqlMap resource="com/report/manage/dao/sqlmap/database/Member.xml" />
 
 </sqlMapConfig>
