@@ -176,7 +176,6 @@ jQuery(function () {
                     <dt> 出生日期：</dt>
                     <dd>
                         <input type="text" class="inp_one" name="member.birthday" id="birthday" value="" readonly="readonly">
-                        <span style="color: red;">*</span>
                         <script type="text/javascript">
                             Calendar.setup({
                                 weekNumbers: true,

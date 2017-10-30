@@ -40,6 +40,16 @@ public class MemberSqlMapDao extends SqlMapDaoTemplate implements MemberDao {
 		}
 	}
 
+	public int selectMemberCount(String accountid) throws BaseException {
+		try {
+			return (Integer) this.queryForObject(
+					"manage.MemberDao.selectMemberCount", accountid);
+		} catch (DaoException e) {
+			logger.error("manage.MemberDao.selectMemberCount", e);
+			throw new BaseException("manage.MemberDao.selectMemberCount", e);
+		}
+	}
+
 	public void updateMemberIsvalid(Member member) throws BaseException {
 		try {
 			this.update("manage.MemberDao.updateMemberIsvalid", member);
@@ -92,6 +102,15 @@ public class MemberSqlMapDao extends SqlMapDaoTemplate implements MemberDao {
 		} catch (DaoException e) {
 			logger.error("manage.MemberDao.updateMemberPwd", e);
 			throw new BaseException("manage.MemberDao.updateMemberPwd", e);
+		}
+	}
+
+	public void updateMemberIslock(Member member) throws BaseException {
+		try {
+			this.update("manage.MemberDao.updateMemberIslock", member);
+		} catch (DaoException e) {
+			logger.error("manage.MemberDao.updateMemberIslock", e);
+			throw new BaseException("manage.MemberDao.updateMemberIslock", e);
 		}
 	}
 

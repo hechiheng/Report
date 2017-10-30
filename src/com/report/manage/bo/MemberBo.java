@@ -1,6 +1,8 @@
 package com.report.manage.bo;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.log4j.Logger;
@@ -32,8 +34,29 @@ public class MemberBo {
 		return dao.selectMemberList(member);
 	}
 
+	public int getMemberCount(String accountid) throws BaseException {
+		return dao.selectMemberCount(accountid);
+	}
+
 	public Member getMember(int id) throws BaseException {
 		return dao.selectMember(id);
+	}
+
+	public String verifyMember(String accountid) throws BaseException {
+		String key = "";
+		if (dao.selectMemberCount(accountid) > 0) {
+			key = "member.exist";
+		} else if (!this.verify(accountid)) {
+			key = "member.invalid";
+		}
+		return key;
+
+	}
+
+	public boolean verify(String accountid) {
+		Pattern p = Pattern.compile("^[0-9a-zA-Z]*$");
+		Matcher m = p.matcher(accountid);
+		return m.matches();
 	}
 
 	public void addMember(Member member) throws BaseException {
@@ -56,6 +79,10 @@ public class MemberBo {
 
 	public void removeMember(int id) throws BaseException {
 		dao.deleteMember(id);
+	}
+
+	public void lockMember(Member member) throws BaseException {
+		dao.updateMemberIslock(member);
 	}
 
 }

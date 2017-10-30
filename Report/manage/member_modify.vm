@@ -10,38 +10,11 @@
 <script type="text/javascript" src="$link.setRelative('/manage/js/calendar.config.js')"></script>
 <script type="text/javascript">
 jQuery(function () {
-     jQuery("input[name='member.accountid']").focus();
+     jQuery("input[name='member.factname']").focus();
 	 
-	 //验证账号是否存在
-	jQuery("input[name='member.accountid']").blur(function(){
-		var accountid = jQuery("input[name='member.accountid']");
-		if(jQuery.trim(accountid.val())==''){
-			accountid.parent().find("span").remove().end().append("<span class='error'>账号不能为空</span>");
-			return ;
-		}
-		jQuery.post("$link.setAction('verifyMember')",{accountid:jQuery.trim(accountid.val())},
-			function(msg){
-				if(msg != ""){
-					accountid.focus();
-					accountid.parent().find("span").remove().end().append("<span style='color: red;'>"+msg+"</span>");
-				}else{
-					accountid.parent().find("span").remove().end().append("<span style='color: green;'>用户名可用</span>");
-				}
-			}
-		);
-	});
-     
      jQuery("#form_do").submit(function(){
-		var accountid = jQuery("input[name='member.accountid']");
 		var factname = jQuery("input[name='member.factname']");
 		var email = jQuery("input[name='member.email']");
-		if(jQuery.trim(accountid.val())==''){
-			accountid.parent().find("span").remove().end().append("<span class='error'>账号不能为空</span>");
-			accountid.focus();
-			return false;			
-		}else {
-			accountid.parent().find("span").remove().end();
-		}
 		if(jQuery.trim(factname.val())==''){
 			factname.parent().find("span").remove().end().append("<span class='error'>姓名/单位名称不能为空</span>");
 			factname.focus();
@@ -85,21 +58,20 @@ jQuery(function () {
 		<dl>
 			<dt> 性别：</dt>
 			<dd>
-				<label><input type="radio" name="member.sex" value="1" checked="checked"/>男&nbsp;</label>
-				<label><input type="radio" name="member.sex" value="2" />女</label>
+				<label><input type="radio" name="member.sex" value="1" #if($!modifyMemberForm.member.sex=="1") checked="checked" #end/>男&nbsp;</label>
+				<label><input type="radio" name="member.sex" value="2" #if($!modifyMemberForm.member.sex=="2") checked="checked" #end/>女</label>
 			</dd>
 		</dl>
 		<dl>
 			<dt>身份证号：</dt>
 			<dd>
-				<input type="text" name="member.idcard" class="inp_large" value="$!modifyMemberForm.member.idcard"/>
+				<input type="text" name="member.idcard" class="inp_one" value="$!modifyMemberForm.member.idcard"/>
 			</dd>
 		</dl>
 		<dl>
             <dt> 出生日期：</dt>
             <dd>
                 <input type="text" class="inp_one" name="member.birthday" id="birthday" value="$!modifyMemberForm.member.birthday" readonly="readonly">
-                <span style="color: red;">*</span>
                 <script type="text/javascript">
                     Calendar.setup({
                         weekNumbers: true,
@@ -123,13 +95,13 @@ jQuery(function () {
 		<dl>
 			<dt>QQ：</dt>
 			<dd>
-				<input type="text" name="member.qq" class="inp_large" value="$!modifyMemberForm.member.qq"/>
+				<input type="text" name="member.qq" class="inp_one" value="$!modifyMemberForm.member.qq"/>
 			</dd>
 		</dl>
 		<dl>
 			<dt>电话：</dt>
 			<dd>
-				<input type="text" name="member.tel" class="inp_large" value="$!modifyMemberForm.member.tel"/>
+				<input type="text" name="member.tel" class="inp_one" value="$!modifyMemberForm.member.tel"/>
 			</dd>
 		</dl>
 		<dl>

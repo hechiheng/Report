@@ -11,6 +11,8 @@ public interface MemberDao {
 
 	public List<Member> selectMemberList(Member member) throws BaseException;
 
+	public int selectMemberCount(String accountid) throws BaseException;
+
 	public void updateMemberIsvalid(Member member) throws BaseException;
 
 	public void deleteMember(int id) throws BaseException;
@@ -22,5 +24,7 @@ public interface MemberDao {
 	public void updateMember(Member member) throws BaseException;
 
 	public void updateMemberPwd(Member member) throws BaseException;
+	
+	public void updateMemberIslock(Member member) throws BaseException;
 
 }

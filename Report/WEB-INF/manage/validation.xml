@@ -588,10 +588,6 @@
 					<var-value>100</var-value>
 				</var>
 			</field>
-			<field property="member.imagecode"
-				depends="required">
-				<arg key="member.imagecode" />
-			</field>
 		</form>
 		<form name="modifyMemberForm">
 			<field property="member.factname"
@@ -673,10 +669,6 @@
 					<var-name>bytemaxlength</var-name>
 					<var-value>100</var-value>
 				</var>
-			</field>
-			<field property="member.imagecode"
-				depends="required">
-				<arg key="member.imagecode" />
 			</field>
 		</form>
 

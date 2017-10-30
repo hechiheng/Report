@@ -522,6 +522,13 @@
 			parameter="load4MemberAdd">
 			<forward name="success" path="/../manage/member_add.vm"/>
         </action>
+        <action 
+			path="/verifyMember" 
+			type="com.report.manage.action.MemberAction"
+			scope="request" 
+			parameter="verifyMember"
+			validate="false">
+		</action>
         <action
         	path="/addMember"
 			type="com.report.manage.action.MemberAction"
@@ -530,6 +537,14 @@
 			name="addMemberForm"
 			validate="true"
 			parameter="addMember">
+        </action>
+        <action
+        	path="/load4MemberInfo"
+			type="com.report.manage.action.MemberAction"
+			scope="request"
+			validate="false"
+			parameter="load4MemberInfo">
+			<forward name="success" path="/../manage/member_info.vm"/>
         </action>
         <action
         	path="/load4MemberModify"
@@ -576,6 +591,20 @@
 			scope="request"
 			validate="false"
 			parameter="resetMemberPwd">
+        </action>
+        <action
+        	path="/lockMember"
+			type="com.report.manage.action.MemberAction"
+			scope="request"
+			validate="false"
+			parameter="lockMember">
+        </action>
+        <action
+        	path="/unLockMember"
+			type="com.report.manage.action.MemberAction"
+			scope="request"
+			validate="false"
+			parameter="unLockMember">
         </action>
 	</action-mappings>
 
