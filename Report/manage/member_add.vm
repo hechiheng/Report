@@ -37,7 +37,6 @@ jQuery(function () {
 		var password_re = jQuery("input[name='member.password_re']");
 		var factname = jQuery("input[name='member.factname']");
 		var email = jQuery("input[name='member.email']");
-		var imagecode = jQuery("input[name='member.imagecode']");
 		if(jQuery.trim(accountid.val())==''){
 			accountid.parent().find("span").remove().end().append("<span class='error'>账号不能为空</span>");
 			accountid.focus();
@@ -60,7 +59,7 @@ jQuery(function () {
 			password_re.parent().find("span").remove().end();
 		}
 		if(jQuery.trim(factname.val())==''){
-			factname.parent().find("span").remove().end().append("<span class='error'>姓名不能为空</span>");
+			factname.parent().find("span").remove().end().append("<span class='error'>姓名/单位名称不能为空</span>");
 			factname.focus();
 			return false;			
 		}else {
@@ -72,13 +71,6 @@ jQuery(function () {
 			return false;			
 		}else {
 			email.parent().find("span").remove().end();
-		}
-		if(jQuery.trim(imagecode.val())==''){
-			imagecode.parent().find("span").remove().end().append("<span class='error'>验证码不能为空</span>");
-			imagecode.focus();
-			return false;			
-		}else {
-			imagecode.parent().find("span").remove().end();
 		}
 
 	});
@@ -117,7 +109,7 @@ jQuery(function () {
 		<dl>
 			<dt>姓名/单位名称：</dt>
 			<dd>
-				<input type="text" name="member.factname" class="inp_one" value="$!addMemberForm.member.factname"/>
+				<input type="text" name="member.factname" class="inp_large" value="$!addMemberForm.member.factname"/>
 				<span style="color: red;">*</span>
 			</dd>
 		</dl>
@@ -131,7 +123,7 @@ jQuery(function () {
 		<dl>
 			<dt>身份证号：</dt>
 			<dd>
-				<input type="text" name="member.idcard" class="inp_one" value="$!addMemberForm.member.idcard"/>
+				<input type="text" name="member.idcard" class="inp_large" value="$!addMemberForm.member.idcard"/>
 			</dd>
 		</dl>
 		<dl>
@@ -155,26 +147,26 @@ jQuery(function () {
 		<dl>
 			<dt>邮箱：</dt>
 			<dd>
-				<input type="text" name="member.email" class="inp_one" value="$!addMemberForm.member.email"/>
+				<input type="text" name="member.email" class="inp_large" value="$!addMemberForm.member.email"/>
 				<span style="color: red;">*</span>
 			</dd>
 		</dl>
 		<dl>
 			<dt>QQ：</dt>
 			<dd>
-				<input type="text" name="member.qq" class="inp_one" value="$!addMemberForm.member.qq"/>
+				<input type="text" name="member.qq" class="inp_large" value="$!addMemberForm.member.qq"/>
 			</dd>
 		</dl>
 		<dl>
 			<dt>电话：</dt>
 			<dd>
-				<input type="text" name="member.tel" class="inp_one" value="$!addMemberForm.member.tel"/>
+				<input type="text" name="member.tel" class="inp_large" value="$!addMemberForm.member.tel"/>
 			</dd>
 		</dl>
 		<dl>
 			<dt>所在地：</dt>
 			<dd>
-				<input type="text" name="member.address" class="inp_one" value="$!addMemberForm.member.address"/>
+				<input type="text" name="member.address" class="inp_large" value="$!addMemberForm.member.address"/>
 			</dd>
 		</dl>
 		<dl>

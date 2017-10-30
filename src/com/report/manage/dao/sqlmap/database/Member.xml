@@ -16,7 +16,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	</select>
 	
 	<select id="manage.MemberDao.selectMemberList" parameterClass="member" resultClass="member">
-		select a.id,a.accountid,a.password,a.factname,b.code_name sex,a.idcard,a.birthday,a.qq,a.tel,a.email,a.address,
+		select a.id,a.accountid,a.factname,b.code_name sex,a.idcard,a.birthday,a.qq,a.tel,a.email,a.address,
 		DATE_FORMAT(FROM_UNIXTIME(logintime),'%Y-%m-%d %H:%i:%s') logintime,a.islock
 		from t_member a,t_codelist b 
 		where a.sex=b.code_value and b.code_type='sex'
