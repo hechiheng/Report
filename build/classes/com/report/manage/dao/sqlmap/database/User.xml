@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="manage.User">
+	<typeAlias alias="user" type="com.report.manage.bean.User"/>
+	<typeAlias alias="role" type="com.report.manage.bean.Role"/>
+	
+	<select id="manage.UserDao.selectUserListSize" parameterClass="user" resultClass="int">
+		select count(a.id)
+		from t_admin a
+		where a.isvalid=#isvalid# 
+		<isNotEmpty prepend="and" property="username">
+			username like CONCAT('%',#username#,'%')
+		</isNotEmpty>		
+	</select>
+	
+	<select id="manage.UserDao.selectUserList" parameterClass="user" resultClass="user">
+		select a.id,a.username,a.factname,IFNULL(a.sex,1) sex,a.qq,a.email,a.tel,a.usertype,a.islock,b.roleid,c.name rolename,
+		DATE_FORMAT(FROM_UNIXTIME(a.logintime),'%Y-%m-%d %H:%i:%s') logintime
+		from t_admin a,t_role_user b,t_role c
+		where a.id=b.userid
+		and b.roleid=c.id
+		and a.isvalid=#isvalid# 
+		<isNotEmpty prepend="and" property="username">
+			a.username like CONCAT('%',#username#,'%')
+		</isNotEmpty>
+		order by a.id desc
+		limit $firstRow$,$listRows$
+	</select>
+	
+	<select id="manage.UserDao.selectUserCount" parameterClass="string" resultClass="int">
+		select count(id) from t_admin where username = #username#
+	</select>
+	
+	<select id="manage.UserDao.selectMaxUserid" resultClass="int">
+		select max(id)+1 id from t_admin
+	</select>
+	
+	<insert id="manage.UserDao.insertUser" parameterClass="user">
+		insert into t_admin(id,username,password,sex,factname,qq,email,tel,regtime)
+		values(#id#,#username#,#password#,#sex#,#factname#,#qq#,#email#,#tel#,UNIX_TIMESTAMP(NOW()))
+	</insert>
+	
+	<select id="manage.UserDao.selectUser" parameterClass="int" resultClass="user">
+		select a.id,a.username,a.factname,IFNULL(a.sex,1) sex,a.qq,a.email,a.tel,a.usertype,a.islock,b.roleid,c.name rolename
+		from t_admin a,t_role_user b,t_role c
+		where a.id=b.userid
+		and b.roleid=c.id
+		and a.id=#id# 
+	</select>
+	
+	<update id="manage.UserDao.updateUser" parameterClass="user">
+		update t_admin set factname=#factname#,sex=#sex#,qq=#qq#,email=#email#,tel=#tel#,updatetime=UNIX_TIMESTAMP(NOW())
+		where id=#id#
+	</update>
+	
+	<update id="manage.UserDao.updateUserPwd" parameterClass="user">
+		update t_admin set password=#password# where id=#id#
+	</update>
+	
+	<update id="manage.UserDao.updateUserIsvalid" parameterClass="user">
+		update t_admin set isvalid=#isvalid# where id=#id#
+	</update>
+	
+	<delete id="manage.UserDao.deleteUser" parameterClass="int">
+		delete from t_admin where id=#id#
+	</delete>
+	
+	<update id="manage.UserDao.updateUserIslock" parameterClass="user">
+		update t_admin set islock=#islock# where id=#id#
+	</update>
+	
+	<insert id="manage.UserDao.insertRoleUser" parameterClass="user">
+		insert into t_role_user(roleid,userid) values(#roleid#,#id#)
+	</insert>
+	
+	<update id="manage.UserDao.updateRoleUser" parameterClass="user">
+		update t_role_user set roleid=#roleid# where userid=#id#
+	</update>
+	
+	<select id="manage.UserDao.selectRoleList" resultClass="role">
+		select a.id,a.name from t_role a where a.isvalid=1
+	</select>
+	
+</sqlMap>

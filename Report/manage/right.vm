@@ -22,7 +22,7 @@
 	    </dt>
 	    <dd>
 			<div class="content">
-				您好，$!loginInfo.get("username")<br/>
+				您好，$!loginInfo.get("factname")<br/>
 				<div class="clear"></div>
 				上次登录时间：$!loginInfo.get("logintime")<br/>
 			</div>

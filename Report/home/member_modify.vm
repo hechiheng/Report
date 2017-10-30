@@ -120,8 +120,8 @@ jQurey(function () {
 		<dl>
 			<dt> 性别：</dt>
 			<dd>
-				<label><input type="radio" name="member.sex" value="1" checked="checked"/>男&nbsp;</label>
-				<label><input type="radio" name="member.sex" value="2" />女</label>
+				<label><input type="radio" name="member.sex" value="1" #if($!modifyMemberForm.member.sex==1) checked="checked" #end/>男&nbsp;</label>
+				<label><input type="radio" name="member.sex" value="2" #if($!modifyMemberForm.member.sex==2) checked="checked" #end/>女</label>
 			</dd>
 		</dl>
 		<dl>

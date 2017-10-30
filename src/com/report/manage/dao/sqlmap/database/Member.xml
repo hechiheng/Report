@@ -7,24 +7,22 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	
 	<select id="manage.MemberDao.selectMemberListSize" parameterClass="member" resultClass="int">
 		select count(a.id)
-		from t_member a,t_codelist b 
-		where a.sex=b.code_value and b.code_type='sex'
-		and a.isvalid=#isvalid# 
+		from t_member a
+		where a.isvalid=#isvalid# 
 		<isNotEmpty prepend="and" property="accountid">
 			accountid like CONCAT('%',#accountid#,'%')
 		</isNotEmpty>		
 	</select>
 	
 	<select id="manage.MemberDao.selectMemberList" parameterClass="member" resultClass="member">
-		select a.id,a.accountid,a.factname,b.code_name sex,a.idcard,a.birthday,a.qq,a.tel,a.email,a.address,
+		select a.id,a.accountid,a.factname,IFNULL(a.sex,1) sex,a.idcard,a.birthday,a.qq,a.tel,a.email,a.address,
 		DATE_FORMAT(FROM_UNIXTIME(logintime),'%Y-%m-%d %H:%i:%s') logintime,a.islock
-		from t_member a,t_codelist b 
-		where a.sex=b.code_value and b.code_type='sex'
-		and a.isvalid=#isvalid# 
+		from t_member a
+		where a.isvalid=#isvalid# 
 		<isNotEmpty prepend="and" property="accountid">
 			a.accountid like CONCAT('%',#accountid#,'%')
 		</isNotEmpty>
-		order by a.logintime desc,a.updatetime desc,a.regtime desc
+		order by a.id desc
 		limit $firstRow$,$listRows$
 	</select>
 	
@@ -38,13 +36,13 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	</insert>
 	
 	<select id="manage.MemberDao.selectMember" parameterClass="int" resultClass="member">
-		select a.id,a.accountid,a.password,a.factname,a.sex,a.idcard,a.birthday,a.qq,a.tel,a.email,a.address
+		select a.id,a.accountid,a.password,a.factname,IFNULL(a.sex,1) sex,a.idcard,a.birthday,a.qq,a.tel,a.email,a.address
 		from t_member a
 		where a.id=#id# 
 	</select>
 	
 	<update id="manage.MemberDao.updateMember" parameterClass="member">
-		update t_member set factname=#factname#,idcard=#idcard#,birthday=#birthday#,address=#address#,
+		update t_member set sex=#sex#,factname=#factname#,idcard=#idcard#,birthday=#birthday#,address=#address#,
 			qq=#qq#,email=#email#,tel=#tel#,updatetime=UNIX_TIMESTAMP(NOW())
 		where id=#id#
 	</update>

@@ -487,8 +487,6 @@
 				</var>
 			</field>
 		</form>
-		
-		
 		<form name="addMemberForm">
 			<field property="member.accountid"
 				depends="required,bytemaxlength">
@@ -590,6 +588,16 @@
 			</field>
 		</form>
 		<form name="modifyMemberForm">
+			<field property="member.id"
+				depends="required,bytemaxlength">
+				<arg key="member.id" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
 			<field property="member.factname"
 				depends="required,bytemaxlength">
 				<arg key="member.factname" />
@@ -668,6 +676,158 @@
 				<var>
 					<var-name>bytemaxlength</var-name>
 					<var-value>100</var-value>
+				</var>
+			</field>
+		</form>
+		<form name="addUserForm">
+			<field property="user.username"
+				depends="required,bytemaxlength">
+				<arg key="user.username" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="user.password"
+				depends="required">
+				<arg key="user.password" />
+			</field>
+			<field property="user.password_re"
+				depends="required">
+				<arg key="user.password_re" />
+			</field>
+			<field property="user.factname"
+				depends="required,bytemaxlength">
+				<arg key="user.factname" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>50</var-value>
+				</var>
+			</field>
+			<field property="user.sex"
+				depends="required,bytemaxlength">
+				<arg key="user.sex" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>1</var-value>
+				</var>
+			</field>
+			<field property="user.roleid"
+				depends="bytemaxlength">
+				<arg key="user.roleid" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="user.email"
+				depends="bytemaxlength">
+				<arg key="user.email" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="user.qq"
+				depends="bytemaxlength">
+				<arg key="user.qq" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="user.tel"
+				depends="bytemaxlength">
+				<arg key="user.tel" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+		</form>
+		<form name="modifyUserForm">
+			<field property="user.id"
+				depends="required,bytemaxlength">
+				<arg key="user.id" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="user.factname"
+				depends="required,bytemaxlength">
+				<arg key="user.factname" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>50</var-value>
+				</var>
+			</field>
+			<field property="user.sex"
+				depends="required,bytemaxlength">
+				<arg key="user.sex" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>1</var-value>
+				</var>
+			</field>
+			<field property="user.roleid"
+				depends="bytemaxlength">
+				<arg key="user.roleid" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="user.email"
+				depends="bytemaxlength">
+				<arg key="user.email" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="user.qq"
+				depends="bytemaxlength">
+				<arg key="user.qq" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="user.tel"
+				depends="bytemaxlength">
+				<arg key="user.tel" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>20</var-value>
 				</var>
 			</field>
 		</form>

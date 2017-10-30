@@ -12,7 +12,7 @@ public class Member implements Serializable {
 	private String password_re;
 	private String password_old;
 	private String factname;
-	private String sex;
+	private int sex;
 	private String idcard;
 	private String birthday;
 	private String address;
@@ -23,11 +23,6 @@ public class Member implements Serializable {
 	private String logintime;
 	private String updatetime;
 	private int isvalid;
-
-	public int getIsvalid() {
-		return isvalid;
-	}
-
 	private int islock;
 	private String imagecode;
 	private int firstRow;
@@ -55,14 +50,6 @@ public class Member implements Serializable {
 
 	public void setFactname(String factname) {
 		this.factname = factname;
-	}
-
-	public String getSex() {
-		return sex;
-	}
-
-	public void setSex(String sex) {
-		this.sex = sex;
 	}
 
 	public String getIdcard() {
@@ -195,6 +182,18 @@ public class Member implements Serializable {
 
 	public void setIsvalid(int isvalid) {
 		this.isvalid = isvalid;
+	}
+
+	public int getIsvalid() {
+		return isvalid;
+	}
+
+	public void setSex(int sex) {
+		this.sex = sex;
+	}
+
+	public int getSex() {
+		return sex;
 	}
 
 }

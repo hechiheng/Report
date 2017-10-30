@@ -69,7 +69,6 @@
 		<form-bean name="modifyLinkForm"
 			type="com.report.manage.form.LinkForm">
 		</form-bean>
-		
 		<form-bean name="queryMemberForm"
 			type="com.report.manage.form.MemberForm">
 		</form-bean>
@@ -78,6 +77,15 @@
 		</form-bean>
 		<form-bean name="modifyMemberForm"
 			type="com.report.manage.form.MemberForm">
+		</form-bean>
+		<form-bean name="queryUserForm"
+			type="com.report.manage.form.UserForm">
+		</form-bean>
+        <form-bean name="addUserForm"
+			type="com.report.manage.form.UserForm">
+		</form-bean>
+		<form-bean name="modifyUserForm"
+			type="com.report.manage.form.UserForm">
 		</form-bean>
 	</form-beans>
 
@@ -605,6 +613,107 @@
 			scope="request"
 			validate="false"
 			parameter="unLockMember">
+        </action>
+        <action
+        	path="/load4UserIndex"
+			type="com.report.manage.action.UserAction"
+			scope="request"
+			name="queryUserForm"
+			validate="false"
+			parameter="load4UserIndex">
+			<forward name="success" path="/../manage/user_index.vm"/>
+        </action>
+        <action
+        	path="/load4UserAdd"
+			type="com.report.manage.action.UserAction"
+			scope="request"
+			validate="false"
+			parameter="load4UserAdd">
+			<forward name="success" path="/../manage/user_add.vm"/>
+        </action>
+        <action 
+			path="/verifyUser" 
+			type="com.report.manage.action.UserAction"
+			scope="request" 
+			parameter="verifyUser"
+			validate="false">
+		</action>
+        <action
+        	path="/addUser"
+			type="com.report.manage.action.UserAction"
+			scope="request"
+			input="/load4UserAdd.do"
+			name="addUserForm"
+			validate="true"
+			parameter="addUser">
+        </action>
+        <action
+        	path="/load4UserInfo"
+			type="com.report.manage.action.UserAction"
+			scope="request"
+			validate="false"
+			parameter="load4UserInfo">
+			<forward name="success" path="/../manage/user_info.vm"/>
+        </action>
+        <action
+        	path="/load4UserModify"
+			type="com.report.manage.action.UserAction"
+			scope="request"
+			name="modifyUserForm"
+			validate="false"
+			parameter="load4UserModify">
+			<forward name="success" path="/../manage/user_modify.vm"/>
+        </action>
+        <action
+        	path="/modifyUser"
+			type="com.report.manage.action.UserAction"
+			scope="request"
+			input="/load4UserModify.do"
+			name="modifyUserForm"
+			validate="true"
+			parameter="modifyUser">
+        </action>
+        <action
+        	path="/trashUser"
+			type="com.report.manage.action.UserAction"
+			scope="request"
+			validate="false"
+			parameter="trashUser">
+        </action>
+        <action
+        	path="/restoreUser"
+			type="com.report.manage.action.UserAction"
+			scope="request"
+			validate="false"
+			parameter="restoreUser">
+        </action>
+        <action
+        	path="/removeUser"
+			type="com.report.manage.action.UserAction"
+			scope="request"
+			validate="false"
+			parameter="removeUser">
+        </action>
+        <action
+        	path="/resetUserPwd"
+			type="com.report.manage.action.UserAction"
+			scope="request"
+			validate="false"
+			parameter="resetUserPwd">
+        </action>
+        <action
+        	path="/lockUser"
+			type="com.report.manage.action.UserAction"
+			scope="request"
+			validate="false"
+			parameter="lockUser">
+        </action>
+        <action
+        	path="/unLockUser"
+			type="com.report.manage.action.UserAction"
+			scope="request"
+			validate="false"
+			parameter="unLockUser">
         </action>
 	</action-mappings>
 

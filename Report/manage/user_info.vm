@@ -15,32 +15,29 @@
 
 </style>
 <script type="text/javascript">
-
 </script>
 </head>
 <body>
 <div class="main">
-    <div class="pos">查看会员</div>
+    <div class="pos">查看用户</div>
 	<div class="form" style="width: 500px;">
 		<div class="h3">
 			<span>基本资料</span>
 		</div>
-		#set($member = $request.getAttribute("member"))
+		#set($user = $request.getAttribute("user"))
 		<ul class="personInfo">
-			<li>用户名：$!member.accountid</li>
-			<li>姓名/单位名称：$!member.factname</li>
-			<li>性别：#if($!member.sex==1)男#else女#end</li>
-			<li>身份证号：$!member.idcard</li>
-			<li>出生日期：$!member.birthday</li>
+			<li>用户名：$!user.username</li>
+			<li>姓名：$!user.factname</li>
+			<li>性别：#if($!user.sex==1)男#else女#end</li>
+			<li>岗位：$!user.rolename</li>
    		</ul>
    		<div class="h3">
 			<span>联系方式</span>
 		</div>
 		<ul class="personInfo">
-			<li>邮箱：$!member.email</li>
-			<li>QQ：$!member.qq</li>
-			<li>电话：$!member.tel</li>
-			<li>所在地：$!member.address</li>
+			<li>邮箱：$!user.email</li>
+			<li>QQ：$!user.qq</li>
+			<li>电话：$!user.tel</li>
 		</ul>
 		<div>		
 			<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />

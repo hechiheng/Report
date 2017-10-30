@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
+</head>
+<body>
+<div class="main">
+    <div class="pos">
+    	<a href="$link.setAction('load4UserIndex')">用户管理</a>
+    </div>
+    <div class="operate">
+        <div class="left">
+		#set($istrash = $request.getAttribute("istrash"))
+		#if($istrash=="1")
+			<input type="button" onclick="goUrl('$link.setAction('load4UserIndex')')"  class="btn_blue" value="返回" />
+		#else
+			<input type="button" onclick="goUrl('$link.setAction('load4UserAdd')')" class="btn_blue" value="添加用户" />
+            <input type="button" onclick="goUrl('$link.setAction('load4UserIndex').addQueryData('istrash','1')')" class="btn_green" value="回收站" />
+		#end
+        </div>
+		#if($istrash=="1")
+			&nbsp;
+		#else
+		<div class="left_pad">
+            <form method="get" action="$link.setAction('load4UserIndex')">
+            	<span style='font-size: 14px;vertical-align: middle;'>用户名：</span>
+                <input type="text" name="user.username" title="关键字" class="inp_default" value="$!queryUserForm.user.username">
+                <input type="submit" class="btn_blue" value="查  询">
+            </form>
+        </div>
+		#end
+    </div>
+    <div class="list">    
+        <table width="100%">
+            <tr>
+                <th>编号</th>
+                <th>用户名</th>
+				<th>姓名</th>
+				<th>性别</th>
+				<th>岗位</th>
+                <th>状态</th>
+				<th>最近登录时间</th>
+                <th>操作</th>
+            </tr>
+			#set($userList = $request.getAttribute("userList"))
+			#foreach($user in $userList)
+			<tr>
+				<td>$!user.id</td>
+				<td>$!user.username</td>
+				<td>$!user.factname</td>
+				<td>#if($!user.sex==1)男#else女#end</td>
+				<td>
+					#if($!user.usertype==9)
+					<span style='font-weight: bold;'>超级管理员</span>
+					#else
+					$!user.rolename
+					#end
+				</td>
+				<td>
+					#if($!user.islock==0)
+                        <span style='color: green;'>正常</span> 
+					#else
+						<span style='color: red;'>锁定</span>
+					#end
+				</td>
+				<td>$!user.logintime</td>
+				<td>
+					<a href="$link.setAction('load4UserInfo').addQueryData('id',$!user.id)">查看</a>
+				#if($istrash=="1")
+					<a href="javascript:;" onclick="toConfirm('$link.setAction('restoreUser').addQueryData('id',$!user.id)','确实要还原吗？')">还原</a>
+					<a href="javascript:;" onclick="toConfirm('$link.setAction('removeUser').addQueryData('id',$!user.id)','该操作不可恢复，确实要删除吗？')">彻底删除</a>
+				#else
+					<a href="$link.setAction('load4UserModify').addQueryData('id',$!user.id)">编辑</a>
+					<a href="$link.setAction('load4UserPwdModify').addQueryData('id',$!user.id)">修改密码</a>
+					#if($!user.usertype==0)
+					#if($!user.islock==0)
+					<a href="javascript:;" onclick="toConfirm('$link.setAction('lockUser').addQueryData('id',$!user.id)','确实要锁定吗？')">锁定</a>
+					#else
+					<a href="javascript:;" onclick="toConfirm('$link.setAction('unLockUser').addQueryData('id',$!user.id)','确实要解锁吗？')">解锁</a>
+					#end
+					<a href="javascript:;" onclick="toConfirm('$link.setAction('trashUser').addQueryData('id',$!user.id)','确实要删除吗？')">删除</a>
+					#end
+				#end
+                </td>
+            </tr>
+			#end
+        </table>
+        <div class="page" style="clear: both;">
+			#parse("/home/include/page.vm")
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/calendar.config.js')"></script>
+<script type="text/javascript">
+jQuery(function () {
+     jQuery("input[name='user.username']").focus();
+	 
+	 //验证用户名是否存在
+	jQuery("input[name='user.username']").blur(function(){
+		var username = jQuery("input[name='user.username']");
+		if(jQuery.trim(username.val())==''){
+			username.parent().find("span").remove().end().append("<span class='error'>用户名不能为空</span>");
+			return ;
+		}
+		jQuery.post("$link.setAction('verifyUser')",{username:jQuery.trim(username.val())},
+			function(msg){
+				if(msg != ""){
+					username.focus();
+					username.parent().find("span").remove().end().append("<span style='color: red;'>"+msg+"</span>");
+				}else{
+					username.parent().find("span").remove().end().append("<span style='color: green;'>用户名可用</span>");
+				}
+			}
+		);
+	});
+     
+     jQuery("#form_do").submit(function(){
+		var username = jQuery("input[name='user.username']");
+		var password = jQuery("input[name='user.password']");
+		var password_re = jQuery("input[name='user.password_re']");
+		var factname = jQuery("input[name='user.factname']");
+		if(jQuery.trim(username.val())==''){
+			username.parent().find("span").remove().end().append("<span class='error'>用户名不能为空</span>");
+			username.focus();
+			return false;			
+		}else {
+			username.parent().find("span").remove().end();
+		}
+		if(jQuery.trim(password.val())==''){
+			password.parent().find("span").remove().end().append("<span class='error'>登录密码不能为空</span>");
+			password.focus();
+			return false;			
+		}else {
+			password.parent().find("span").remove().end();
+		}
+		if(jQuery.trim(password_re.val())==''){
+			password_re.parent().find("span").remove().end().append("<span class='error'>确认密码不能为空</span>");
+			password_re.focus();
+			return false;			
+		}else {
+			password_re.parent().find("span").remove().end();
+		}
+		if(jQuery.trim(factname.val())==''){
+			factname.parent().find("span").remove().end().append("<span class='error'>姓名不能为空</span>");
+			factname.focus();
+			return false;			
+		}else {
+			factname.parent().find("span").remove().end();
+		}
+
+	});
+	
+});
+
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="pos">添加用户</div>
+	<div class="form">
+		<form method='post' id="form_do" name="form_do" action="$link.setAction('addUser')">
+		<dl>
+			<dt>用户名：</dt>
+			<dd>
+				<input type="text" name="user.username" class="inp_one" value="$!addUserForm.user.username"/>
+				<span style="color: red;">*</span>
+			</dd>
+		</dl>
+		<dl>
+			<dt>登录密码：</dt>
+			<dd>
+				<input type="password" name="user.password" class="inp_one" value=""/>
+				<span style="color: red;">*</span>
+			</dd>
+		</dl>
+		<dl>
+			<dt>确认密码：</dt>
+			<dd>
+				<input type="password" name="user.password_re" class="inp_one" value=""/>
+				<span style="color: red;">*</span>
+			</dd>
+		</dl>
+		<dl>
+			<dt>姓名：</dt>
+			<dd>
+				<input type="text" name="user.factname" class="inp_one" value="$!addUserForm.user.factname"/>
+				<span style="color: red;">*</span>
+			</dd>
+		</dl>
+		<dl>
+			<dt> 性别：</dt>
+			<dd>
+				<label><input type="radio" name="user.sex" value="1" checked="checked"/>男&nbsp;</label>
+				<label><input type="radio" name="user.sex" value="2" />女</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt>邮箱：</dt>
+			<dd>
+				<input type="text" name="user.email" class="inp_large" value="$!addUserForm.user.email"/>
+			</dd>
+		</dl>
+		<dl>
+			<dt>QQ：</dt>
+			<dd>
+				<input type="text" name="user.qq" class="inp_one" value="$!addUserForm.user.qq"/>
+			</dd>
+		</dl>
+		<dl>
+			<dt>电话：</dt>
+			<dd>
+				<input type="text" name="user.tel" class="inp_one" value="$!addUserForm.user.tel"/>
+			</dd>
+		</dl>
+		<dl>
+			<dt> 岗位：</dt>
+			<dd>
+				<select name="user.roleid">
+					#set($roleList = $request.getAttribute("roleList"))
+					#foreach($role in $roleList)
+						#if($!role.id==$!addUserForm.role.roleid)
+							<option value="$!role.id" selected="selected">$!role.name</option>
+						#else
+							<option value="$!role.id">$!role.name</option>
+						#end
+					#end
+				</select>
+			</dd>
+		</dl>	
+		<dl>
+			<span class='error'>#errorMarkup()</span>
+        </dl>
+		<div class="form_b">		
+			<input type="submit" class="btn_blue" id="submit" value="提 交">
+			<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
+		</div>
+	   </form>
+	</div>
+</div>
+
+
+</body>
+</html>

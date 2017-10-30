@@ -78,7 +78,7 @@ public class MemberAction extends BaseAction {
 		if (cnt > 0) {
 			ActionMessages am = new ActionMessages();
 			am.add("sysMessage", new ActionMessage(
-					"manage.MemberAction.addMember.memberExists"));
+					"manage.MemberAction.addMember.accountidExists"));
 			saveErrors(request, am);
 			return mapping.findForward("failure");
 		}

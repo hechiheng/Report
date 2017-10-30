@@ -12,11 +12,11 @@
 jQuery(function () {
      jQuery("input[name='member.accountid']").focus();
 	 
-	 //验证账号是否存在
+	 //验证用户名是否存在
 	jQuery("input[name='member.accountid']").blur(function(){
 		var accountid = jQuery("input[name='member.accountid']");
 		if(jQuery.trim(accountid.val())==''){
-			accountid.parent().find("span").remove().end().append("<span class='error'>账号不能为空</span>");
+			accountid.parent().find("span").remove().end().append("<span class='error'>用户名不能为空</span>");
 			return ;
 		}
 		jQuery.post("$link.setAction('verifyMember')",{accountid:jQuery.trim(accountid.val())},
@@ -38,7 +38,7 @@ jQuery(function () {
 		var factname = jQuery("input[name='member.factname']");
 		var email = jQuery("input[name='member.email']");
 		if(jQuery.trim(accountid.val())==''){
-			accountid.parent().find("span").remove().end().append("<span class='error'>账号不能为空</span>");
+			accountid.parent().find("span").remove().end().append("<span class='error'>用户名不能为空</span>");
 			accountid.focus();
 			return false;			
 		}else {

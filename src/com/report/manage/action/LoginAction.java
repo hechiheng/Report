@@ -65,8 +65,9 @@ public class LoginAction extends BaseAction {
 					Map<String, String> sessionMap = new HashMap<String, String>();
 					sessionMap.put("userid", String.valueOf(userDB.getId()));
 					sessionMap.put("username", userDB.getUsername());
-					sessionMap.put("realname", userDB.getRealname());
-					sessionMap.put("usertype", userDB.getUsertype());
+					sessionMap.put("factname", userDB.getFactname());
+					sessionMap.put("usertype", String.valueOf(userDB
+							.getUsertype()));
 					SysGlobals.setSessionObj(request, Constants.MANAGE_SESSION,
 							sessionMap);
 				} else {

@@ -52,7 +52,7 @@
 				<td>$!member.id</td>
 				<td>$!member.accountid</td>
 				<td>$!member.factname</td>
-				<td>$!member.sex</td>
+				<td>#if($!member.sex==1)男#else女#end</td>
 				<td>$!member.idcard</td>
 				<td>
 					#if($!member.islock==0)
