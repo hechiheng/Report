@@ -58,7 +58,6 @@ jQuery(function () {
 			<dt>邮箱：</dt>
 			<dd>
 				<input type="text" name="user.email" class="inp_large" value="$!modifyUserForm.user.email"/>
-				<span style="color: red;">*</span>
 			</dd>
 		</dl>
 		<dl>

@@ -87,6 +87,9 @@
 		<form-bean name="modifyUserForm"
 			type="com.report.manage.form.UserForm">
 		</form-bean>
+		<form-bean name="modifyUserPwdForm"
+			type="com.report.manage.form.UserForm">
+		</form-bean>
 	</form-beans>
 
 
@@ -714,6 +717,25 @@
 			scope="request"
 			validate="false"
 			parameter="unLockUser">
+        </action>
+        <action
+        	path="/load4UserPwdModify"
+			type="com.report.manage.action.UserAction"
+			scope="request"
+			name="modifyUserPwdForm"
+			validate="false"
+			parameter="load4UserPwdModify">
+			<forward name="success" path="/../manage/userpwd_modify.vm"/>
+        </action>
+        <action
+        	path="/modifyUserPwd"
+			type="com.report.manage.action.UserAction"
+			scope="request"
+			input="/load4UserPwdModify.do"
+			name="modifyUserPwdForm"
+			validate="true"
+			parameter="modifyUserPwd">
+			<forward name="failure" path="/../manage/userpwd_modify.vm" />
         </action>
 	</action-mappings>
 

@@ -43,7 +43,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	</insert>
 	
 	<select id="manage.UserDao.selectUser" parameterClass="int" resultClass="user">
-		select a.id,a.username,a.factname,IFNULL(a.sex,1) sex,a.qq,a.email,a.tel,a.usertype,a.islock,b.roleid,c.name rolename
+		select a.id,a.username,a.password,a.factname,IFNULL(a.sex,1) sex,a.qq,a.email,a.tel,a.usertype,a.islock,b.roleid,c.name rolename
 		from t_admin a,t_role_user b,t_role c
 		where a.id=b.userid
 		and b.roleid=c.id

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -244,6 +245,53 @@ public class UserAction extends BaseAction {
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("UserAction.unLockUserPwd.success"));
 		smb.setLinkText(new ActionMessage("UserAction.unLockUserPwd.return"));
+		smb.setAction("/load4UserIndex");
+		SysGlobals.setSysMessage(request, smb);
+		return mapping.findForward("info");
+	}
+
+	public ActionForward load4UserPwdModify(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws BaseException {
+		String id = request.getParameter("id");
+		UserForm userForm = (UserForm) form;
+		User user = userForm.getUser();
+		user.setId(Integer.valueOf(id));
+		userForm.setUser(user);
+		return mapping.findForward("success");
+	}
+
+	public ActionForward modifyUserPwd(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws BaseException {
+		UserBo bo = new UserBo();
+		UserForm userForm = (UserForm) form;
+		User user = userForm.getUser();
+		String password_old = user.getPassword_old();
+		String password = user.getPassword();
+		String password_re = user.getPassword_re();
+		User userDB = bo.getUser(user.getId());
+		String passwordDB = userDB.getPassword();
+		if (!DigestUtils.md5Hex(password_old).equals(passwordDB)) {
+			ActionMessages am = new ActionMessages();
+			am.add("sysMessage", new ActionMessage(
+					"UserAction.modifyUserPwd.wrong"));
+			saveErrors(request, am);
+			return mapping.findForward("failure");
+		}
+		if (!password.equals(password_re)) {
+			ActionMessages am = new ActionMessages();
+			am.add("sysMessage", new ActionMessage(
+					"UserAction.modifyUserPwd.password"));
+			saveErrors(request, am);
+			return mapping.findForward("failure");
+		}
+		bo.modifyUserPwd(user);
+
+		SysMessageBean smb = new SysMessageBean(false);
+		smb.setMessage(new ActionMessage("UserAction.modifyUserPwd.success",
+				user.getFactname()));
+		smb.setLinkText(new ActionMessage("UserAction.modifyUserPwd.return"));
 		smb.setAction("/load4UserIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");

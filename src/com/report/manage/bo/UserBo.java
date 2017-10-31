@@ -120,4 +120,9 @@ public class UserBo {
 		return dao.selectRoleList();
 	}
 
+	public void modifyUserPwd(User user) throws BaseException {
+		user.setPassword(DigestUtils.md5Hex(user.getPassword()));
+		dao.updateUserPwd(user);
+	}
+
 }

@@ -831,6 +831,20 @@
 				</var>
 			</field>
 		</form>
+		<form name="modifyUserPwdForm">
+			<field property="user.password_old"
+				depends="required">
+				<arg key="user.password_old" />
+			</field>
+			<field property="user.password"
+				depends="required">
+				<arg key="user.password" />
+			</field>
+			<field property="user.password_re"
+				depends="required">
+				<arg key="user.password_re" />
+			</field>
+		</form>
 
 	</formset>
 
