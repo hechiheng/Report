@@ -10,6 +10,7 @@
 	<interceptor name="link" type="com.report.manage.interceptor.LinkInterceptor"/>
 	<interceptor name="member" type="com.report.manage.interceptor.MemberInterceptor"/>
 	<interceptor name="user" type="com.report.manage.interceptor.UserInterceptor"/>
+	<interceptor name="role" type="com.report.manage.interceptor.RoleInterceptor"/>
 
 	<action type="com.report.manage.action.LoginAction">
 		<interceptor name="login"/>
@@ -40,6 +41,9 @@
 	</action>
 	<action type="com.report.manage.action.UserAction">
 		<interceptor name="user"/>
+	</action>
+	<action type="com.report.manage.action.RoleAction">
+		<interceptor name="role"/>
 	</action>
 	
 </interceptor-config>

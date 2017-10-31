@@ -225,8 +225,8 @@ public class UserAction extends BaseAction {
 		bo.lockUser(user);
 
 		SysMessageBean smb = new SysMessageBean(false);
-		smb.setMessage(new ActionMessage("UserAction.lockUserPwd.success"));
-		smb.setLinkText(new ActionMessage("UserAction.lockUserPwd.return"));
+		smb.setMessage(new ActionMessage("UserAction.lockUser.success"));
+		smb.setLinkText(new ActionMessage("UserAction.lockUser.return"));
 		smb.setAction("/load4UserIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -243,8 +243,8 @@ public class UserAction extends BaseAction {
 		bo.lockUser(user);
 
 		SysMessageBean smb = new SysMessageBean(false);
-		smb.setMessage(new ActionMessage("UserAction.unLockUserPwd.success"));
-		smb.setLinkText(new ActionMessage("UserAction.unLockUserPwd.return"));
+		smb.setMessage(new ActionMessage("UserAction.unLockUser.success"));
+		smb.setLinkText(new ActionMessage("UserAction.unLockUser.return"));
 		smb.setAction("/load4UserIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");

@@ -832,6 +832,16 @@
 			</field>
 		</form>
 		<form name="modifyUserPwdForm">
+			<field property="user.id"
+				depends="required,bytemaxlength">
+				<arg key="user.id" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
 			<field property="user.password_old"
 				depends="required">
 				<arg key="user.password_old" />
@@ -843,6 +853,40 @@
 			<field property="user.password_re"
 				depends="required">
 				<arg key="user.password_re" />
+			</field>
+		</form>
+		<form name="addRoleForm">
+			<field property="role.name"
+				depends="required,bytemaxlength">
+				<arg key="role.name" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+		</form>
+		<form name="modifyRoleForm">
+			<field property="role.id"
+				depends="required,bytemaxlength">
+				<arg key="role.id" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="role.name"
+				depends="required,bytemaxlength">
+				<arg key="role.name" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>20</var-value>
+				</var>
 			</field>
 		</form>
 

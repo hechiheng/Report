@@ -90,6 +90,15 @@
 		<form-bean name="modifyUserPwdForm"
 			type="com.report.manage.form.UserForm">
 		</form-bean>
+		<form-bean name="queryRoleForm"
+			type="com.report.manage.form.RoleForm">
+		</form-bean>
+        <form-bean name="addRoleForm"
+			type="com.report.manage.form.RoleForm">
+		</form-bean>
+		<form-bean name="modifyRoleForm"
+			type="com.report.manage.form.RoleForm">
+		</form-bean>
 	</form-beans>
 
 
@@ -736,6 +745,102 @@
 			validate="true"
 			parameter="modifyUserPwd">
 			<forward name="failure" path="/../manage/userpwd_modify.vm" />
+        </action>
+        
+        
+        <action
+        	path="/load4RoleIndex"
+			type="com.report.manage.action.RoleAction"
+			scope="request"
+			name="queryRoleForm"
+			validate="false"
+			parameter="load4RoleIndex">
+			<forward name="success" path="/../manage/role_index.vm"/>
+        </action>
+        <action
+        	path="/load4RoleAdd"
+			type="com.report.manage.action.RoleAction"
+			scope="request"
+			validate="false"
+			parameter="load4RoleAdd">
+			<forward name="success" path="/../manage/role_add.vm"/>
+        </action>
+        <action
+        	path="/addRole"
+			type="com.report.manage.action.RoleAction"
+			scope="request"
+			input="/load4RoleAdd.do"
+			name="addRoleForm"
+			validate="true"
+			parameter="addRole">
+        </action>
+        <action
+        	path="/load4RoleModify"
+			type="com.report.manage.action.RoleAction"
+			scope="request"
+			name="modifyRoleForm"
+			validate="false"
+			parameter="load4RoleModify">
+			<forward name="success" path="/../manage/role_modify.vm"/>
+        </action>
+        <action
+        	path="/modifyRole"
+			type="com.report.manage.action.RoleAction"
+			scope="request"
+			input="/load4RoleModify.do"
+			name="modifyRoleForm"
+			validate="true"
+			parameter="modifyRole">
+        </action>
+        <action
+        	path="/trashRole"
+			type="com.report.manage.action.RoleAction"
+			scope="request"
+			validate="false"
+			parameter="trashRole">
+        </action>
+        <action
+        	path="/restoreRole"
+			type="com.report.manage.action.RoleAction"
+			scope="request"
+			validate="false"
+			parameter="restoreRole">
+        </action>
+        <action
+        	path="/removeRole"
+			type="com.report.manage.action.RoleAction"
+			scope="request"
+			validate="false"
+			parameter="removeRole">
+        </action>
+        <action
+        	path="/disabledRole"
+			type="com.report.manage.action.RoleAction"
+			scope="request"
+			validate="false"
+			parameter="disabledRole">
+        </action>
+        <action
+        	path="/enableRole"
+			type="com.report.manage.action.RoleAction"
+			scope="request"
+			validate="false"
+			parameter="enableRole">
+        </action>
+        <action
+        	path="/load4RoleAccessModify"
+			type="com.report.manage.action.RoleAction"
+			scope="request"
+			validate="false"
+			parameter="load4RoleAccessModify">
+			<forward name="success" path="/../manage/role_access.vm"/>
+        </action>
+        <action
+        	path="/modifyRoleAccess"
+			type="com.report.manage.action.RoleAction"
+			scope="request"
+			validate="false"
+			parameter="modifyRoleAccess">
         </action>
 	</action-mappings>
 

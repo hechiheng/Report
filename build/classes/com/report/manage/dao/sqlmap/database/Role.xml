@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="manage.Role">
+	<typeAlias alias="role" type="com.report.manage.bean.Role"/>
+	<typeAlias alias="menu" type="com.report.manage.bean.Menu"/>
+	
+	<select id="manage.RoleDao.selectRoleListSize" parameterClass="role" resultClass="int">
+		select count(a.id)
+		from t_role a
+		where a.isvalid=#isvalid# 
+		<isNotEmpty prepend="and" property="name">
+			name like CONCAT('%',#name#,'%')
+		</isNotEmpty>		
+	</select>
+	
+	<select id="manage.RoleDao.selectRoleList" parameterClass="role" resultClass="role">
+		select a.id,a.name,a.description,DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime,a.isdisabled
+		from t_role a
+		where a.isvalid=#isvalid# 
+		<isNotEmpty prepend="and" property="name">
+			a.name like CONCAT('%',#name#,'%')
+		</isNotEmpty>
+		order by a.id desc
+		limit $firstRow$,$listRows$
+	</select>
+	
+	<insert id="manage.RoleDao.insertRole" parameterClass="role">
+		insert into t_role(name,description) values(#name#,#description#)
+	</insert>
+	
+	<select id="manage.RoleDao.selectRole" parameterClass="int" resultClass="role">
+		select a.id,a.name,a.description,DATE_FORMAT(FROM_UNIXTIME(updatetime),'%Y-%m-%d %H:%i:%s') updatetime,a.isdisabled
+		from t_role a
+		where a.id=#id# 
+	</select>
+	
+	<update id="manage.RoleDao.updateRole" parameterClass="role">
+		update t_role set name=#name#,description=#description#,updatetime=UNIX_TIMESTAMP(NOW())
+		where id=#id#
+	</update>
+	
+	<update id="manage.RoleDao.updateRoleIsvalid" parameterClass="role">
+		update t_role set isvalid=#isvalid# where id=#id#
+	</update>
+	
+	<delete id="manage.RoleDao.deleteRole" parameterClass="int">
+		delete from t_role where id=#id#
+	</delete>
+	
+	<update id="manage.RoleDao.updateRoleIsdisabled" parameterClass="role">
+		update t_role set isdisabled=#isdisabled# where id=#id#
+	</update>
+	
+	<select id="manage.RoleDao.selectTopMenuList" parameterClass="role" resultClass="menu">
+		select a.id,a.name,a.pid,a.url,DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime,IFNULL(b.menuid,0) menuid 
+		from t_menu a LEFT JOIN t_access b on a.id=b.menuid and b.roleid=#id#
+		where a.isvalid=1 and a.isshow=1 and a.pid=0
+		order by sort
+	</select>
+	
+	<select id="manage.RoleDao.selectSubMenuList" parameterClass="menu" resultClass="menu">
+		select a.id,a.name,a.pid,a.url,DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime,IFNULL(b.menuid,0) menuid 
+		from t_menu a LEFT JOIN t_access b on a.id=b.menuid and b.roleid=#roleid#
+		where a.isvalid=1 and a.isshow=1 and a.pid=#id# 
+		order by sort
+	</select>
+	
+	<delete id="manage.RoleDao.deleteRoleAccess" parameterClass="role">
+		delete from t_access where roleid=#id#
+	</delete>
+	
+	<insert id="manage.RoleDao.insertRoleAccess" parameterClass="role">
+		insert into t_access(roleid,menuid) values(#id#,#menuid#)
+	</insert>
+	
+</sqlMap>

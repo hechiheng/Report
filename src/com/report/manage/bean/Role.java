@@ -10,7 +10,12 @@ public class Role implements Serializable {
 	private String name;
 	private String description;
 	private int isvalid;
+	private int isdisabled;
 	private String updatetime;
+	private int menuid;
+	private String menuids;
+	private int firstRow;
+	private int listRows;
 
 	public int getId() {
 		return id;
@@ -50,6 +55,46 @@ public class Role implements Serializable {
 
 	public void setUpdatetime(String updatetime) {
 		this.updatetime = updatetime;
+	}
+
+	public void setIsdisabled(int isdisabled) {
+		this.isdisabled = isdisabled;
+	}
+
+	public int getIsdisabled() {
+		return isdisabled;
+	}
+
+	public int getFirstRow() {
+		return firstRow;
+	}
+
+	public void setFirstRow(int firstRow) {
+		this.firstRow = firstRow;
+	}
+
+	public int getListRows() {
+		return listRows;
+	}
+
+	public void setListRows(int listRows) {
+		this.listRows = listRows;
+	}
+
+	public void setMenuids(String menuids) {
+		this.menuids = menuids;
+	}
+
+	public String getMenuids() {
+		return menuids;
+	}
+
+	public void setMenuid(int menuid) {
+		this.menuid = menuid;
+	}
+
+	public int getMenuid() {
+		return menuid;
 	}
 
 }

@@ -15,9 +15,10 @@ public class Menu implements Serializable {
 	private int sort;
 	private int isvalid;
 	private String url;
-	private int level;
-	private String delimiter;
+	private String updatetime;
 	private List<Menu> subMenuList;
+	private int roleid;
+	private int menuid;
 
 	public int getId() {
 		return id;
@@ -83,28 +84,36 @@ public class Menu implements Serializable {
 		return isvalid;
 	}
 
-	public void setLevel(int level) {
-		this.level = level;
-	}
-
-	public int getLevel() {
-		return level;
-	}
-
-	public void setDelimiter(String delimiter) {
-		this.delimiter = delimiter;
-	}
-
-	public String getDelimiter() {
-		return delimiter;
-	}
-
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
 
 	public String getKeyword() {
 		return keyword;
+	}
+
+	public void setRoleid(int roleid) {
+		this.roleid = roleid;
+	}
+
+	public int getRoleid() {
+		return roleid;
+	}
+
+	public void setUpdatetime(String updatetime) {
+		this.updatetime = updatetime;
+	}
+
+	public String getUpdatetime() {
+		return updatetime;
+	}
+
+	public void setMenuid(int menuid) {
+		this.menuid = menuid;
+	}
+
+	public int getMenuid() {
+		return menuid;
 	}
 
 }

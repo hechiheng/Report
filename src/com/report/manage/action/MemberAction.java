@@ -231,9 +231,9 @@ public class MemberAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage(
-				"manage.MemberAction.lockMemberPwd.success"));
+				"manage.MemberAction.lockMember.success"));
 		smb.setLinkText(new ActionMessage(
-				"manage.MemberAction.lockMemberPwd.return"));
+				"manage.MemberAction.lockMember.return"));
 		smb.setAction("/load4MemberIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -251,9 +251,9 @@ public class MemberAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage(
-				"manage.MemberAction.unLockMemberPwd.success"));
+				"manage.MemberAction.unLockMember.success"));
 		smb.setLinkText(new ActionMessage(
-				"manage.MemberAction.unLockMemberPwd.return"));
+				"manage.MemberAction.unLockMember.return"));
 		smb.setAction("/load4MemberIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");

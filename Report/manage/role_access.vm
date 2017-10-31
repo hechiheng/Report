@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
+<script type="text/javascript">	
+	function submitBatch(url,str){
+		var obj = document.getElementsByName('key[]');
+		var menuids = getCheckValues();
+		if (!menuids){
+	        alert('请选择权限！');
+	        return false;
+	    }
+	    if (window.confirm(str)){
+	    	url = url+"&menuids="+menuids;
+	    	location.href = url;
+	    }
+	}
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="pos">权限设置</div>    
+    <div class="operate">
+        <div class="left">
+    		<input type="button" onclick="submitBatch('$link.setAction('modifyRoleAccess').addQueryData('roleid',$!role.id)','权限选择好了吗？')" class="btn_blue" value="提交">
+    		<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
+    	</div>
+    </div>
+    <div class="list">
+    	<table width="100%">
+            <tr>
+				<th width="5%"><input type="checkbox" id="check"></th>
+                <th width="10%">编号</th>
+                <th class="aleft" width="40%">权限名称</th>
+    			<th>更新时间</th>
+            </tr>
+			#set($menuList = $request.getAttribute("menuList"))
+			#foreach($menu in $menuList)
+			#set($subMenuList = $menu.subMenuList)
+			<tr>
+				<td><input type="checkbox" name="key[]" value="$!menu.id" #if($menu.id==$menu.menuid) checked='checked' #end></td>
+                <td>$!menu.id</td>
+				<td class="aleft">$!menu.name</td>
+				<td>$!menu.updatetime</td>
+            </tr>
+			#foreach($subMenu in $subMenuList)
+			<tr>
+				<td><input type="checkbox" name="key[]" value="$!subMenu.id" #if($subMenu.id==$subMenu.menuid) checked='checked' #end></td>
+                <td>$!subMenu.id</td>
+				<td class="aleft">&nbsp;&nbsp;├─$!subMenu.name</td>
+				<td>$!subMenu.updatetime</td>
+            </tr>
+			#end
+			#end
+        </table>
+        <div class="operate">
+	        <div class="left">
+				<input type="button" onclick="submitBatch('$link.setAction('modifyRoleAccess').addQueryData('roleid',$!role.id)','权限选择好了吗？')" class="btn_blue" value="提交">
+				<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
+	    	</div>
+	    </div>
+		<div class="page" style="clear: both;"></div>
+    </div>
+</div>
+</body>
+</html>

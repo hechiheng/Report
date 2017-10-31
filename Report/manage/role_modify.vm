@@ -7,27 +7,19 @@
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
-<script type="text/javascript" src="$link.setRelative('/manage/js/calendar.config.js')"></script>
 <script type="text/javascript">
 jQuery(function () {
-     jQuery("input[name='member.factname']").focus();
+     jQuery("input[name='role.name']").focus();
 	 
      jQuery("#form_do").submit(function(){
-		var factname = jQuery("input[name='member.factname']");
-		var email = jQuery("input[name='member.email']");
-		if(jQuery.trim(factname.val())==''){
-			factname.parent().find("span").remove().end().append("<span class='error'>姓名/单位名称不能为空</span>");
-			factname.focus();
+		var name = jQuery("input[name='role.name']");
+		var email = jQuery("input[name='role.email']");
+		if(jQuery.trim(name.val())==''){
+			name.parent().find("span").remove().end().append("<span class='error'>岗位名称不能为空</span>");
+			name.focus();
 			return false;			
 		}else {
-			factname.parent().find("span").remove().end();
-		}
-		if(jQuery.trim(email.val())==''){
-			email.parent().find("span").remove().end().append("<span class='error'>邮箱不能为空</span>");
-			email.focus();
-			return false;			
-		}else {
-			email.parent().find("span").remove().end();
+			name.parent().find("span").remove().end();
 		}
 
 	});
@@ -41,80 +33,25 @@ jQuery(function () {
 <div class="main">
     <div class="pos">修改会员</div>
 	<div class="form">
-		<form method='post' id="form_do" name="form_do" action="$link.setAction('modifyMember')">
+		<form method='post' id="form_do" name="form_do" action="$link.setAction('modifyRole')">
 		<dl>
-			<dt>用户名：</dt>
+			<dt>岗位名称：</dt>
 			<dd>
-				<span style="font-size: 14px;font-weight: bold;">$!modifyMemberForm.member.accountid</span>
-			</dd>
-		</dl>
-		<dl>
-			<dt>姓名/单位名称：</dt>
-			<dd>
-				<input type="text" name="member.factname" class="inp_large" value="$!modifyMemberForm.member.factname"/>
+				<input type="text" name="role.name" class="inp_large" value="$!modifyRoleForm.role.name"/>
 				<span style="color: red;">*</span>
 			</dd>
 		</dl>
 		<dl>
-			<dt> 性别：</dt>
+			<dt>岗位描述：</dt>
 			<dd>
-				<label><input type="radio" name="member.sex" value="1" #if($!modifyMemberForm.member.sex==1) checked="checked" #end/>男&nbsp;</label>
-				<label><input type="radio" name="member.sex" value="2" #if($!modifyMemberForm.member.sex==2) checked="checked" #end/>女</label>
-			</dd>
-		</dl>
-		<dl>
-			<dt>身份证号：</dt>
-			<dd>
-				<input type="text" name="member.idcard" class="inp_one" value="$!modifyMemberForm.member.idcard"/>
-			</dd>
-		</dl>
-		<dl>
-            <dt> 出生日期：</dt>
-            <dd>
-                <input type="text" class="inp_one" name="member.birthday" id="birthday" value="$!modifyMemberForm.member.birthday" readonly="readonly">
-                <script type="text/javascript">
-                    Calendar.setup({
-                        weekNumbers: true,
-                        inputField : "birthday",
-                        trigger    : "birthday",
-                        dateFormat: "%Y-%m-%d",
-                        showTime: true,
-                        minuteStep: 1,
-                        onSelect   : function() {this.hide();}
-                    });
-                </script>
-            </dd>
-        </dl>
-		<dl>
-			<dt>邮箱：</dt>
-			<dd>
-				<input type="text" name="member.email" class="inp_large" value="$!modifyMemberForm.member.email"/>
-				<span style="color: red;">*</span>
-			</dd>
-		</dl>
-		<dl>
-			<dt>QQ：</dt>
-			<dd>
-				<input type="text" name="member.qq" class="inp_one" value="$!modifyMemberForm.member.qq"/>
-			</dd>
-		</dl>
-		<dl>
-			<dt>电话：</dt>
-			<dd>
-				<input type="text" name="member.tel" class="inp_one" value="$!modifyMemberForm.member.tel"/>
-			</dd>
-		</dl>
-		<dl>
-			<dt>所在地：</dt>
-			<dd>
-				<input type="text" name="member.address" class="inp_large" value="$!modifyMemberForm.member.address"/>
+				<textarea name="role.description" class="tarea_default">$!modifyRoleForm.role.description</textarea>
 			</dd>
 		</dl>
 		<dl>
 			<span class='error'>#errorMarkup()</span>
         </dl>
 		<div class="form_b">		
-			<input type="hidden" name="member.id" value="$!modifyMemberForm.member.id" />
+			<input type="hidden" name="role.id" value="$!modifyRoleForm.role.id" />
 			<input type="submit" class="btn_blue" id="submit" value="提 交">
 			<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
 		</div>

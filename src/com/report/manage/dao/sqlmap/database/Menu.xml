@@ -6,7 +6,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	<typeAlias alias="menu" type="com.report.manage.bean.Menu"/>
 	
 	<select id="manage.MenuDao.selectTopMenuList" parameterClass="menu" resultClass="menu">
-		select id,name,pid,isshow,sort,url 
+		select id,name,pid,isshow,sort,url,DATE_FORMAT(FROM_UNIXTIME(updatetime),'%Y-%m-%d %H:%i:%s') updatetime 
 		from t_menu t where isvalid=1 and pid=0
 		<isNotEmpty prepend="and" property="keyword">
 			name like CONCAT('%',#keyword#,'%')
@@ -15,7 +15,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	</select>
 	
 	<select id="manage.MenuDao.selectSubMenuList" parameterClass="menu" resultClass="menu">
-		select id,name,pid,isshow,sort,url 
+		select id,name,pid,isshow,sort,url,DATE_FORMAT(FROM_UNIXTIME(updatetime),'%Y-%m-%d %H:%i:%s') updatetime 
 		from t_menu 
 		where isvalid=1 and pid=#id# 
 		<isNotEmpty prepend="and" property="keyword">
@@ -25,17 +25,17 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	</select>
 	
 	<select id="manage.MenuDao.selectMenu" parameterClass="int" resultClass="menu">
-		select id,name,pid,isshow,sort,url 
+		select id,name,pid,isshow,sort,url,DATE_FORMAT(FROM_UNIXTIME(updatetime),'%Y-%m-%d %H:%i:%s') updatetime 
 		from t_menu t where t.id=#id#
 	</select>
 	
 	<insert id="manage.MenuDao.insertMenu" parameterClass="menu">
-		insert into t_menu(name,pid,isshow,sort,url)
-		values(#name#,#pid#,#isshow#,#sort#,#url#)
+		insert into t_menu(name,pid,isshow,sort,url,updatetime)
+		values(#name#,#pid#,#isshow#,#sort#,#url#,UNIX_TIMESTAMP(NOW()))
 	</insert>
 	
 	<update id="manage.MenuDao.updateMenu" parameterClass="menu">
-		update t_menu set name=#name#,pid=#pid#,isshow=#isshow#,sort=#sort#,url=#url# 
+		update t_menu set name=#name#,pid=#pid#,isshow=#isshow#,sort=#sort#,url=#url#,updatetime=UNIX_TIMESTAMP(NOW()) 
 		where id=#id#
 	</update>
 	
