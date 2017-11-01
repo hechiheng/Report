@@ -2,6 +2,7 @@ package com.report.manage.action;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import org.apache.struts.validator.Resources;
 
 import com.css.base.BaseAction;
 import com.css.base.BaseException;
+import com.report.global.Constants;
 import com.report.global.SysGlobals;
 import com.report.global.SysMessageBean;
 import com.report.manage.bean.Role;
@@ -114,13 +116,22 @@ public class UserAction extends BaseAction {
 		return mapping.findForward("success");
 	}
 
+	@SuppressWarnings("unchecked")
 	public ActionForward load4UserModify(ActionMapping mapping,
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws BaseException {
 		String id = request.getParameter("id");
+		int isself = 0;
+		if (id == null) {
+			Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
+					Constants.MANAGE_SESSION);
+			id = sessionMap.get("userid");
+			isself = 1;
+		}
 		UserForm userForm = (UserForm) form;
 		UserBo bo = new UserBo();
 		User user = bo.getUser(Integer.valueOf(id));
+		user.setIsself(isself);
 		userForm.setUser(user);
 
 		List<Role> roleList = bo.getRoleList();
@@ -138,8 +149,14 @@ public class UserAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("UserAction.modifyUser.success"));
-		smb.setLinkText(new ActionMessage("UserAction.modifyUser.return"));
-		smb.setAction("/load4UserIndex");
+		if (user.getIsself() == 1) {
+			smb.setAction("/load4UserModify");
+			smb.setLinkText(new ActionMessage(
+					"UserAction.modifyUser.returnModify"));
+		} else {
+			smb.setAction("/load4UserIndex");
+			smb.setLinkText(new ActionMessage("UserAction.modifyUser.return"));
+		}
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
 	}
@@ -250,13 +267,22 @@ public class UserAction extends BaseAction {
 		return mapping.findForward("info");
 	}
 
+	@SuppressWarnings("unchecked")
 	public ActionForward load4UserPwdModify(ActionMapping mapping,
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws BaseException {
 		String id = request.getParameter("id");
+		int isself = 0;
+		if (id == null) {
+			Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
+					Constants.MANAGE_SESSION);
+			id = sessionMap.get("userid");
+			isself = 1;
+		}
 		UserForm userForm = (UserForm) form;
 		User user = userForm.getUser();
 		user.setId(Integer.valueOf(id));
+		user.setIsself(isself);
 		userForm.setUser(user);
 		return mapping.findForward("success");
 	}
@@ -291,8 +317,16 @@ public class UserAction extends BaseAction {
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("UserAction.modifyUserPwd.success",
 				user.getFactname()));
-		smb.setLinkText(new ActionMessage("UserAction.modifyUserPwd.return"));
-		smb.setAction("/load4UserIndex");
+		if (user.getIsself() == 1) {
+			smb.setAction("/load4UserPwdModify");
+			smb.setLinkText(new ActionMessage(
+					"UserAction.modifyUserPwd.returnModify"));
+		} else {
+			smb.setAction("/load4UserIndex");
+			smb
+					.setLinkText(new ActionMessage(
+							"UserAction.modifyUserPwd.return"));
+		}
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
 	}

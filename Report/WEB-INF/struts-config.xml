@@ -116,6 +116,14 @@
 			<forward name="success" path="/home/about.vm"/>
         </action>
         <action
+        	path="/load4Notice"
+			type="com.report.home.action.HomeAction"
+			scope="request"
+			validate="false"
+			parameter="load4Notice">
+			<forward name="success" path="/home/notice.vm"/>
+        </action>
+        <action
         	path="/load4MemberReg"
 			type="com.report.home.action.MemberAction"
 			scope="request"

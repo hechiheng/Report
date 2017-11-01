@@ -889,7 +889,14 @@
 				</var>
 			</field>
 		</form>
-
+		<form name="noticeForm">
+			<field property="notice.content"
+				depends="required">
+				<arg key="notice.content" />
+			</field>
+		</form>
+		
+		
 	</formset>
 
 </form-validation>

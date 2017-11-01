@@ -31,5 +31,6 @@
 	<sqlMap resource="com/report/manage/dao/sqlmap/database/Member.xml" />
 	<sqlMap resource="com/report/manage/dao/sqlmap/database/User.xml" />
 	<sqlMap resource="com/report/manage/dao/sqlmap/database/Role.xml" />
+	<sqlMap resource="com/report/manage/dao/sqlmap/database/Notice.xml" />
 
 </sqlMapConfig>

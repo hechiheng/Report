@@ -19,6 +19,21 @@
 	    	location.href = url;
 	    }
 	}
+	
+	jQuery(function(){
+        jQuery("input[name='key[]']").click(function(){
+			var menuid=jQuery(this).attr("menuid");
+			var menupid=jQuery(this).attr("menupid");
+            if(menupid=="0"){
+				if(jQuery(this).attr("checked")=="checked"){
+					jQuery("input[menupid='"+menuid+"']").attr("checked",true);
+                }else{
+                    jQuery("input[menupid='"+menuid+"']").attr("checked",false);
+                }
+            }
+    
+        });
+    });
 </script>
 </head>
 <body>
@@ -33,8 +48,8 @@
     <div class="list">
     	<table width="100%">
             <tr>
-				<th width="5%"><input type="checkbox" id="check"></th>
-                <th width="10%">编号</th>
+				<th width="7%" class="aleft"><input type="checkbox" id="check" /></th>
+                <th width="5%">编号</th>
                 <th class="aleft" width="40%">权限名称</th>
     			<th>更新时间</th>
             </tr>
@@ -42,14 +57,14 @@
 			#foreach($menu in $menuList)
 			#set($subMenuList = $menu.subMenuList)
 			<tr>
-				<td><input type="checkbox" name="key[]" value="$!menu.id" #if($menu.id==$menu.menuid) checked='checked' #end></td>
+				<td class="aleft"><input type="checkbox" name="key[]" menuid="$!menu.id" menupid="$!menu.pid" value="$!menu.id" #if($menu.id==$menu.menuid) checked='checked' #end /></td>
                 <td>$!menu.id</td>
 				<td class="aleft">$!menu.name</td>
 				<td>$!menu.updatetime</td>
             </tr>
 			#foreach($subMenu in $subMenuList)
 			<tr>
-				<td><input type="checkbox" name="key[]" value="$!subMenu.id" #if($subMenu.id==$subMenu.menuid) checked='checked' #end></td>
+				<td class="aleft">&nbsp;&nbsp;<input type="checkbox" name="key[]" menuid="$!subMenu.id" menupid="$!subMenu.pid" value="$!subMenu.id" #if($subMenu.id==$subMenu.menuid) checked='checked' #end /></td>
                 <td>$!subMenu.id</td>
 				<td class="aleft">&nbsp;&nbsp;├─$!subMenu.name</td>
 				<td>$!subMenu.updatetime</td>

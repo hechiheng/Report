@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="manage.Notice">
+	<typeAlias alias="notice" type="com.report.home.bean.Notice"/>
+	
+	<select id="manage.NoticeDao.selectNotice" resultClass="notice">
+		select id,content from t_notice t 
+	</select>
+	
+	<insert id="manage.NoticeDao.insertNotice" parameterClass="notice">
+		insert into t_notice(content,updatetime,userid)
+		values(#content#,UNIX_TIMESTAMP(NOW()),#userid#)
+	</insert>
+	
+	<update id="manage.NoticeDao.updateNotice" parameterClass="notice">
+		update t_notice set content=#content#, updatetime=UNIX_TIMESTAMP(NOW()),userid=#userid# 
+	</update>
+	
+</sqlMap>

@@ -99,6 +99,9 @@
 		<form-bean name="modifyRoleForm"
 			type="com.report.manage.form.RoleForm">
 		</form-bean>
+		<form-bean name="noticeForm"
+			type="com.report.manage.form.NoticeForm">
+		</form-bean>
 	</form-beans>
 
 
@@ -841,6 +844,24 @@
 			scope="request"
 			validate="false"
 			parameter="modifyRoleAccess">
+        </action>
+        <action
+        	path="/load4NoticeModify"
+			type="com.report.manage.action.NoticeAction"
+			scope="request"
+			name="noticeForm"
+			validate="false"
+			parameter="load4NoticeModify">
+			<forward name="success" path="/../manage/notice_modify.vm"/>
+        </action>
+        <action
+        	path="/modifyNotice"
+			type="com.report.manage.action.NoticeAction"
+			scope="request"
+			input="/load4NoticeModify.do"
+			name="noticeForm"
+			validate="true"
+			parameter="modifyNotice">
         </action>
 	</action-mappings>
 

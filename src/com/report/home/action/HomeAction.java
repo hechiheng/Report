@@ -18,6 +18,7 @@ import com.report.home.bean.Announce;
 import com.report.home.bean.Link;
 import com.report.home.bean.Message;
 import com.report.home.bean.News;
+import com.report.home.bean.Notice;
 import com.report.home.bo.HomeBo;
 import com.report.utils.Page;
 
@@ -155,6 +156,18 @@ public class HomeAction extends BaseAction {
 
 		About about = bo.getAbout();
 		request.setAttribute("about", about);
+		return mapping.findForward("success");
+	}
+
+	public ActionForward load4Notice(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws BaseException {
+		HomeBo bo = new HomeBo();
+		Notice notice = bo.getNotice();
+		request.setAttribute("notice", notice);
+
+		Announce announce = bo.getLatestAnnounce();
+		request.setAttribute("announce", announce);
 		return mapping.findForward("success");
 	}
 

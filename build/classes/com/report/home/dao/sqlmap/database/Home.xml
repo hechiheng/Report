@@ -6,6 +6,7 @@
 	<typeAlias alias="news" type="com.report.home.bean.News"/>
 	<typeAlias alias="link" type="com.report.home.bean.Link"/>
 	<typeAlias alias="about" type="com.report.home.bean.About"/>
+	<typeAlias alias="notice" type="com.report.home.bean.Notice"/>
 	
 	<select id="home.HomeDao.selectLatestAnnounce" resultClass="announce">
 	<![CDATA[
@@ -63,6 +64,10 @@
 	
 	<select id="home.HomeDao.selectAbout" resultClass="about">
 		select id,description,content from t_about 
+	</select>
+	
+	<select id="home.HomeDao.selectNotice" resultClass="notice">
+		select id,content from t_notice
 	</select>
 	
 </sqlMap>

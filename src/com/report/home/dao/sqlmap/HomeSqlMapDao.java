@@ -13,6 +13,7 @@ import com.report.home.bean.Announce;
 import com.report.home.bean.Link;
 import com.report.home.bean.Message;
 import com.report.home.bean.News;
+import com.report.home.bean.Notice;
 import com.report.home.dao.iface.HomeDao;
 
 public class HomeSqlMapDao extends SqlMapDaoTemplate implements HomeDao {
@@ -141,6 +142,16 @@ public class HomeSqlMapDao extends SqlMapDaoTemplate implements HomeDao {
 		} catch (DaoException e) {
 			logger.error("home.HomeDao.selectAbout", e);
 			throw new BaseException("home.HomeDao.selectAbout", e);
+		}
+	}
+
+	public Notice selectNotice() throws BaseException {
+		try {
+			return (Notice) this.queryForObject("home.HomeDao.selectNotice",
+					null);
+		} catch (DaoException e) {
+			logger.error("home.HomeDao.selectNotice", e);
+			throw new BaseException("home.HomeDao.selectNotice", e);
 		}
 	}
 

@@ -12,6 +12,7 @@ import com.report.home.bean.Announce;
 import com.report.home.bean.Link;
 import com.report.home.bean.Message;
 import com.report.home.bean.News;
+import com.report.home.bean.Notice;
 import com.report.home.dao.iface.HomeDao;
 
 public class HomeBo {
@@ -72,5 +73,9 @@ public class HomeBo {
 
 	public Announce getAnnounce(int id) throws BaseException {
 		return dao.selectAnnounce(id);
+	}
+	
+	public Notice getNotice() throws BaseException {
+		return dao.selectNotice();
 	}
 }

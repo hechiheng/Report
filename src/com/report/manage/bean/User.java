@@ -25,6 +25,7 @@ public class User implements Serializable {
 	private int islock;
 	private int firstRow;
 	private int listRows;
+	private int isself;
 
 	/**
 	 * username
@@ -194,6 +195,14 @@ public class User implements Serializable {
 
 	public int getSex() {
 		return sex;
+	}
+
+	public void setIsself(int isself) {
+		this.isself = isself;
+	}
+
+	public int getIsself() {
+		return isself;
 	}
 
 }

@@ -83,8 +83,11 @@ jQuery(function () {
         </dl>
 		<div class="form_b">		
 			<input type="hidden" name="user.id" value="$!modifyUserPwdForm.user.id" />
+			<input type="hidden" name="user.isself" value="$!modifyUserPwdForm.user.isself" />
 			<input type="submit" class="btn_blue" id="submit" value="提 交">
+			#if($!modifyUserPwdForm.user.isself==0)
 			<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
+			#end
 		</div>
 	   </form>
 	</div>

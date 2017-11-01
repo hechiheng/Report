@@ -8,6 +8,7 @@ import com.report.home.bean.Announce;
 import com.report.home.bean.Link;
 import com.report.home.bean.Message;
 import com.report.home.bean.News;
+import com.report.home.bean.Notice;
 
 public interface HomeDao {
 
@@ -35,4 +36,6 @@ public interface HomeDao {
 	public Announce selectAnnounce(int id) throws BaseException;
 
 	public About selectAbout() throws BaseException;
+
+	public Notice selectNotice() throws BaseException;
 }
