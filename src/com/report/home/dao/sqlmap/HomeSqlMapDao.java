@@ -15,6 +15,7 @@ import com.report.home.bean.Message;
 import com.report.home.bean.News;
 import com.report.home.bean.Notice;
 import com.report.home.dao.iface.HomeDao;
+import com.report.manage.bean.Website;
 
 public class HomeSqlMapDao extends SqlMapDaoTemplate implements HomeDao {
 
@@ -152,6 +153,16 @@ public class HomeSqlMapDao extends SqlMapDaoTemplate implements HomeDao {
 		} catch (DaoException e) {
 			logger.error("home.HomeDao.selectNotice", e);
 			throw new BaseException("home.HomeDao.selectNotice", e);
+		}
+	}
+
+	public Website selectWebsite() throws BaseException {
+		try {
+			return (Website) this.queryForObject("home.HomeDao.selectWebsite",
+					null);
+		} catch (DaoException e) {
+			logger.error("home.HomeDao.selectWebsite", e);
+			throw new BaseException("home.HomeDao.selectWebsite", e);
 		}
 	}
 

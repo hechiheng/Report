@@ -7,6 +7,7 @@
 	<typeAlias alias="link" type="com.report.home.bean.Link"/>
 	<typeAlias alias="about" type="com.report.home.bean.About"/>
 	<typeAlias alias="notice" type="com.report.home.bean.Notice"/>
+	<typeAlias alias="website" type="com.report.manage.bean.Website"/>
 	
 	<select id="home.HomeDao.selectLatestAnnounce" resultClass="announce">
 	<![CDATA[
@@ -68,6 +69,12 @@
 	
 	<select id="home.HomeDao.selectNotice" resultClass="notice">
 		select id,content from t_notice
+	</select>
+	
+	<select id="home.HomeDao.selectWebsite" resultClass="website">
+		select cfg_webname,cfg_webtitle,cfg_themestyle,cfg_keywords,cfg_description,cfg_powerby,
+			cfg_recordno,cfg_address,cfg_phone,cfg_qq,cfg_email,cfg_website_close,cfg_website_close_info
+		 from t_siteconfig
 	</select>
 	
 </sqlMap>

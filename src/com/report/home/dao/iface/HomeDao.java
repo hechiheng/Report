@@ -9,6 +9,7 @@ import com.report.home.bean.Link;
 import com.report.home.bean.Message;
 import com.report.home.bean.News;
 import com.report.home.bean.Notice;
+import com.report.manage.bean.Website;
 
 public interface HomeDao {
 
@@ -38,4 +39,6 @@ public interface HomeDao {
 	public About selectAbout() throws BaseException;
 
 	public Notice selectNotice() throws BaseException;
+
+	public Website selectWebsite() throws BaseException;
 }

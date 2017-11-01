@@ -23,6 +23,12 @@ import com.report.home.bo.LoginBo;
 
 public class LoginAction extends BaseAction {
 
+	public ActionForward load4Login(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws BaseException {
+		return mapping.findForward("success");
+	}
+
 	public ActionForward login(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws BaseException {
@@ -74,18 +80,6 @@ public class LoginAction extends BaseAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws BaseException {
 		SysGlobals.removeSessionObj(request, Constants.HOME_SESSION);
-		return mapping.findForward("success");
-	}
-
-	public ActionForward load4Index(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws BaseException {
-		return mapping.findForward("success");
-	}
-
-	public ActionForward load4Login(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws BaseException {
 		return mapping.findForward("success");
 	}
 

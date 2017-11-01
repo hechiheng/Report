@@ -20,6 +20,15 @@ import com.report.global.SysMessageBean;
 
 public class MemberInterceptor extends BaseInterceptor {
 	private boolean sessionInValid(HttpServletRequest request) {
+		Map map_global = SysGlobals.getSessionObj(request, Constants.GLOBAL_SESSION);
+		if (map_global != null) {
+			if(map_global.get("cfg_website_close").equals("1")){
+				SysMessageBean smb = new SysMessageBean(true);
+				smb.setMessage(new ActionMessage("error.website_close"));
+				SysGlobals.setSysMessage(request, smb);
+				return true;
+			}
+		}
 		Map map = SysGlobals.getSessionObj(request, Constants.HOME_SESSION);
 		if (map == null) {
 			SysMessageBean smb = new SysMessageBean(true);

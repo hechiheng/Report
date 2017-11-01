@@ -95,6 +95,10 @@
         <key>MANAGE_SESSION</key>
         <value>LOGIN_MANAGE</value>
   	</data>
+  	<data type="string">
+        <key>GLOBAL_SESSION</key>
+        <value>GLOBAL_INFO</value>
+  	</data>
 	
 	
 	

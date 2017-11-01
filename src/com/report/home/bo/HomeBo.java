@@ -14,6 +14,7 @@ import com.report.home.bean.Message;
 import com.report.home.bean.News;
 import com.report.home.bean.Notice;
 import com.report.home.dao.iface.HomeDao;
+import com.report.manage.bean.Website;
 
 public class HomeBo {
 	private DaoManager daoManager;
@@ -74,8 +75,12 @@ public class HomeBo {
 	public Announce getAnnounce(int id) throws BaseException {
 		return dao.selectAnnounce(id);
 	}
-	
+
 	public Notice getNotice() throws BaseException {
 		return dao.selectNotice();
+	}
+
+	public Website getWebsite() throws BaseException {
+		return dao.selectWebsite();
 	}
 }
