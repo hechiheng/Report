@@ -65,7 +65,7 @@ public class AnnounceAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("AnnounceAction.addAnnounce.success"));
-		smb.setLinkText(new ActionMessage("AnnounceAction.addAnnounce.return"));
+		smb.setLinkText(new ActionMessage("AnnounceAction.return"));
 		smb.setAction("/load4AnnounceIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -98,8 +98,7 @@ public class AnnounceAction extends BaseAction {
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage(
 				"AnnounceAction.modifyAnnounce.success"));
-		smb.setLinkText(new ActionMessage(
-				"AnnounceAction.modifyAnnounce.return"));
+		smb.setLinkText(new ActionMessage("AnnounceAction.return"));
 		smb.setAction("/load4AnnounceIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -124,9 +123,7 @@ public class AnnounceAction extends BaseAction {
 		smb
 				.setMessage(new ActionMessage(
 						"AnnounceAction.trashAnnounce.success"));
-		smb
-				.setLinkText(new ActionMessage(
-						"AnnounceAction.trashAnnounce.return"));
+		smb.setLinkText(new ActionMessage("AnnounceAction.return"));
 		smb.setAction("/load4AnnounceIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -150,8 +147,7 @@ public class AnnounceAction extends BaseAction {
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage(
 				"AnnounceAction.restoreAnnounce.success"));
-		smb.setLinkText(new ActionMessage(
-				"AnnounceAction.restoreAnnounce.return"));
+		smb.setLinkText(new ActionMessage("AnnounceAction.return"));
 		smb.setAction("/load4AnnounceIndex");
 		smb.setQueryData("istrash", "1");
 		SysGlobals.setSysMessage(request, smb);
@@ -168,8 +164,7 @@ public class AnnounceAction extends BaseAction {
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage(
 				"AnnounceAction.removeAnnounce.success"));
-		smb.setLinkText(new ActionMessage(
-				"AnnounceAction.removeAnnounce.return"));
+		smb.setLinkText(new ActionMessage("AnnounceAction.return"));
 		smb.setAction("/load4AnnounceIndex");
 		smb.setQueryData("istrash", "1");
 		SysGlobals.setSysMessage(request, smb);
@@ -203,8 +198,7 @@ public class AnnounceAction extends BaseAction {
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage(
 				"AnnounceAction.publishAnnounce.success"));
-		smb.setLinkText(new ActionMessage(
-				"AnnounceAction.publishAnnounce.return"));
+		smb.setLinkText(new ActionMessage("AnnounceAction.return"));
 		smb.setAction("/load4AnnounceIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");

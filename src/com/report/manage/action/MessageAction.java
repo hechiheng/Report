@@ -65,7 +65,7 @@ public class MessageAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("MessageAction.addMessage.success"));
-		smb.setLinkText(new ActionMessage("MessageAction.addMessage.return"));
+		smb.setLinkText(new ActionMessage("MessageAction.return"));
 		smb.setAction("/load4MessageIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -99,9 +99,7 @@ public class MessageAction extends BaseAction {
 		smb
 				.setMessage(new ActionMessage(
 						"MessageAction.modifyMessage.success"));
-		smb
-				.setLinkText(new ActionMessage(
-						"MessageAction.modifyMessage.return"));
+		smb.setLinkText(new ActionMessage("MessageAction.return"));
 		smb.setAction("/load4MessageIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -124,7 +122,7 @@ public class MessageAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("MessageAction.trashMessage.success"));
-		smb.setLinkText(new ActionMessage("MessageAction.trashMessage.return"));
+		smb.setLinkText(new ActionMessage("MessageAction.return"));
 		smb.setAction("/load4MessageIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -149,9 +147,7 @@ public class MessageAction extends BaseAction {
 		smb
 				.setMessage(new ActionMessage(
 						"MessageAction.restoreMessage.success"));
-		smb
-				.setLinkText(new ActionMessage(
-						"MessageAction.restoreMessage.return"));
+		smb.setLinkText(new ActionMessage("MessageAction.return"));
 		smb.setAction("/load4MessageIndex");
 		smb.setQueryData("istrash", "1");
 		SysGlobals.setSysMessage(request, smb);
@@ -169,9 +165,7 @@ public class MessageAction extends BaseAction {
 		smb
 				.setMessage(new ActionMessage(
 						"MessageAction.removeMessage.success"));
-		smb
-				.setLinkText(new ActionMessage(
-						"MessageAction.removeMessage.return"));
+		smb.setLinkText(new ActionMessage("MessageAction.return"));
 		smb.setAction("/load4MessageIndex");
 		smb.setQueryData("istrash", "1");
 		SysGlobals.setSysMessage(request, smb);

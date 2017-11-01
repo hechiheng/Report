@@ -6,7 +6,11 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	<typeAlias alias="member" type="com.report.home.bean.Member"/>
 	
 	<select id="home.LoginDao.selectMember" parameterClass="member" resultClass="member">
-		select id,accountid,factname from t_member where accountid=#accountid# and password=#password# 
+		select id,accountid,factname,state from t_member where accountid=#accountid# and password=#password# 
 	</select>
+	
+	<update id="home.MemberDao.updateMemberLogintime" parameterClass="member">
+		update t_member set logintime=UNIX_TIMESTAMP(NOW()) where id=#id#
+	</update>
 	
 </sqlMap>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="manage.Matchtype">
+	<typeAlias alias="matchtype" type="com.report.manage.bean.Matchtype"/>
+	
+	<select id="manage.MatchtypeDao.selectMatchtypeList" parameterClass="matchtype" resultClass="matchtype">
+		select id,name,description,isdisabled,DATE_FORMAT(FROM_UNIXTIME(updatetime),'%Y-%m-%d %H:%i:%s') updatetime 
+		from t_matchtype t where t.isvalid=1 
+		<isNotEmpty prepend="and" property="name">
+			name like CONCAT('%',#name#,'%')
+		</isNotEmpty>		
+	</select>
+	
+	<select id="manage.MatchtypeDao.selectMatchtype" parameterClass="int" resultClass="matchtype">
+		select id,name,description,isdisabled,DATE_FORMAT(FROM_UNIXTIME(updatetime),'%Y-%m-%d %H:%i:%s') updatetime 
+		from t_matchtype t where t.id=#id#
+	</select>
+	
+	<insert id="manage.MatchtypeDao.insertMatchtype" parameterClass="matchtype">
+		insert into t_matchtype(name,description,updatetime,userid)
+		values(#name#,#description#,UNIX_TIMESTAMP(NOW()),#userid#)
+	</insert>
+	
+	<update id="manage.MatchtypeDao.updateMatchtype" parameterClass="matchtype">
+		update t_matchtype set name=#name#,description=#description#, updatetime=UNIX_TIMESTAMP(NOW()),userid=#userid# 
+		where id=#id#
+	</update>
+	
+	<update id="manage.MatchtypeDao.updateMatchtypeIsvalid" parameterClass="matchtype">
+		update t_matchtype set isvalid=#isvalid#,userid=#userid# where id=#id#
+	</update>
+	
+	<delete id="manage.MatchtypeDao.deleteMatchtype" parameterClass="int">
+		delete from t_matchtype where id=#id#
+	</delete>
+	
+	<update id="manage.MatchtypeDao.updateMatchtypeIsdisabled" parameterClass="matchtype">
+		update t_matchtype set isdisabled=#isdisabled# where id=#id#
+	</update>
+	
+</sqlMap>

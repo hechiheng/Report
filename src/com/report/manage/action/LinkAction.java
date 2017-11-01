@@ -54,7 +54,7 @@ public class LinkAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("LinkAction.addLink.success"));
-		smb.setLinkText(new ActionMessage("LinkAction.addLink.return"));
+		smb.setLinkText(new ActionMessage("LinkAction.return"));
 		smb.setAction("/load4LinkIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -86,7 +86,7 @@ public class LinkAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("LinkAction.modifyLink.success"));
-		smb.setLinkText(new ActionMessage("LinkAction.modifyLink.return"));
+		smb.setLinkText(new ActionMessage("LinkAction.return"));
 		smb.setAction("/load4LinkIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -109,7 +109,7 @@ public class LinkAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("LinkAction.trashLink.success"));
-		smb.setLinkText(new ActionMessage("LinkAction.trashLink.return"));
+		smb.setLinkText(new ActionMessage("LinkAction.return"));
 		smb.setAction("/load4LinkIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");

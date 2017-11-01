@@ -9,12 +9,12 @@
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
 <script type="text/javascript">
 jQuery(function () {
-     jQuery("input[name='role.name']").focus();
+     jQuery("input[name='matchtype.name']").focus();
 	 
      jQuery("#form_do").submit(function(){
-		var name = jQuery("input[name='role.name']");
+		var name = jQuery("input[name='matchtype.name']");
 		if(jQuery.trim(name.val())==''){
-			name.parent().find("span").remove().end().append("<span class='error'>岗位名称不能为空</span>");
+			name.parent().find("span").remove().end().append("<span class='error'>赛事类型名称不能为空</span>");
 			name.focus();
 			return false;			
 		}else {
@@ -30,27 +30,27 @@ jQuery(function () {
 </head>
 <body>
 <div class="main">
-    <div class="pos">修改岗位</div>
+    <div class="pos">修改赛事类型</div>
 	<div class="form">
-		<form method='post' id="form_do" name="form_do" action="$link.setAction('modifyRole')">
+		<form method='post' id="form_do" name="form_do" action="$link.setAction('modifyMatchtype')">
 		<dl>
-			<dt>岗位名称：</dt>
+			<dt>赛事类型名称：</dt>
 			<dd>
-				<input type="text" name="role.name" class="inp_large" value="$!modifyRoleForm.role.name"/>
+				<input type="text" name="matchtype.name" class="inp_large" value="$!modifyMatchtypeForm.matchtype.name"/>
 				<span style="color: red;">*</span>
 			</dd>
 		</dl>
 		<dl>
-			<dt>岗位描述：</dt>
+			<dt>赛事类型描述：</dt>
 			<dd>
-				<textarea name="role.description" class="tarea_default">$!modifyRoleForm.role.description</textarea>
+				<textarea name="matchtype.description" class="tarea_default">$!modifyMatchtypeForm.matchtype.description</textarea>
 			</dd>
 		</dl>
 		<dl>
 			<span class='error'>#errorMarkup()</span>
         </dl>
 		<div class="form_b">		
-			<input type="hidden" name="role.id" value="$!modifyRoleForm.role.id" />
+			<input type="hidden" name="matchtype.id" value="$!modifyMatchtypeForm.matchtype.id" />
 			<input type="submit" class="btn_blue" id="submit" value="提 交">
 			<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
 		</div>

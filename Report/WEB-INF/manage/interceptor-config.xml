@@ -12,6 +12,7 @@
 	<interceptor name="user" type="com.report.manage.interceptor.UserInterceptor"/>
 	<interceptor name="role" type="com.report.manage.interceptor.RoleInterceptor"/>
 	<interceptor name="notice" type="com.report.manage.interceptor.NoticeInterceptor"/>
+	<interceptor name="matchtype" type="com.report.manage.interceptor.MatchtypeInterceptor"/>
 
 	<action type="com.report.manage.action.LoginAction">
 		<interceptor name="login"/>
@@ -48,6 +49,9 @@
 	</action>
 	<action type="com.report.manage.action.NoticeAction">
 		<interceptor name="notice"/>
+	</action>
+	<action type="com.report.manage.action.MatchtypeAction">
+		<interceptor name="matchtype"/>
 	</action>
 	
 </interceptor-config>

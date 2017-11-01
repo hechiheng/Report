@@ -18,6 +18,7 @@ import com.css.base.BaseAction;
 import com.css.base.BaseException;
 import com.report.global.Constants;
 import com.report.global.SysGlobals;
+import com.report.global.SysMessageBean;
 import com.report.home.bean.Member;
 import com.report.home.bo.LoginBo;
 
@@ -55,6 +56,27 @@ public class LoginAction extends BaseAction {
 			try {
 				Member memberDB = loginBo.getMember(member);
 				if (memberDB != null) {
+					if (memberDB.getState() == 0) {
+						SysMessageBean smb = new SysMessageBean(true);
+						smb.setMessage(new ActionMessage(
+								"LoginAction.login.notaudit"));
+						smb.setLinkText(new ActionMessage(
+								"LoginAction.login.returnindex"));
+						smb.setAction("/index");
+						smb.setLinkTarget("_parent");
+						SysGlobals.setSysMessage(request, smb);
+						return mapping.findForward("error");
+					} else if (memberDB.getState() == 2) {
+						SysMessageBean smb = new SysMessageBean(true);
+						smb.setMessage(new ActionMessage(
+								"LoginAction.login.lock"));
+						smb.setLinkText(new ActionMessage(
+								"LoginAction.login.returnindex"));
+						smb.setAction("/index");
+						smb.setLinkTarget("_parent");
+						SysGlobals.setSysMessage(request, smb);
+						return mapping.findForward("error");
+					}
 					Map<String, String> sessionMap = new HashMap<String, String>();
 					sessionMap
 							.put("memberid", String.valueOf(memberDB.getId()));
@@ -62,6 +84,7 @@ public class LoginAction extends BaseAction {
 					sessionMap.put("factname", memberDB.getFactname());
 					SysGlobals.setSessionObj(request, Constants.HOME_SESSION,
 							sessionMap);
+					loginBo.modifyMemberLogintime(memberDB);
 				} else {
 					ActionMessages msg = new ActionMessages();
 					msg.add("sysMessage", new ActionMessage(

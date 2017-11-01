@@ -54,7 +54,7 @@ public class MenuAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("MenuAction.addMenu.success"));
-		smb.setLinkText(new ActionMessage("MenuAction.addMenu.return"));
+		smb.setLinkText(new ActionMessage("MenuAction.return"));
 		smb.setAction("/load4MenuIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -84,7 +84,7 @@ public class MenuAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("MenuAction.modifyMenu.success"));
-		smb.setLinkText(new ActionMessage("MenuAction.modifyMenu.return"));
+		smb.setLinkText(new ActionMessage("MenuAction.return"));
 		smb.setAction("/load4MenuIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -103,7 +103,7 @@ public class MenuAction extends BaseAction {
 		if (id == null || pid == null) {
 			SysMessageBean smb = new SysMessageBean(true);
 			smb.setMessage(new ActionMessage("MenuAction.trashMenu.failure"));
-			smb.setLinkText(new ActionMessage("MenuAction.trashMenu.return"));
+			smb.setLinkText(new ActionMessage("MenuAction.return"));
 			smb.setAction("/load4MenuIndex");
 			SysGlobals.setSysMessage(request, smb);
 			return mapping.findForward("error");
@@ -121,27 +121,8 @@ public class MenuAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("MenuAction.trashMenu.success"));
-		smb.setLinkText(new ActionMessage("MenuAction.trashMenu.return"));
+		smb.setLinkText(new ActionMessage("MenuAction.return"));
 		smb.setAction("/load4MenuIndex");
-		SysGlobals.setSysMessage(request, smb);
-		return mapping.findForward("info");
-	}
-
-	public ActionForward restoreMenu(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws BaseException {
-		String id = request.getParameter("id");
-		MenuBo bo = new MenuBo();
-		Menu menu = new Menu();
-		menu.setId(Integer.valueOf(id));
-		menu.setIsvalid(1);
-		bo.modifyMenuIsvalid(menu);
-
-		SysMessageBean smb = new SysMessageBean(false);
-		smb.setMessage(new ActionMessage("MenuAction.restoreMenu.success"));
-		smb.setLinkText(new ActionMessage("MenuAction.restoreMenu.return"));
-		smb.setAction("/load4MenuIndex");
-		smb.setQueryData("istrash", "1");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
 	}

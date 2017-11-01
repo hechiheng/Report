@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/ueditor/ueditor.config.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/ueditor/ueditor.all.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/calendar.config.js')"></script>
+<script type="text/javascript">
+	
+	window.UEDITOR_HOME_URL = "ueditor/";
+	window.onload = function() {
+		UE.getEditor('description', {
+    		toolbars: [
+                ['fullscreen', 'source', 'undo', 'redo']
+            ],
+            initialFrameWidth : 600,
+            initialFrameHeight: 100
+        });
+		
+		UE.getEditor('matchinfo', {
+            initialFrameWidth : 600,
+            initialFrameHeight: 300
+        });
+    }
+
+
+
+</script>
+<script type="text/javascript">
+jQuery(function () {
+     jQuery("input[name='role.name']").focus();
+	 
+     jQuery("#form_do").submit(function(){
+		var name = jQuery("input[name='matchinfo.name']");
+		if(jQuery.trim(name.val())==''){
+			name.parent().find("span").remove().end().append("<span class='error'>参赛项目名称不能为空</span>");
+			name.focus();
+			return false;			
+		}else {
+			name.parent().find("span").remove().end();
+		}
+
+	});
+	
+});
+
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="pos">添加岗位</div>
+	<div class="form">
+		<form method='post' id="form_do" name="form_do" action="$link.setAction('addMatchinfo')">
+		<dl>
+			<dt>选择参赛年度：</dt>
+			<dd>
+				<input type="text" name="matchinfo.annualmatch" class="inp_one" value="$!addMatchinfoForm.matchinfo.annualmatch"/>
+			</dd>
+		</dl>
+		<dl>
+			<dt>参赛项目名称：</dt>
+			<dd>
+				<input type="text" name="matchinfo.name" class="inp_large" value="$!addMatchinfoForm.matchinfo.name"/>
+				<span style="color: red;">*</span>
+			</dd>
+		</dl>
+		<dl>
+			<dt> 参赛类型：</dt>
+			<dd>
+				<select name="matchinfo.matchtype">
+					#set($matchtypeList = $request.getAttribute("matchtypeList"))
+					#foreach($matchtype in $matchtypeList)
+						#if($!matchtype.id==$!addMatchinfoForm.matchinfo.matchtype)
+							<option value="$!matchtype.id" selected="selected">$!matchtype.name</option>
+						#else
+							<option value="$!matchtype.id">$!matchtype.name</option>
+						#end
+					#end
+				</select>
+			</dd>
+		</dl>	
+		<dl>
+            <dt> 报名开始日期：</dt>
+            <dd>
+                <input type="text" class="inp_one" name="matchinfo.begindate" id="begindate" readonly="readonly" value="$!addMatchinfoForm.matchinfo.begindate"/>
+				<span style="color: red;">*</span>
+                <script type="text/javascript">
+                    Calendar.setup({
+                        weekNumbers: true,
+                        inputField : "begindate",
+                        trigger    : "begindate",
+                        dateFormat: "%Y-%m-%d",
+                        showTime: true,
+                        minuteStep: 1,
+                        onSelect   : function() {this.hide();}
+                    });
+                </script>
+            </dd>
+        </dl>	
+		<dl>
+            <dt> 报名截止日期：</dt>
+            <dd>
+                <input type="text" class="inp_one" name="matchinfo.enddate" id="enddate" readonly="readonly" value="$!addMatchinfoForm.matchinfo.enddate"/>
+				<span style="color: red;">*</span>
+                <script type="text/javascript">
+                    Calendar.setup({
+                        weekNumbers: true,
+                        inputField : "enddate",
+                        trigger    : "enddate",
+                        dateFormat: "%Y-%m-%d",
+                        showTime: true,
+                        minuteStep: 1,
+                        onSelect   : function() {this.hide();}
+                    });
+                </script>
+            </dd>
+        </dl>	
+		<dl>
+			<dt>主办单位：</dt>
+			<dd>
+				<input type="text" name="matchinfo.optunitname" class="inp_large" value="$!addMatchinfoForm.matchinfo.optunitname"/>
+				<span style="color: red;">*</span>
+			</dd>
+		</dl>
+		<dl>
+			<dt>参赛简述：</dt>
+			<dd>
+				<textarea name="matchinfo.description" class="tarea_default" id="description">$!addMatchinfoForm.matchinfo.description</textarea>
+			</dd>
+		</dl>
+		<dl>
+			<dt>参赛详细说明：</dt>
+			<dd>
+				<textarea name="matchinfo.matchinfo" class="tarea_default" id="matchinfo">$!addMatchinfoForm.matchinfo.matchinfo</textarea>
+			</dd>
+		</dl>
+		<dl>
+			<span class='error'>#errorMarkup()</span>
+        </dl>
+		<div class="form_b">		
+			<input type="submit" class="btn_blue" id="submit" value="提 交">
+			<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
+		</div>
+	   </form>
+	</div>
+</div>
+
+
+</body>
+</html>

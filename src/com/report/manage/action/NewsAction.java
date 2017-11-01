@@ -65,7 +65,7 @@ public class NewsAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("NewsAction.addNews.success"));
-		smb.setLinkText(new ActionMessage("NewsAction.addNews.return"));
+		smb.setLinkText(new ActionMessage("NewsAction.return"));
 		smb.setAction("/load4NewsIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -97,7 +97,7 @@ public class NewsAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("NewsAction.modifyNews.success"));
-		smb.setLinkText(new ActionMessage("NewsAction.modifyNews.return"));
+		smb.setLinkText(new ActionMessage("NewsAction.return"));
 		smb.setAction("/load4NewsIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -120,7 +120,7 @@ public class NewsAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("NewsAction.trashNews.success"));
-		smb.setLinkText(new ActionMessage("NewsAction.trashNews.return"));
+		smb.setLinkText(new ActionMessage("NewsAction.return"));
 		smb.setAction("/load4NewsIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -143,7 +143,7 @@ public class NewsAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("NewsAction.restoreNews.success"));
-		smb.setLinkText(new ActionMessage("NewsAction.restoreNews.return"));
+		smb.setLinkText(new ActionMessage("NewsAction.return"));
 		smb.setAction("/load4NewsIndex");
 		smb.setQueryData("istrash", "1");
 		SysGlobals.setSysMessage(request, smb);
@@ -159,7 +159,7 @@ public class NewsAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("NewsAction.removeNews.success"));
-		smb.setLinkText(new ActionMessage("NewsAction.removeNews.return"));
+		smb.setLinkText(new ActionMessage("NewsAction.return"));
 		smb.setAction("/load4NewsIndex");
 		smb.setQueryData("istrash", "1");
 		SysGlobals.setSysMessage(request, smb);

@@ -163,7 +163,7 @@ public class MemberAction extends BaseAction {
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("MemberAction.modifyMember.success",
 				member.getFactname()));
-		smb.setLinkText(new ActionMessage("MemberAction.modifyMember.return"));
+		smb.setLinkText(new ActionMessage("MemberAction.return"));
 		smb.setAction("/load4MemberIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -204,7 +204,7 @@ public class MemberAction extends BaseAction {
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("MemberAction.chgMemberPwd.success",
 				member.getFactname()));
-		smb.setLinkText(new ActionMessage("MemberAction.chgMemberPwd.return"));
+		smb.setLinkText(new ActionMessage("MemberAction.return"));
 		smb.setAction("/load4MemberIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");

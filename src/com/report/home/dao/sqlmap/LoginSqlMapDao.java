@@ -27,4 +27,13 @@ public class LoginSqlMapDao extends SqlMapDaoTemplate implements LoginDao {
 		}
 	}
 
+	public void updateMemberLogintime(Member member) throws BaseException {
+		try {
+			this.update("home.MemberDao.updateMemberLogintime", member);
+		} catch (DaoException e) {
+			logger.error("home.MemberDao.updateMemberLogintime", e);
+			throw new BaseException("home.MemberDao.updateMemberLogintime", e);
+		}
+	}
+
 }

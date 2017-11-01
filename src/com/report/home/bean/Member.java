@@ -23,7 +23,7 @@ public class Member implements Serializable {
 	private String logintime;
 	private String updatetime;
 	private int isvalid;
-	private int islock;
+	private int state;
 	private String imagecode;
 	private int firstRow;
 	private int listRows;
@@ -172,14 +172,6 @@ public class Member implements Serializable {
 		this.updatetime = updatetime;
 	}
 
-	public int getIslock() {
-		return islock;
-	}
-
-	public void setIslock(int islock) {
-		this.islock = islock;
-	}
-
 	public void setIsvalid(int isvalid) {
 		this.isvalid = isvalid;
 	}
@@ -194,6 +186,14 @@ public class Member implements Serializable {
 
 	public int getSex() {
 		return sex;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
+	public int getState() {
+		return state;
 	}
 
 }

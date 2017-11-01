@@ -59,7 +59,7 @@ public class RoleAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("RoleAction.addRole.success"));
-		smb.setLinkText(new ActionMessage("RoleAction.addRole.return"));
+		smb.setLinkText(new ActionMessage("RoleAction.return"));
 		smb.setAction("/load4RoleIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -96,7 +96,7 @@ public class RoleAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("RoleAction.modifyRole.success"));
-		smb.setLinkText(new ActionMessage("RoleAction.modifyRole.return"));
+		smb.setLinkText(new ActionMessage("RoleAction.return"));
 		smb.setAction("/load4RoleIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -114,7 +114,7 @@ public class RoleAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("RoleAction.trashRole.success"));
-		smb.setLinkText(new ActionMessage("RoleAction.trashRole.return"));
+		smb.setLinkText(new ActionMessage("RoleAction.return"));
 		smb.setAction("/load4RoleIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -132,7 +132,7 @@ public class RoleAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("RoleAction.restoreRole.success"));
-		smb.setLinkText(new ActionMessage("RoleAction.restoreRole.return"));
+		smb.setLinkText(new ActionMessage("RoleAction.return"));
 		smb.setAction("/load4RoleIndex");
 		smb.setQueryData("istrash", "1");
 		SysGlobals.setSysMessage(request, smb);
@@ -148,7 +148,7 @@ public class RoleAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("RoleAction.removeRole.success"));
-		smb.setLinkText(new ActionMessage("RoleAction.removeRole.return"));
+		smb.setLinkText(new ActionMessage("RoleAction.return"));
 		smb.setAction("/load4RoleIndex");
 		smb.setQueryData("istrash", "1");
 		SysGlobals.setSysMessage(request, smb);
@@ -167,7 +167,7 @@ public class RoleAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("RoleAction.disabledRole.success"));
-		smb.setLinkText(new ActionMessage("RoleAction.disabledRole.return"));
+		smb.setLinkText(new ActionMessage("RoleAction.return"));
 		smb.setAction("/load4RoleIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -185,7 +185,7 @@ public class RoleAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("RoleAction.enableRole.success"));
-		smb.setLinkText(new ActionMessage("RoleAction.enableRole.return"));
+		smb.setLinkText(new ActionMessage("RoleAction.return"));
 		smb.setAction("/load4RoleIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -219,9 +219,7 @@ public class RoleAction extends BaseAction {
 		smb
 				.setMessage(new ActionMessage(
 						"RoleAction.modifyRoleAccess.success"));
-		smb
-				.setLinkText(new ActionMessage(
-						"RoleAction.modifyRoleAccess.return"));
+		smb.setLinkText(new ActionMessage("RoleAction.return"));
 		smb.setAction("/load4RoleIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");

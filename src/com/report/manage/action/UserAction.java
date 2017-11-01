@@ -100,7 +100,7 @@ public class UserAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("UserAction.addUser.success"));
-		smb.setLinkText(new ActionMessage("UserAction.addUser.return"));
+		smb.setLinkText(new ActionMessage("UserAction.return"));
 		smb.setAction("/load4UserIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -155,7 +155,7 @@ public class UserAction extends BaseAction {
 					"UserAction.modifyUser.returnModify"));
 		} else {
 			smb.setAction("/load4UserIndex");
-			smb.setLinkText(new ActionMessage("UserAction.modifyUser.return"));
+			smb.setLinkText(new ActionMessage("UserAction.return"));
 		}
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -173,7 +173,7 @@ public class UserAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("UserAction.trashUser.success"));
-		smb.setLinkText(new ActionMessage("UserAction.trashUser.return"));
+		smb.setLinkText(new ActionMessage("UserAction.return"));
 		smb.setAction("/load4UserIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -191,7 +191,7 @@ public class UserAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("UserAction.restoreUser.success"));
-		smb.setLinkText(new ActionMessage("UserAction.restoreUser.return"));
+		smb.setLinkText(new ActionMessage("UserAction.return"));
 		smb.setAction("/load4UserIndex");
 		smb.setQueryData("istrash", "1");
 		SysGlobals.setSysMessage(request, smb);
@@ -207,7 +207,7 @@ public class UserAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("UserAction.removeUser.success"));
-		smb.setLinkText(new ActionMessage("UserAction.removeUser.return"));
+		smb.setLinkText(new ActionMessage("UserAction.return"));
 		smb.setAction("/load4UserIndex");
 		smb.setQueryData("istrash", "1");
 		SysGlobals.setSysMessage(request, smb);
@@ -225,7 +225,7 @@ public class UserAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("UserAction.resetUserPwd.success"));
-		smb.setLinkText(new ActionMessage("UserAction.resetUserPwd.return"));
+		smb.setLinkText(new ActionMessage("UserAction.return"));
 		smb.setAction("/load4UserIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -243,7 +243,7 @@ public class UserAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("UserAction.lockUser.success"));
-		smb.setLinkText(new ActionMessage("UserAction.lockUser.return"));
+		smb.setLinkText(new ActionMessage("UserAction.return"));
 		smb.setAction("/load4UserIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -261,7 +261,7 @@ public class UserAction extends BaseAction {
 
 		SysMessageBean smb = new SysMessageBean(false);
 		smb.setMessage(new ActionMessage("UserAction.unLockUser.success"));
-		smb.setLinkText(new ActionMessage("UserAction.unLockUser.return"));
+		smb.setLinkText(new ActionMessage("UserAction.return"));
 		smb.setAction("/load4UserIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
@@ -323,9 +323,7 @@ public class UserAction extends BaseAction {
 					"UserAction.modifyUserPwd.returnModify"));
 		} else {
 			smb.setAction("/load4UserIndex");
-			smb
-					.setLinkText(new ActionMessage(
-							"UserAction.modifyUserPwd.return"));
+			smb.setLinkText(new ActionMessage("UserAction.return"));
 		}
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");

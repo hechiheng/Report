@@ -1,0 +1,145 @@
+package com.report.manage.bean;
+
+import java.io.Serializable;
+
+public class Matchinfo implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private int id;
+	private int matchtype;
+	private String matchtypename;
+	private String orgcode;
+	private String name;
+	private String annualmatch;
+	private String optunitname;
+	private String description;
+	private String matchinfo;
+	private int isvalid;
+	private int isdisabled;
+	private String begindate;
+	private String enddate;
+	private String updatetime;
+	private int userid;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getOrgcode() {
+		return orgcode;
+	}
+
+	public void setOrgcode(String orgcode) {
+		this.orgcode = orgcode;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getIsvalid() {
+		return isvalid;
+	}
+
+	public void setIsvalid(int isvalid) {
+		this.isvalid = isvalid;
+	}
+
+	public String getUpdatetime() {
+		return updatetime;
+	}
+
+	public void setUpdatetime(String updatetime) {
+		this.updatetime = updatetime;
+	}
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public void setIsdisabled(int isdisabled) {
+		this.isdisabled = isdisabled;
+	}
+
+	public int getIsdisabled() {
+		return isdisabled;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getMatchtype() {
+		return matchtype;
+	}
+
+	public void setMatchtype(int matchtype) {
+		this.matchtype = matchtype;
+	}
+
+	public String getAnnualmatch() {
+		return annualmatch;
+	}
+
+	public void setAnnualmatch(String annualmatch) {
+		this.annualmatch = annualmatch;
+	}
+
+	public String getOptunitname() {
+		return optunitname;
+	}
+
+	public void setOptunitname(String optunitname) {
+		this.optunitname = optunitname;
+	}
+
+	public String getMatchinfo() {
+		return matchinfo;
+	}
+
+	public void setMatchinfo(String matchinfo) {
+		this.matchinfo = matchinfo;
+	}
+
+	public String getBegindate() {
+		return begindate;
+	}
+
+	public void setBegindate(String begindate) {
+		this.begindate = begindate;
+	}
+
+	public String getEnddate() {
+		return enddate;
+	}
+
+	public void setEnddate(String enddate) {
+		this.enddate = enddate;
+	}
+
+	public void setMatchtypename(String matchtypename) {
+		this.matchtypename = matchtypename;
+	}
+
+	public String getMatchtypename() {
+		return matchtypename;
+	}
+
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
+</head>
+<body>
+<div class="main">
+    <div class="pos">
+    	<a href="$link.setAction('load4MatchtypeIndex')">赛事类型管理</a>
+    </div>
+    <div class="operate">
+        <div class="left">
+			<input type="button" onclick="goUrl('$link.setAction('load4MatchtypeAdd')')" class="btn_blue" value="添加赛事类型" />
+        </div>
+		<div class="left_pad">
+            <form method="get" action="$link.setAction('load4MatchtypeIndex')">
+            	<span style='font-size: 14px;vertical-align: middle;'>赛事类型名称：</span>
+                <input type="text" name="matchtype.name" title="关键字" class="inp_default" value="$!queryMatchtypeForm.matchtype.name">
+                <input type="submit" class="btn_blue" value="查  询">
+            </form>
+        </div>
+    </div>
+    <div class="list">    
+        <table width="100%">
+            <tr>
+                <th>编号</th>
+				<th class="aleft">赛事类型名称</th>
+				<th class="aleft" width="40%">赛事类型描述</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+			#set($matchtypeList = $request.getAttribute("matchtypeList"))
+			#foreach($matchtype in $matchtypeList)
+			<tr>
+				<td>$!matchtype.id</td>
+				<td class='aleft'>$!matchtype.name</td>
+				<td class='aleft'>$!matchtype.description</td>
+				<td>
+					#if($!matchtype.isdisabled==0)
+                        <span style='color: green;'>正常</span> 
+					#else
+						<span style='color: red;'>禁用</span>
+					#end
+				</td>
+				<td>
+					<a href="$link.setAction('load4MatchtypeModify').addQueryData('id',$!matchtype.id)">编辑</a>
+					#if($!matchtype.isdisabled==0)
+					<a href="javascript:;" onclick="toConfirm('$link.setAction('disabledMatchtype').addQueryData('id',$!matchtype.id)','确实要禁用吗？')">禁用</a>
+					#else
+					<a href="javascript:;" onclick="toConfirm('$link.setAction('enableMatchtype').addQueryData('id',$!matchtype.id)','确实要启用吗？')">启用</a>
+					#end
+					<a href="javascript:;" onclick="toConfirm('$link.setAction('trashMatchtype').addQueryData('id',$!matchtype.id)','确实要删除吗？')">删除</a>
+                </td>
+            </tr>
+			#end
+        </table>
+        <div class="page" style="clear: both;">
+        </div>
+    </div>
+</div>
+</body>
+</html>

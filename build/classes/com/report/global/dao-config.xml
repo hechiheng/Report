@@ -40,8 +40,8 @@
 			implementation="com.report.manage.dao.sqlmap.UserSqlMapDao" />
 		<dao interface="com.report.manage.dao.iface.RoleDao"
 			implementation="com.report.manage.dao.sqlmap.RoleSqlMapDao" />
-		<dao interface="com.report.manage.dao.iface.NoticeDao"
-			implementation="com.report.manage.dao.sqlmap.NoticeSqlMapDao" />
+		<dao interface="com.report.manage.dao.iface.MatchtypeDao"
+			implementation="com.report.manage.dao.sqlmap.MatchtypeSqlMapDao" />
 		    
 	</context>
 </daoConfig>

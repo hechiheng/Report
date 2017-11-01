@@ -895,7 +895,40 @@
 				<arg key="notice.content" />
 			</field>
 		</form>
-		
+		<form name="addMatchtypeForm">
+			<field property="matchtype.name"
+				depends="required,bytemaxlength">
+				<arg key="matchtype.name" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+		</form>
+		<form name="modifyMatchtypeForm">
+			<field property="matchtype.id"
+				depends="required,bytemaxlength">
+				<arg key="matchtype.id" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="matchtype.name"
+				depends="required,bytemaxlength">
+				<arg key="matchtype.name" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+		</form>
 		
 	</formset>
 

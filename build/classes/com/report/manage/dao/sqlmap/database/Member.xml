@@ -16,7 +16,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	
 	<select id="manage.MemberDao.selectMemberList" parameterClass="member" resultClass="member">
 		select a.id,a.accountid,a.factname,IFNULL(a.sex,1) sex,a.idcard,a.birthday,a.qq,a.tel,a.email,a.address,
-		DATE_FORMAT(FROM_UNIXTIME(logintime),'%Y-%m-%d %H:%i:%s') logintime,a.islock
+		DATE_FORMAT(FROM_UNIXTIME(logintime),'%Y-%m-%d %H:%i:%s') logintime,a.state
 		from t_member a
 		where a.isvalid=#isvalid# 
 		<isNotEmpty prepend="and" property="accountid">
@@ -60,7 +60,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	</delete>
 	
 	<update id="manage.MemberDao.updateMemberIslock" parameterClass="member">
-		update t_member set islock=#islock# where id=#id#
+		update t_member set state=#state# where id=#id#
 	</update>
 	
 </sqlMap>

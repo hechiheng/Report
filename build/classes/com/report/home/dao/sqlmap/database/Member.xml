@@ -13,9 +13,8 @@
 	</insert>
 	
 	<select id="home.MemberDao.selectMember" parameterClass="int" resultClass="member">
-		select a.id,a.accountid,a.password,a.factname,b.code_name sex,a.idcard,a.birthday,a.qq,a.tel,a.email,a.address
-		from t_member a,t_codelist b 
-		where a.sex=b.code_value and b.code_type='sex' and a.id=#id# 
+		select a.id,a.accountid,a.password,a.factname,a.sex,a.idcard,a.birthday,a.qq,a.tel,a.email,a.address
+		from t_member a where a.id=#id# 
 	</select>
 	
 	<update id="home.MemberDao.updateMember" parameterClass="member">

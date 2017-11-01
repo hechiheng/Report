@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="manage.Matchinfo">
+	<typeAlias alias="matchinfo" type="com.report.manage.bean.Matchinfo"/>
+	<typeAlias alias="matchtype" type="com.report.manage.bean.Matchtype"/>
+	
+	<select id="manage.MatchinfoDao.selectMatchinfoListSize" parameterClass="matchinfo" resultClass="int">
+		select count(id)
+		from t_matchinfo t where t.isvalid=#isvalid# 
+		<isNotEmpty prepend="and" property="name">
+			name like CONCAT('%',#name#,'%')
+		</isNotEmpty>		
+	</select>
+	
+	<select id="manage.MatchinfoDao.selectMatchinfoList" parameterClass="matchinfo" resultClass="matchinfo">
+		select a.id,a.name,a.annualmatch,a.matchtype,b.name matchtypename,DATE_FORMAT(FROM_UNIXTIME(a.begindate),'%Y-%m-%d %H:%i:%s') begindate,
+		DATE_FORMAT(FROM_UNIXTIME(a.enddate),'%Y-%m-%d %H:%i:%s') enddate,a.optunitname,a.description,a.matchinfo,
+		a.isdisabled,DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime 
+		from t_matchinfo a,t_matchtype b 
+		where a.matchtype=b.id and a.isvalid=#isvalid#  
+		<isNotEmpty prepend="and" property="name">
+			a.name like CONCAT('%',#name#,'%')
+		</isNotEmpty>		
+	</select>
+	
+	<select id="manage.MatchinfoDao.selectMatchinfo" parameterClass="int" resultClass="matchinfo">
+		select a.id,a.name,a.annualmatch,a.matchtype,b.name matchtypename,DATE_FORMAT(FROM_UNIXTIME(a.begindate),'%Y-%m-%d %H:%i:%s') begindate,
+		DATE_FORMAT(FROM_UNIXTIME(a.enddate),'%Y-%m-%d %H:%i:%s') enddate,a.optunitname,a.description,a.matchinfo,
+		a.isdisabled,DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime
+		from t_matchinfo t where t.id=#id#
+	</select>
+	
+	<select id="manage.MatchinfoDao.selectMatchtypeList" resultClass="matchtype">
+		select id,name from t_matchtype t where t.isvalid=1 
+	</select>
+	
+	<insert id="manage.MatchinfoDao.insertMatchinfo" parameterClass="matchinfo">
+		insert into t_matchinfo(annualmatch,name,matchtype,begindate,enddate,optunitname,description,matchinfo,updatetime,userid)
+		values(#annualmatch#,#name#,#matchtype#,UNIX_TIMESTAMP(#begindate#),UNIX_TIMESTAMP(#enddate#),#optunitname#,
+		#description#,#matchinfo#,UNIX_TIMESTAMP(NOW()),#userid#)
+	</insert>
+	
+	<update id="manage.MatchinfoDao.updateMatchinfo" parameterClass="matchinfo">
+		update t_matchinfo set annualmatch=#annualmatch#,name=#name#,matchtype=#matchtype#,
+		begindate=UNIX_TIMESTAMP(#begindate#),enddate=UNIX_TIMESTAMP(#enddate#),optunitname=#optunitname#,
+		description=#description#,matchinfo=#matchinfo#, updatetime=UNIX_TIMESTAMP(NOW()),userid=#userid# 
+		where id=#id#
+	</update>
+	
+	<update id="manage.MatchinfoDao.updateMatchinfoIsvalid" parameterClass="matchinfo">
+		update t_matchinfo set isvalid=#isvalid#,userid=#userid# where id=#id#
+	</update>
+	
+	<delete id="manage.MatchinfoDao.deleteMatchinfo" parameterClass="int">
+		delete from t_matchinfo where id=#id#
+	</delete>
+	
+	<update id="manage.MatchinfoDao.updateMatchinfoIsdisabled" parameterClass="matchinfo">
+		update t_matchinfo set isdisabled=#isdisabled# where id=#id#
+	</update>
+	
+</sqlMap>

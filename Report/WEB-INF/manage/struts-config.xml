@@ -102,6 +102,24 @@
 		<form-bean name="noticeForm"
 			type="com.report.manage.form.NoticeForm">
 		</form-bean>
+		<form-bean name="queryMatchtypeForm"
+			type="com.report.manage.form.MatchtypeForm">
+		</form-bean>
+        <form-bean name="addMatchtypeForm"
+			type="com.report.manage.form.MatchtypeForm">
+		</form-bean>
+		<form-bean name="modifyMatchtypeForm"
+			type="com.report.manage.form.MatchtypeForm">
+		</form-bean>
+		<form-bean name="queryMatchinfoForm"
+			type="com.report.manage.form.MatchinfoForm">
+		</form-bean>
+        <form-bean name="addMatchinfoForm"
+			type="com.report.manage.form.MatchinfoForm">
+		</form-bean>
+		<form-bean name="modifyMatchinfoForm"
+			type="com.report.manage.form.MatchinfoForm">
+		</form-bean>
 	</form-beans>
 
 
@@ -616,6 +634,13 @@
 			parameter="resetMemberPwd">
         </action>
         <action
+        	path="/auditMember"
+			type="com.report.manage.action.MemberAction"
+			scope="request"
+			validate="false"
+			parameter="auditMember">
+        </action>
+        <action
         	path="/lockMember"
 			type="com.report.manage.action.MemberAction"
 			scope="request"
@@ -749,8 +774,6 @@
 			parameter="modifyUserPwd">
 			<forward name="failure" path="/../manage/userpwd_modify.vm" />
         </action>
-        
-        
         <action
         	path="/load4RoleIndex"
 			type="com.report.manage.action.RoleAction"
@@ -862,6 +885,164 @@
 			name="noticeForm"
 			validate="true"
 			parameter="modifyNotice">
+        </action>
+        <action
+        	path="/load4MatchtypeIndex"
+			type="com.report.manage.action.MatchtypeAction"
+			scope="request"
+			name="queryMatchtypeForm"
+			validate="false"
+			parameter="load4MatchtypeIndex">
+			<forward name="success" path="/../manage/matchtype_index.vm"/>
+        </action>
+        <action
+        	path="/load4MatchtypeAdd"
+			type="com.report.manage.action.MatchtypeAction"
+			scope="request"
+			validate="false"
+			parameter="load4MatchtypeAdd">
+			<forward name="success" path="/../manage/matchtype_add.vm"/>
+        </action>
+        <action
+        	path="/addMatchtype"
+			type="com.report.manage.action.MatchtypeAction"
+			scope="request"
+			input="/load4MatchtypeAdd.do"
+			name="addMatchtypeForm"
+			validate="true"
+			parameter="addMatchtype">
+        </action>
+        <action
+        	path="/load4MatchtypeModify"
+			type="com.report.manage.action.MatchtypeAction"
+			scope="request"
+			name="modifyMatchtypeForm"
+			validate="false"
+			parameter="load4MatchtypeModify">
+			<forward name="success" path="/../manage/matchtype_modify.vm"/>
+        </action>
+        <action
+        	path="/modifyMatchtype"
+			type="com.report.manage.action.MatchtypeAction"
+			scope="request"
+			input="/load4MatchtypeModify.do"
+			name="modifyMatchtypeForm"
+			validate="true"
+			parameter="modifyMatchtype">
+        </action>
+        <action
+        	path="/trashMatchtype"
+			type="com.report.manage.action.MatchtypeAction"
+			scope="request"
+			validate="false"
+			parameter="trashMatchtype">
+        </action>
+        <action
+        	path="/restoreMatchtype"
+			type="com.report.manage.action.MatchtypeAction"
+			scope="request"
+			validate="false"
+			parameter="restoreMatchtype">
+        </action>
+        <action
+        	path="/removeMatchtype"
+			type="com.report.manage.action.MatchtypeAction"
+			scope="request"
+			validate="false"
+			parameter="removeMatchtype">
+        </action>
+        <action
+        	path="/disabledMatchtype"
+			type="com.report.manage.action.MatchtypeAction"
+			scope="request"
+			validate="false"
+			parameter="disabledMatchtype">
+        </action>
+        <action
+        	path="/enableMatchtype"
+			type="com.report.manage.action.MatchtypeAction"
+			scope="request"
+			validate="false"
+			parameter="enableMatchtype">
+        </action>
+        <action
+        	path="/load4MatchinfoIndex"
+			type="com.report.manage.action.MatchinfoAction"
+			scope="request"
+			name="queryMatchinfoForm"
+			validate="false"
+			parameter="load4MatchinfoIndex">
+			<forward name="success" path="/../manage/matchinfo_index.vm"/>
+        </action>
+        <action
+        	path="/load4MatchinfoAdd"
+			type="com.report.manage.action.MatchinfoAction"
+			scope="request"
+			validate="false"
+			parameter="load4MatchinfoAdd">
+			<forward name="success" path="/../manage/matchinfo_add.vm"/>
+        </action>
+        <action
+        	path="/addMatchinfo"
+			type="com.report.manage.action.MatchinfoAction"
+			scope="request"
+			input="/load4MatchinfoAdd.do"
+			name="addMatchinfoForm"
+			validate="true"
+			parameter="addMatchinfo">
+        </action>
+        <action
+        	path="/load4MatchinfoModify"
+			type="com.report.manage.action.MatchinfoAction"
+			scope="request"
+			name="modifyMatchinfoForm"
+			validate="false"
+			parameter="load4MatchinfoModify">
+			<forward name="success" path="/../manage/matchinfo_modify.vm"/>
+        </action>
+        <action
+        	path="/modifyMatchinfo"
+			type="com.report.manage.action.MatchinfoAction"
+			scope="request"
+			input="/load4MatchinfoModify.do"
+			name="modifyMatchinfoForm"
+			validate="true"
+			parameter="modifyMatchinfo">
+        </action>
+        <action
+        	path="/trashMatchinfo"
+			type="com.report.manage.action.MatchinfoAction"
+			scope="request"
+			validate="false"
+			parameter="trashMatchinfo">
+        </action>
+        <action
+        	path="/restoreMatchinfo"
+			type="com.report.manage.action.MatchinfoAction"
+			scope="request"
+			validate="false"
+			parameter="restoreMatchinfo">
+        </action>
+        <action
+        	path="/removeMatchinfo"
+			type="com.report.manage.action.MatchinfoAction"
+			scope="request"
+			validate="false"
+			parameter="removeMatchinfo">
+        </action>
+        <action
+        	path="/disabledMatchinfo"
+			type="com.report.manage.action.MatchinfoAction"
+			scope="request"
+			validate="false"
+			parameter="disabledMatchinfo">
+        </action>
+        <action
+        	path="/enableMatchinfo"
+			type="com.report.manage.action.MatchinfoAction"
+			scope="request"
+			validate="false"
+			parameter="enableMatchinfo">
         </action>
 	</action-mappings>
 

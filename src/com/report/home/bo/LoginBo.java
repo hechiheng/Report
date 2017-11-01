@@ -25,4 +25,8 @@ public class LoginBo {
 		member.setPassword(DigestUtils.md5Hex(member.getPassword()));
 		return dao.selectMember(member);
 	}
+
+	public void modifyMemberLogintime(Member member) throws BaseException {
+		dao.updateMemberLogintime(member);
+	}
 }
