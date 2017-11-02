@@ -1,8 +1,6 @@
 package com.report.home.action;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +20,6 @@ import com.report.home.bean.Message;
 import com.report.home.bean.News;
 import com.report.home.bean.Notice;
 import com.report.home.bo.HomeBo;
-import com.report.manage.bean.Website;
 import com.report.utils.Page;
 
 public class HomeAction extends BaseAction {
@@ -42,30 +39,6 @@ public class HomeAction extends BaseAction {
 
 		List<Link> linkList = bo.getLinkList();
 		request.setAttribute("linkList", linkList);
-
-		Map map_global = SysGlobals.getSessionObj(request,
-				Constants.GLOBAL_SESSION);
-		if (map_global == null) {
-			Website website = bo.getWebsite();
-			Map<String, String> sessionMap = new HashMap<String, String>();
-			sessionMap.put("cfg_webname", website.getCfg_webname());
-			sessionMap.put("cfg_webtitle", website.getCfg_webtitle());
-			sessionMap.put("cfg_themestyle", website.getCfg_themestyle());
-			sessionMap.put("cfg_keywords", website.getCfg_keywords());
-			sessionMap.put("cfg_description", website.getCfg_description());
-			sessionMap.put("cfg_powerby", website.getCfg_powerby());
-			sessionMap.put("cfg_recordno", website.getCfg_recordno());
-			sessionMap.put("cfg_address", website.getCfg_address());
-			sessionMap.put("cfg_phone", website.getCfg_phone());
-			sessionMap.put("cfg_qq", website.getCfg_qq());
-			sessionMap.put("cfg_email", website.getCfg_email());
-			sessionMap.put("cfg_website_close", String.valueOf(website
-					.getCfg_website_close()));
-			sessionMap.put("cfg_website_close_info", website
-					.getCfg_website_close_info());
-			SysGlobals.setSessionObj(request, Constants.GLOBAL_SESSION,
-					sessionMap);
-		}
 		return mapping.findForward("success");
 	}
 

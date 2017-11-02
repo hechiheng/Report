@@ -54,11 +54,11 @@ jQuery(function () {
 </head>
 <body>
 <div class="main">
-    <div class="pos">添加岗位</div>
+    <div class="pos">添加参赛项目</div>
 	<div class="form">
 		<form method='post' id="form_do" name="form_do" action="$link.setAction('addMatchinfo')">
 		<dl>
-			<dt>选择参赛年度：</dt>
+			<dt>参赛年度：</dt>
 			<dd>
 				<input type="text" name="matchinfo.annualmatch" class="inp_one" value="$!addMatchinfoForm.matchinfo.annualmatch"/>
 			</dd>
