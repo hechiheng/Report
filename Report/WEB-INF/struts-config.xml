@@ -25,7 +25,12 @@
 		<form-bean name="chgMemberPwdForm"
 			type="com.report.manage.form.MemberForm">
 		</form-bean>
-        
+        <form-bean name="addMatchapplyForm"
+			type="com.report.manage.form.MatchapplyForm">
+		</form-bean>
+		<form-bean name="modifyMatchapplyForm"
+			type="com.report.manage.form.MatchapplyForm">
+		</form-bean>
 	</form-beans>
 
 
@@ -233,6 +238,65 @@
 			validate="false"
 			parameter="load4LatestAnnounce">
 			<forward name="success" path="/home/announce_latest.vm"/>
+        </action>
+        <action
+        	path="/load4MatchapplyIndex"
+			type="com.report.home.action.MatchapplyAction"
+			scope="request"
+			validate="false"
+			parameter="load4MatchapplyIndex">
+			<forward name="success" path="/../home/matchapply_index.vm"/>
+        </action>
+        <action
+        	path="/load4MatchapplyAdd"
+			type="com.report.home.action.MatchapplyAction"
+			scope="request"
+			validate="false"
+			parameter="load4MatchapplyAdd">
+			<forward name="success" path="/../home/matchapply_add.vm"/>
+        </action>
+        <action
+        	path="/addMatchapply"
+			type="com.report.home.action.MatchapplyAction"
+			scope="request"
+			input="/load4MatchapplyAdd.do"
+			name="addMatchapplyForm"
+			validate="true"
+			parameter="addMatchapply">
+        </action>
+        <action
+        	path="/load4Matchapply"
+			type="com.report.home.action.MatchapplyAction"
+			scope="request"
+			name="modifyMatchapplyForm"
+			validate="false"
+			parameter="load4Matchapply">
+			<forward name="success" path="/../home/matchapply_info.vm"/>
+        </action>
+        <action
+        	path="/load4MatchapplyModify"
+			type="com.report.home.action.MatchapplyAction"
+			scope="request"
+			name="modifyMatchapplyForm"
+			validate="false"
+			parameter="load4MatchapplyModify">
+			<forward name="success" path="/../home/matchapply_modify.vm"/>
+        </action>
+        <action
+        	path="/modifyMatchapply"
+			type="com.report.home.action.MatchapplyAction"
+			scope="request"
+			input="/load4MatchapplyModify.do"
+			name="modifyMatchapplyForm"
+			validate="true"
+			parameter="modifyMatchapply">
+        </action>
+        <action
+        	path="/removeMatchapply"
+			type="com.report.home.action.MatchapplyAction"
+			scope="request"
+			validate="false"
+			parameter="removeMatchapply">
         </action>
         
         

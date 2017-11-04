@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>大学生创新大赛网上申报系统-参赛报名</title>
+<meta name="keywords" content="大学生创新大赛网上申报系统" />
+<meta name="description" content="大学生创新大赛网上申报系统" />
+<link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
+<script type="text/javascript" src="$link.setRelative('/home/js/jquery-1.7.2.min.js')" ></script>
+<link href="$link.setRelative('/home/theme/default/css/css.css')" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/ueditor/ueditor.config.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/ueditor/ueditor.all.min.js')"></script>
+<script type="text/javascript">
+	
+	window.UEDITOR_HOME_URL = "ueditor/";
+	window.onload = function() {
+		UE.getEditor('description', {
+    		toolbars: [
+                ['fullscreen', 'source', 'undo', 'redo']
+            ],
+            initialFrameWidth : 600,
+            initialFrameHeight: 100
+        });
+		
+		UE.getEditor('content', {
+            initialFrameWidth : 600,
+            initialFrameHeight: 300
+        });
+    }
+
+
+
+</script>
+<script type="text/javascript">
+function change_code(obj){
+	jQuery("#code").attr("src",obj.src+'?'+Math.random());
+	return false;
+}
+
+jQuery(function () {
+	jQuery("input[name='matchapply.annualmatch']").focus();
+	
+	var d = new Date();
+	var year = d.getFullYear();
+    jQuery("#annualmatch").val(year);
+	
+	jQuery("#form_do").submit(function(){
+		var annualmatch = jQuery("input[name='matchapply.annualmatch']");
+		var name = jQuery("input[name='matchapply.name']");
+		var begindate = jQuery("input[name='matchapply.begindate']");
+		var enddate = jQuery("input[name='matchapply.enddate']");
+		var optunitname = jQuery("input[name='matchapply.optunitname']");
+		var description = jQuery("#description");
+		var content = jQuery("#content");
+		if(jQuery.trim(annualmatch.val())==''){
+			annualmatch.parent().find("span").remove().end().append("<span class='error'>参赛年度不能为空</span>");
+			annualmatch.focus();
+			return false;			
+		}else {
+			annualmatch.parent().find("span").remove().end();
+		}
+		if(jQuery.trim(name.val())==''){
+			name.parent().find("span").remove().end().append("<span class='error'>参赛项目名称不能为空</span>");
+			name.focus();
+			return false;			
+		}else {
+			name.parent().find("span").remove().end();
+		}
+		if(jQuery.trim(begindate.val())==''){
+			begindate.parent().find("span").remove().end().append("<span class='error'>报名开始日期不能为空</span>");
+			begindate.focus();
+			return false;			
+		}else {
+			begindate.parent().find("span").remove().end();
+		}
+		if(jQuery.trim(enddate.val())==''){
+			enddate.parent().find("span").remove().end().append("<span class='error'>报名截止日期不能为空</span>");
+			enddate.focus();
+			return false;			
+		}else {
+			enddate.parent().find("span").remove().end();
+		}
+		if(jQuery.trim(optunitname.val())==''){
+			optunitname.parent().find("span").remove().end().append("<span class='error'>主办单位不能为空</span>");
+			optunitname.focus();
+			return false;			
+		}else {
+			optunitname.parent().find("span").remove().end();
+		}
+		if(!UE.getEditor('description').hasContents()){
+			description.parent().find("span").remove().end().append("<span class='error'>摘要不能为空</span>");
+			description.focus();
+			return false;			
+		}else {
+			description.parent().find("span").remove().end();
+		}
+		if(!UE.getEditor('content').hasContents()){
+			content.parent().find("span").remove().end().append("<span class='error'>内容不能为空</span>");
+			content.focus();
+			return false;			
+		}else {
+			content.parent().find("span").remove().end();
+		}
+
+	});
+});
+</script>
+</head>
+
+<body>
+<!--top -->
+<div id="top">
+<div class="warp" id="herd">
+	<div id="top_fla">
+	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="998" height="159">
+	  <param name="movie" value="$link.setRelative('/home/theme/default/images/top.swf')" />
+	  <param name="quality" value="high" />
+	  <PARAM NAME=wmode value="transparent">
+	  <embed src="$link.setRelative('/home/theme/default/images/top.swf')" quality="high" wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="998" height="159"></embed>
+	</object>
+	</div>
+	<div id="top_logo"></div>
+</div>
+<!--menu -->
+<div id="menu">
+	<ul>
+		#parse("/home/include/menu.vm")
+	</ul>
+</div>
+
+<div class="warp1 mt">
+	#parse("/home/include/announce.vm")
+</div>
+<div class="clear"></div>
+
+</div>
+
+<div class="content">
+	<div class="warp1 mt">
+	<div class="left f_l">
+		<h3 class="flbt">会员中心</h3>
+		<div class="xbox">
+			<ul class="fllb">
+			<li><a href="$link.setAction('load4MatchapplyAdd')">参赛报名</a></li>
+			<li><a href="$link.setAction('load4MatchapplyIndex')">报名列表</a></li>
+			</ul>
+		</div>		
+	</div>
+	<div class="right f_r">
+		<h3 class="nybt"><span>参赛报名</span></h3>
+		<div class="form" style="width: 600px;margin: 10px auto;">
+			<form method='post' id="form_do" name="form_do" action="$link.setAction('addMatchapply')">
+				<dl>
+        			<dt>参赛年度：</dt>
+        			<dd>
+        				<input type="text" id="annualmatch" name="matchapply.annualmatch" class="inp_one" value="$!addMatchapplyForm.matchapply.annualmatch"/>
+        				<span style="color: red;">*(格式：YYYY)</span>
+        			</dd>
+        		</dl>
+				<dl>
+        			<dt> 参赛项目：</dt>
+        			<dd>
+        				<select name="matchapply.matchid">
+        					#set($matchapplyList = $request.getAttribute("matchapplyList"))
+        					#foreach($matchinfo in $matchinfoList)
+        						#if($!matchinfo.id==$!addMatchapplyForm.matchapply.matchid)
+        							<option value="$!matchinfo.id" selected="selected">$!matchinfo.name</option>
+        						#else
+        							<option value="$!matchinfo.id">$!matchinfo.name</option>
+        						#end
+        					#end
+        				</select>
+        			</dd>
+        		</dl>	
+				<dl>
+        			<dt>作品名称：</dt>
+        			<dd>
+        				<input type="text" name="matchapply.name" class="inp_large" value="$!addMatchapplyForm.matchapply.name"/>
+        				<span style="color: red;">*</span>
+        			</dd>
+        		</dl>
+				<dl>
+        			<dt>学校名称：</dt>
+        			<dd>
+        				<input type="text" name="matchapply.unitname" class="inp_large" value="$!addMatchapplyForm.matchapply.unitname"/>
+        				<span style="color: red;">*</span>
+        			</dd>
+        		</dl>
+				<dl>
+        			<dt>作者姓名：</dt>
+        			<dd>
+        				<input type="text" name="matchapply.authors" class="inp_large" value="$!addMatchapplyForm.matchapply.authors"/>
+        				<span style="color: red;">*</span>
+        			</dd>
+        		</dl>
+				<dl>
+        			<dt>辅导老师：</dt>
+        			<dd>
+        				<input type="text" name="matchapply.teachers" class="inp_large" value="$!addMatchapplyForm.matchapply.teachers"/>
+        				<span style="color: red;">*</span>
+        			</dd>
+        		</dl>
+				<dl>
+        			<dt>作品简述：</dt>
+        			<dd>
+        				<textarea name="matchapply.description" id="description">$!addMatchapplyForm.matchapply.description</textarea>
+        			</dd>
+        		</dl>
+				<dl>
+					<dt>验证码：</dt>
+					<dd>
+						<input type="text" name="matchapply.imagecode" class="inp_small" />
+						<img src="$link.setAction('/manage/imageCode.do')" align="absmiddle" id="code"  class="vcode" onclick="change_code(this);"/>
+						<span style="color: red;">*</span>
+					</dd>
+				</dl>
+				<dl>
+    				<span class='error'>#errorMarkup()</span>
+                </dl>
+				<div class="form_b">		
+					<input type="submit" class="btn_blue" id="submit" value="提交">
+				</div>
+		   </form>
+		</div>
+
+</div>
+<div class=" clear"></div>
+</div>
+</div>
+
+<div class="warp1 mt" id="bottom">
+	#parse("/home/include/bottom.vm")
+</div>
+
+
+</body>
+</html>

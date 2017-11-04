@@ -16,11 +16,12 @@ public class Matchinfo implements Serializable {
 	private String description;
 	private String content;
 	private int isvalid;
-	private int isdisabled;
 	private String begindate;
 	private String enddate;
 	private String updatetime;
 	private int userid;
+	private int firstRow;
+	private int listRows;
 
 	public int getId() {
 		return id;
@@ -68,14 +69,6 @@ public class Matchinfo implements Serializable {
 
 	public void setUserid(int userid) {
 		this.userid = userid;
-	}
-
-	public void setIsdisabled(int isdisabled) {
-		this.isdisabled = isdisabled;
-	}
-
-	public int getIsdisabled() {
-		return isdisabled;
 	}
 
 	public void setName(String name) {
@@ -140,6 +133,22 @@ public class Matchinfo implements Serializable {
 
 	public String getContent() {
 		return content;
+	}
+
+	public int getFirstRow() {
+		return firstRow;
+	}
+
+	public void setFirstRow(int firstRow) {
+		this.firstRow = firstRow;
+	}
+
+	public int getListRows() {
+		return listRows;
+	}
+
+	public void setListRows(int listRows) {
+		this.listRows = listRows;
 	}
 
 }

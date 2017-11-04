@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="home.Matchapply">
+	<typeAlias alias="matchapply" type="com.report.manage.bean.Matchapply"/>
+	<typeAlias alias="matchinfo" type="com.report.manage.bean.Matchinfo"/>
+	
+	<select id="manage.MatchapplyDao.selectMatchapplyList" resultClass="matchapply">
+		select a.id,a.name,a.annualmatch,a.matchid,b.name matchname,a.unitname,a.authors,a.teachers,a.description,a.content,
+		DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime,a.state,a.memberid,a.checkuserid,
+		DATE_FORMAT(FROM_UNIXTIME(a.checktime),'%Y-%m-%d %H:%i:%s') checktime 
+		from t_matchapply a,t_matchinfo b 
+		where a.matchid=b.id and a.isvalid=1  
+		order by a.updatetime desc
+	</select>
+	
+	<select id="manage.MatchapplyDao.selectMatchapply" parameterClass="int" resultClass="matchapply">
+		select a.id,a.name,a.annualmatch,a.matchid,b.name matchname,a.unitname,a.authors,a.teachers,a.description,a.content,
+		DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime,a.state,a.memberid,a.checkuserid,
+		DATE_FORMAT(FROM_UNIXTIME(a.checktime),'%Y-%m-%d %H:%i:%s') checktime 
+		from t_matchapply a,t_matchinfo b 
+		where a.matchid=b.id and a.id=#id#
+	</select>
+	
+	<select id="manage.MatchapplyDao.selectMatchinfoList" resultClass="matchinfo">
+		select id,name from t_matchinfo t where t.isvalid=1 
+	</select>
+	
+	<insert id="manage.MatchapplyDao.insertMatchapply" parameterClass="matchapply">
+		insert into t_matchapply(annualmatch,name,matchid,unitname,authors,teachers,description,content,updatetime,memberid)
+		values(#annualmatch#,#name#,#matchid#,#unitname#,#authors#,#teachers#,#description#,#content#,UNIX_TIMESTAMP(NOW()),#memberid#)
+	</insert>
+	
+	<update id="manage.MatchapplyDao.updateMatchapply" parameterClass="matchapply">
+		update t_matchapply set annualmatch=#annualmatch#,name=#name#,matchid=#matchid#,
+		unitname=#unitname#,authors=#authors#,teachers=#teachers#,description=#description#,content=#content#, 
+		updatetime=UNIX_TIMESTAMP(NOW()),memberid=#memberid# 
+		where id=#id#
+	</update>
+	
+	<delete id="manage.MatchapplyDao.deleteMatchapply" parameterClass="int">
+		delete from t_matchapply where id=#id#
+	</delete>
+	
+</sqlMap>

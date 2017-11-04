@@ -2,12 +2,16 @@
 <interceptor-config>
 	<interceptor name="member" type="com.report.home.interceptor.MemberInterceptor"/>
 	<interceptor name="home" type="com.report.home.interceptor.HomeInterceptor"/>
+	<interceptor name="matchapply" type="com.report.home.interceptor.MatchapplyInterceptor"/>
 
 	<action type="com.report.home.action.MemberAction">
 		<interceptor name="member"/>
 	</action>
 	<action type="com.report.home.action.HomeAction">
 		<interceptor name="home"/>
+	</action>
+	<action type="com.report.home.action.MatchapplyAction">
+		<interceptor name="matchapply"/>
 	</action>
 	
 </interceptor-config>

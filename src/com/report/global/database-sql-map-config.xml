@@ -34,5 +34,6 @@
 	<sqlMap resource="com/report/manage/dao/sqlmap/database/Notice.xml" />
 	<sqlMap resource="com/report/manage/dao/sqlmap/database/Matchtype.xml" />
 	<sqlMap resource="com/report/manage/dao/sqlmap/database/Matchinfo.xml" />
+	<sqlMap resource="com/report/manage/dao/sqlmap/database/Matchapply.xml" />
 
 </sqlMapConfig>
