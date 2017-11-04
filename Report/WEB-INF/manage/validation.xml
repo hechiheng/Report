@@ -929,6 +929,154 @@
 				</var>
 			</field>
 		</form>
+		<form name="addMatchinfoForm">
+			<field property="matchinfo.annualmatch"
+				depends="required,bytemaxlength">
+				<arg key="matchinfo.annualmatch" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>4</var-value>
+				</var>
+			</field>
+			<field property="matchinfo.name"
+				depends="required,bytemaxlength">
+				<arg key="matchinfo.name" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>300</var-value>
+				</var>
+			</field>
+			<field property="matchinfo.matchtype"
+				depends="required,bytemaxlength">
+				<arg key="matchinfo.matchtype" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="matchinfo.begindate"
+				depends="required,date">
+				<arg key="matchinfo.begindate" />
+				<arg1 key="${var:datePattern}" resource="false"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>yyyy-MM-dd</var-value>
+				</var>
+			</field>
+			<field property="matchinfo.enddate"
+				depends="required,date">
+				<arg key="matchinfo.enddate" />
+				<arg1 key="${var:datePattern}" resource="false"/>
+				<var>
+					<var-name>datePattern</var-name>
+					<var-value>yyyy-MM-dd</var-value>
+				</var>
+			</field>
+			<field property="matchinfo.optunitname"
+				depends="required,bytemaxlength">
+				<arg key="matchinfo.optunitname" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>300</var-value>
+				</var>
+			</field>
+			<field property="matchinfo.description"
+				depends="required">
+				<arg key="matchinfo.description" />
+			</field>
+			<field property="matchinfo.content"
+				depends="required">
+				<arg key="matchinfo.content" />
+			</field>
+		</form>
+		<form name="modifyMatchinfoForm">
+			<field property="matchinfo.id"
+				depends="required,bytemaxlength">
+				<arg key="matchinfo.id" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="matchinfo.annualmatch"
+				depends="required,bytemaxlength">
+				<arg key="matchinfo.annualmatch" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>4</var-value>
+				</var>
+			</field>
+			<field property="matchinfo.name"
+				depends="required,bytemaxlength">
+				<arg key="matchinfo.name" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>300</var-value>
+				</var>
+			</field>
+			<field property="matchinfo.matchtype"
+				depends="required,bytemaxlength">
+				<arg key="matchinfo.matchtype" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="matchinfo.begindate"
+				depends="required,bytemaxlength">
+				<arg key="matchinfo.begindate" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="matchinfo.enddate"
+				depends="required,bytemaxlength">
+				<arg key="matchinfo.enddate" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="matchinfo.optunitname"
+				depends="required,bytemaxlength">
+				<arg key="matchinfo.optunitname" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>300</var-value>
+				</var>
+			</field>
+			<field property="matchinfo.description"
+				depends="required">
+				<arg key="matchinfo.description" />
+			</field>
+			<field property="matchinfo.content"
+				depends="required">
+				<arg key="matchinfo.content" />
+			</field>
+		</form>
 		
 	</formset>
 

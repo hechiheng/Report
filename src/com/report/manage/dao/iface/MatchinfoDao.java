@@ -27,7 +27,4 @@ public interface MatchinfoDao {
 
 	public void deleteMatchinfo(int id) throws BaseException;
 
-	public void updateMatchinfoIsdisabled(Matchinfo matchinfo)
-			throws BaseException;
-
 }

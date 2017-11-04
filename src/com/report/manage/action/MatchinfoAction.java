@@ -1,6 +1,5 @@
 package com.report.manage.action;
 
-import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,11 +46,6 @@ public class MatchinfoAction extends BaseAction {
 	public ActionForward load4MatchinfoAdd(ActionMapping mapping,
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws BaseException {
-		MatchinfoForm matchinfoForm = (MatchinfoForm) form;
-		Calendar calendar = Calendar.getInstance();
-		int year = calendar.get(Calendar.YEAR);
-		matchinfoForm.getMatchinfo().setAnnualmatch(String.valueOf(year));
-
 		MatchinfoBo bo = new MatchinfoBo();
 		List<Matchtype> matchtypeList = bo.getMatchtypeList();
 		request.setAttribute("matchtypeList", matchtypeList);
@@ -76,9 +70,9 @@ public class MatchinfoAction extends BaseAction {
 		return mapping.findForward("info");
 	}
 
-	public ActionForward load4MatchinfoInfo(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
-			HttpServletResponse response) throws BaseException {
+	public ActionForward load4Matchinfo(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws BaseException {
 		String id = request.getParameter("id");
 		MatchinfoBo bo = new MatchinfoBo();
 		Matchinfo matchinfo = bo.getMatchinfo(Integer.valueOf(id));
@@ -91,9 +85,15 @@ public class MatchinfoAction extends BaseAction {
 			HttpServletResponse response) throws BaseException {
 		String id = request.getParameter("id");
 		MatchinfoForm matchinfoForm = (MatchinfoForm) form;
+		if (id == null) {
+			id = String.valueOf(matchinfoForm.getMatchinfo().getId());
+		}
 		MatchinfoBo bo = new MatchinfoBo();
 		Matchinfo matchinfo = bo.getMatchinfo(Integer.valueOf(id));
 		matchinfoForm.setMatchinfo(matchinfo);
+
+		List<Matchtype> matchtypeList = bo.getMatchtypeList();
+		request.setAttribute("matchtypeList", matchtypeList);
 		return mapping.findForward("success");
 	}
 
@@ -166,44 +166,6 @@ public class MatchinfoAction extends BaseAction {
 		smb.setLinkText(new ActionMessage("MatchinfoAction.return"));
 		smb.setAction("/load4MatchinfoIndex");
 		smb.setQueryData("istrash", "1");
-		SysGlobals.setSysMessage(request, smb);
-		return mapping.findForward("info");
-	}
-
-	public ActionForward disabledMatchinfo(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
-			HttpServletResponse response) throws BaseException {
-		String id = request.getParameter("id");
-		Matchinfo matchinfo = new Matchinfo();
-		matchinfo.setId(Integer.valueOf(id));
-		matchinfo.setIsdisabled(1);
-		MatchinfoBo bo = new MatchinfoBo();
-		bo.disabledMatchinfo(matchinfo);
-
-		SysMessageBean smb = new SysMessageBean(false);
-		smb.setMessage(new ActionMessage(
-				"MatchinfoAction.disabledMatchinfo.success"));
-		smb.setLinkText(new ActionMessage("MatchinfoAction.return"));
-		smb.setAction("/load4MatchinfoIndex");
-		SysGlobals.setSysMessage(request, smb);
-		return mapping.findForward("info");
-	}
-
-	public ActionForward enableMatchinfo(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
-			HttpServletResponse response) throws BaseException {
-		String id = request.getParameter("id");
-		Matchinfo matchinfo = new Matchinfo();
-		matchinfo.setId(Integer.valueOf(id));
-		matchinfo.setIsdisabled(0);
-		MatchinfoBo bo = new MatchinfoBo();
-		bo.disabledMatchinfo(matchinfo);
-
-		SysMessageBean smb = new SysMessageBean(false);
-		smb.setMessage(new ActionMessage(
-				"MatchinfoAction.enableMatchinfo.success"));
-		smb.setLinkText(new ActionMessage("MatchinfoAction.return"));
-		smb.setAction("/load4MatchinfoIndex");
 		SysGlobals.setSysMessage(request, smb);
 		return mapping.findForward("info");
 	}

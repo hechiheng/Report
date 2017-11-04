@@ -992,6 +992,15 @@
 			parameter="addMatchinfo">
         </action>
         <action
+        	path="/load4Matchinfo"
+			type="com.report.manage.action.MatchinfoAction"
+			scope="request"
+			name="modifyMatchinfoForm"
+			validate="false"
+			parameter="load4Matchinfo">
+			<forward name="success" path="/../manage/matchinfo_info.vm"/>
+        </action>
+        <action
         	path="/load4MatchinfoModify"
 			type="com.report.manage.action.MatchinfoAction"
 			scope="request"
@@ -1029,20 +1038,6 @@
 			scope="request"
 			validate="false"
 			parameter="removeMatchinfo">
-        </action>
-        <action
-        	path="/disabledMatchinfo"
-			type="com.report.manage.action.MatchinfoAction"
-			scope="request"
-			validate="false"
-			parameter="disabledMatchinfo">
-        </action>
-        <action
-        	path="/enableMatchinfo"
-			type="com.report.manage.action.MatchinfoAction"
-			scope="request"
-			validate="false"
-			parameter="enableMatchinfo">
         </action>
 	</action-mappings>
 

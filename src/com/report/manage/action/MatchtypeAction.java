@@ -70,6 +70,9 @@ public class MatchtypeAction extends BaseAction {
 			HttpServletResponse response) throws BaseException {
 		String id = request.getParameter("id");
 		MatchtypeForm matchtypeForm = (MatchtypeForm) form;
+		if (id == null) {
+			id = String.valueOf(matchtypeForm.getMatchtype().getId());
+		}
 		MatchtypeBo bo = new MatchtypeBo();
 		Matchtype matchtype = bo.getMatchtype(Integer.valueOf(id));
 		matchtypeForm.setMatchtype(matchtype);

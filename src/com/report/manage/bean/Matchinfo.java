@@ -14,7 +14,7 @@ public class Matchinfo implements Serializable {
 	private String annualmatch;
 	private String optunitname;
 	private String description;
-	private String matchinfo;
+	private String content;
 	private int isvalid;
 	private int isdisabled;
 	private String begindate;
@@ -110,14 +110,6 @@ public class Matchinfo implements Serializable {
 		this.optunitname = optunitname;
 	}
 
-	public String getMatchinfo() {
-		return matchinfo;
-	}
-
-	public void setMatchinfo(String matchinfo) {
-		this.matchinfo = matchinfo;
-	}
-
 	public String getBegindate() {
 		return begindate;
 	}
@@ -140,6 +132,14 @@ public class Matchinfo implements Serializable {
 
 	public String getMatchtypename() {
 		return matchtypename;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getContent() {
+		return content;
 	}
 
 }

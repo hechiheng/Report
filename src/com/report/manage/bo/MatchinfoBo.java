@@ -57,8 +57,4 @@ public class MatchinfoBo {
 		dao.deleteMatchinfo(id);
 	}
 
-	public void disabledMatchinfo(Matchinfo matchinfo) throws BaseException {
-		dao.updateMatchinfoIsdisabled(matchinfo);
-	}
-
 }

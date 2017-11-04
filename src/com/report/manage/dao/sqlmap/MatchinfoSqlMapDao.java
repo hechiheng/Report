@@ -108,16 +108,4 @@ public class MatchinfoSqlMapDao extends SqlMapDaoTemplate implements
 		}
 	}
 
-	public void updateMatchinfoIsdisabled(Matchinfo matchinfo)
-			throws BaseException {
-		try {
-			this.update("manage.MatchinfoDao.updateMatchinfoIsdisabled",
-					matchinfo);
-		} catch (DaoException e) {
-			logger.error("manage.MatchinfoDao.updateMatchinfoIsdisabled", e);
-			throw new BaseException(
-					"manage.MatchinfoDao.updateMatchinfoIsdisabled", e);
-		}
-	}
-
 }
