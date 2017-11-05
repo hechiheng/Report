@@ -49,38 +49,22 @@
 		<h3 class="flbt">会员中心</h3>
 		<div class="xbox">
 			<ul class="fllb">
-			<li><a href="$link.setAction('load4MemberIndex')">个人信息</a></li>
-			<li><a href="$link.setAction('load4MemberModify')">修改资料</a></li>
-			<li><a href="$link.setAction('load4MemberChgPwd')">修改密码</a></li>
-			<li><a href="$link.setAction('logout')">退出登录</a></li>
+			<li><a href="$link.setAction('load4MatchapplyAdd')">参赛报名</a></li>
+			<li><a href="$link.setAction('load4MatchapplyIndex')">报名列表</a></li>
 			</ul>
 		</div>		
 	</div>
 <div class="right f_r">
 	<h3 class="nybt">
-		<span>个人信息</span>
+		<span>参赛报名列表</span>
 	</h3>
-	<div class="form">
-		<div class="h3">
-			<span>基本资料</span>
-		</div>
-		#set($member = $request.getAttribute("member"))
-		<ul class="personInfo">
-			<li>用户名：$!member.accountid</li>
-			<li>姓名/单位名称：$!member.factname</li>
-			<li>性别：#if($!member.sex==1)男#else女#end</li>
-			<li>身份证号：$!member.idcard</li>
-			<li>出生日期：$!member.birthday</li>
-   		</ul>
-   		<div class="h3">
-			<span>联系方式</span>
-		</div>
-		<ul class="personInfo">
-			<li>邮箱：$!member.email</li>
-			<li>QQ：$!member.qq</li>
-			<li>电话：$!member.tel</li>
-			<li>所在地：$!member.address</li>
-		</ul>
+	<div class="xbox wzzw"> 
+		<ul class="wzli">	
+    		#set($matchapplyList = $request.getAttribute("matchapplyList"))
+    		#foreach($matchapply in $matchapplyList)
+    			<li><span>$!matchapply.updatetime</span><a href="$link.setAction('load4Matchapply').addQueryData('id',$!matchapply.id)">$!matchapply.name</a></li>
+    		#end
+    	</ul>
 	</div>
 
 </div>

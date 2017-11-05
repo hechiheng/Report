@@ -961,21 +961,23 @@
 				</var>
 			</field>
 			<field property="matchinfo.begindate"
-				depends="required,date">
+				depends="required,bytemaxlength">
 				<arg key="matchinfo.begindate" />
-				<arg1 key="${var:datePattern}" resource="false"/>
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
 				<var>
-					<var-name>datePattern</var-name>
-					<var-value>yyyy-MM-dd</var-value>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
 				</var>
 			</field>
 			<field property="matchinfo.enddate"
-				depends="required,date">
+				depends="required,bytemaxlength">
 				<arg key="matchinfo.enddate" />
-				<arg1 key="${var:datePattern}" resource="false"/>
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
 				<var>
-					<var-name>datePattern</var-name>
-					<var-value>yyyy-MM-dd</var-value>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
 				</var>
 			</field>
 			<field property="matchinfo.optunitname"

@@ -9,7 +9,7 @@
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
 <script type="text/javascript" src="$link.setRelative('/home/js/jquery-1.7.2.min.js')" ></script>
 <link href="$link.setRelative('/home/theme/default/css/css.css')" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/home/js/jquery.form.min.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/ueditor/ueditor.config.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/ueditor/ueditor.all.min.js')"></script>
 <script type="text/javascript">
@@ -17,14 +17,6 @@
 	window.UEDITOR_HOME_URL = "ueditor/";
 	window.onload = function() {
 		UE.getEditor('description', {
-    		toolbars: [
-                ['fullscreen', 'source', 'undo', 'redo']
-            ],
-            initialFrameWidth : 600,
-            initialFrameHeight: 100
-        });
-		
-		UE.getEditor('content', {
             initialFrameWidth : 600,
             initialFrameHeight: 300
         });
@@ -49,11 +41,11 @@ jQuery(function () {
 	jQuery("#form_do").submit(function(){
 		var annualmatch = jQuery("input[name='matchapply.annualmatch']");
 		var name = jQuery("input[name='matchapply.name']");
-		var begindate = jQuery("input[name='matchapply.begindate']");
-		var enddate = jQuery("input[name='matchapply.enddate']");
-		var optunitname = jQuery("input[name='matchapply.optunitname']");
+		var unitname = jQuery("input[name='matchapply.unitname']");
+		var authors = jQuery("input[name='matchapply.authors']");
+		var teachers = jQuery("input[name='matchapply.teachers']");
+		var imagecode = jQuery("input[name='matchapply.imagecode']");
 		var description = jQuery("#description");
-		var content = jQuery("#content");
 		if(jQuery.trim(annualmatch.val())==''){
 			annualmatch.parent().find("span").remove().end().append("<span class='error'>参赛年度不能为空</span>");
 			annualmatch.focus();
@@ -62,46 +54,46 @@ jQuery(function () {
 			annualmatch.parent().find("span").remove().end();
 		}
 		if(jQuery.trim(name.val())==''){
-			name.parent().find("span").remove().end().append("<span class='error'>参赛项目名称不能为空</span>");
+			name.parent().find("span").remove().end().append("<span class='error'>作品名称不能为空</span>");
 			name.focus();
 			return false;			
 		}else {
 			name.parent().find("span").remove().end();
 		}
-		if(jQuery.trim(begindate.val())==''){
-			begindate.parent().find("span").remove().end().append("<span class='error'>报名开始日期不能为空</span>");
-			begindate.focus();
+		if(jQuery.trim(unitname.val())==''){
+			unitname.parent().find("span").remove().end().append("<span class='error'>学校名称不能为空</span>");
+			unitname.focus();
 			return false;			
 		}else {
-			begindate.parent().find("span").remove().end();
+			unitname.parent().find("span").remove().end();
 		}
-		if(jQuery.trim(enddate.val())==''){
-			enddate.parent().find("span").remove().end().append("<span class='error'>报名截止日期不能为空</span>");
-			enddate.focus();
+		if(jQuery.trim(authors.val())==''){
+			authors.parent().find("span").remove().end().append("<span class='error'>作者姓名不能为空</span>");
+			authors.focus();
 			return false;			
 		}else {
-			enddate.parent().find("span").remove().end();
+			authors.parent().find("span").remove().end();
 		}
-		if(jQuery.trim(optunitname.val())==''){
-			optunitname.parent().find("span").remove().end().append("<span class='error'>主办单位不能为空</span>");
-			optunitname.focus();
+		if(jQuery.trim(teachers.val())==''){
+			teachers.parent().find("span").remove().end().append("<span class='error'>辅导老师不能为空</span>");
+			teachers.focus();
 			return false;			
 		}else {
-			optunitname.parent().find("span").remove().end();
+			teachers.parent().find("span").remove().end();
 		}
 		if(!UE.getEditor('description').hasContents()){
-			description.parent().find("span").remove().end().append("<span class='error'>摘要不能为空</span>");
+			description.parent().find("span").remove().end().append("<span class='error'>作品简述不能为空</span>");
 			description.focus();
 			return false;			
 		}else {
 			description.parent().find("span").remove().end();
 		}
-		if(!UE.getEditor('content').hasContents()){
-			content.parent().find("span").remove().end().append("<span class='error'>内容不能为空</span>");
-			content.focus();
+		if(jQuery.trim(imagecode.val())==''){
+			imagecode.parent().find("span").remove().end().append("<span class='error'>验证码不能为空</span>");
+			imagecode.focus();
 			return false;			
 		}else {
-			content.parent().find("span").remove().end();
+			imagecode.parent().find("span").remove().end();
 		}
 
 	});
@@ -120,6 +112,9 @@ jQuery(function () {
 	  <PARAM NAME=wmode value="transparent">
 	  <embed src="$link.setRelative('/home/theme/default/images/top.swf')" quality="high" wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="998" height="159"></embed>
 	</object>
+	</div>
+	<div id="top_member">
+		#parse("/home/include/top_member.vm")
 	</div>
 	<div id="top_logo"></div>
 </div>
@@ -140,7 +135,7 @@ jQuery(function () {
 <div class="content">
 	<div class="warp1 mt">
 	<div class="left f_l">
-		<h3 class="flbt">会员中心</h3>
+		<h3 class="flbt">参赛报名</h3>
 		<div class="xbox">
 			<ul class="fllb">
 			<li><a href="$link.setAction('load4MatchapplyAdd')">参赛报名</a></li>
@@ -150,7 +145,7 @@ jQuery(function () {
 	</div>
 	<div class="right f_r">
 		<h3 class="nybt"><span>参赛报名</span></h3>
-		<div class="form" style="width: 600px;margin: 10px auto;">
+		<div class="form">
 			<form method='post' id="form_do" name="form_do" action="$link.setAction('addMatchapply')">
 				<dl>
         			<dt>参赛年度：</dt>
@@ -220,7 +215,7 @@ jQuery(function () {
     				<span class='error'>#errorMarkup()</span>
                 </dl>
 				<div class="form_b">		
-					<input type="submit" class="btn_blue" id="submit" value="提交">
+					<input type="submit" class="btn_blue" id="submit" value="保存">
 				</div>
 		   </form>
 		</div>

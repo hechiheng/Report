@@ -51,8 +51,7 @@ public class LoginAction extends BaseAction {
 		if (!imagecode.equals(session.getAttribute("imagecode"))) {
 			flag = "failure";
 			ActionMessages msg = new ActionMessages();
-			msg.add("sysMessage", new ActionMessage(
-					"LoginAction.login.imagecode"));
+			msg.add("sysMessage", new ActionMessage("error.input.imagecode"));
 			saveErrors(request, msg);
 		} else {
 			User user = new User();

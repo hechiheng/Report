@@ -3,55 +3,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>大学生创新大赛网上申报系统</title>
+<title>大学生创新大赛网上申报系统-参赛报名</title>
 <meta name="keywords" content="大学生创新大赛网上申报系统" />
 <meta name="description" content="大学生创新大赛网上申报系统" />
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
 <script type="text/javascript" src="$link.setRelative('/home/js/jquery-1.7.2.min.js')" ></script>
 <link href="$link.setRelative('/home/theme/default/css/css.css')" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="$link.setRelative('/manage/js/calendar/calendar.js')"></script>
-<script type="text/javascript" src="$link.setRelative('/manage/js/calendar/lang/en.js')"></script>
-<link href="$link.setRelative('/manage/js/calendar/jscal2.css')" rel="stylesheet" type="text/css" />
-<link href="$link.setRelative('/manage/js/calendar/border-radius.css')" rel="stylesheet" type="text/css" />
-<link href="$link.setRelative('/manage/js/calendar/win2k.css')" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-function change_code(obj){
-	jQuery("#code").attr("src",obj.src+'?'+Math.random());
-	return false;
+//确认,跳转网址
+function toConfirm(url, str){
+    if (window.confirm(str)){
+        location.href = url;
+    }
 }
-
-jQurey(function () {
-	jQurey("input[name='member.factname']").focus();
-	
-	jQurey("#form_do").submit(function(){
-		var factname = jQuery("input[name='member.factname']");
-		var email = jQuery("input[name='member.email']");
-		var imagecode = jQuery("input[name='member.imagecode']");
-		if(jQuery.trim(factname.val())==''){
-			factname.parent().find("span").remove().end().append("<span class='error'>姓名不能为空</span>");
-			factname.focus();
-			return false;			
-		}else {
-			factname.parent().find("span").remove().end();
-		}
-		if(jQuery.trim(email.val())==''){
-			email.parent().find("span").remove().end().append("<span class='error'>邮箱不能为空</span>");
-			email.focus();
-			return false;			
-		}else {
-			email.parent().find("span").remove().end();
-		}
-		if(jQuery.trim(imagecode.val())==''){
-			imagecode.parent().find("span").remove().end().append("<span class='error'>验证码不能为空</span>");
-			imagecode.focus();
-			return false;			
-		}else {
-			imagecode.parent().find("span").remove().end();
-		}
-
-	});
-	
-});
 </script>
 </head>
 
@@ -90,105 +54,55 @@ jQurey(function () {
 <div class="content">
 	<div class="warp1 mt">
 	<div class="left f_l">
-		<h3 class="flbt">会员中心</h3>
+		<h3 class="flbt">参赛报名</h3>
 		<div class="xbox">
 			<ul class="fllb">
-			<li><a href="$link.setAction('load4MemberIndex')">个人信息</a></li>
-			<li><a href="$link.setAction('load4MemberModify')">修改资料</a></li>
-			<li><a href="$link.setAction('load4MemberChgPwd')">修改密码</a></li>
-			<li><a href="$link.setAction('logout')">退出登录</a></li>
+			<li><a href="$link.setAction('load4MatchapplyAdd')">参赛报名</a></li>
+			<li><a href="$link.setAction('load4MatchapplyIndex')">报名列表</a></li>
 			</ul>
 		</div>		
 	</div>
 <div class="right f_r">
-<h3 class="nybt"><span>个人信息修改</span></h3>
-<div class="form">
-	<form method='post' id="form_do" name="form_do" action="$link.setAction('modifyMember')">
-		<dl>
-			<dt>账号：</dt>
-			<dd>
-				$!loginInfo.accountid
-			</dd>
-		</dl>
-		<dl>
-			<dt>姓名/单位名称：</dt>
-			<dd>
-				<input type="text" name="member.factname" class="inp_one" value="$!modifyMemberForm.member.factname"/>
-				<span style="color: red;">*</span>
-			</dd>
-		</dl>
-		<dl>
-			<dt> 性别：</dt>
-			<dd>
-				<label><input type="radio" name="member.sex" value="1" #if($!modifyMemberForm.member.sex==1) checked="checked" #end/>男&nbsp;</label>
-				<label><input type="radio" name="member.sex" value="2" #if($!modifyMemberForm.member.sex==2) checked="checked" #end/>女</label>
-			</dd>
-		</dl>
-		<dl>
-			<dt>身份证号：</dt>
-			<dd>
-				<input type="text" name="member.idcard" class="inp_one" value="$!modifyMemberForm.member.idcard"/>
-			</dd>
-		</dl>
-		<dl>
-            <dt> 出生日期：</dt>
-            <dd>
-                <input type="text" class="inp_one" name="member.birthday" id="birthday" value="$!modifyMemberForm.member.birthday" readonly="readonly">
-                <span style="color: red;">*</span>
-                <script type="text/javascript">
-                    Calendar.setup({
-                        weekNumbers: true,
-                        inputField : "birthday",
-                        trigger    : "birthday",
-                        dateFormat: "%Y-%m-%d",
-                        showTime: true,
-                        minuteStep: 1,
-                        onSelect   : function() {this.hide();}
-                    });
-                </script>
-            </dd>
-        </dl>
-		<dl>
-			<dt>邮箱：</dt>
-			<dd>
-				<input type="text" name="member.email" class="inp_one" value="$!modifyMemberForm.member.email"/>
-				<span style="color: red;">*</span>
-			</dd>
-		</dl>
-		<dl>
-			<dt>QQ：</dt>
-			<dd>
-				<input type="text" name="member.qq" class="inp_one" value="$!modifyMemberForm.member.qq"/>
-			</dd>
-		</dl>
-		<dl>
-			<dt>电话：</dt>
-			<dd>
-				<input type="text" name="member.tel" class="inp_one" value="$!modifyMemberForm.member.tel"/>
-			</dd>
-		</dl>
-		<dl>
-			<dt>所在地：</dt>
-			<dd>
-				<input type="text" name="member.address" class="inp_one" value="$!modifyMemberForm.member.address"/>
-			</dd>
-		</dl>
-		<dl>
-			<dt>验证码：</dt>
-			<dd>
-				<input type="text" name="member.imagecode" class="inp_small" />
-				<img src="$link.setAction('/manage/imageCode.do')" align="absmiddle" id="code"  class="vcode" onclick="change_code(this);"/>
-				<span style="color: red;">*</span>
-			</dd>
-		</dl>
-		<dl>
-			<span class='error'>#errorMarkup()</span>
-        </dl>
-		<div class="form_b">
-			<input type="submit" class="btn_blue" id="submit" value="保存">		
-		</div>
-	</form>
-	</div>
+    <h3 class="nybt">
+		<i><a href="javascript:;" onclick="toConfirm('$link.setAction('removeMatchapply').addQueryData('id',$!matchapply.id)','该操作不可恢复，确实要删除吗？')">删除</a></i>
+		<i>&nbsp;|&nbsp;</i>
+		<i><a href="$link.setAction('load4MatchapplyModify').addQueryData('id',$!matchapply.id)">修改</a></i>
+		<span>参赛报名信息</span>
+	</h3>
+    <div class="form">
+    	<dl>
+    		<dt>参赛年度：</dt>
+    		<dd>$!matchapply.annualmatch</dd>
+    	</dl>
+    	<dl>
+    		<dt> 参赛项目：</dt>
+    		<dd>$!matchapply.matchname</dd>
+    	</dl>	
+    	<dl>
+    		<dt>作品名称：</dt>
+    		<dd>$!matchapply.name</dd>
+    	</dl>
+    	<dl>
+    		<dt>学校名称：</dt>
+    		<dd>$!matchapply.unitname</dd>
+    	</dl>
+    	<dl>
+    		<dt>作者姓名：</dt>
+    		<dd>$!matchapply.authors</dd>
+    	</dl>
+    	<dl>
+    		<dt>辅导老师：</dt>
+    		<dd>$!matchapply.teachers</dd>
+    	</dl>
+    	<dl>
+    		<dt>作品简述：</dt>
+    		<dd>
+    			<div class="wzzw lh" id="content">
+        			$!matchapply.description
+        		</div>
+    		</dd>
+    	</dl>
+    </div>
 
 </div>
 <div class=" clear"></div>

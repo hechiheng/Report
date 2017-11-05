@@ -64,8 +64,7 @@ public class MemberAction extends BaseAction {
 		String imagecode = (String) session.getAttribute("imagecode");
 		if (!imagecode.equals(member.getImagecode())) {
 			ActionMessages am = new ActionMessages();
-			am.add("sysMessage", new ActionMessage(
-					"MemberAction.regMember.imagecode"));
+			am.add("sysMessage", new ActionMessage("error.input.imagecode"));
 			saveErrors(request, am);
 			return mapping.findForward("failure");
 		}
@@ -152,8 +151,7 @@ public class MemberAction extends BaseAction {
 		String imagecode = (String) session.getAttribute("imagecode");
 		if (!imagecode.equals(member.getImagecode())) {
 			ActionMessages am = new ActionMessages();
-			am.add("sysMessage", new ActionMessage(
-					"MemberAction.regMember.imagecode"));
+			am.add("sysMessage", new ActionMessage("error.input.imagecode"));
 			saveErrors(request, am);
 			return mapping.findForward("failure");
 		}

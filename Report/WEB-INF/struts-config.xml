@@ -245,7 +245,7 @@
 			scope="request"
 			validate="false"
 			parameter="load4MatchapplyIndex">
-			<forward name="success" path="/../home/matchapply_index.vm"/>
+			<forward name="success" path="/home/matchapply_index.vm"/>
         </action>
         <action
         	path="/load4MatchapplyAdd"
@@ -253,7 +253,7 @@
 			scope="request"
 			validate="false"
 			parameter="load4MatchapplyAdd">
-			<forward name="success" path="/../home/matchapply_add.vm"/>
+			<forward name="success" path="/home/matchapply_add.vm"/>
         </action>
         <action
         	path="/addMatchapply"
@@ -263,6 +263,7 @@
 			name="addMatchapplyForm"
 			validate="true"
 			parameter="addMatchapply">
+			<forward name="failure" path="/home/matchapply_add.vm"/>
         </action>
         <action
         	path="/load4Matchapply"
@@ -271,7 +272,7 @@
 			name="modifyMatchapplyForm"
 			validate="false"
 			parameter="load4Matchapply">
-			<forward name="success" path="/../home/matchapply_info.vm"/>
+			<forward name="success" path="/home/matchapply_info.vm"/>
         </action>
         <action
         	path="/load4MatchapplyModify"
@@ -280,7 +281,7 @@
 			name="modifyMatchapplyForm"
 			validate="false"
 			parameter="load4MatchapplyModify">
-			<forward name="success" path="/../home/matchapply_modify.vm"/>
+			<forward name="success" path="/home/matchapply_modify.vm"/>
         </action>
         <action
         	path="/modifyMatchapply"
@@ -290,6 +291,7 @@
 			name="modifyMatchapplyForm"
 			validate="true"
 			parameter="modifyMatchapply">
+			<forward name="failure" path="load4MatchapplyModify.do"/>
         </action>
         <action
         	path="/removeMatchapply"

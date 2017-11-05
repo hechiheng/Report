@@ -16,7 +16,6 @@ public class Matchapply implements Serializable {
 	private String authors;
 	private String teachers;
 	private String description;
-	private String content;
 	private int isvalid;
 	private int state;
 	private String begindate;
@@ -25,6 +24,7 @@ public class Matchapply implements Serializable {
 	private String checktime;
 	private int memberid;
 	private int checkuserid;
+	private String imagecode;
 
 	public int getId() {
 		return id;
@@ -114,14 +114,6 @@ public class Matchapply implements Serializable {
 		this.teachers = teachers;
 	}
 
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
 	public int getState() {
 		return state;
 	}
@@ -176,6 +168,14 @@ public class Matchapply implements Serializable {
 
 	public int getMatchid() {
 		return matchid;
+	}
+
+	public void setImagecode(String imagecode) {
+		this.imagecode = imagecode;
+	}
+
+	public String getImagecode() {
+		return imagecode;
 	}
 
 }

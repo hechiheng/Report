@@ -25,60 +25,61 @@ public class MatchapplySqlMapDao extends SqlMapDaoTemplate implements
 	public List<Matchapply> selectMatchapplyList(Matchapply matchapply)
 			throws BaseException {
 		try {
-			return this.queryForList("home.MatchapplyDao.selectMatchapplyList",
-					matchapply);
+			return this.queryForList(
+					"manage.MatchapplyDao.selectMatchapplyList", matchapply);
 		} catch (DaoException e) {
-			logger.error("home.MatchapplyDao.selectMatchapplyList", e);
-			throw new BaseException("home.MatchapplyDao.selectMatchapplyList",
-					e);
+			logger.error("manage.MatchapplyDao.selectMatchapplyList", e);
+			throw new BaseException(
+					"manage.MatchapplyDao.selectMatchapplyList", e);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Matchinfo> selectMatchinfoList() throws BaseException {
 		try {
-			return this.queryForList("home.MatchapplyDao.selectMatchinfoList",
-					null);
+			return this.queryForList(
+					"manage.MatchapplyDao.selectMatchinfoList", null);
 		} catch (DaoException e) {
-			logger.error("home.MatchapplyDao.selectMatchinfoList", e);
-			throw new BaseException("home.MatchapplyDao.selectMatchinfoList", e);
+			logger.error("manage.MatchapplyDao.selectMatchinfoList", e);
+			throw new BaseException("manage.MatchapplyDao.selectMatchinfoList",
+					e);
 		}
 	}
 
 	public void deleteMatchapply(int id) throws BaseException {
 		try {
-			this.delete("home.MatchapplyDao.deleteMatchapply", id);
+			this.delete("manage.MatchapplyDao.deleteMatchapply", id);
 		} catch (DaoException e) {
-			logger.error("home.MatchapplyDao.deleteMatchapply", e);
-			throw new BaseException("home.MatchapplyDao.deleteMatchapply", e);
+			logger.error("manage.MatchapplyDao.deleteMatchapply", e);
+			throw new BaseException("manage.MatchapplyDao.deleteMatchapply", e);
 		}
 	}
 
 	public void insertMatchapply(Matchapply matchapply) throws BaseException {
 		try {
-			this.insert("home.MatchapplyDao.insertMatchapply", matchapply);
+			this.insert("manage.MatchapplyDao.insertMatchapply", matchapply);
 		} catch (DaoException e) {
-			logger.error("home.MatchapplyDao.insertMatchapply", e);
-			throw new BaseException("home.MatchapplyDao.insertMatchapply", e);
+			logger.error("manage.MatchapplyDao.insertMatchapply", e);
+			throw new BaseException("manage.MatchapplyDao.insertMatchapply", e);
 		}
 	}
 
 	public Matchapply selectMatchapply(int id) throws BaseException {
 		try {
 			return (Matchapply) this.queryForObject(
-					"home.MatchapplyDao.selectMatchapply", id);
+					"manage.MatchapplyDao.selectMatchapply", id);
 		} catch (DaoException e) {
-			logger.error("home.MatchapplyDao.selectMatchapply", e);
-			throw new BaseException("home.MatchapplyDao.selectMatchapply", e);
+			logger.error("manage.MatchapplyDao.selectMatchapply", e);
+			throw new BaseException("manage.MatchapplyDao.selectMatchapply", e);
 		}
 	}
 
 	public void updateMatchapply(Matchapply matchapply) throws BaseException {
 		try {
-			this.update("home.MatchapplyDao.updateMatchapply", matchapply);
+			this.update("manage.MatchapplyDao.updateMatchapply", matchapply);
 		} catch (DaoException e) {
-			logger.error("home.MatchapplyDao.updateMatchapply", e);
-			throw new BaseException("home.MatchapplyDao.updateMatchapply", e);
+			logger.error("manage.MatchapplyDao.updateMatchapply", e);
+			throw new BaseException("manage.MatchapplyDao.updateMatchapply", e);
 		}
 	}
 

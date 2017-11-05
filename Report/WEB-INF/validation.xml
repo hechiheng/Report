@@ -238,6 +238,148 @@
 				<arg key="member.password_old" />
 			</field>
 		</form>
+		<form name="addMatchapplyForm">
+			<field property="matchapply.annualmatch"
+				depends="required,bytemaxlength">
+				<arg key="matchapply.annualmatch" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>4</var-value>
+				</var>
+			</field>
+			<field property="matchapply.name"
+				depends="required,bytemaxlength">
+				<arg key="matchapply.name" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>400</var-value>
+				</var>
+			</field>
+			<field property="matchapply.matchid"
+				depends="required,bytemaxlength">
+				<arg key="matchapply.matchid" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="matchapply.unitname"
+				depends="required,bytemaxlength">
+				<arg key="matchapply.unitname" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>400</var-value>
+				</var>
+			</field>
+			<field property="matchapply.authors"
+				depends="required,bytemaxlength">
+				<arg key="matchapply.authors" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>400</var-value>
+				</var>
+			</field>
+			<field property="matchapply.teachers"
+				depends="required,bytemaxlength">
+				<arg key="matchapply.teachers" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>300</var-value>
+				</var>
+			</field>
+			<field property="matchapply.description"
+				depends="required">
+				<arg key="matchapply.description" />
+			</field>
+		</form>
+		<form name="modifyMatchapplyForm">
+			<field property="matchapply.id"
+				depends="required,bytemaxlength">
+				<arg key="matchapply.id" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="matchapply.annualmatch"
+				depends="required,bytemaxlength">
+				<arg key="matchapply.annualmatch" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>4</var-value>
+				</var>
+			</field>
+			<field property="matchapply.name"
+				depends="required,bytemaxlength">
+				<arg key="matchapply.name" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>400</var-value>
+				</var>
+			</field>
+			<field property="matchapply.matchid"
+				depends="required,bytemaxlength">
+				<arg key="matchapply.matchid" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="matchapply.unitname"
+				depends="required,bytemaxlength">
+				<arg key="matchapply.unitname" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>400</var-value>
+				</var>
+			</field>
+			<field property="matchapply.authors"
+				depends="required,bytemaxlength">
+				<arg key="matchapply.authors" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>400</var-value>
+				</var>
+			</field>
+			<field property="matchapply.teachers"
+				depends="required,bytemaxlength">
+				<arg key="matchapply.teachers" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>400</var-value>
+				</var>
+			</field>
+			<field property="matchapply.description"
+				depends="required">
+				<arg key="matchapply.description" />
+			</field>
+		</form>
 		
 
 	</formset>

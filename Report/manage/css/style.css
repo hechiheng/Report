@@ -75,7 +75,7 @@ border:1px solid #cccccc; border-width:1px 0px; font-weight: bold; background:#e
 
 
 /**************from表单**********************/
-.form{ padding:10px;}
+.form{ padding:10px;border:1px solid #D9D9D9;margin: 10px;}
 .listtop,.listbottom{   margin-left: 10px; }
 .listtop{margin-top: 10px;border:1px  solid #CCCCCC;border-bottom: none;padding-left: 10px; padding-bottom: 15px;width: 710px;background: #F5F5F5;}
 .con_edit{margin: 10px;}

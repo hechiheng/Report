@@ -23,6 +23,8 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		<isNotEmpty prepend="and" property="name">
 			a.name like CONCAT('%',#name#,'%')
 		</isNotEmpty>		
+		order by a.updatetime desc
+		limit $firstRow$,$listRows$
 	</select>
 	
 	<select id="manage.MatchinfoDao.selectMatchinfo" parameterClass="int" resultClass="matchinfo">

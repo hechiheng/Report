@@ -14,6 +14,7 @@ ul li{list-style:none;}
 .line200{line-height:200%;}
 .inp_one{width: 300px;height:25px; line-height:25px;}
 .inp_small{width:100px;height:25px; line-height:25px;}
+.inp_large{width:390px;height:25px; line-height:25px;}
 .vcode{cursor:pointer;}
 /*top*/
 #top{background:url(../images/topbg.jpg) no-repeat center top; width:100%;}
@@ -198,18 +199,18 @@ li.b5{background:#ffffff;}
 
 
 /**************from表单**********************/
-.form{ padding:10px;}
+.form{ padding:10px;border:1px solid #D9D9D9;}
 .listtop,.listbottom{   margin-left: 10px; }
 .listtop{margin-top: 10px;border:1px  solid #CCCCCC;border-bottom: none;padding-left: 10px; padding-bottom: 15px;width: 710px;background: #F5F5F5;}
 .con_edit{margin: 10px;}
 .form_top{padding-left: 10px; padding-bottom: 15px;}
 .form dl {overflow: hidden;zoom: 1;padding-top: 15px;}
-.form dt {float: left;width: 18%;font-size: 14px;padding: 3px 0 0 0;color: #666;}
+.form dt {float: left;width: 11%;font-size: 14px;padding: 3px 0 0 0;color: #666;}
 .form dd {float: left;line-height: 22px;}
 .form dd select, .form dd input {vertical-align: middle;}
 .form dd .logo{border: 1px solid #D4D4D4;}
 .form dd .wxqrcode{width: 80px;height: 80px;border: 1px solid #D4D4D4;}
-.form dd p {clear: both;color: #A0A0A0;padding: 4px 0 0 0;line-height: 16px;}
+.form dd p {clear: both;color: #000000;padding: 4px 0 0 0;line-height: 16px;}
 .form_b {text-align: left;padding: 20px 0 45px 145px;}
 .form .btn7 {margin-left: 10px;}
 

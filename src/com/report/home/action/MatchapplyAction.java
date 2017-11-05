@@ -1,17 +1,21 @@
 package com.report.home.action;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 
 import com.css.base.BaseAction;
 import com.css.base.BaseException;
+import com.report.global.Constants;
 import com.report.global.SysGlobals;
 import com.report.global.SysMessageBean;
 import com.report.manage.bean.Matchapply;
@@ -21,11 +25,15 @@ import com.report.manage.form.MatchapplyForm;
 
 public class MatchapplyAction extends BaseAction {
 
+	@SuppressWarnings("unchecked")
 	public ActionForward load4MatchapplyIndex(ActionMapping mapping,
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws BaseException {
-		MatchapplyForm matchapplyForm = (MatchapplyForm) form;
-		Matchapply matchapply = matchapplyForm.getMatchapply();
+		Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
+				Constants.HOME_SESSION);
+		int memberid = Integer.valueOf(sessionMap.get("memberid"));
+		Matchapply matchapply = new Matchapply();
+		matchapply.setMemberid(memberid);
 		MatchapplyBo bo = new MatchapplyBo();
 		List<Matchapply> matchapplyList = bo.getMatchapplyList(matchapply);
 		request.setAttribute("matchapplyList", matchapplyList);
@@ -41,12 +49,25 @@ public class MatchapplyAction extends BaseAction {
 		return mapping.findForward("success");
 	}
 
+	@SuppressWarnings("unchecked")
 	public ActionForward addMatchapply(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws BaseException {
+		Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
+				Constants.HOME_SESSION);
+		int memberid = Integer.valueOf(sessionMap.get("memberid"));
 		MatchapplyBo bo = new MatchapplyBo();
 		MatchapplyForm matchapplyForm = (MatchapplyForm) form;
 		Matchapply matchapply = matchapplyForm.getMatchapply();
+		HttpSession session = request.getSession(false);
+		String imagecode = (String) session.getAttribute("imagecode");
+		if (!imagecode.equals(matchapply.getImagecode())) {
+			ActionMessages am = new ActionMessages();
+			am.add("sysMessage", new ActionMessage("error.input.imagecode"));
+			saveErrors(request, am);
+			return mapping.findForward("failure");
+		}
+		matchapply.setMemberid(memberid);
 		bo.addMatchapply(matchapply);
 
 		SysMessageBean smb = new SysMessageBean(false);
@@ -85,12 +106,25 @@ public class MatchapplyAction extends BaseAction {
 		return mapping.findForward("success");
 	}
 
+	@SuppressWarnings("unchecked")
 	public ActionForward modifyMatchapply(ActionMapping mapping,
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws BaseException {
+		Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
+				Constants.HOME_SESSION);
+		int memberid = Integer.valueOf(sessionMap.get("memberid"));
 		MatchapplyBo bo = new MatchapplyBo();
 		MatchapplyForm matchapplyForm = (MatchapplyForm) form;
 		Matchapply matchapply = matchapplyForm.getMatchapply();
+		HttpSession session = request.getSession(false);
+		String imagecode = (String) session.getAttribute("imagecode");
+		if (!imagecode.equals(matchapply.getImagecode())) {
+			ActionMessages am = new ActionMessages();
+			am.add("sysMessage", new ActionMessage("error.input.imagecode"));
+			saveErrors(request, am);
+			return mapping.findForward("failure");
+		}
+		matchapply.setMemberid(memberid);
 		bo.modifyMatchapply(matchapply);
 
 		SysMessageBean smb = new SysMessageBean(false);
