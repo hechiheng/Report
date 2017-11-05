@@ -8,6 +8,7 @@ public class Matchapply implements Serializable {
 
 	private int id;
 	private int matchid;
+
 	private String matchname;
 	private String orgcode;
 	private String name;
@@ -25,6 +26,14 @@ public class Matchapply implements Serializable {
 	private int memberid;
 	private int checkuserid;
 	private String imagecode;
+	private int firstRow;
+	private int listRows;
+	private int score;
+	private String ranking;
+	private String awards;
+	private int ispublish;
+	private int userid;
+	private int matchresultid;
 
 	public int getId() {
 		return id;
@@ -176,6 +185,70 @@ public class Matchapply implements Serializable {
 
 	public String getImagecode() {
 		return imagecode;
+	}
+
+	public int getFirstRow() {
+		return firstRow;
+	}
+
+	public void setFirstRow(int firstRow) {
+		this.firstRow = firstRow;
+	}
+
+	public int getListRows() {
+		return listRows;
+	}
+
+	public void setListRows(int listRows) {
+		this.listRows = listRows;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	public String getRanking() {
+		return ranking;
+	}
+
+	public void setRanking(String ranking) {
+		this.ranking = ranking;
+	}
+
+	public String getAwards() {
+		return awards;
+	}
+
+	public void setAwards(String awards) {
+		this.awards = awards;
+	}
+
+	public int getIspublish() {
+		return ispublish;
+	}
+
+	public void setIspublish(int ispublish) {
+		this.ispublish = ispublish;
+	}
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public void setMatchresultid(int matchresultid) {
+		this.matchresultid = matchresultid;
+	}
+
+	public int getMatchresultid() {
+		return matchresultid;
 	}
 
 }

@@ -100,6 +100,14 @@ public class MatchapplyAction extends BaseAction {
 		MatchapplyBo bo = new MatchapplyBo();
 		Matchapply matchapply = bo.getMatchapply(Integer.valueOf(id));
 		matchapplyForm.setMatchapply(matchapply);
+		if (matchapply.getState() > 1) {
+			SysMessageBean smb = new SysMessageBean(false);
+			smb.setMessage(new ActionMessage("error.exception"));
+			smb.setLinkText(new ActionMessage("MatchapplyAction.return"));
+			smb.setAction("/load4MatchapplyIndex");
+			SysGlobals.setSysMessage(request, smb);
+			return mapping.findForward("info");
+		}
 
 		List<Matchinfo> matchinfoList = bo.getMatchinfoList();
 		request.setAttribute("matchinfoList", matchinfoList);

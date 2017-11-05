@@ -11,6 +11,12 @@ public interface MatchapplyDao {
 	public List<Matchapply> selectMatchapplyList(Matchapply matchapply)
 			throws BaseException;
 
+	public int selectMatchapplyList1Size(Matchapply matchapply)
+			throws BaseException;
+
+	public List<Matchapply> selectMatchapplyList1(Matchapply matchapply)
+			throws BaseException;
+
 	public Matchapply selectMatchapply(int id) throws BaseException;
 
 	public List<Matchinfo> selectMatchinfoList() throws BaseException;
@@ -20,5 +26,8 @@ public interface MatchapplyDao {
 	public void updateMatchapply(Matchapply matchapply) throws BaseException;
 
 	public void deleteMatchapply(int id) throws BaseException;
+
+	public void updateMatchapplyState(Matchapply matchapply)
+			throws BaseException;
 
 }

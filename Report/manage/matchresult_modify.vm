@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
+<script type="text/javascript">
+jQuery(function () {
+     jQuery("input[name='matchinfo.annualmatch']").focus();
+	 
+     jQuery("#form_do").submit(function(){
+		var annualmatch = jQuery("input[name='matchinfo.annualmatch']");
+		var name = jQuery("input[name='matchinfo.name']");
+		var begindate = jQuery("input[name='matchinfo.begindate']");
+		var enddate = jQuery("input[name='matchinfo.enddate']");
+		var optunitname = jQuery("input[name='matchinfo.optunitname']");
+		var description = jQuery("#description");
+		var content = jQuery("#content");
+		if(jQuery.trim(annualmatch.val())==''){
+			annualmatch.parent().find("span").remove().end().append("<span class='error'>参赛年度不能为空</span>");
+			annualmatch.focus();
+			return false;			
+		}else {
+			annualmatch.parent().find("span").remove().end();
+		}
+		if(jQuery.trim(name.val())==''){
+			name.parent().find("span").remove().end().append("<span class='error'>参赛项目名称不能为空</span>");
+			name.focus();
+			return false;			
+		}else {
+			name.parent().find("span").remove().end();
+		}
+		if(jQuery.trim(begindate.val())==''){
+			begindate.parent().find("span").remove().end().append("<span class='error'>报名开始日期不能为空</span>");
+			begindate.focus();
+			return false;			
+		}else {
+			begindate.parent().find("span").remove().end();
+		}
+		if(jQuery.trim(enddate.val())==''){
+			enddate.parent().find("span").remove().end().append("<span class='error'>报名截止日期不能为空</span>");
+			enddate.focus();
+			return false;			
+		}else {
+			enddate.parent().find("span").remove().end();
+		}
+		if(jQuery.trim(optunitname.val())==''){
+			optunitname.parent().find("span").remove().end().append("<span class='error'>主办单位不能为空</span>");
+			optunitname.focus();
+			return false;			
+		}else {
+			optunitname.parent().find("span").remove().end();
+		}
+		if(!UE.getEditor('description').hasContents()){
+			description.parent().find("span").remove().end().append("<span class='error'>摘要不能为空</span>");
+			description.focus();
+			return false;			
+		}else {
+			description.parent().find("span").remove().end();
+		}
+		if(!UE.getEditor('content').hasContents()){
+			content.parent().find("span").remove().end().append("<span class='error'>内容不能为空</span>");
+			content.focus();
+			return false;			
+		}else {
+			content.parent().find("span").remove().end();
+		}
+
+	});
+	
+});
+
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="pos">录入参赛结果</div>
+	<div class="form">
+		<form method='post' id="form_do" name="form_do" action="$link.setAction('modifyMatchresult')">
+		<dl>
+			<dt>参赛年度：</dt>
+			<dd>
+				<input type="text" id="annualmatch" name="matchapply.annualmatch" class="inp_one" value="$!modifyMatchinfoForm.matchapply.annualmatch"/>
+				<span style="color: red;">*(格式：YYYY)</span>
+			</dd>
+		</dl>
+		<dl>
+			<dt>参赛项目名称：</dt>
+			<dd>
+				<input type="text" name="matchapply.name" class="inp_large" value="$!modifyMatchinfoForm.matchapply.name"/>
+				<span style="color: red;">*</span>
+			</dd>
+		</dl>
+		<dl>
+			<dt> 参赛类型：</dt>
+			<dd>
+				<select name="matchapply.matchtype">
+					#set($matchtypeList = $request.getAttribute("matchtypeList"))
+					#foreach($matchtype in $matchtypeList)
+						#if($!matchtype.id==$!modifyMatchinfoForm.matchapply.matchtype)
+							<option value="$!matchtype.id" selected="selected">$!matchtype.name</option>
+						#else
+							<option value="$!matchtype.id">$!matchtype.name</option>
+						#end
+					#end
+				</select>
+			</dd>
+		</dl>	
+		<dl>
+            <dt> 报名开始日期：</dt>
+            <dd>
+                <input type="text" class="inp_one" name="matchapply.begindate" id="begindate" readonly="readonly" value="$!modifyMatchinfoForm.matchapply.begindate"/>
+				<span style="color: red;">*</span>
+                <script type="text/javascript">
+                    Calendar.setup({
+                        weekNumbers: true,
+                        inputField : "begindate",
+                        trigger    : "begindate",
+                        dateFormat: "%Y-%m-%d",
+                        showTime: true,
+                        minuteStep: 1,
+                        onSelect   : function() {this.hide();}
+                    });
+                </script>
+            </dd>
+        </dl>	
+		<dl>
+            <dt> 报名截止日期：</dt>
+            <dd>
+                <input type="text" class="inp_one" name="matchapply.enddate" id="enddate" readonly="readonly" value="$!modifyMatchinfoForm.matchapply.enddate"/>
+				<span style="color: red;">*</span>
+                <script type="text/javascript">
+                    Calendar.setup({
+                        weekNumbers: true,
+                        inputField : "enddate",
+                        trigger    : "enddate",
+                        dateFormat: "%Y-%m-%d",
+                        showTime: true,
+                        minuteStep: 1,
+                        onSelect   : function() {this.hide();}
+                    });
+                </script>
+            </dd>
+        </dl>	
+		<dl>
+			<dt>主办单位：</dt>
+			<dd>
+				<input type="text" name="matchapply.optunitname" class="inp_large" value="$!modifyMatchinfoForm.matchapply.optunitname"/>
+				<span style="color: red;">*</span>
+			</dd>
+		</dl>
+		<dl>
+			<dt>参赛简述：</dt>
+			<dd>
+				<textarea name="matchapply.description" id="description">$!modifyMatchinfoForm.matchapply.description</textarea>
+			</dd>
+		</dl>
+		<dl>
+			<dt>参赛详细说明：</dt>
+			<dd>
+				<textarea name="matchapply.content" id="content">$!modifyMatchinfoForm.matchapply.content</textarea>
+			</dd>
+		</dl>
+		<dl>
+			<span class='error'>#errorMarkup()</span>
+        </dl>
+		<div class="form_b">		
+			<input type="hidden" name="matchapply.id" value="$!modifyMatchinfoForm.matchapply.id" />
+			<input type="submit" class="btn_blue" id="submit" value="提 交">
+			<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
+		</div>
+	   </form>
+	</div>
+</div>
+
+
+</body>
+</html>

@@ -23,9 +23,19 @@ public class MatchapplyBo {
 		this.dao = (MatchapplyDao) daoManager.getDao(MatchapplyDao.class);
 	}
 
-	public List<Matchapply> getMatchapplyList(Matchapply matchinfo)
+	public List<Matchapply> getMatchapplyList(Matchapply matchapply)
 			throws BaseException {
-		return dao.selectMatchapplyList(matchinfo);
+		return dao.selectMatchapplyList(matchapply);
+	}
+
+	public int getMatchapplyList1Size(Matchapply matchapply)
+			throws BaseException {
+		return dao.selectMatchapplyList1Size(matchapply);
+	}
+
+	public List<Matchapply> getMatchapplyList1(Matchapply matchapply)
+			throws BaseException {
+		return dao.selectMatchapplyList1(matchapply);
 	}
 
 	public Matchapply getMatchapply(int id) throws BaseException {
@@ -36,16 +46,20 @@ public class MatchapplyBo {
 		return dao.selectMatchinfoList();
 	}
 
-	public void addMatchapply(Matchapply matchinfo) throws BaseException {
-		dao.insertMatchapply(matchinfo);
+	public void addMatchapply(Matchapply matchapply) throws BaseException {
+		dao.insertMatchapply(matchapply);
 	}
 
-	public void modifyMatchapply(Matchapply matchinfo) throws BaseException {
-		dao.updateMatchapply(matchinfo);
+	public void modifyMatchapply(Matchapply matchapply) throws BaseException {
+		dao.updateMatchapply(matchapply);
 	}
 
 	public void removeMatchapply(int id) throws BaseException {
 		dao.deleteMatchapply(id);
+	}
+
+	public void auditMatchapply(Matchapply matchapply) throws BaseException {
+		dao.updateMatchapplyState(matchapply);
 	}
 
 }

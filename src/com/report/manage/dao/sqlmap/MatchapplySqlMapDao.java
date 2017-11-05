@@ -34,6 +34,32 @@ public class MatchapplySqlMapDao extends SqlMapDaoTemplate implements
 		}
 	}
 
+	public int selectMatchapplyList1Size(Matchapply matchapply)
+			throws BaseException {
+		try {
+			return (Integer) this.queryForObject(
+					"manage.MatchapplyDao.selectMatchapplyList1Size",
+					matchapply);
+		} catch (DaoException e) {
+			logger.error("manage.MatchapplyDao.selectMatchapplyList1Size", e);
+			throw new BaseException(
+					"manage.MatchapplyDao.selectMatchapplyList1Size", e);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Matchapply> selectMatchapplyList1(Matchapply matchapply)
+			throws BaseException {
+		try {
+			return this.queryForList(
+					"manage.MatchapplyDao.selectMatchapplyList1", matchapply);
+		} catch (DaoException e) {
+			logger.error("manage.MatchapplyDao.selectMatchapplyList1", e);
+			throw new BaseException(
+					"manage.MatchapplyDao.selectMatchapplyList1", e);
+		}
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<Matchinfo> selectMatchinfoList() throws BaseException {
 		try {
@@ -80,6 +106,18 @@ public class MatchapplySqlMapDao extends SqlMapDaoTemplate implements
 		} catch (DaoException e) {
 			logger.error("manage.MatchapplyDao.updateMatchapply", e);
 			throw new BaseException("manage.MatchapplyDao.updateMatchapply", e);
+		}
+	}
+
+	public void updateMatchapplyState(Matchapply matchapply)
+			throws BaseException {
+		try {
+			this.update("manage.MatchapplyDao.updateMatchapplyState",
+					matchapply);
+		} catch (DaoException e) {
+			logger.error("manage.MatchapplyDao.updateMatchapplyState", e);
+			throw new BaseException(
+					"manage.MatchapplyDao.updateMatchapplyState", e);
 		}
 	}
 

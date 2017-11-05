@@ -16,6 +16,28 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		order by a.updatetime desc
 	</select>
 	
+	<select id="manage.MatchapplyDao.selectMatchapplyList1Size" parameterClass="matchapply" resultClass="int">
+		select count(a.id) 
+		from t_matchapply a,t_matchinfo b 
+		where a.matchid=b.id and a.isvalid=1 and a.state>0
+		<isNotEmpty prepend="and" property="name">
+			a.name like CONCAT('%',#name#,'%')
+		</isNotEmpty>		
+	</select>
+	
+	<select id="manage.MatchapplyDao.selectMatchapplyList1" parameterClass="matchapply" resultClass="matchapply">
+		select a.id,a.name,a.annualmatch,a.matchid,b.name matchname,a.unitname,a.authors,a.teachers,a.description,
+		DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime,a.state,a.memberid,IFNULL(a.checkuserid,0) checkuserid,
+		DATE_FORMAT(FROM_UNIXTIME(a.checktime),'%Y-%m-%d %H:%i:%s') checktime 
+		from t_matchapply a,t_matchinfo b 
+		where a.matchid=b.id and a.isvalid=1 and a.state>0
+		<isNotEmpty prepend="and" property="name">
+			a.name like CONCAT('%',#name#,'%')
+		</isNotEmpty>
+		order by a.updatetime desc
+		limit $firstRow$,$listRows$
+	</select>
+	
 	<select id="manage.MatchapplyDao.selectMatchapply" parameterClass="int" resultClass="matchapply">
 		select a.id,a.name,a.annualmatch,a.matchid,b.name matchname,a.unitname,a.authors,a.teachers,a.description,
 		DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime,a.state,a.memberid,IFNULL(a.checkuserid,0) checkuserid,
@@ -29,19 +51,23 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	</select>
 	
 	<insert id="manage.MatchapplyDao.insertMatchapply" parameterClass="matchapply">
-		insert into t_matchapply(annualmatch,name,matchid,unitname,authors,teachers,description,updatetime,memberid)
-		values(#annualmatch#,#name#,#matchid#,#unitname#,#authors#,#teachers#,#description#,UNIX_TIMESTAMP(NOW()),#memberid#)
+		insert into t_matchapply(annualmatch,name,matchid,unitname,authors,teachers,description,updatetime,state,memberid)
+		values(#annualmatch#,#name#,#matchid#,#unitname#,#authors#,#teachers#,#description#,UNIX_TIMESTAMP(NOW()),#state#,#memberid#)
 	</insert>
 	
 	<update id="manage.MatchapplyDao.updateMatchapply" parameterClass="matchapply">
 		update t_matchapply set annualmatch=#annualmatch#,name=#name#,matchid=#matchid#,
 		unitname=#unitname#,authors=#authors#,teachers=#teachers#,description=#description#, 
-		updatetime=UNIX_TIMESTAMP(NOW()),memberid=#memberid# 
+		updatetime=UNIX_TIMESTAMP(NOW()),state=#state#,memberid=#memberid# 
 		where id=#id#
 	</update>
 	
 	<delete id="manage.MatchapplyDao.deleteMatchapply" parameterClass="int">
 		delete from t_matchapply where id=#id#
 	</delete>
+	
+	<update id="manage.MatchapplyDao.updateMatchapplyState" parameterClass="matchapply">
+		update t_matchapply set state=#state# where id=#id#
+	</update>
 	
 </sqlMap>

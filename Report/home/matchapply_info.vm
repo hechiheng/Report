@@ -64,13 +64,15 @@ function toConfirm(url, str){
 	</div>
 <div class="right f_r">
     <h3 class="nybt">
+		#if($!matchapply.state==0||$!matchapply.state==1)
 		<i><a href="javascript:;" onclick="toConfirm('$link.setAction('removeMatchapply').addQueryData('id',$!matchapply.id)','该操作不可恢复，确实要删除吗？')">删除</a></i>
 		<i>&nbsp;|&nbsp;</i>
 		<i><a href="$link.setAction('load4MatchapplyModify').addQueryData('id',$!matchapply.id)">修改</a></i>
+		#end
 		<span>参赛报名信息</span>
 	</h3>
     <div class="form">
-    	<dl>
+		<dl>
     		<dt>参赛年度：</dt>
     		<dd>$!matchapply.annualmatch</dd>
     	</dl>
@@ -93,6 +95,20 @@ function toConfirm(url, str){
     	<dl>
     		<dt>辅导老师：</dt>
     		<dd>$!matchapply.teachers</dd>
+    	</dl>
+		<dl>
+    		<dt>报名状态：</dt>
+    		<dd>
+				#if($!matchapply.state==0)
+					<span style='color: #0000FF;'>未提交</span> 
+				#elseif($!matchapply.state==1)
+					<span style='color: #8A2BE2;'>已提交</span>
+				#elseif($!matchapply.state==2)
+					<span style='color: #00FF00;'>审核通过</span>
+				#elseif($!matchapply.state==3)
+					<span style='color: #FF0000;'>审核未通过</span>
+				#end
+			</dd>
     	</dl>
     	<dl>
     		<dt>作品简述：</dt>

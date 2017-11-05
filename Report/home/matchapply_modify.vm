@@ -202,6 +202,13 @@ jQurey(function () {
 			</dd>
 		</dl>
 		<dl>
+			<dt> 是否提交：</dt>
+			<dd>
+				<label><input type="radio" name="matchapply.state" value="1" #if($!modifyMatchapplyForm.matchapply.state==1) checked="checked" #end />立即提交&nbsp;</label>
+				<label><input type="radio" name="matchapply.state" value="0" #if($!modifyMatchapplyForm.matchapply.state==0) checked="checked" #end/>暂不提交</label>
+			</dd>
+		</dl>
+		<dl>
 			<dt>验证码：</dt>
 			<dd>
 				<input type="text" name="matchapply.imagecode" class="inp_small" />

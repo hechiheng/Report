@@ -14,6 +14,7 @@
 	<interceptor name="notice" type="com.report.manage.interceptor.NoticeInterceptor"/>
 	<interceptor name="matchtype" type="com.report.manage.interceptor.MatchtypeInterceptor"/>
 	<interceptor name="matchinfo" type="com.report.manage.interceptor.MatchinfoInterceptor"/>
+	<interceptor name="matchapply" type="com.report.manage.interceptor.MatchapplyInterceptor"/>
 
 	<action type="com.report.manage.action.LoginAction">
 		<interceptor name="login"/>
@@ -56,6 +57,9 @@
 	</action>
 	<action type="com.report.manage.action.MatchinfoAction">
 		<interceptor name="matchinfo"/>
+	</action>
+	<action type="com.report.manage.action.MatchapplyAction">
+		<interceptor name="matchapply"/>
 	</action>
 	
 </interceptor-config>

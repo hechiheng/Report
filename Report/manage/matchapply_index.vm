@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
+</head>
+<body>
+<div class="main">
+    <div class="pos">
+    	<a href="$link.setAction('load4MatchapplyIndex')">参赛报名管理</a>
+    </div>
+    <div class="operate">
+        <div class="left">
+        </div>
+		<div class="left_pad">
+            <form method="get" action="$link.setAction('load4MatchapplyIndex')">
+            	<span style='font-size: 14px;vertical-align: middle;'>作品名称：</span>
+                <input type="text" name="matchapply.name" title="关键字" class="inp_default" value="$!queryMatchapplyForm.matchapply.name">
+                <input type="submit" class="btn_blue" value="查  询">
+            </form>
+        </div>
+    </div>
+    <div class="list">    
+        <table width="100%">
+            <tr>
+                <th>编号</th>
+				<th class="aleft">作品名称</th>
+				<th class="aleft">学校</th>
+				<th class="aleft">作者</th>
+				<th>审核状态</th>
+				<th>参赛结果</th>
+                <th>更新时间</th>
+                <th>操作</th>
+            </tr>
+			#set($matchapplyList = $request.getAttribute("matchapplyList"))
+			#foreach($matchapply in $matchapplyList)
+			<tr>
+				<td>$!matchapply.id</td>
+				<td class='aleft'>$!matchapply.name</td>
+				<td class='aleft'>$!matchapply.unitname</td>
+				<td class='aleft'>$!matchapply.authors</td>
+				<td>
+    				#if($!matchapply.state==1)
+    					<span style='color: #8A2BE2;'>未审核</span>
+    				#elseif($!matchapply.state==2)
+    					<span style='color: #00FF00;'>审核通过</span>
+    				#elseif($!matchapply.state==3)
+    					<span style='color: #FF0000;'>审核未通过</span>
+    				#end
+				</td>
+				<td>
+					#if(!$matchapply.matchresultid)
+						未录入
+					#elseif($matchapply.ispublish==0)
+						未发布
+					#elseif($matchapply.ispublish==1)
+						已发布
+					#end
+				</td>
+				<td>$!matchapply.updatetime</td>
+				<td>
+					<a href="$link.setAction('load4Matchapply').addQueryData('id',$!matchapply.id)">查看</a>
+					#if($matchapply.state==1)
+					<a href="$link.setAction('load4MatchapplyAudit').addQueryData('id',$!matchapply.id)">审核</a>
+					#end
+					#if($matchapply.state==2)
+					<a href="$link.setAction('load4MatchresultModify').addQueryData('id',$!matchapply.id)">参赛结果</a>
+					#end
+                </td>
+            </tr>
+			#end
+        </table>
+        <div class="page" style="clear: both;">
+			#parse("/home/include/page.vm")
+        </div>
+    </div>
+</div>
+</body>
+</html>
