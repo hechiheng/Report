@@ -1093,7 +1093,7 @@
         </action>
         <action
         	path="/modifyMatchresult"
-			type="com.report.manage.action.MatchinfoAction"
+			type="com.report.manage.action.MatchapplyAction"
 			scope="request"
 			input="/load4MatchresultModify.do"
 			name="modifyMatchresultForm"

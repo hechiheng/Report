@@ -16,6 +16,18 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		order by a.updatetime desc
 	</select>
 	
+	<select id="manage.MatchapplyDao.selectMatchresultList" parameterClass="matchapply" resultClass="matchapply">
+		select a.id,a.name,a.annualmatch,a.matchid,b.name matchname,a.unitname,a.authors,a.teachers,a.description,
+		DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime,a.state,a.memberid,IFNULL(a.checkuserid,0) checkuserid,
+		DATE_FORMAT(FROM_UNIXTIME(a.checktime),'%Y-%m-%d %H:%i:%s') checktime,
+		DATE_FORMAT(FROM_UNIXTIME(c.publishtime),'%Y-%m-%d %H:%i:%s') publishtime  
+		from t_matchapply a,t_matchinfo b,t_matchresult c 
+		where a.matchid=b.id and a.id=c.id and a.isvalid=1  
+		and c.ispublish=1
+		and a.memberid=#memberid#
+		order by a.updatetime desc
+	</select>
+	
 	<select id="manage.MatchapplyDao.selectMatchapplyList1Size" parameterClass="matchapply" resultClass="int">
 		select count(a.id) 
 		from t_matchapply a,t_matchinfo b 
@@ -28,8 +40,8 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	<select id="manage.MatchapplyDao.selectMatchapplyList1" parameterClass="matchapply" resultClass="matchapply">
 		select a.id,a.name,a.annualmatch,a.matchid,b.name matchname,a.unitname,a.authors,a.teachers,a.description,
 		DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime,a.state,a.memberid,IFNULL(a.checkuserid,0) checkuserid,
-		DATE_FORMAT(FROM_UNIXTIME(a.checktime),'%Y-%m-%d %H:%i:%s') checktime 
-		from t_matchapply a,t_matchinfo b 
+		DATE_FORMAT(FROM_UNIXTIME(a.checktime),'%Y-%m-%d %H:%i:%s') checktime,IFNULL(c.id,0) matchresultid,IFNULL(c.ispublish,0) ispublish 
+		from t_matchapply a LEFT JOIN t_matchresult c on a.id=c.id,t_matchinfo b 
 		where a.matchid=b.id and a.isvalid=1 and a.state>0
 		<isNotEmpty prepend="and" property="name">
 			a.name like CONCAT('%',#name#,'%')
@@ -41,8 +53,10 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	<select id="manage.MatchapplyDao.selectMatchapply" parameterClass="int" resultClass="matchapply">
 		select a.id,a.name,a.annualmatch,a.matchid,b.name matchname,a.unitname,a.authors,a.teachers,a.description,
 		DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime,a.state,a.memberid,IFNULL(a.checkuserid,0) checkuserid,
-		DATE_FORMAT(FROM_UNIXTIME(a.checktime),'%Y-%m-%d %H:%i:%s') checktime 
-		from t_matchapply a,t_matchinfo b 
+		DATE_FORMAT(FROM_UNIXTIME(a.checktime),'%Y-%m-%d %H:%i:%s') checktime,IFNULL(c.id,0) matchresultid,
+		IFNULL(c.score,0) score,c.ranking,c.awards,IFNULL(c.ispublish,0) ispublish,
+		DATE_FORMAT(FROM_UNIXTIME(c.publishtime),'%Y-%m-%d %H:%i:%s') publishtime 
+		from t_matchapply a LEFT JOIN t_matchresult c on a.id=c.id,t_matchinfo b 
 		where a.matchid=b.id and a.id=#id#
 	</select>
 	
@@ -67,7 +81,34 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	</delete>
 	
 	<update id="manage.MatchapplyDao.updateMatchapplyState" parameterClass="matchapply">
-		update t_matchapply set state=#state# where id=#id#
+		update t_matchapply set state=#state#,checkuserid=#checkuserid# where id=#id#
+	</update>
+	
+	<select id="manage.MatchapplyDao.selectMatchresultCount" parameterClass="matchapply" resultClass="int">
+		select count(id) from t_matchresult where id=#matchresultid# 
+	</select>
+	
+	<insert id="manage.MatchapplyDao.insertMatchresult" parameterClass="matchapply">
+		insert into t_matchresult(id,score,ranking,awards,updatetime,ispublish,
+		<isNotEmpty property="publishtime">
+		publishtime,
+		</isNotEmpty>
+		resultuserid)
+		values(#matchresultid#,#score#,#ranking#,#awards#,UNIX_TIMESTAMP(NOW()),#ispublish#,
+		<isNotEmpty property="publishtime">
+		UNIX_TIMESTAMP(#publishtime#),
+		</isNotEmpty>
+		#resultuserid#)
+	</insert>
+	
+	<update id="manage.MatchapplyDao.updateMatchresult" parameterClass="matchapply">
+		update t_matchresult set score=#score#,ranking=#ranking#,awards=#awards#,
+			updatetime=UNIX_TIMESTAMP(NOW()),ispublish=#ispublish#,
+			<isNotEmpty property="publishtime">
+			publishtime=UNIX_TIMESTAMP(#publishtime#),
+			</isNotEmpty>
+			resultuserid=#resultuserid#
+		where id=#matchresultid#
 	</update>
 	
 </sqlMap>

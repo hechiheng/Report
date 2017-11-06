@@ -9,6 +9,11 @@
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
 <script type="text/javascript" src="$link.setRelative('/home/js/jquery-1.7.2.min.js')" ></script>
 <link href="$link.setRelative('/home/theme/default/css/css.css')" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.h3{padding:5px; background:#C5E3FA; font-size:14px; font-weight:bold;}
+.wzzw{padding:10px; line-height:21px;}
+.lh{font-size:14px; line-height:28px;}
+</style>
 <script type="text/javascript">
 //确认,跳转网址
 function toConfirm(url, str){
@@ -72,6 +77,9 @@ function toConfirm(url, str){
 		<span>参赛报名信息</span>
 	</h3>
     <div class="form">
+		<div class="h3">
+			<span>参赛报名信息</span>
+		</div>
 		<dl>
     		<dt>参赛年度：</dt>
     		<dd>$!matchapply.annualmatch</dd>
@@ -118,6 +126,37 @@ function toConfirm(url, str){
         		</div>
     		</dd>
     	</dl>
+		#if($matchapply.matchresultid!=0)
+		<div class="h3">
+			<span>参赛结果</span>
+		</div>
+		<dl>
+    		<dt>比赛得分：</dt>
+    		<dd>$!matchapply.score</dd>
+    	</dl>
+		<dl>
+    		<dt>比赛名次：</dt>
+    		<dd>$!matchapply.ranking</dd>
+    	</dl>
+		<dl>
+    		<dt>比赛奖项：</dt>
+    		<dd>$!matchapply.awards</dd>
+    	</dl>
+		<dl>
+    		<dt>是否发布：</dt>
+    		<dd>
+				#if($matchapply.ispublish==0)
+					未发布
+				#elseif($matchapply.ispublish==1)
+					已发布
+				#end
+			</dd>
+    	</dl>
+		<dl>
+    		<dt>发布时间：</dt>
+    		<dd>$!matchapply.publishtime</dd>
+    	</dl>
+		#end
     </div>
 
 </div>

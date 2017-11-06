@@ -4,251 +4,286 @@ import java.io.Serializable;
 
 public class Matchapply implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private int id;
-	private int matchid;
+    private int id;
 
-	private String matchname;
-	private String orgcode;
-	private String name;
-	private String annualmatch;
-	private String unitname;
-	private String authors;
-	private String teachers;
-	private String description;
-	private int isvalid;
-	private int state;
-	private String begindate;
-	private String enddate;
-	private String updatetime;
-	private String checktime;
-	private int memberid;
-	private int checkuserid;
-	private String imagecode;
-	private int firstRow;
-	private int listRows;
-	private int score;
-	private String ranking;
-	private String awards;
-	private int ispublish;
-	private int userid;
-	private int matchresultid;
+    private int matchid;
 
-	public int getId() {
-		return id;
-	}
+    private String matchname;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    private String orgcode;
 
-	public String getOrgcode() {
-		return orgcode;
-	}
+    private String name;
 
-	public void setOrgcode(String orgcode) {
-		this.orgcode = orgcode;
-	}
+    private String annualmatch;
 
-	public String getDescription() {
-		return description;
-	}
+    private String unitname;
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    private String authors;
 
-	public int getIsvalid() {
-		return isvalid;
-	}
+    private String teachers;
 
-	public void setIsvalid(int isvalid) {
-		this.isvalid = isvalid;
-	}
+    private String description;
 
-	public String getUpdatetime() {
-		return updatetime;
-	}
+    private int isvalid;
 
-	public void setUpdatetime(String updatetime) {
-		this.updatetime = updatetime;
-	}
+    private int state;
 
-	public String getMatchname() {
-		return matchname;
-	}
+    private String begindate;
 
-	public void setMatchname(String matchname) {
-		this.matchname = matchname;
-	}
+    private String enddate;
 
-	public String getName() {
-		return name;
-	}
+    private String updatetime;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    private String checktime;
 
-	public String getAnnualmatch() {
-		return annualmatch;
-	}
+    private int memberid;
 
-	public void setAnnualmatch(String annualmatch) {
-		this.annualmatch = annualmatch;
-	}
+    private int checkuserid;
 
-	public String getUnitname() {
-		return unitname;
-	}
+    private String imagecode;
 
-	public void setUnitname(String unitname) {
-		this.unitname = unitname;
-	}
+    private int firstRow;
 
-	public String getAuthors() {
-		return authors;
-	}
+    private int listRows;
 
-	public void setAuthors(String authors) {
-		this.authors = authors;
-	}
+    private int score;
 
-	public String getTeachers() {
-		return teachers;
-	}
+    private String ranking;
 
-	public void setTeachers(String teachers) {
-		this.teachers = teachers;
-	}
+    private String awards;
 
-	public int getState() {
-		return state;
-	}
+    private int ispublish;
 
-	public void setState(int state) {
-		this.state = state;
-	}
+    private int matchresultid;
 
-	public String getBegindate() {
-		return begindate;
-	}
+    private int resultuserid;
 
-	public void setBegindate(String begindate) {
-		this.begindate = begindate;
-	}
+    private String publishtime;
 
-	public String getEnddate() {
-		return enddate;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setEnddate(String enddate) {
-		this.enddate = enddate;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getChecktime() {
-		return checktime;
-	}
+    public String getOrgcode() {
+        return orgcode;
+    }
 
-	public void setChecktime(String checktime) {
-		this.checktime = checktime;
-	}
+    public void setOrgcode(String orgcode) {
+        this.orgcode = orgcode;
+    }
 
-	public int getMemberid() {
-		return memberid;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setMemberid(int memberid) {
-		this.memberid = memberid;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public int getCheckuserid() {
-		return checkuserid;
-	}
+    public int getIsvalid() {
+        return isvalid;
+    }
 
-	public void setCheckuserid(int checkuserid) {
-		this.checkuserid = checkuserid;
-	}
+    public void setIsvalid(int isvalid) {
+        this.isvalid = isvalid;
+    }
 
-	public void setMatchid(int matchid) {
-		this.matchid = matchid;
-	}
+    public String getUpdatetime() {
+        return updatetime;
+    }
 
-	public int getMatchid() {
-		return matchid;
-	}
+    public void setUpdatetime(String updatetime) {
+        this.updatetime = updatetime;
+    }
 
-	public void setImagecode(String imagecode) {
-		this.imagecode = imagecode;
-	}
+    public String getMatchname() {
+        return matchname;
+    }
 
-	public String getImagecode() {
-		return imagecode;
-	}
+    public void setMatchname(String matchname) {
+        this.matchname = matchname;
+    }
 
-	public int getFirstRow() {
-		return firstRow;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setFirstRow(int firstRow) {
-		this.firstRow = firstRow;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public int getListRows() {
-		return listRows;
-	}
+    public String getAnnualmatch() {
+        return annualmatch;
+    }
 
-	public void setListRows(int listRows) {
-		this.listRows = listRows;
-	}
+    public void setAnnualmatch(String annualmatch) {
+        this.annualmatch = annualmatch;
+    }
 
-	public int getScore() {
-		return score;
-	}
+    public String getUnitname() {
+        return unitname;
+    }
 
-	public void setScore(int score) {
-		this.score = score;
-	}
+    public void setUnitname(String unitname) {
+        this.unitname = unitname;
+    }
 
-	public String getRanking() {
-		return ranking;
-	}
+    public String getAuthors() {
+        return authors;
+    }
 
-	public void setRanking(String ranking) {
-		this.ranking = ranking;
-	}
+    public void setAuthors(String authors) {
+        this.authors = authors;
+    }
 
-	public String getAwards() {
-		return awards;
-	}
+    public String getTeachers() {
+        return teachers;
+    }
 
-	public void setAwards(String awards) {
-		this.awards = awards;
-	}
+    public void setTeachers(String teachers) {
+        this.teachers = teachers;
+    }
 
-	public int getIspublish() {
-		return ispublish;
-	}
+    public int getState() {
+        return state;
+    }
 
-	public void setIspublish(int ispublish) {
-		this.ispublish = ispublish;
-	}
+    public void setState(int state) {
+        this.state = state;
+    }
 
-	public int getUserid() {
-		return userid;
-	}
+    public String getBegindate() {
+        return begindate;
+    }
 
-	public void setUserid(int userid) {
-		this.userid = userid;
-	}
+    public void setBegindate(String begindate) {
+        this.begindate = begindate;
+    }
 
-	public void setMatchresultid(int matchresultid) {
-		this.matchresultid = matchresultid;
-	}
+    public String getEnddate() {
+        return enddate;
+    }
 
-	public int getMatchresultid() {
-		return matchresultid;
-	}
+    public void setEnddate(String enddate) {
+        this.enddate = enddate;
+    }
+
+    public String getChecktime() {
+        return checktime;
+    }
+
+    public void setChecktime(String checktime) {
+        this.checktime = checktime;
+    }
+
+    public int getMemberid() {
+        return memberid;
+    }
+
+    public void setMemberid(int memberid) {
+        this.memberid = memberid;
+    }
+
+    public int getCheckuserid() {
+        return checkuserid;
+    }
+
+    public void setCheckuserid(int checkuserid) {
+        this.checkuserid = checkuserid;
+    }
+
+    public void setMatchid(int matchid) {
+        this.matchid = matchid;
+    }
+
+    public int getMatchid() {
+        return matchid;
+    }
+
+    public void setImagecode(String imagecode) {
+        this.imagecode = imagecode;
+    }
+
+    public String getImagecode() {
+        return imagecode;
+    }
+
+    public int getFirstRow() {
+        return firstRow;
+    }
+
+    public void setFirstRow(int firstRow) {
+        this.firstRow = firstRow;
+    }
+
+    public int getListRows() {
+        return listRows;
+    }
+
+    public void setListRows(int listRows) {
+        this.listRows = listRows;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public String getRanking() {
+        return ranking;
+    }
+
+    public void setRanking(String ranking) {
+        this.ranking = ranking;
+    }
+
+    public String getAwards() {
+        return awards;
+    }
+
+    public void setAwards(String awards) {
+        this.awards = awards;
+    }
+
+    public int getIspublish() {
+        return ispublish;
+    }
+
+    public void setIspublish(int ispublish) {
+        this.ispublish = ispublish;
+    }
+
+    public void setMatchresultid(int matchresultid) {
+        this.matchresultid = matchresultid;
+    }
+
+    public int getMatchresultid() {
+        return matchresultid;
+    }
+
+    public void setResultuserid(int resultuserid) {
+        this.resultuserid = resultuserid;
+    }
+
+    public int getResultuserid() {
+        return resultuserid;
+    }
+
+    public void setPublishtime(String publishtime) {
+        this.publishtime = publishtime;
+    }
+
+    public String getPublishtime() {
+        return publishtime;
+    }
 
 }

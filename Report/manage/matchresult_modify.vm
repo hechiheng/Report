@@ -7,66 +7,44 @@
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/calendar.config.js')"></script>
+<style type="text/css">
+.h3{padding:5px; background:#C5E3FA; font-size:14px; font-weight:bold;}
+.wzzw{padding:10px; line-height:21px;}
+.lh{font-size:14px; line-height:28px;}
+</style>
 <script type="text/javascript">
 jQuery(function () {
-     jQuery("input[name='matchinfo.annualmatch']").focus();
+     jQuery("input[name='matchapply.score']").focus();
+	 
+	 jQuery("input[name='matchapply.ispublish']").click(function(){
+	   var v=jQuery(this).val();
+	   var publishtime = jQuery("input[name='matchapply.publishtime']");
+	   if(v=='1'){
+	   		publishtime.parent().find("span").remove().end().append("<span class='error'>*</span>");
+	   }else{
+	   		publishtime.parent().find("span").remove();
+	   }
+     });
 	 
      jQuery("#form_do").submit(function(){
-		var annualmatch = jQuery("input[name='matchinfo.annualmatch']");
-		var name = jQuery("input[name='matchinfo.name']");
-		var begindate = jQuery("input[name='matchinfo.begindate']");
-		var enddate = jQuery("input[name='matchinfo.enddate']");
-		var optunitname = jQuery("input[name='matchinfo.optunitname']");
-		var description = jQuery("#description");
-		var content = jQuery("#content");
-		if(jQuery.trim(annualmatch.val())==''){
-			annualmatch.parent().find("span").remove().end().append("<span class='error'>参赛年度不能为空</span>");
-			annualmatch.focus();
+		var score = jQuery("input[name='matchapply.score']");
+		var ispublish = jQuery("input[name='news.ispublish']:checked");
+		var publishtime = jQuery("input[name='news.publishtime']");
+		if(jQuery.trim(score.val())==''){
+			score.parent().find("span").remove().end().append("<span class='error'>参赛年度不能为空</span>");
+			score.focus();
 			return false;			
 		}else {
-			annualmatch.parent().find("span").remove().end();
+			score.parent().find("span").remove().end();
 		}
-		if(jQuery.trim(name.val())==''){
-			name.parent().find("span").remove().end().append("<span class='error'>参赛项目名称不能为空</span>");
-			name.focus();
-			return false;			
-		}else {
-			name.parent().find("span").remove().end();
-		}
-		if(jQuery.trim(begindate.val())==''){
-			begindate.parent().find("span").remove().end().append("<span class='error'>报名开始日期不能为空</span>");
-			begindate.focus();
-			return false;			
-		}else {
-			begindate.parent().find("span").remove().end();
-		}
-		if(jQuery.trim(enddate.val())==''){
-			enddate.parent().find("span").remove().end().append("<span class='error'>报名截止日期不能为空</span>");
-			enddate.focus();
-			return false;			
-		}else {
-			enddate.parent().find("span").remove().end();
-		}
-		if(jQuery.trim(optunitname.val())==''){
-			optunitname.parent().find("span").remove().end().append("<span class='error'>主办单位不能为空</span>");
-			optunitname.focus();
-			return false;			
-		}else {
-			optunitname.parent().find("span").remove().end();
-		}
-		if(!UE.getEditor('description').hasContents()){
-			description.parent().find("span").remove().end().append("<span class='error'>摘要不能为空</span>");
-			description.focus();
-			return false;			
-		}else {
-			description.parent().find("span").remove().end();
-		}
-		if(!UE.getEditor('content').hasContents()){
-			content.parent().find("span").remove().end().append("<span class='error'>内容不能为空</span>");
-			content.focus();
-			return false;			
-		}else {
-			content.parent().find("span").remove().end();
+		if(ispublish.val()=='1'){
+			if(jQuery.trim(publishtime.val())==''){
+				publishtime.parent().find("span").remove().end().append("<span class='error'>发布时间不能为空</span>");
+				return false;	
+			}else {
+    			publishtime.parent().find("span").remove().end();
+    		}
 		}
 
 	});
@@ -81,46 +59,95 @@ jQuery(function () {
     <div class="pos">录入参赛结果</div>
 	<div class="form">
 		<form method='post' id="form_do" name="form_do" action="$link.setAction('modifyMatchresult')">
+		<div class="h3">
+			<span>参赛报名信息</span>
+		</div>
 		<dl>
-			<dt>参赛年度：</dt>
-			<dd>
-				<input type="text" id="annualmatch" name="matchapply.annualmatch" class="inp_one" value="$!modifyMatchinfoForm.matchapply.annualmatch"/>
-				<span style="color: red;">*(格式：YYYY)</span>
+    		<dt>参赛年度：</dt>
+    		<dd>$!modifyMatchresultForm.matchapply.annualmatch</dd>
+    	</dl>
+    	<dl>
+    		<dt> 参赛项目：</dt>
+    		<dd>$!modifyMatchresultForm.matchapply.matchname</dd>
+    	</dl>	
+    	<dl>
+    		<dt>作品名称：</dt>
+    		<dd>$!modifyMatchresultForm.matchapply.name</dd>
+    	</dl>
+    	<dl>
+    		<dt>学校名称：</dt>
+    		<dd>$!modifyMatchresultForm.matchapply.unitname</dd>
+    	</dl>
+    	<dl>
+    		<dt>作者姓名：</dt>
+    		<dd>$!modifyMatchresultForm.matchapply.authors</dd>
+    	</dl>
+    	<dl>
+    		<dt>辅导老师：</dt>
+    		<dd>$!modifyMatchresultForm.matchapply.teachers</dd>
+    	</dl>
+		<dl>
+    		<dt>报名状态：</dt>
+    		<dd>
+				#if($!modifyMatchresultForm.matchapply.state==0)
+					<span style='color: #0000FF;'>未提交</span> 
+				#elseif($!modifyMatchresultForm.matchapply.state==1)
+					<span style='color: #8A2BE2;'>已提交</span>
+				#elseif($!modifyMatchresultForm.matchapply.state==2)
+					<span style='color: #00FF00;'>审核通过</span>
+				#elseif($!modifyMatchresultForm.matchapply.state==3)
+					<span style='color: #FF0000;'>审核未通过</span>
+				#end
 			</dd>
-		</dl>
+    	</dl>
+    	<dl>
+    		<dt>作品简述：</dt>
+    		<dd>
+    			<div class="wzzw lh" id="content">
+        			$!modifyMatchresultForm.matchapply.description
+        		</div>
+    		</dd>
+    	</dl>
+		<div class="h3">
+			<span>录入参赛结果</span>
+		</div>
 		<dl>
-			<dt>参赛项目名称：</dt>
+			<dt>比赛得分：</dt>
 			<dd>
-				<input type="text" name="matchapply.name" class="inp_large" value="$!modifyMatchinfoForm.matchapply.name"/>
+				<input type="text" name="matchapply.score" class="inp_one" value="$!modifyMatchresultForm.matchapply.score"/>
 				<span style="color: red;">*</span>
 			</dd>
 		</dl>
 		<dl>
-			<dt> 参赛类型：</dt>
+			<dt>比赛名次：</dt>
 			<dd>
-				<select name="matchapply.matchtype">
-					#set($matchtypeList = $request.getAttribute("matchtypeList"))
-					#foreach($matchtype in $matchtypeList)
-						#if($!matchtype.id==$!modifyMatchinfoForm.matchapply.matchtype)
-							<option value="$!matchtype.id" selected="selected">$!matchtype.name</option>
-						#else
-							<option value="$!matchtype.id">$!matchtype.name</option>
-						#end
-					#end
-				</select>
+				<input type="text" name="matchapply.ranking" class="inp_large" value="$!modifyMatchresultForm.matchapply.ranking"/>
 			</dd>
-		</dl>	
+		</dl>
 		<dl>
-            <dt> 报名开始日期：</dt>
+			<dt>比赛奖项：</dt>
+			<dd>
+				<textarea name="matchapply.awards" class="tarea_default">$!modifyMatchresultForm.matchapply.awards</textarea>
+			</dd>
+		</dl>
+		<dl>
+			<dt> 是否发布：</dt>
+			<dd>
+				<label><input type="radio" name="matchapply.ispublish" value="1" #if($!modifyMatchresultForm.matchapply.ispublish==1) checked="checked" #end />立即发布&nbsp;</label>
+				<label><input type="radio" name="matchapply.ispublish" value="0" #if($!modifyMatchresultForm.matchapply.ispublish==0) checked="checked" #end />暂不发布</label>
+			</dd>
+		</dl>
+		<dl>
+            <dt> 发布时间：</dt>
             <dd>
-                <input type="text" class="inp_one" name="matchapply.begindate" id="begindate" readonly="readonly" value="$!modifyMatchinfoForm.matchapply.begindate"/>
-				<span style="color: red;">*</span>
+                <input type="text" class="inp_one" name="matchapply.publishtime" id="publishtime" readonly="readonly" value="$!modifyMatchresultForm.matchapply.publishtime" />
+				#if($!modifyMatchresultForm.matchapply.ispublish==1) <span style="color: red;">*</span> #end
                 <script type="text/javascript">
                     Calendar.setup({
                         weekNumbers: true,
-                        inputField : "begindate",
-                        trigger    : "begindate",
-                        dateFormat: "%Y-%m-%d",
+                        inputField : "publishtime",
+                        trigger    : "publishtime",
+                        dateFormat: "%Y-%m-%d %H:%M:%S",
                         showTime: true,
                         minuteStep: 1,
                         onSelect   : function() {this.hide();}
@@ -128,48 +155,11 @@ jQuery(function () {
                 </script>
             </dd>
         </dl>	
-		<dl>
-            <dt> 报名截止日期：</dt>
-            <dd>
-                <input type="text" class="inp_one" name="matchapply.enddate" id="enddate" readonly="readonly" value="$!modifyMatchinfoForm.matchapply.enddate"/>
-				<span style="color: red;">*</span>
-                <script type="text/javascript">
-                    Calendar.setup({
-                        weekNumbers: true,
-                        inputField : "enddate",
-                        trigger    : "enddate",
-                        dateFormat: "%Y-%m-%d",
-                        showTime: true,
-                        minuteStep: 1,
-                        onSelect   : function() {this.hide();}
-                    });
-                </script>
-            </dd>
-        </dl>	
-		<dl>
-			<dt>主办单位：</dt>
-			<dd>
-				<input type="text" name="matchapply.optunitname" class="inp_large" value="$!modifyMatchinfoForm.matchapply.optunitname"/>
-				<span style="color: red;">*</span>
-			</dd>
-		</dl>
-		<dl>
-			<dt>参赛简述：</dt>
-			<dd>
-				<textarea name="matchapply.description" id="description">$!modifyMatchinfoForm.matchapply.description</textarea>
-			</dd>
-		</dl>
-		<dl>
-			<dt>参赛详细说明：</dt>
-			<dd>
-				<textarea name="matchapply.content" id="content">$!modifyMatchinfoForm.matchapply.content</textarea>
-			</dd>
-		</dl>
 		<dl>
 			<span class='error'>#errorMarkup()</span>
         </dl>
 		<div class="form_b">		
-			<input type="hidden" name="matchapply.id" value="$!modifyMatchinfoForm.matchapply.id" />
+			<input type="hidden" name="matchapply.matchresultid" value="$!modifyMatchresultForm.matchapply.id" />
 			<input type="submit" class="btn_blue" id="submit" value="提 交">
 			<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
 		</div>

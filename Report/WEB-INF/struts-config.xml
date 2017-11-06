@@ -300,6 +300,14 @@
 			validate="false"
 			parameter="removeMatchapply">
         </action>
+        <action
+        	path="/load4MatchresultIndex"
+			type="com.report.home.action.MatchapplyAction"
+			scope="request"
+			validate="false"
+			parameter="load4MatchresultIndex">
+			<forward name="success" path="/home/matchresult_index.vm"/>
+        </action>
         
         
 	</action-mappings>

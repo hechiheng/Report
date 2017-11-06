@@ -52,7 +52,7 @@
     				#end
 				</td>
 				<td>
-					#if(!$matchapply.matchresultid)
+					#if($matchapply.matchresultid==0)
 						未录入
 					#elseif($matchapply.ispublish==0)
 						未发布

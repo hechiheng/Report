@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 127.0.0.1
+Source Server         : localhost
 Source Server Version : 50521
-Source Host           : 127.0.0.1:3306
+Source Host           : localhost:3306
 Source Database       : report
 
 Target Server Type    : MYSQL
 Target Server Version : 50521
 File Encoding         : 65001
 
-Date: 2017-11-01 23:13:13
+Date: 2017-11-06 23:14:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -274,6 +274,41 @@ INSERT INTO `t_link` VALUES ('8', '2', '2  ', '', '', '1509287856', '0', '1', '1
 INSERT INTO `t_link` VALUES ('9', '大师傅', '  222', '', '232323', '1509288440', '4', '1', '1');
 
 -- ----------------------------
+-- Table structure for `t_matchapply`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_matchapply`;
+CREATE TABLE `t_matchapply` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `annualmatch` varchar(4) NOT NULL DEFAULT '',
+  `matchid` int(10) NOT NULL,
+  `name` varchar(400) NOT NULL DEFAULT '',
+  `unitname` varchar(400) NOT NULL DEFAULT '',
+  `authors` varchar(400) NOT NULL DEFAULT '',
+  `teachers` varchar(400) NOT NULL DEFAULT '',
+  `description` text,
+  `updatetime` int(10) unsigned NOT NULL,
+  `state` tinyint(1) NOT NULL DEFAULT '0',
+  `isvalid` tinyint(1) NOT NULL DEFAULT '1',
+  `memberid` int(10) DEFAULT NULL,
+  `checkuserid` int(10) DEFAULT NULL,
+  `checktime` int(10) unsigned DEFAULT NULL,
+  `orgcode` varchar(20) DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_matchapply
+-- ----------------------------
+INSERT INTO `t_matchapply` VALUES ('14', '2017', '10', '是的范德萨', '士大夫', '大师傅', '撒地方的萨芬的', '<p>是的范德萨</p>', '1509845957', '3', '1', '4', null, null, '');
+INSERT INTO `t_matchapply` VALUES ('15', '2017', '10', '大方的萨芬的', '似懂非懂', '是的范德萨', '是的范德萨', '<p>是的范德萨</p><p>是的范德萨</p><p>水电费水电费多少</p>', '1509848707', '0', '1', '4', null, null, '');
+INSERT INTO `t_matchapply` VALUES ('16', '2017', '10', '是的范德萨', '是的范德萨', '是非得失', '撒地方的萨芬', '<p>撒地方的萨芬</p>', '1509848831', '0', '1', '4', null, null, '');
+INSERT INTO `t_matchapply` VALUES ('18', '2016', '10', '是的范德萨22', '大师傅22', '是否22', '是的范德萨22', '<p>撒地方的萨芬</p><p>似懂非懂</p><p>撒地方的萨芬222</p><p>撒地方的萨芬</p><p><br/></p><p>是的范德萨范德萨</p><p>似懂非懂<img src=\"/Report/uploads/image/20171105/1509849950443032445.png\" title=\"1509849950443032445.png\" alt=\"QQ图片20171102171441.png\"/></p>', '1509857751', '0', '1', '4', null, null, '');
+INSERT INTO `t_matchapply` VALUES ('19', '2016', '10', '是的范德萨22', '是的范德萨22', '第三方的22', '似懂非懂2', '<p>是的范德萨22</p><p>是的范德萨</p><p>的说法都是顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶的顶顶顶顶顶的顶顶顶顶顶的顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶的顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶</p><p>大师傅大师傅<img src=\"/Report/uploads/image/20171105/1509852379630047954.png\" title=\"1509852379630047954.png\" alt=\"QQ图片20171102171441.png\"/></p>', '1509857725', '2', '1', '4', null, null, '');
+INSERT INTO `t_matchapply` VALUES ('23', '2017', '10', '似懂非懂', '的点点滴滴', '的顶顶顶顶顶', '顶顶顶顶顶顶顶顶顶顶顶顶顶顶', '<p>设定点的的顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶</p><p>是顶顶顶顶顶顶顶顶顶顶顶顶顶顶</p><p><br/></p><p>士大夫第三方士大夫</p><p>所发生的</p><p>是的范德萨<img src=\"/Report/uploads/image/20171105/1509891664404031262.png\" title=\"1509891664404031262.png\" alt=\"QQ图片20171102171441.png\"/></p><p><br/></p><p>是的范德萨士大夫</p><p><br/></p><p><br/></p><p>士大夫</p><p><br/></p><p><br/></p><p style=\"line-height: 16px;\"><img style=\"vertical-align: middle; margin-right: 2px;\" src=\"http://localhost:9005/Report/manage/ueditor/dialogs/attachment/fileTypeImages/icon_doc.gif\"/><a style=\"font-size:12px; color:#0066cc;\" href=\"/Report/uploads/file/20171105/1509891691474004559.docx\" title=\"20171016_医疗服务监控系统各地市情况说明.docx\">20171016_医疗服务监控系统各地市情况说明.docx</a></p><p style=\"line-height: 16px;\"><img style=\"vertical-align: middle; margin-right: 2px;\" src=\"http://localhost:9005/Report/manage/ueditor/dialogs/attachment/fileTypeImages/icon_txt.gif\"/><a style=\"font-size:12px; color:#0066cc;\" href=\"/Report/uploads/file/20171105/1509891691528020823.xlsx\" title=\"2016和2017上半年门诊慢性病统计.xlsx\">2016和2017上半年门诊慢性病统计.xlsx</a></p><p><br/></p>', '1509891699', '3', '1', '4', null, null, '');
+INSERT INTO `t_matchapply` VALUES ('21', '2017', '10', '士大夫222', '多带点222', '顶顶顶顶222', '是非得失22', '<p>删掉防守打法士大夫22</p>', '1509857959', '0', '1', '4', null, null, '');
+INSERT INTO `t_matchapply` VALUES ('22', '2017', '10', '阿士大夫的撒2222', '是的范德萨', '大师傅大师傅都是', '是的范德萨', '<p>是的范德萨范德萨sdfsdsdf</p>', '1509877760', '2', '1', '4', null, null, '');
+
+-- ----------------------------
 -- Table structure for `t_matchinfo`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_matchinfo`;
@@ -286,18 +321,48 @@ CREATE TABLE `t_matchinfo` (
   `enddate` int(10) unsigned NOT NULL,
   `optunitname` varchar(300) NOT NULL DEFAULT '',
   `description` text,
-  `matchinfo` text,
+  `content` text,
   `updatetime` int(10) unsigned NOT NULL,
-  `isdisabled` tinyint(1) NOT NULL DEFAULT '0',
   `isvalid` tinyint(1) NOT NULL DEFAULT '1',
   `userid` int(10) DEFAULT NULL,
   `orgcode` varchar(20) DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_matchinfo
 -- ----------------------------
+INSERT INTO `t_matchinfo` VALUES ('10', '2017', '打算范德萨发222', '11', '1509724800', '1514044800', '撒地方的萨芬2222', '<p>撒范德萨范德萨222222</p>', '<p>是的范德萨范德萨分<img src=\"/Report/uploads/image/20171104/1509762791728061494.png\" title=\"1509762791728061494.png\" alt=\"QQ图片20171102171441.png\"/></p><p><br/></p><p>sdfdsf胜多负少大丰收大222222222</p><p><br/></p><p><br/></p><p>是的范德萨范德萨2222222</p>', '1509764486', '1', '0', '');
+INSERT INTO `t_matchinfo` VALUES ('11', '2017', '删掉防守打法', '11', '1509465600', '1510934400', '撒地方的萨芬', '<p>删掉防守打法</p>', '<p>撒地方的萨芬是的范德萨<img src=\"/Report/uploads/image/20171104/1509764192280020042.png\" title=\"1509764192280020042.png\" alt=\"QQ图片20171102171441.png\"/></p><p><br/></p><p>双方都第三方</p><p>sdfdsf水电费水电费多少</p><p>水电费水电费多少</p>', '1509764199', '0', '0', '');
+INSERT INTO `t_matchinfo` VALUES ('12', '2017', '撒地方的萨芬', '11', '1509724800', '1510243200', '是的范德萨', '<p>是的范德萨</p>', '<p>撒地方的萨芬<br/></p><p>是的范德萨</p><p style=\"line-height: 16px;\"><img style=\"vertical-align: middle; margin-right: 2px;\" src=\"http://localhost:9005/Report/manage/ueditor/dialogs/attachment/fileTypeImages/icon_doc.gif\"/><a style=\"font-size:12px; color:#0066cc;\" href=\"/Report/uploads/file/20171104/1509793362521017172.docx\" title=\"20171016_医疗服务监控系统各地市情况说明.docx\">20171016_医疗服务监控系统各地市情况说明.docx</a></p><p style=\"line-height: 16px;\"><img style=\"vertical-align: middle; margin-right: 2px;\" src=\"http://localhost:9005/Report/manage/ueditor/dialogs/attachment/fileTypeImages/icon_txt.gif\"/><a style=\"font-size:12px; color:#0066cc;\" href=\"/Report/uploads/file/20171104/1509793373652022966.xlsx\" title=\"2016和2017上半年门诊慢性病统计.xlsx\">2016和2017上半年门诊慢性病统计.xlsx</a></p><p><br/></p>', '1509793382', '1', '0', '');
+INSERT INTO `t_matchinfo` VALUES ('13', '2017', '阿士大夫的撒', '11', '1510329600', '1509638400', '是的范德萨', '<p>是的范德萨</p>', '<p>是的范德萨</p><p>似懂非懂</p><p><br/></p><p>撒地方的萨芬</p><p>是的范德萨</p><p>胜多负少的</p><p><br/></p><p style=\"line-height: 16px;\"><img style=\"vertical-align: middle; margin-right: 2px;\" src=\"http://localhost:9005/Report/manage/ueditor/dialogs/attachment/fileTypeImages/icon_txt.gif\"/><a style=\"font-size:12px; color:#0066cc;\" href=\"/Report/uploads/file/20171104/1509793579209041342.xlsx\" title=\"2016和2017上半年门诊慢性病统计.xlsx\">2016和2017上半年门诊慢性病统计.xlsx</a></p><p style=\"line-height: 16px;\"><img style=\"vertical-align: middle; margin-right: 2px;\" src=\"http://localhost:9005/Report/manage/ueditor/dialogs/attachment/fileTypeImages/icon_doc.gif\"/><a style=\"font-size:12px; color:#0066cc;\" href=\"/Report/uploads/file/20171104/1509793579205005759.docx\" title=\"2016-09-02使用过程中反应的问题.docx\">2016-09-02使用过程中反应的问题.docx</a></p><p><br/></p>', '1509793583', '1', '0', '');
+INSERT INTO `t_matchinfo` VALUES ('14', '2017', '胜多负少的', '11', '1509724800', '1509724800', '是的范德萨', '<p>是的范德萨</p>', '<p>是的范德萨<img src=\"/Report/uploads/image/20171105/1509850326091004315.jpg\" title=\"1509850326091004315.jpg\" alt=\"事前监控接口测试.jpg\"/></p>', '1509850329', '1', '0', '');
+INSERT INTO `t_matchinfo` VALUES ('15', '2017', '是的范德萨', '11', '1510156800', '1509638400', '似懂非懂', '<p>是非得失</p>', '<p>撒地方的萨芬的<img src=\"/Report/uploads/image/20171105/1509850894715008676.png\" title=\"1509850894715008676.png\" alt=\"QQ图片20171102171441.png\"/></p>', '1509850896', '1', '0', '');
+INSERT INTO `t_matchinfo` VALUES ('16', '2017', '士大夫2222', '11', '1510848000', '1510329600', '大师傅', '<p>士大夫</p>', '<p>胜多负少的</p>', '1509858004', '1', '0', '');
+
+-- ----------------------------
+-- Table structure for `t_matchresult`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_matchresult`;
+CREATE TABLE `t_matchresult` (
+  `id` int(10) unsigned NOT NULL,
+  `score` int(10) DEFAULT NULL,
+  `ranking` varchar(400) DEFAULT NULL,
+  `awards` varchar(400) DEFAULT NULL,
+  `updatetime` int(10) unsigned NOT NULL,
+  `ispublish` tinyint(1) NOT NULL DEFAULT '0',
+  `publishtime` int(10) DEFAULT NULL,
+  `isvalid` tinyint(1) NOT NULL DEFAULT '1',
+  `resultuserid` int(10) DEFAULT NULL,
+  `orgcode` varchar(20) DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_matchresult
+-- ----------------------------
+INSERT INTO `t_matchresult` VALUES ('22', '10', '等等', '是的范德萨', '1509979429', '1', '1510929780', '1', '1', '');
+INSERT INTO `t_matchresult` VALUES ('19', '100', '是的范德萨发生大幅度22222', '是的范德萨发生的法师打发第三方第三方第三方22222', '1509979751', '1', '1509634080', '1', '1', '');
 
 -- ----------------------------
 -- Table structure for `t_matchtype`
@@ -313,13 +378,15 @@ CREATE TABLE `t_matchtype` (
   `userid` int(10) DEFAULT NULL,
   `orgcode` varchar(20) DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_matchtype
 -- ----------------------------
 INSERT INTO `t_matchtype` VALUES ('10', '测试类型222', '水电费第三方第三方的说法都是2222', '1509545829', '0', '0', '0', '');
 INSERT INTO `t_matchtype` VALUES ('11', '是的范德萨', '的说法是否撒地方的萨芬撒地方的萨芬', '1509545607', '1', '0', '0', '');
+INSERT INTO `t_matchtype` VALUES ('12', '阿士大夫', '士大夫第三方士大夫', '1509762032', '1', '0', '0', '');
+INSERT INTO `t_matchtype` VALUES ('13', '的方法', '撒地方的萨芬', '1509762038', '1', '0', '0', '');
 
 -- ----------------------------
 -- Table structure for `t_member`
@@ -350,7 +417,7 @@ CREATE TABLE `t_member` (
 -- ----------------------------
 INSERT INTO `t_member` VALUES ('1', 'hch@qq.com', 'd31fa2d0f3cef21b3b53f1e4db56597e', '1', 'hch', null, '', '0', '', null, null, '1471524159', null, null, '1', '0');
 INSERT INTO `t_member` VALUES ('2', '111', '111', '2', '111定点', '2323', '2017-09-28', '0', '12', '2323', '1212', '1477466340', '1509376658', null, '1', '0');
-INSERT INTO `t_member` VALUES ('4', '333', 'c4ca4238a0b923820dcc509a6f75849b', '1', '333的丰富的得得得', '3333344', '2017-09-29', '33水电费', '33333', '3333', '333', '1508942916', '1509540600', '1509540975', '1', '1');
+INSERT INTO `t_member` VALUES ('4', '333', 'c4ca4238a0b923820dcc509a6f75849b', '1', '333的丰富的得得得1', '3333344', '2017-09-29', '33水电费', '33333', '3333', '333', '1508942916', '1509846033', '1509981174', '1', '1');
 INSERT INTO `t_member` VALUES ('5', '444', '670b14728ad9902aecba32e22fa4f6bd', '1', '水电费', '2323', '2017-10-11', '???????????', '23', '23', '23', '1508944535', null, null, '1', '0');
 INSERT INTO `t_member` VALUES ('6', '666', 'c4ca4238a0b923820dcc509a6f75849b', '1', '的说法都是', '232', '2017-10-24', '大师傅大师傅', '2323', '2323', '23', '1508945896', null, null, '1', '0');
 INSERT INTO `t_member` VALUES ('7', '1111', 'c4ca4238a0b923820dcc509a6f75849b', '2', '地方', '2323', '2017-10-26', '第三方第三方第三方', '23323', '2323', '3223', '1509366534', null, null, '1', '1');
@@ -392,14 +459,11 @@ INSERT INTO `t_menu` VALUES ('38', '菜单管理', '2', '1', '2', '1', 'load4Men
 INSERT INTO `t_menu` VALUES ('46', '新闻管理', '1', '1', '1', '1', 'load4NewsIndex.do', '1509463877');
 INSERT INTO `t_menu` VALUES ('42', '修改资料', '4', '1', '3', '1', 'load4UserModify.do', null);
 INSERT INTO `t_menu` VALUES ('43', '修改密码', '4', '1', '4', '1', 'load4UserPwdModify.do', null);
-INSERT INTO `t_menu` VALUES ('50', '参赛查询', '1', '1', '5', '1', null, null);
 INSERT INTO `t_menu` VALUES ('51', '联系我们', '1', '1', '6', '1', 'load4AboutModify.do', null);
-INSERT INTO `t_menu` VALUES ('52', '测试', '0', '1', '10', '0', '', null);
-INSERT INTO `t_menu` VALUES ('53', '得得得', '0', '1', '11', '0', '', null);
 INSERT INTO `t_menu` VALUES ('59', '参赛管理', '0', '1', '2', '1', '', '1509541208');
 INSERT INTO `t_menu` VALUES ('60', '参赛分类管理', '59', '1', '1', '1', 'load4MatchtypeIndex.do', '1509541261');
-INSERT INTO `t_menu` VALUES ('61', '参赛项目管理', '59', '1', '2', '1', '', '1509541277');
-INSERT INTO `t_menu` VALUES ('62', '参赛报名管理', '59', '1', '3', '1', '', '1509541442');
+INSERT INTO `t_menu` VALUES ('61', '参赛项目管理', '59', '1', '2', '1', 'load4MatchinfoIndex.do', '1509541277');
+INSERT INTO `t_menu` VALUES ('62', '参赛报名管理', '59', '1', '3', '1', 'load4MatchapplyIndex.do', '1509541442');
 
 -- ----------------------------
 -- Table structure for `t_message`

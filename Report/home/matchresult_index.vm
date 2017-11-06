@@ -56,13 +56,13 @@
 	</div>
 <div class="right f_r">
 	<h3 class="nybt">
-		<span>参赛报名列表</span>
+		<span>参赛结果列表</span>
 	</h3>
 	<div class="xbox wzzw"> 
 		<ul class="wzli">	
     		#set($matchapplyList = $request.getAttribute("matchapplyList"))
     		#foreach($matchapply in $matchapplyList)
-    			<li><span>$!matchapply.updatetime</span><a href="$link.setAction('load4Matchapply').addQueryData('id',$!matchapply.id)">$!matchapply.name</a></li>
+    			<li><span>$!matchapply.publishtime</span><a href="$link.setAction('load4Matchapply').addQueryData('id',$!matchapply.id)">$!matchapply.name</a></li>
     		#end
     	</ul>
 	</div>

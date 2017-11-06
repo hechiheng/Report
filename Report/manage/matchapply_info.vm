@@ -68,12 +68,38 @@
         		</div>
     		</dd>
     	</dl>
-		#if($matchapply.state==2)
+		#if($matchapply.matchresultid!=0)
 		<div class="h3">
 			<span>参赛结果</span>
 		</div>
+		<dl>
+    		<dt>比赛得分：</dt>
+    		<dd>$!matchapply.score</dd>
+    	</dl>
+		<dl>
+    		<dt>比赛名次：</dt>
+    		<dd>$!matchapply.ranking</dd>
+    	</dl>
+		<dl>
+    		<dt>比赛奖项：</dt>
+    		<dd>$!matchapply.awards</dd>
+    	</dl>
+		<dl>
+    		<dt>是否发布：</dt>
+    		<dd>
+				#if($matchapply.ispublish==0)
+					未发布
+				#elseif($matchapply.ispublish==1)
+					已发布
+				#end
+			</dd>
+    	</dl>
+		<dl>
+    		<dt>发布时间：</dt>
+    		<dd>$!matchapply.publishtime</dd>
+    	</dl>
 		#end
-		<div>		
+		<div style="margin-top: 10px;">		
 			<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
 		</div>
 	</div>

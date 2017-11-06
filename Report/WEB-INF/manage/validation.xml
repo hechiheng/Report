@@ -1079,7 +1079,28 @@
 				<arg key="matchinfo.content" />
 			</field>
 		</form>
-		
+		<form name="modifyMatchresultForm">
+			<field property="matchapply.matchresultid"
+				depends="required,bytemaxlength">
+				<arg key="matchapply.matchresultid" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="matchapply.score"
+				depends="required,bytemaxlength">
+				<arg key="matchapply.score" />
+				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
+					resource="false" />
+				<var>
+					<var-name>bytemaxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+		</form>
 	</formset>
 
 </form-validation>

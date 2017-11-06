@@ -4,5 +4,5 @@
 <li><a href="$link.setAction('load4Notice')">报名须知</a></li>
 <li><a href="$link.setAction('load4LatestAnnounce')">最新公告</a></li>
 <li><a href="$link.setAction('load4MatchapplyAdd')">参赛报名</a></li>
-<li><a href="$link.setAction('load4Search')">参赛查询</a></li>
+<li><a href="$link.setAction('load4MatchresultIndex')">参赛查询</a></li>
 <li><a href="$link.setAction('load4About')">联系我们</a></li>

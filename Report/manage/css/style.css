@@ -88,7 +88,7 @@ border:1px solid #cccccc; border-width:1px 0px; font-weight: bold; background:#e
 .form dd .wxqrcode{width: 80px;height: 80px;border: 1px solid #D4D4D4;}
 .form dd p {clear: both;color: #666;padding: 4px 0 0 0;line-height: 16px;}
 .form dd .tip{ display:inline-block; height:26px; line-height:26px; padding:0px 3px 0px 5px;}
-.form_b {text-align: left;padding: 20px 0 45px 145px;}
+.form_b {text-align: left;padding: 10px 0 10px 0px;}
 .form .btn7 {margin-left: 10px;}
 
 
