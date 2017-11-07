@@ -14,6 +14,10 @@
 <link href="$link.setRelative('/manage/js/calendar/jscal2.css')" rel="stylesheet" type="text/css" />
 <link href="$link.setRelative('/manage/js/calendar/border-radius.css')" rel="stylesheet" type="text/css" />
 <link href="$link.setRelative('/manage/js/calendar/win2k.css')" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.form dt {float: left;width: 20%;font-size: 14px;padding: 3px 0 0 0;color: #666;}
+</style>
+
 <script type="text/javascript">
 function change_code(obj){
 	jQuery("#code").attr("src",obj.src+'?'+Math.random());
@@ -129,8 +133,8 @@ jQuery(function () {
 	<div class="warp1 mt">
 	<div class="right f_r" style="width:980px;">
 		<h3 class="nybt"><span>会员注册</span></h3>
-		<div class="form" style="margin: 10px auto;">
-			<form method='post' id="form_do" name="form_do" action="$link.setAction('regMember')">
+		<div class="form">
+			<form method='post' id="form_do" name="form_do" style="width: 600px;margin: 22px auto 0;" action="$link.setAction('regMember')">
 				<dl>
 					<dt>用户名：</dt>
 					<dd>

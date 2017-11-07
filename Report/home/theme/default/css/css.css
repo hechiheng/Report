@@ -19,14 +19,13 @@ ul li{list-style:none;}
 /*top*/
 #top{background:url(../images/topbg.jpg) no-repeat center top; width:100%;}
 #herd{height:159px; overflow:hidden; position:relative;}
-#top_member{width:auto;_width:430px; height:30px; line-height:30px; padding:0 10px; background-color:#247fd2;color:#fff; position:absolute; right:8px; bottom:0px; z-index:100; overflow:hidden;}
+#top_member{width:auto;_width:430px; height:30px; line-height:30px; padding:0 10px; color:#fff; position:absolute; right:8px; bottom:0px; z-index:100; overflow:hidden;}
 #top_member span{word-break:break-all;float:left; overflow:hidden;}
 #top_member a {
 float: right;
 width: 70px;
 height: 18px;
 line-height: 18px;
-background: #247fd2;
 border:1px solid #fff;
 color:#fff;
 text-align: center;margin:5px 3px 0px;
@@ -211,7 +210,7 @@ li.b5{background:#ffffff;}
 .form dd .logo{border: 1px solid #D4D4D4;}
 .form dd .wxqrcode{width: 80px;height: 80px;border: 1px solid #D4D4D4;}
 .form dd p {clear: both;color: #666;padding: 4px 0 0 0;line-height: 16px;}
-.form_b {text-align: left;padding: 20px 0 45px 145px;}
+.form_b {text-align: left;padding: 20px 0 45px 0px;}
 .form .btn7 {margin-left: 10px;}
 
 /**/

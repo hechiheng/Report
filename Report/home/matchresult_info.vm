@@ -3,18 +3,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>大学生创新大赛网上申报系统-参赛报名</title>
+<title>大学生创新大赛网上申报系统-参赛结果</title>
 <meta name="keywords" content="大学生创新大赛网上申报系统" />
 <meta name="description" content="大学生创新大赛网上申报系统" />
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
 <script type="text/javascript" src="$link.setRelative('/home/js/jquery-1.7.2.min.js')" ></script>
 <link href="$link.setRelative('/home/theme/default/css/css.css')" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="$link.setRelative('/home/js/common.js')"></script>
 <style type="text/css">
 .h3{padding:5px; background:#C5E3FA; font-size:14px; font-weight:bold;}
 .wzzw{padding:10px; line-height:21px;}
 .lh{font-size:14px; line-height:28px;}
 </style>
+<script type="text/javascript">
+//确认,跳转网址
+function toConfirm(url, str){
+    if (window.confirm(str)){
+        location.href = url;
+    }
+}
+</script>
 </head>
 
 <body>
@@ -52,22 +59,16 @@
 <div class="content">
 	<div class="warp1 mt">
 	<div class="left f_l">
-		<h3 class="flbt">参赛报名</h3>
+		<h3 class="flbt">参赛结果</h3>
 		<div class="xbox">
 			<ul class="fllb">
-			<li><a href="$link.setAction('load4MatchapplyAdd')">参赛报名</a></li>
-			<li><a href="$link.setAction('load4MatchapplyIndex')">报名列表</a></li>
+			<li><a href="$link.setAction('load4MatchresultIndex')">参赛结果</a></li>
 			</ul>
 		</div>		
 	</div>
 <div class="right f_r">
     <h3 class="nybt">
-		#if($!matchapply.state==0||$!matchapply.state==1)
-		<i><a href="javascript:;" onclick="toConfirm('$link.setAction('removeMatchapply').addQueryData('id',$!matchapply.id)','该操作不可恢复，确实要删除吗？')">删除</a></i>
-		<i>&nbsp;|&nbsp;</i>
-		<i><a href="$link.setAction('load4MatchapplyModify').addQueryData('id',$!matchapply.id)">修改</a></i>
-		#end
-		<span>参赛报名信息</span>
+		<span>参赛结果</span>
 	</h3>
     <div class="form">
 		<div class="h3">
@@ -119,6 +120,37 @@
         		</div>
     		</dd>
     	</dl>
+		#if($matchapply.matchresultid!=0)
+		<div class="h3">
+			<span>参赛结果</span>
+		</div>
+		<dl>
+    		<dt>比赛得分：</dt>
+    		<dd>$!matchapply.score</dd>
+    	</dl>
+		<dl>
+    		<dt>比赛名次：</dt>
+    		<dd>$!matchapply.ranking</dd>
+    	</dl>
+		<dl>
+    		<dt>比赛奖项：</dt>
+    		<dd>$!matchapply.awards</dd>
+    	</dl>
+		<dl>
+    		<dt>是否发布：</dt>
+    		<dd>
+				#if($matchapply.ispublish==0)
+					未发布
+				#elseif($matchapply.ispublish==1)
+					已发布
+				#end
+			</dd>
+    	</dl>
+		<dl>
+    		<dt>发布时间：</dt>
+    		<dd>$!matchapply.publishtime</dd>
+    	</dl>
+		#end
     </div>
 
 </div>

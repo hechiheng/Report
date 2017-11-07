@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="main">
-    <div class="pos">查看参赛报名信息</div>
+    <div class="pos">参赛报名信息</div>
 	<div class="form">
 		<div class="h3">
 			<span>参赛报名信息</span>

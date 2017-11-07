@@ -9,6 +9,7 @@
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
 <script type="text/javascript" src="$link.setRelative('/home/js/jquery-1.7.2.min.js')" ></script>
 <link href="$link.setRelative('/home/theme/default/css/css.css')" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="$link.setRelative('/home/js/common.js')"></script>
 <script type="text/javascript">
 function change_code(obj){
 	jQuery("#code").attr("src",obj.src+'?'+Math.random());
@@ -55,8 +56,8 @@ jQuery(function () {
 	<div class="warp1 mt">
 	<div class="right f_r" style="width:980px;">
 		<h3 class="nybt"><span>会员登录</span></h3>
-		<div class="form" style="width: 600px;margin: 10px auto;">
-			<form method='post' id="form_do" name="form_do" action="$link.setAction('login')">
+		<div class="form">
+			<form method='post' id="form_do" name="form_do" style="width: 600px;margin: 22px auto 0;" action="$link.setAction('login')">
 			<dl>
 				<dt>用户名：</dt>
 				<dd>
@@ -81,6 +82,7 @@ jQuery(function () {
 			</dl>
 			<div class="form_b">		
 				<input type="submit" class="btn_blue" id="submit" value="登录">
+				<input type="button" class="btn_blue" onclick="goUrl('$link.setAction('load4MemberReg')')" value="注册">
 			</div>
 		   </form>
 		</div>

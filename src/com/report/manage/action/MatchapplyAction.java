@@ -31,10 +31,10 @@ public class MatchapplyAction extends BaseAction {
         String name = matchapply.getName();
         String p = request.getParameter("p");
         MatchapplyBo bo = new MatchapplyBo();
-        int total = bo.getMatchapplyList1Size(matchapply);
+        int total = bo.getMatchapplyListSize(matchapply);
         Page page = new Page(total, p, matchapply, "load4MatchapplyIndex");
         page.setQueryData("matchapply.name", name == null ? "" : name);
-        List<Matchapply> matchapplyList = bo.getMatchapplyList1(matchapply);
+        List<Matchapply> matchapplyList = bo.getMatchapplyList(matchapply);
         request.setAttribute("matchapplyList", matchapplyList);
         request.setAttribute("page", page);
         return mapping.findForward("success");
@@ -85,6 +85,23 @@ public class MatchapplyAction extends BaseAction {
         return mapping.findForward("info");
     }
 
+    public ActionForward load4MatchresultIndex(ActionMapping mapping,
+            ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) throws BaseException {
+        MatchapplyForm matchapplyForm = (MatchapplyForm) form;
+        Matchapply matchapply = matchapplyForm.getMatchapply();
+        String name = matchapply.getName();
+        String p = request.getParameter("p");
+        MatchapplyBo bo = new MatchapplyBo();
+        int total = bo.getMatchresultListSize(matchapply);
+        Page page = new Page(total, p, matchapply, "load4MatchresultIndex");
+        page.setQueryData("matchapply.name", name == null ? "" : name);
+        List<Matchapply> matchapplyList = bo.getMatchresultList(matchapply);
+        request.setAttribute("matchapplyList", matchapplyList);
+        request.setAttribute("page", page);
+        return mapping.findForward("success");
+    }
+
     public ActionForward load4MatchresultModify(ActionMapping mapping,
             ActionForm form, HttpServletRequest request,
             HttpServletResponse response) throws BaseException {
@@ -121,7 +138,7 @@ public class MatchapplyAction extends BaseAction {
         smb.setMessage(new ActionMessage(
                 "MatchapplyAction.modifyMatchresult.success"));
         smb.setLinkText(new ActionMessage("MatchapplyAction.return"));
-        smb.setAction("/load4MatchapplyIndex");
+        smb.setAction("/load4MatchresultIndex");
         SysGlobals.setSysMessage(request, smb);
         return mapping.findForward("info");
     }

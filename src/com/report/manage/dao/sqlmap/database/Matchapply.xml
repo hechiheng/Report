@@ -6,7 +6,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	<typeAlias alias="matchapply" type="com.report.manage.bean.Matchapply"/>
 	<typeAlias alias="matchinfo" type="com.report.manage.bean.Matchinfo"/>
 	
-	<select id="manage.MatchapplyDao.selectMatchapplyList" parameterClass="matchapply" resultClass="matchapply">
+	<select id="manage.MatchapplyDao.selectMatchapplyList4Home" parameterClass="matchapply" resultClass="matchapply">
 		select a.id,a.name,a.annualmatch,a.matchid,b.name matchname,a.unitname,a.authors,a.teachers,a.description,
 		DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime,a.state,a.memberid,IFNULL(a.checkuserid,0) checkuserid,
 		DATE_FORMAT(FROM_UNIXTIME(a.checktime),'%Y-%m-%d %H:%i:%s') checktime 
@@ -16,7 +16,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		order by a.updatetime desc
 	</select>
 	
-	<select id="manage.MatchapplyDao.selectMatchresultList" parameterClass="matchapply" resultClass="matchapply">
+	<select id="manage.MatchapplyDao.selectMatchresultList4Home" parameterClass="matchapply" resultClass="matchapply">
 		select a.id,a.name,a.annualmatch,a.matchid,b.name matchname,a.unitname,a.authors,a.teachers,a.description,
 		DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime,a.state,a.memberid,IFNULL(a.checkuserid,0) checkuserid,
 		DATE_FORMAT(FROM_UNIXTIME(a.checktime),'%Y-%m-%d %H:%i:%s') checktime,
@@ -28,7 +28,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		order by a.updatetime desc
 	</select>
 	
-	<select id="manage.MatchapplyDao.selectMatchapplyList1Size" parameterClass="matchapply" resultClass="int">
+	<select id="manage.MatchapplyDao.selectMatchapplyListSize" parameterClass="matchapply" resultClass="int">
 		select count(a.id) 
 		from t_matchapply a,t_matchinfo b 
 		where a.matchid=b.id and a.isvalid=1 and a.state>0
@@ -37,7 +37,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		</isNotEmpty>		
 	</select>
 	
-	<select id="manage.MatchapplyDao.selectMatchapplyList1" parameterClass="matchapply" resultClass="matchapply">
+	<select id="manage.MatchapplyDao.selectMatchapplyList" parameterClass="matchapply" resultClass="matchapply">
 		select a.id,a.name,a.annualmatch,a.matchid,b.name matchname,a.unitname,a.authors,a.teachers,a.description,
 		DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime,a.state,a.memberid,IFNULL(a.checkuserid,0) checkuserid,
 		DATE_FORMAT(FROM_UNIXTIME(a.checktime),'%Y-%m-%d %H:%i:%s') checktime,IFNULL(c.id,0) matchresultid,IFNULL(c.ispublish,0) ispublish 
@@ -47,6 +47,30 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 			a.name like CONCAT('%',#name#,'%')
 		</isNotEmpty>
 		order by a.updatetime desc
+		limit $firstRow$,$listRows$
+	</select>
+	
+	<select id="manage.MatchapplyDao.selectMatchresultListSize" parameterClass="matchapply" resultClass="int">
+		select count(a.id) 
+		from t_matchapply a,t_matchinfo b 
+		where a.matchid=b.id and a.isvalid=1 and a.state=2
+		<isNotEmpty prepend="and" property="name">
+			a.name like CONCAT('%',#name#,'%')
+		</isNotEmpty>		
+	</select>
+	
+	<select id="manage.MatchapplyDao.selectMatchresultList" parameterClass="matchapply" resultClass="matchapply">
+		select a.id,a.name,a.annualmatch,a.matchid,b.name matchname,a.unitname,a.authors,a.teachers,a.description,
+		a.state,a.memberid,IFNULL(a.checkuserid,0) checkuserid,
+		DATE_FORMAT(FROM_UNIXTIME(a.checktime),'%Y-%m-%d %H:%i:%s') checktime,IFNULL(c.id,0) matchresultid,IFNULL(c.ispublish,0) ispublish,
+		DATE_FORMAT(FROM_UNIXTIME(c.publishtime),'%Y-%m-%d %H:%i:%s') publishtime,
+		DATE_FORMAT(FROM_UNIXTIME(c.updatetime),'%Y-%m-%d %H:%i:%s') updatetime  
+		from t_matchapply a LEFT JOIN t_matchresult c on a.id=c.id,t_matchinfo b 
+		where a.matchid=b.id and a.isvalid=1 and a.state=2
+		<isNotEmpty prepend="and" property="name">
+			a.name like CONCAT('%',#name#,'%')
+		</isNotEmpty>
+		order by c.updatetime desc
 		limit $firstRow$,$listRows$
 	</select>
 	

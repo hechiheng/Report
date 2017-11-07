@@ -22,6 +22,51 @@ public class MatchapplySqlMapDao extends SqlMapDaoTemplate implements
     }
 
     @SuppressWarnings("unchecked")
+    public List<Matchapply> selectMatchapplyList4Home(Matchapply matchapply)
+            throws BaseException {
+        try {
+            return this.queryForList(
+                    "manage.MatchapplyDao.selectMatchapplyList4Home",
+                    matchapply);
+        }
+        catch (DaoException e) {
+            logger.error("manage.MatchapplyDao.selectMatchapplyList4Home", e);
+            throw new BaseException(
+                    "manage.MatchapplyDao.selectMatchapplyList4Home", e);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Matchapply> selectMatchresultList4Home(Matchapply matchapply)
+            throws BaseException {
+        try {
+            return this.queryForList(
+                    "manage.MatchapplyDao.selectMatchresultList4Home",
+                    matchapply);
+        }
+        catch (DaoException e) {
+            logger.error("manage.MatchapplyDao.selectMatchresultList4Home", e);
+            throw new BaseException(
+                    "manage.MatchapplyDao.selectMatchresultList4Home", e);
+        }
+    }
+
+    public int selectMatchapplyListSize(Matchapply matchapply)
+            throws BaseException {
+        try {
+            return (Integer) this
+                    .queryForObject(
+                            "manage.MatchapplyDao.selectMatchapplyListSize",
+                            matchapply);
+        }
+        catch (DaoException e) {
+            logger.error("manage.MatchapplyDao.selectMatchapplyListSize", e);
+            throw new BaseException(
+                    "manage.MatchapplyDao.selectMatchapplyListSize", e);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
     public List<Matchapply> selectMatchapplyList(Matchapply matchapply)
             throws BaseException {
         try {
@@ -32,6 +77,20 @@ public class MatchapplySqlMapDao extends SqlMapDaoTemplate implements
             logger.error("manage.MatchapplyDao.selectMatchapplyList", e);
             throw new BaseException(
                     "manage.MatchapplyDao.selectMatchapplyList", e);
+        }
+    }
+
+    public int selectMatchresultListSize(Matchapply matchapply)
+            throws BaseException {
+        try {
+            return (Integer) this.queryForObject(
+                    "manage.MatchapplyDao.selectMatchresultListSize",
+                    matchapply);
+        }
+        catch (DaoException e) {
+            logger.error("manage.MatchapplyDao.selectMatchresultListSize", e);
+            throw new BaseException(
+                    "manage.MatchapplyDao.selectMatchresultListSize", e);
         }
     }
 
@@ -46,34 +105,6 @@ public class MatchapplySqlMapDao extends SqlMapDaoTemplate implements
             logger.error("manage.MatchapplyDao.selectMatchresultList", e);
             throw new BaseException(
                     "manage.MatchapplyDao.selectMatchresultList", e);
-        }
-    }
-
-    public int selectMatchapplyList1Size(Matchapply matchapply)
-            throws BaseException {
-        try {
-            return (Integer) this.queryForObject(
-                    "manage.MatchapplyDao.selectMatchapplyList1Size",
-                    matchapply);
-        }
-        catch (DaoException e) {
-            logger.error("manage.MatchapplyDao.selectMatchapplyList1Size", e);
-            throw new BaseException(
-                    "manage.MatchapplyDao.selectMatchapplyList1Size", e);
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Matchapply> selectMatchapplyList1(Matchapply matchapply)
-            throws BaseException {
-        try {
-            return this.queryForList(
-                    "manage.MatchapplyDao.selectMatchapplyList1", matchapply);
-        }
-        catch (DaoException e) {
-            logger.error("manage.MatchapplyDao.selectMatchapplyList1", e);
-            throw new BaseException(
-                    "manage.MatchapplyDao.selectMatchapplyList1", e);
         }
     }
 

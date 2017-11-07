@@ -46,11 +46,10 @@
 <div class="content">
 	<div class="warp1 mt">
 	<div class="left f_l">
-		<h3 class="flbt">参赛报名</h3>
+		<h3 class="flbt">参赛结果</h3>
 		<div class="xbox">
 			<ul class="fllb">
-			<li><a href="$link.setAction('load4MatchapplyAdd')">参赛报名</a></li>
-			<li><a href="$link.setAction('load4MatchapplyIndex')">报名列表</a></li>
+			<li><a href="$link.setAction('load4MatchresultIndex')">参赛结果</a></li>
 			</ul>
 		</div>		
 	</div>
@@ -62,7 +61,7 @@
 		<ul class="wzli">	
     		#set($matchapplyList = $request.getAttribute("matchapplyList"))
     		#foreach($matchapply in $matchapplyList)
-    			<li><span>$!matchapply.publishtime</span><a href="$link.setAction('load4Matchapply').addQueryData('id',$!matchapply.id)">$!matchapply.name</a></li>
+    			<li><span>$!matchapply.publishtime</span><a href="$link.setAction('load4Matchresult').addQueryData('id',$!matchapply.id)">$!matchapply.name</a></li>
     		#end
     	</ul>
 	</div>
