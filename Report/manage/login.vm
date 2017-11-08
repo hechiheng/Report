@@ -15,9 +15,9 @@
 </head>	
 <body>
 	<div class="login">
-		<div class="loginForm">	
+		<div class="login-form">	
 			<form action="$link.setAction('login.do')" method="post" id="login">
-			<div class="title">后台登录</div>
+			<div class="title"></div>
 			<table width="100%">
 				<tr>
 					<th>用户名:</th>
@@ -44,7 +44,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" style="padding-left:180px;"> <input type="submit" class="btn_blue" value="登录"/></td>
+					<td colspan="2" style="padding-left:120px;"> <button type="submit">登　　录</button></td>
 				</tr>
 			</table>
 		</form>

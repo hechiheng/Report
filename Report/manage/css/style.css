@@ -1,9 +1,11 @@
-body{padding: 0;margin: 0;font-size:12px;}
+body{padding: 0;margin: 0;}
 div, form, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,  fieldset, input, textarea, p, blockquote, th, td {
 padding: 0;margin: 0;}
 input,select{
 vertical-align: middle;
 }
+*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+*:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
 ol, ul, li{list-style: none; margin: 0; padding: 0;}
 a {text-decoration: none; cursor: pointer; color: #06C;}
 a.textline {text-decoration: underline;}
@@ -36,13 +38,12 @@ color:#fff;font-size:14px; cursor: pointer;
 
 /***输入框***/
 .inp_default {width: 245px;height:24px; line-height:24px;border: 1px solid #dcdcdc;margin:2px;}
-.inp_one, .inp_small, .inp_large, .inp_w250{width:180px;height:30px; line-height:30px; padding:0px 3px; border:solid 1px #dcdcdc; background: #fff;vertical-align: middle;}
+.inp_one, .inp_small, .inp_large, .inp_w250{width:180px;height:30px; line-height:30px; padding:0px 3px; border:solid 1px #dcdcdc; background:#fff; vertical-align: middle;}
 .inp_one.readonly ,.inp_large.readonly {background: #F3F3F3; color:cccccc;}
 .inp_w250{width: 250px;}
 .inp_small{width:100px;}
 .inp_large{width:390px;}
 .tarea_default{width:600px; height:90px;}
-.select{width:188px;height:30px; line-height:30px; padding:0px 3px; border:solid 1px #dcdcdc; background: #fff;vertical-align: middle;}
 /***错误信息***/
 .error{font-size: 12px; color: red;}
 /***位置***/
@@ -75,7 +76,7 @@ border:1px solid #cccccc; border-width:1px 0px; font-weight: bold; background:#e
 
 
 /**************from表单**********************/
-.form{ padding:10px;border:1px solid #D9D9D9;margin: 10px;}
+.form{ padding:10px;}
 .listtop,.listbottom{   margin-left: 10px; }
 .listtop{margin-top: 10px;border:1px  solid #CCCCCC;border-bottom: none;padding-left: 10px; padding-bottom: 15px;width: 710px;background: #F5F5F5;}
 .con_edit{margin: 10px;}
@@ -86,9 +87,9 @@ border:1px solid #cccccc; border-width:1px 0px; font-weight: bold; background:#e
 .form dd select, .form dd input {vertical-align: middle;}
 .form dd .logo{border: 1px solid #D4D4D4;}
 .form dd .wxqrcode{width: 80px;height: 80px;border: 1px solid #D4D4D4;}
-.form dd p {clear: both;color: #666;padding: 4px 0 0 0;line-height: 16px;}
+.form dd p {clear: both;color: #A0A0A0;padding: 4px 0 0 0;line-height: 16px;}
 .form dd .tip{ display:inline-block; height:26px; line-height:26px; padding:0px 3px 0px 5px;}
-.form_b {text-align: left;padding: 10px 0 10px 0px;}
+.form_b {text-align: left;padding: 20px 0 45px 145px;}
 .form .btn7 {margin-left: 10px;}
 
 
@@ -126,7 +127,7 @@ cursor: pointer;}
 .picture_item .picture_go_up{width:40px; height: 20px; font-size: 12px; cursor:pointer; background-color: #fff; position:absolute; z-index: 2; left: 5px; top: 50%; display: none;}
 
 /*browse file*/
-.bf_picture_preview{max-width: 80%; display: none; overflow: hidden;position:fixed;left:10px;top:10px; z-index:999;} 
+.bf_picture_preview{max-width: 80%; display: none; overflow: hidden;position:fixed;left:0;top:0; z-index:10;} 
 /* IE6浏览器的特有方法 */
 *html .bf_picture_preview{position:absolute;left:expression(eval(document.documentElement.scrollLeft));top:expression(eval(document.documentElement.scrollTop))}
 
@@ -169,7 +170,7 @@ background-image: -moz-linear-gradient(top, #008f17, #0dbc29); /* FF3.6 */}
 
 
 .dbox dt.lside {
-font-size: 16px; font-weight:bold; color: #fff;/*color:#0084c9*/;
+font-size: 14px; font-weight:bold; color: #fff;/*color:#0084c9*/;
 border-bottom: 0px solid #ccc;
 }
 .dbox dt {
@@ -177,7 +178,7 @@ height: 28px;
 line-height: 28px;
 font-weight: bold;
 color: #4D6C2F;
-cursor: default;
+cursor: move;
 }
 .dbox dt .l {
 float: left;
@@ -189,7 +190,7 @@ padding-right: 8px;
 font-weight: normal;
 }
 .dbox dt .r a{padding: 0px 5px;}
-.dbox dd .content{padding: 15px; line-height: 160%;font-size:14px;}
+.dbox dd .content{padding: 7px; line-height: 160%;}
 .dbox dd #quickmenu{padding: 7px; line-height: 160%;}
 .dbox dd #quickmenu li{float: left; text-indent: 30px;}
 .dbox dd .content a:hover{color:#FFFF00;}
@@ -198,6 +199,7 @@ font-weight: normal;
 .red {color: #D90000;}
 .white{color: #FFF;}
 .readonly{background: #F3F3F3;}
+.b{font-weight: bold;}
 
 .thumb {
 width: 245px;
@@ -241,3 +243,31 @@ padding: 2px;
 .t-list{ width: 100%;border-collapse: collapse; border-spacing: 0;}
 .t-list td{ border-bottom:#ccc 1px solid; line-height: 260%;}
 .t-list th,.t-list .th{height: 32px;border-bottom:1px solid #cccccc; font-weight: bold; background:#eeeeee; padding:0px 10px;}
+
+
+.xyh-body {
+    border: none;
+    padding: 20px;
+}
+.xyh-form .form-group {
+    padding-bottom: 20px;
+}
+
+.xyh-form .form-group .label  {
+    display: block;
+}
+.xyh-form .form-group .field{position:relative;zoom:1;}
+
+@media (min-width:760px){
+.form-group .label{float:left;width:15%;text-align:right;padding:7px 7px 7px 0;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
+.form-group .field{float:left;width:85%;}
+.form-button{margin-left:15%;}
+.form-group .label {
+        padding-right: 20px;
+    }
+    .input {
+	    width: auto;
+	    min-width: 300px;
+	    display: inline-block;
+	}
+}

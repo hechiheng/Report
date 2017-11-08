@@ -4,7 +4,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>后台管理</title>
-<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/main.css')" />
+<link rel="stylesheet" type="text/css" href="$link.setRelative('manage//bootstrap/3.3.5/css/bootstrap.min.css')">
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
 
@@ -13,43 +14,34 @@
 <style type="text/css">
 	html{_overflow-y:scroll}
 </style>
-<div style="min-width:780px">
-
-<div class="column">
-	<dl class="dbox winbg1">
-	    <dt class="lside">
-	        <div class="l">我的个人信息</div>
-	    </dt>
-	    <dd>
-			<div class="content">
-				您好，$!loginInfo.get("factname")<br/>
-				<div class="clear"></div>
-				上次登录时间：$!loginInfo.get("logintime")<br/>
+<div class="xyh-content">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="panel panel-info">
+				<!-- Default panel contents -->		
+				<div class="panel-heading"><em class="glyphicon glyphicon-star"></em> 我的个人信息</div>
+				<div class="panel-body">
+					<p>
+						您好，$!loginInfo.get("factname")<br/>		
+						上次登录时间：$!loginInfo.get("logintime")<br/>		
+					</p>
+				</div>
 			</div>
-	    </dd>
-	</dl>
-	
-
-</div>
-
-
-<div class="column">
-
-  <dl class="dbox winbg5">
-	    <dt class="lside"><span class="l">关于作者</span></dt>
-	    <dd>
-	        <div class="content">
-			作者：XXX<br />
-			邮箱：xxxxxx@qq.com<br />
-			　QQ：100000000 <br />
+			
+        </div>
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<!-- Default panel contents -->		
+				<div class="panel-heading">关于作者</div>
+				<div class="panel-body">
+					<p>
+						作者：XXX<br />邮箱：xxxxxx@qq.com<br />QQ：100000000 <br />
+					</p>
+				</div>
 			</div>
-	    </dd>
-	</dl>
-
-
-
+        </div>
+    </div>
 </div>
-
 
 </div>
 </body>

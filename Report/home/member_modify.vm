@@ -20,10 +20,10 @@ function change_code(obj){
 	return false;
 }
 
-jQurey(function () {
-	jQurey("input[name='member.factname']").focus();
+jQuery(function () {
+	jQuery("input[name='member.factname']").focus();
 	
-	jQurey("#form_do").submit(function(){
+	jQuery("#form_do").submit(function(){
 		var factname = jQuery("input[name='member.factname']");
 		var email = jQuery("input[name='member.email']");
 		var imagecode = jQuery("input[name='member.imagecode']");

@@ -65,22 +65,45 @@
 			<span>基本资料</span>
 		</div>
 		#set($member = $request.getAttribute("member"))
-		<ul class="personInfo">
-			<li>用户名：$!member.accountid</li>
-			<li>姓名/单位名称：$!member.factname</li>
-			<li>性别：#if($!member.sex==1)男#else女#end</li>
-			<li>身份证号：$!member.idcard</li>
-			<li>出生日期：$!member.birthday</li>
-   		</ul>
+		<dl>
+    		<dt>用户名：</dt>
+    		<dd>$!member.accountid</dd>
+    	</dl>
+		<dl>
+    		<dt>姓名/单位名称：</dt>
+    		<dd>$!member.factname</dd>
+    	</dl>
+		<dl>
+    		<dt>性别：</dt>
+    		<dd>#if($!member.sex==1)男#else女#end</dd>
+    	</dl>
+		<dl>
+    		<dt>身份证号：</dt>
+    		<dd>$!member.idcard</dd>
+    	</dl>
+		<dl>
+    		<dt>出生日期：</dt>
+    		<dd>$!member.birthday</dd>
+    	</dl>
    		<div class="h3">
 			<span>联系方式</span>
 		</div>
-		<ul class="personInfo">
-			<li>邮箱：$!member.email</li>
-			<li>QQ：$!member.qq</li>
-			<li>电话：$!member.tel</li>
-			<li>所在地：$!member.address</li>
-		</ul>
+		<dl>
+    		<dt>邮箱：</dt>
+    		<dd>$!member.email</dd>
+    	</dl>
+		<dl>
+    		<dt>QQ：</dt>
+    		<dd>$!member.qq</dd>
+    	</dl>
+		<dl>
+    		<dt>电话：</dt>
+    		<dd>$!member.tel</dd>
+    	</dl>
+		<dl>
+    		<dt>所在地：</dt>
+    		<dd>$!member.address</dd>
+    	</dl>
 	</div>
 
 </div>
