@@ -4,14 +4,25 @@
     "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
 
 <sqlMapConfig>
-	<!--<properties resource="config/database.properties"/>-->
+	<!-- Properties属性配置文件，加载数据库连接信息 -->  
+	<properties resource="mysql.properties"/>  
 
+	<settings   
+		cacheModelsEnabled="true"      
+		enhancementEnabled="true"      
+		lazyLoadingEnabled="true"      
+		errorTracingEnabled="true"      
+		maxRequests="32"          
+		maxSessions="10"          
+		maxTransactions="5"          
+		useStatementNamespaces="false"   
+	/>  
 	<transactionManager type="JDBC">
 		<dataSource type="SIMPLE">  
-			<property name="JDBC.Driver" value="com.mysql.jdbc.Driver"/>  
-			<property name="JDBC.ConnectionURL" value="jdbc:mysql://127.0.0.1:3306/report"/>  
-			<property name="JDBC.Username" value="root"/>  
-			<property name="JDBC.Password" value="root"/>  
+			<property name="JDBC.Driver" value="${mysql.driver}"/>  
+			<property name="JDBC.ConnectionURL" value="${mysql.url}"/>  
+			<property name="JDBC.Username" value="${mysql.username}"/>  
+			<property name="JDBC.Password" value="${mysql.password}"/>  
 		</dataSource>  
 	</transactionManager>
 

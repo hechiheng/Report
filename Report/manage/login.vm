@@ -39,7 +39,7 @@
 				  </td>
 				</tr>
 				<tr>
-					<td colspan="2" class="msg">
+					<td colspan="2" class="msg" style="text-align: center;">
 						<span class='error'>#errorMarkup()</span>
 					</td>
 				</tr>

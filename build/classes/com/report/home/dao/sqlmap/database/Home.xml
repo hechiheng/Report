@@ -17,14 +17,16 @@
 	</select>
 	
 	<select id="home.HomeDao.selectLatestMessageList" resultClass="message">
-		select id,title from t_message t where t.isvalid=1 and t.ispublish=1 and t.publishtime>UNIX_TIMESTAMP(date_add(NOW(), interval -10 day))
-		order by t.publishtime desc
+		select id,title from t_message t where t.isvalid=1 and t.ispublish=1 
+<!--		and t.publishtime>UNIX_TIMESTAMP(date_add(NOW(), interval -10 day))-->
+		order by t.publishtime desc limit 10
 	</select>
 	
 	<select id="home.HomeDao.selectLatestNewsList" resultClass="news">
 		select id,title,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d') publishtime from t_news t 
-		where t.isvalid=1 and t.ispublish=1 and t.publishtime>UNIX_TIMESTAMP(date_add(NOW(), interval -10 day))
-		order by t.publishtime desc
+		where t.isvalid=1 and t.ispublish=1 
+<!--		and t.publishtime>UNIX_TIMESTAMP(date_add(NOW(), interval -10 day))-->
+		order by t.publishtime desc limit 10
 	</select>
 	
 	<select id="home.HomeDao.selectLinkList" resultClass="link">

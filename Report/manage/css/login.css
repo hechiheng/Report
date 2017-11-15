@@ -50,3 +50,4 @@ button:disabled {background-color: #eeeeee; color:#999999;}
 .login th{ text-align: right; width: 100px;}
 .login th,.login td{padding:5px 8px;}
 .vcode{cursor:pointer; border-radius: 5px;}
+.error{font-size: 12px; color: #ff0000;}
