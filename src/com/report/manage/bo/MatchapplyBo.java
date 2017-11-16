@@ -1,12 +1,18 @@
 package com.report.manage.bo;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.apache.struts.upload.FormFile;
 
 import com.css.base.BaseException;
 import com.ibatis.dao.client.DaoManager;
 import com.report.global.DaoConfig;
+import com.report.global.SysGlobals;
 import com.report.manage.bean.Matchapply;
 import com.report.manage.bean.Matchinfo;
 import com.report.manage.dao.iface.MatchapplyDao;
@@ -59,6 +65,59 @@ public class MatchapplyBo {
 
     public List<Matchinfo> getMatchinfoList() throws BaseException {
         return dao.selectMatchinfoList();
+    }
+
+    public String saveFile(Matchapply matchapply) throws BaseException {
+        String filePath = SysGlobals.getSysConfig("filePath");
+        String[] fileAllowFiles = SysGlobals.getSysConfig("fileAllowFiles")
+                .split(",");
+        int fileMaxSize = Integer.valueOf(SysGlobals
+                .getSysConfig("fileMaxSize"));
+        List<String> fileAllowList = Arrays.asList(fileAllowFiles);
+
+        FormFile file = matchapply.getUpfile();
+        String fileName = file.getFileName();
+        String fileSuffix = fileName.substring(fileName.lastIndexOf(".") + 1);
+        String filePathNew = filePath + System.currentTimeMillis() + "."
+                + fileSuffix;
+        int fileSize = file.getFileSize();
+        if (!fileAllowList.contains(fileSuffix)) {
+            return "MatchapplyAction.addMatchapply.filenotallow";
+        }
+        if (fileSize > fileMaxSize) {
+            return "MatchapplyAction.addMatchapply.filesizeover";
+        }
+        if (fileSize > 0) {
+            matchapply.setFilepath(filePathNew);
+            matchapply.setFilename(fileName);
+            matchapply.setFilesize(fileSize);
+            FileOutputStream fos = null;
+            try {
+                File f = new File(filePath);
+                if (!f.exists()) {
+                    f.mkdirs();
+                }
+                byte[] fileData = file.getFileData();
+                fos = new FileOutputStream(filePathNew);
+                fos.write(fileData);
+                fos.flush();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+                return "MatchapplyAction.addMatchapply.filesaveerror";
+            }
+            finally {
+                if (fos != null) {
+                    try {
+                        fos.close();
+                    }
+                    catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     public void addMatchapply(Matchapply matchapply) throws BaseException {

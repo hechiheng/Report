@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -67,6 +68,13 @@ public class MatchapplyAction extends BaseAction {
             saveErrors(request, am);
             return mapping.findForward("failure");
         }
+        String message=bo.saveFile(matchapply);
+        if(StringUtils.isNotEmpty(message)){
+            ActionMessages am = new ActionMessages();
+            am.add("sysMessage", new ActionMessage(message));
+            saveErrors(request, am);
+            return mapping.findForward("failure");
+        }
         matchapply.setMemberid(memberid);
         bo.addMatchapply(matchapply);
 
@@ -88,7 +96,7 @@ public class MatchapplyAction extends BaseAction {
         request.setAttribute("matchapply", matchapply);
         return mapping.findForward("success");
     }
-    
+
     public ActionForward load4Matchresult(ActionMapping mapping,
             ActionForm form, HttpServletRequest request,
             HttpServletResponse response) throws BaseException {

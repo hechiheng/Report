@@ -2,6 +2,8 @@ package com.report.manage.bean;
 
 import java.io.Serializable;
 
+import org.apache.struts.upload.FormFile;
+
 public class Matchapply implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,6 +27,14 @@ public class Matchapply implements Serializable {
     private String teachers;
 
     private String description;
+
+    private String filepath;
+
+    private String filename;
+
+    private int filesize;
+
+    private FormFile upfile;
 
     private int isvalid;
 
@@ -284,6 +294,39 @@ public class Matchapply implements Serializable {
 
     public String getPublishtime() {
         return publishtime;
+    }
+
+
+    public String getFilepath() {
+        return filepath;
+    }
+
+    public void setFilepath(String filepath) {
+        this.filepath = filepath;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public int getFilesize() {
+        return filesize;
+    }
+
+    public void setFilesize(int filesize) {
+        this.filesize = filesize;
+    }
+
+    public void setUpfile(FormFile upfile) {
+        this.upfile = upfile;
+    }
+
+    public FormFile getUpfile() {
+        return upfile;
     }
 
 }

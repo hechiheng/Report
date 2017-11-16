@@ -89,8 +89,8 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	</select>
 	
 	<insert id="manage.MatchapplyDao.insertMatchapply" parameterClass="matchapply">
-		insert into t_matchapply(annualmatch,name,matchid,unitname,authors,teachers,description,updatetime,state,memberid)
-		values(#annualmatch#,#name#,#matchid#,#unitname#,#authors#,#teachers#,#description#,UNIX_TIMESTAMP(NOW()),#state#,#memberid#)
+		insert into t_matchapply(annualmatch,name,matchid,unitname,authors,teachers,description,filepath,filename,filesize,updatetime,state,memberid)
+		values(#annualmatch#,#name#,#matchid#,#unitname#,#authors#,#teachers#,#description#,#filepath#,#filename#,#filesize#,UNIX_TIMESTAMP(NOW()),#state#,#memberid#)
 	</insert>
 	
 	<update id="manage.MatchapplyDao.updateMatchapply" parameterClass="matchapply">

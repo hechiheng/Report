@@ -5,7 +5,7 @@
 
 <sqlMapConfig>
 	<!-- Properties属性配置文件，加载数据库连接信息 -->  
-	<properties resource="mysql.properties"/>  
+	<properties resource="config/mysql.properties"/>  
 
 	<settings   
 		cacheModelsEnabled="true"      

@@ -8,8 +8,11 @@ public class Test {
 		Test t = new Test();
 //		t.test("a", "b", "c", "d", "e");
 		
-		String s=StringUtils.repeat("a", 3);
-		System.out.println(s);
+//		String s=StringUtils.repeat("a", 3);
+//		System.out.println(s);
+		
+		String s="111.txt";
+		System.out.println(s.substring(s.lastIndexOf(".")+1));
 	}
 
 	private void test(String a, String... b) {
