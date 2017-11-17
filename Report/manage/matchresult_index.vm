@@ -31,7 +31,7 @@
 				<th class="aleft">学校</th>
 				<th class="aleft">作者</th>
 				<th>参赛结果</th>
-                <th>更新时间</th>
+                <th>审核时间</th>
                 <th>操作</th>
             </tr>
 			#set($matchapplyList = $request.getAttribute("matchapplyList"))
@@ -50,7 +50,7 @@
 						已发布
 					#end
 				</td>
-				<td>$!matchapply.updatetime</td>
+				<td>$!matchapply.checktime</td>
 				<td>
 					<a href="$link.setAction('load4Matchapply').addQueryData('id',$!matchapply.id)">查看</a>
 					#if($matchapply.state==2)

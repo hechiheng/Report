@@ -16,7 +16,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	</select>
 	
 	<select id="manage.RoleDao.selectRoleList" parameterClass="role" resultClass="role">
-		select a.id,a.name,a.description,DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime,a.isdisabled
+		select a.id,a.name,a.description,DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime,a.isdisabled,a.roletype
 		from t_role a
 		where a.isvalid=#isvalid# 
 		<isNotEmpty prepend="and" property="name">

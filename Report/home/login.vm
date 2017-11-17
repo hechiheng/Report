@@ -61,13 +61,13 @@ jQuery(function () {
 			<dl>
 				<dt>用户名：</dt>
 				<dd>
-					<input type="text" name="accountid" class="inp_one" />
+					<input type="text" name="accountid" class="inp_one" value="333"/>
 				</dd>
 			</dl>
 			<dl>
 				<dt> 密码：</dt>
 				<dd>
-					<input type="password" name="password" class="inp_one" value=""/>
+					<input type="password" name="password" class="inp_one" value="1"/>
 				</dd>
 			</dl>
 			<dl>

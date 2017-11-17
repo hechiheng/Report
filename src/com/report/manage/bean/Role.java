@@ -13,6 +13,7 @@ public class Role implements Serializable {
 	private int isdisabled;
 	private String updatetime;
 	private int menuid;
+	private int roletype;
 	private String menuids;
 	private int firstRow;
 	private int listRows;
@@ -95,6 +96,14 @@ public class Role implements Serializable {
 
 	public int getMenuid() {
 		return menuid;
+	}
+
+	public void setRoletype(int roletype) {
+		this.roletype = roletype;
+	}
+
+	public int getRoletype() {
+		return roletype;
 	}
 
 }

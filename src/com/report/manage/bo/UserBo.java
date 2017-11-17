@@ -9,8 +9,8 @@ import org.apache.log4j.Logger;
 
 import com.css.base.BaseException;
 import com.ibatis.dao.client.DaoManager;
-import com.report.global.Constants;
 import com.report.global.DaoConfig;
+import com.report.global.SysGlobals;
 import com.report.manage.bean.Role;
 import com.report.manage.bean.User;
 import com.report.manage.dao.iface.UserDao;
@@ -96,7 +96,8 @@ public class UserBo {
 	}
 
 	public void resetUserPwd(User user) throws BaseException {
-		user.setPassword(DigestUtils.md5Hex(Constants.DEFAULT_PWD));
+		user.setPassword(DigestUtils.md5Hex(SysGlobals
+				.getSysConfig("default_pwd")));
 		dao.updateUserPwd(user);
 	}
 

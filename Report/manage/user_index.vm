@@ -55,7 +55,7 @@
 				<td>#if($!user.sex==1)男#else女#end</td>
 				<td>
 					#if($!user.usertype==9)
-					<span style='font-weight: bold;'>超级管理员</span>
+					<span style='font-weight: bold;'>$!user.rolename</span>
 					#else
 					$!user.rolename
 					#end
@@ -74,10 +74,13 @@
 					<a href="javascript:;" onclick="toConfirm('$link.setAction('restoreUser').addQueryData('id',$!user.id)','确实要还原吗？')">还原</a>
 					<a href="javascript:;" onclick="toConfirm('$link.setAction('removeUser').addQueryData('id',$!user.id)','该操作不可恢复，确实要删除吗？')">彻底删除</a>
 				#else
-					<a href="$link.setAction('load4UserModify').addQueryData('id',$!user.id)">编辑</a>
+					#if($!user.usertype==9)
 					<a href="$link.setAction('load4UserPwdModify').addQueryData('id',$!user.id)">修改密码</a>
+					#end
 					#if($!user.usertype==0)
 					#if($!user.islock==0)
+					<a href="$link.setAction('load4UserModify').addQueryData('id',$!user.id)">编辑</a>
+					<a href="$link.setAction('load4UserPwdModify').addQueryData('id',$!user.id)">修改密码</a>
 					<a href="javascript:;" onclick="toConfirm('$link.setAction('lockUser').addQueryData('id',$!user.id)','确实要锁定吗？')">锁定</a>
 					#else
 					<a href="javascript:;" onclick="toConfirm('$link.setAction('unLockUser').addQueryData('id',$!user.id)','确实要解锁吗？')">解锁</a>

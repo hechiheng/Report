@@ -9,8 +9,8 @@ import org.apache.log4j.Logger;
 
 import com.css.base.BaseException;
 import com.ibatis.dao.client.DaoManager;
-import com.report.global.Constants;
 import com.report.global.DaoConfig;
+import com.report.global.SysGlobals;
 import com.report.home.bean.Member;
 import com.report.manage.dao.iface.MemberDao;
 
@@ -73,7 +73,8 @@ public class MemberBo {
 	}
 
 	public void resetMemberPwd(Member member) throws BaseException {
-		member.setPassword(DigestUtils.md5Hex(Constants.DEFAULT_PWD));
+		member.setPassword(DigestUtils.md5Hex(SysGlobals
+				.getSysConfig("default_pwd")));
 		dao.updateMemberPwd(member);
 	}
 

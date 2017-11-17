@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import com.report.global.SysGlobals;
+
 public class Page {
 
 	// 默认列表每页显示行数
@@ -26,6 +28,7 @@ public class Page {
 	private String action;
 
 	public Page(int total, String page, Object o, String action) {
+		listRows = Integer.valueOf(SysGlobals.getSysConfig("page_size"));
 		totalRows = total;
 		this.setAction(action);
 		queryData = new HashMap<String, String>();

@@ -70,12 +70,13 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		<isNotEmpty prepend="and" property="name">
 			a.name like CONCAT('%',#name#,'%')
 		</isNotEmpty>
-		order by c.updatetime desc
+		order by a.checktime desc
 		limit $firstRow$,$listRows$
 	</select>
 	
 	<select id="manage.MatchapplyDao.selectMatchapply" parameterClass="int" resultClass="matchapply">
 		select a.id,a.name,a.annualmatch,a.matchid,b.name matchname,a.unitname,a.authors,a.teachers,a.description,
+		a.filepath,a.filename,IFNULL(a.filesize,0) filesize,
 		DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime,a.state,a.memberid,IFNULL(a.checkuserid,0) checkuserid,
 		DATE_FORMAT(FROM_UNIXTIME(a.checktime),'%Y-%m-%d %H:%i:%s') checktime,IFNULL(c.id,0) matchresultid,
 		IFNULL(c.score,0) score,c.ranking,c.awards,IFNULL(c.ispublish,0) ispublish,
@@ -105,7 +106,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	</delete>
 	
 	<update id="manage.MatchapplyDao.updateMatchapplyState" parameterClass="matchapply">
-		update t_matchapply set state=#state#,checkuserid=#checkuserid# where id=#id#
+		update t_matchapply set state=#state#,checkuserid=#checkuserid#,checktime=UNIX_TIMESTAMP(NOW()) where id=#id#
 	</update>
 	
 	<select id="manage.MatchapplyDao.selectMatchresultCount" parameterClass="matchapply" resultClass="int">
