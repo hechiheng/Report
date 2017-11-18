@@ -1109,7 +1109,13 @@
 			validate="true"
 			parameter="modifyMatchresult">
         </action>
-        
+        <action
+        	path="/exportMatchapplyFiles"
+			type="com.report.manage.action.MatchapplyAction"
+			scope="request"
+			validate="false"
+			parameter="exportMatchapplyFiles">
+        </action>
 	</action-mappings>
 
 

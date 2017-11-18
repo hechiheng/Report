@@ -6,6 +6,21 @@
 <link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
+<script type="text/javascript">
+	function exportFiles(msg){
+		var url = '$link.setAction('exportMatchapplyFiles')';
+		var obj = document.getElementsByName('key[]');
+		var ids = getCheckValues();
+		if (!ids){
+	        alert('请选择项！');
+	        return false;
+	    }
+	    if (window.confirm(msg)){
+	    	url = url+"?ids="+ids;
+			window.open(url);
+	    }
+	}
+</script>
 </head>
 <body>
 <div class="main">
@@ -14,6 +29,7 @@
     </div>
     <div class="operate">
         <div class="left">
+			<input type="button" onclick="exportFiles('确实要导出附件吗？')" class="btn_blue" value="导出附件">
         </div>
 		<div class="left_pad">
             <form method="get" action="$link.setAction('load4MatchapplyIndex')">
@@ -26,7 +42,8 @@
     <div class="list">    
         <table width="100%">
             <tr>
-                <th>编号</th>
+                <th><input type="checkbox" id="check"></th>
+				<th>编号</th>
 				<th class="aleft">作品名称</th>
 				<th class="aleft">学校</th>
 				<th class="aleft">作者</th>
@@ -37,6 +54,7 @@
 			#set($matchapplyList = $request.getAttribute("matchapplyList"))
 			#foreach($matchapply in $matchapplyList)
 			<tr>
+				<td><input type='checkbox' name='key[]' value='$!matchapply.id'></td>
 				<td>$!matchapply.id</td>
 				<td class='aleft'>$!matchapply.name</td>
 				<td class='aleft'>$!matchapply.unitname</td>

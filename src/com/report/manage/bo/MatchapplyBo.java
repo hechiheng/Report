@@ -99,6 +99,7 @@ public class MatchapplyBo {
 			return "MatchapplyAction.addMatchapply.filesizeover";
 		}
 		if (fileSize > 0) {
+		    matchapply.setPhysicalpath(physicalPath);
 			matchapply.setFilepath(originalPath);
 			matchapply.setFilename(originFileName);
 			matchapply.setFilesize(fileSize);
@@ -154,6 +155,13 @@ public class MatchapplyBo {
 
 	public void modifyMatchresult(Matchapply matchapply) throws BaseException {
 		dao.updateMatchresult(matchapply);
+	}
+
+	public List<Matchapply> getMatchapplyFileList(String ids)
+			throws BaseException {
+		String idsNew = "'" + ids + "'";
+		idsNew = idsNew.replace(",", "','");
+		return dao.selectMatchapplyFileList(idsNew);
 	}
 
 }

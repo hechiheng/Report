@@ -90,8 +90,8 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	</select>
 	
 	<insert id="manage.MatchapplyDao.insertMatchapply" parameterClass="matchapply">
-		insert into t_matchapply(annualmatch,name,matchid,unitname,authors,teachers,description,filepath,filename,filesize,updatetime,state,memberid)
-		values(#annualmatch#,#name#,#matchid#,#unitname#,#authors#,#teachers#,#description#,#filepath#,#filename#,#filesize#,UNIX_TIMESTAMP(NOW()),#state#,#memberid#)
+		insert into t_matchapply(annualmatch,name,matchid,unitname,authors,teachers,description,filepath,filename,filesize,physicalpath,updatetime,state,memberid)
+		values(#annualmatch#,#name#,#matchid#,#unitname#,#authors#,#teachers#,#description#,#filepath#,#filename#,#filesize#,#physicalpath#,UNIX_TIMESTAMP(NOW()),#state#,#memberid#)
 	</insert>
 	
 	<update id="manage.MatchapplyDao.updateMatchapply" parameterClass="matchapply">
@@ -135,5 +135,11 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 			resultuserid=#resultuserid#
 		where id=#matchresultid#
 	</update>
+	
+	<select id="manage.MatchapplyDao.selectMatchapplyFileList" parameterClass="string" resultClass="matchapply">
+		select a.filepath,a.filename,IFNULL(a.filesize,0) filesize,a.physicalpath
+		from t_matchapply a  
+		where a.id in ($ids$)
+	</select>
 	
 </sqlMap>

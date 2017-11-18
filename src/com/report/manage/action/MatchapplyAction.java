@@ -1,11 +1,19 @@
 package com.report.manage.action;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
+import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -22,6 +30,7 @@ import com.report.manage.form.MatchapplyForm;
 import com.report.utils.Page;
 
 public class MatchapplyAction extends BaseAction {
+    private Logger logger = Logger.getLogger("MatchapplyAction");
 
     public ActionForward load4MatchapplyIndex(ActionMapping mapping,
             ActionForm form, HttpServletRequest request,
@@ -141,5 +150,80 @@ public class MatchapplyAction extends BaseAction {
         smb.setAction("/load4MatchresultIndex");
         SysGlobals.setSysMessage(request, smb);
         return mapping.findForward("info");
+    }
+
+    public ActionForward exportMatchapplyFiles(ActionMapping mapping,
+            ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) throws BaseException {
+        String ids = request.getParameter("ids");
+        if (StringUtils.isEmpty(ids)) {
+            return null;
+        }
+        String rootPath = this.getServlet().getServletContext()
+                .getRealPath("/");
+        String filePath = SysGlobals.getSysConfig("filePath");
+        String zipName = System.currentTimeMillis() + ".zip";
+        String zipPath = rootPath + filePath + zipName;
+        File zipFile = new File(zipPath);
+
+        MatchapplyBo bo = new MatchapplyBo();
+        List<Matchapply> matchapplyList = bo.getMatchapplyFileList(ids);
+        List<File> fileList = new ArrayList<File>();
+        for (Matchapply matchapply : matchapplyList) {
+            File file = new File(matchapply.getPhysicalpath());
+            fileList.add(file);
+        }
+
+        ZipArchiveOutputStream zos = null;
+        FileInputStream fis = null;
+        try {
+            zos = new ZipArchiveOutputStream(zipFile);
+            for (int i = 0; i < matchapplyList.size(); i++) {
+                ZipArchiveEntry zipEntry = new ZipArchiveEntry(matchapplyList
+                        .get(i).getFilename());
+                zos.putArchiveEntry(zipEntry);
+                fis = new FileInputStream(fileList.get(i));
+                byte[] b = new byte[1024];
+                int n = 0;
+                while ((n = fis.read(b)) > 0) {
+                    zos.write(b, 0, n);
+                }
+            }
+            zos.closeArchiveEntry();
+            zos.close();
+            fis.close();
+
+            response.setContentType("application/octet-stream");
+            response.addHeader("Content-Disposition", "attachment;filename="
+                    + java.net.URLEncoder.encode(zipName, "UTF-8"));
+
+            OutputStream out = response.getOutputStream();
+            FileInputStream fisZip = new FileInputStream(zipPath);
+            byte[] b = new byte[1024];
+            int i = 0;
+            while ((i = fisZip.read(b)) > 0) {
+                out.write(b, 0, i);
+            }
+            out.flush();
+            fisZip.close();
+            out.close();
+        }
+        catch (Exception e) {
+            logger.error("manage.MatchapplyAction.exportMatchapplyFiles", e);
+
+            response.reset();
+            SysMessageBean smb = new SysMessageBean(true);
+            smb.setMessage(new ActionMessage(
+                    "MatchapplyAction.exportMatchapplyFiles.error"));
+            SysGlobals.setSysMessage(request, smb);
+            return mapping.findForward("error");
+        }
+        finally {
+            if (zipFile.exists()) {
+                zipFile.delete();
+            }
+        }
+
+        return null;
     }
 }
