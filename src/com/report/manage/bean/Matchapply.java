@@ -54,7 +54,7 @@ public class Matchapply implements Serializable {
 
     private String checktime;
 
-    private int memberid;
+    private String memberid;
 
     private int checkuserid;
 
@@ -77,6 +77,8 @@ public class Matchapply implements Serializable {
     private int resultuserid;
 
     private String publishtime;
+
+    private String factname;
 
     public int getId() {
         return id;
@@ -198,11 +200,11 @@ public class Matchapply implements Serializable {
         this.checktime = checktime;
     }
 
-    public int getMemberid() {
+    public String getMemberid() {
         return memberid;
     }
 
-    public void setMemberid(int memberid) {
+    public void setMemberid(String memberid) {
         this.memberid = memberid;
     }
 
@@ -356,6 +358,14 @@ public class Matchapply implements Serializable {
 
     public String getPhysicalpath() {
         return physicalpath;
+    }
+
+    public void setFactname(String factname) {
+        this.factname = factname;
+    }
+
+    public String getFactname() {
+        return factname;
     }
 
 }

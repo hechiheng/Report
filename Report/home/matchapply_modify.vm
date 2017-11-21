@@ -156,7 +156,7 @@ jQurey(function () {
 			<dt> 参赛项目：</dt>
 			<dd>
 				<select name="matchapply.matchid">
-					#set($matchapplyList = $request.getAttribute("matchapplyList"))
+					#set($matchinfoList = $request.getAttribute("matchinfoList"))
 					#foreach($matchinfo in $matchinfoList)
 						#if($!matchinfo.id==$!modifyMatchapplyForm.matchapply.matchid)
 							<option value="$!matchinfo.id" selected="selected">$!matchinfo.name</option>

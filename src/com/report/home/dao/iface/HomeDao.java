@@ -13,32 +13,33 @@ import com.report.manage.bean.Website;
 
 public interface HomeDao {
 
-	public Announce selectLatestAnnounce() throws BaseException;
+    public Announce selectLatestAnnounce() throws BaseException;
 
-	public List<Message> selectLatestMessageList() throws BaseException;
+    public List<Message> selectLatestMessageList(int listRows)
+            throws BaseException;
 
-	public List<News> selectLatestNewsList() throws BaseException;
+    public List<News> selectLatestNewsList(int listRows) throws BaseException;
 
-	public List<Link> selectLinkList() throws BaseException;
+    public List<Link> selectLinkList() throws BaseException;
 
-	public int selectMessageListSize() throws BaseException;
+    public int selectMessageListSize() throws BaseException;
 
-	public List<Message> selectMessageList(Message message)
-			throws BaseException;
+    public List<Message> selectMessageList(Message message)
+            throws BaseException;
 
-	public Message selectMessage(int id) throws BaseException;
+    public Message selectMessage(int id) throws BaseException;
 
-	public int selectNewsListSize() throws BaseException;
+    public int selectNewsListSize() throws BaseException;
 
-	public List<News> selectNewsList(News news) throws BaseException;
+    public List<News> selectNewsList(News news) throws BaseException;
 
-	public News selectNews(int id) throws BaseException;
+    public News selectNews(int id) throws BaseException;
 
-	public Announce selectAnnounce(int id) throws BaseException;
+    public Announce selectAnnounce(int id) throws BaseException;
 
-	public About selectAbout() throws BaseException;
+    public About selectAbout(int id) throws BaseException;
 
-	public Notice selectNotice() throws BaseException;
+    public Notice selectNotice() throws BaseException;
 
-	public Website selectWebsite() throws BaseException;
+    public Website selectWebsite() throws BaseException;
 }

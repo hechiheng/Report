@@ -34,7 +34,7 @@ public class MatchapplyAction extends BaseAction {
                 Constants.HOME_SESSION);
         int memberid = Integer.valueOf(sessionMap.get("memberid"));
         Matchapply matchapply = new Matchapply();
-        matchapply.setMemberid(memberid);
+        matchapply.setMemberid(String.valueOf(memberid));
         MatchapplyBo bo = new MatchapplyBo();
         List<Matchapply> matchapplyList = bo.getMatchapplyList4Home(matchapply);
         request.setAttribute("matchapplyList", matchapplyList);
@@ -80,7 +80,7 @@ public class MatchapplyAction extends BaseAction {
             saveErrors(request, am);
             return mapping.findForward("failure");
         }
-        matchapply.setMemberid(memberid);
+        matchapply.setMemberid(String.valueOf(memberid));
         bo.addMatchapply(matchapply);
 
         SysMessageBean smb = new SysMessageBean(false);
@@ -155,7 +155,7 @@ public class MatchapplyAction extends BaseAction {
             saveErrors(request, am);
             return mapping.findForward("failure");
         }
-        matchapply.setMemberid(memberid);
+        matchapply.setMemberid(String.valueOf(memberid));
         bo.modifyMatchapply(matchapply);
 
         SysMessageBean smb = new SysMessageBean(false);
@@ -191,7 +191,7 @@ public class MatchapplyAction extends BaseAction {
                 Constants.HOME_SESSION);
         int memberid = Integer.valueOf(sessionMap.get("memberid"));
         Matchapply matchapply = new Matchapply();
-        matchapply.setMemberid(memberid);
+        matchapply.setMemberid(String.valueOf(memberid));
         MatchapplyBo bo = new MatchapplyBo();
         List<Matchapply> matchapplyList = bo
                 .getMatchresultList4Home(matchapply);

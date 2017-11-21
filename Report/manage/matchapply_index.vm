@@ -9,6 +9,16 @@
 <script type="text/javascript">
 	function exportFiles(msg){
 		var url = '$link.setAction('exportMatchapplyFiles')';
+		var annualmatch = document.getElementById('annualmatch');
+		var factname = document.getElementById('factname');
+		if(annualmatch.value==""){
+			alert('请输入参赛年度！');
+			return;
+		}
+		if(factname.value==""){
+			alert('请输入单位名称！');
+			return;
+		}
 		var obj = document.getElementsByName('key[]');
 		var ids = getCheckValues();
 		if (!ids){
@@ -16,7 +26,7 @@
 	        return false;
 	    }
 	    if (window.confirm(msg)){
-	    	url = url+"?ids="+ids;
+	    	url = url+"?annualmatch="+annualmatch+"&factname="+factname+"&ids="+ids;
 			window.open(url);
 	    }
 	}
@@ -28,14 +38,37 @@
     	<a href="$link.setAction('load4MatchapplyIndex')">参赛报名审核</a>
     </div>
     <div class="operate">
-        <div class="left">
-			<input type="button" onclick="exportFiles('确实要导出附件吗？')" class="btn_blue" value="导出附件">
-        </div>
 		<div class="left_pad">
             <form method="get" action="$link.setAction('load4MatchapplyIndex')">
+				<span style='font-size: 14px;vertical-align: middle;'>参赛年度(YYYY)：</span>
+				<input type="text" id="annualmatch" name="matchapply.annualmatch" class="inp_small" value="$!queryMatchapplyForm.matchapply.annualmatch">
+				<span style='font-size: 14px;vertical-align: middle;'>单位名称：</span>
+				<input type="text" id="factname" name="matchapply.factname" class="inp_small" value="$!queryMatchapplyForm.matchapply.factname">
+				<span style='font-size: 14px;vertical-align: middle;'>参赛项目：</span>
+				<select name="matchapply.matchid">
+					<option value="">--请选择--</option>
+					#set($matchinfoList = $request.getAttribute("matchinfoList"))
+					#foreach($matchinfo in $matchinfoList)
+						#if($!matchinfo.id==$!queryMatchapplyForm.matchapply.matchid)
+							<option value="$!matchinfo.id" selected="selected">$!matchinfo.name</option>
+						#else
+							<option value="$!matchinfo.id">$!matchinfo.name</option>
+						#end
+					#end
+				</select>
             	<span style='font-size: 14px;vertical-align: middle;'>作品名称：</span>
-                <input type="text" name="matchapply.name" title="关键字" class="inp_default" value="$!queryMatchapplyForm.matchapply.name">
-                <input type="submit" class="btn_blue" value="查  询">
+                <input type="text" name="matchapply.name" title="关键字" class="inp_small" value="$!queryMatchapplyForm.matchapply.name">
+				<span style='font-size: 14px;vertical-align: middle;'>审核状态：</span>
+				<select name="matchapply.state">
+					<option value="" #if($!queryMatchapplyForm.matchapply.state==0) selected="selected" #end>--请选择--</option>
+					<option value="1" #if($!queryMatchapplyForm.matchapply.state==1) selected="selected" #end>未审核</option>
+					<option value="2" #if($!queryMatchapplyForm.matchapply.state==2) selected="selected" #end>审核通过</option>
+					<option value="3" #if($!queryMatchapplyForm.matchapply.state==3) selected="selected" #end>审核未通过</option>
+				</select>
+					<input type="submit" class="btn_blue" value="查  询">
+				<div>
+					<input type="button" onclick="exportFiles('确实要导出附件吗？')" class="btn_blue" value="导出附件">
+                </div>
             </form>
         </div>
     </div>
@@ -44,6 +77,7 @@
             <tr>
                 <th><input type="checkbox" id="check"></th>
 				<th>编号</th>
+				<th class='aleft'>单位名称</th>
 				<th class="aleft">作品名称</th>
 				<th class="aleft">学校</th>
 				<th class="aleft">作者</th>
@@ -56,6 +90,7 @@
 			<tr>
 				<td><input type='checkbox' name='key[]' value='$!matchapply.id'></td>
 				<td>$!matchapply.id</td>
+				<td class='aleft'>$!matchapply.factname</td>
 				<td class='aleft'>$!matchapply.name</td>
 				<td class='aleft'>$!matchapply.unitname</td>
 				<td class='aleft'>$!matchapply.authors</td>

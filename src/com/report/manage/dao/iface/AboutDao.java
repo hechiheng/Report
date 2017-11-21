@@ -5,10 +5,8 @@ import com.report.home.bean.About;
 
 public interface AboutDao {
 
-	public About selectAbout() throws BaseException;
+    public About selectAbout(int id) throws BaseException;
 
-	public void insertAbout(About about) throws BaseException;
-
-	public void updateAbout(About about) throws BaseException;
+    public void updateAbout(About about) throws BaseException;
 
 }

@@ -9,31 +9,23 @@ import com.report.home.bean.About;
 import com.report.manage.dao.iface.AboutDao;
 
 public class AboutBo {
-	private DaoManager daoManager;
+    private DaoManager daoManager;
 
-	private AboutDao dao;
+    private AboutDao dao;
 
-	Logger logger = Logger.getLogger(AboutBo.class);
+    Logger logger = Logger.getLogger(AboutBo.class);
 
-	public AboutBo() throws BaseException {
-		this.daoManager = DaoConfig.getDaoManager();
-		this.dao = (AboutDao) daoManager.getDao(AboutDao.class);
-	}
+    public AboutBo() throws BaseException {
+        this.daoManager = DaoConfig.getDaoManager();
+        this.dao = (AboutDao) daoManager.getDao(AboutDao.class);
+    }
 
-	public About getAbout() throws BaseException {
-		return dao.selectAbout();
-	}
+    public About getAbout(int id) throws BaseException {
+        return dao.selectAbout(id);
+    }
 
-	public void addAbout(About about) throws BaseException {
-		if (getAbout() == null) {
-			dao.insertAbout(about);
-		} else {
-			dao.updateAbout(about);
-		}
-	}
-
-	public void modifyAbout(About about) throws BaseException {
-		dao.updateAbout(about);
-	}
+    public void modifyAbout(About about) throws BaseException {
+        dao.updateAbout(about);
+    }
 
 }

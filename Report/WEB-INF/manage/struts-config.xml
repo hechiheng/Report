@@ -434,6 +434,24 @@
 			parameter="modifyAbout">
         </action>
         <action
+        	path="/load4WebAboutModify"
+			type="com.report.manage.action.AboutAction"
+			scope="request"
+			name="aboutForm"
+			validate="false"
+			parameter="load4WebAboutModify">
+			<forward name="success" path="/../manage/webabout_modify.vm"/>
+        </action>
+        <action
+        	path="/modifyWebAbout"
+			type="com.report.manage.action.AboutAction"
+			scope="request"
+			input="/load4AboutModify.do"
+			name="aboutForm"
+			validate="true"
+			parameter="modifyWebAbout">
+        </action>
+        <action
         	path="/load4WebsiteModify"
 			type="com.report.manage.action.WebsiteAction"
 			scope="request"

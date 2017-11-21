@@ -121,6 +121,14 @@
 			<forward name="success" path="/home/about.vm"/>
         </action>
         <action
+        	path="/load4WebAbout"
+			type="com.report.home.action.HomeAction"
+			scope="request"
+			validate="false"
+			parameter="load4WebAbout">
+			<forward name="success" path="/home/webabout.vm"/>
+        </action>
+        <action
         	path="/load4Notice"
 			type="com.report.home.action.HomeAction"
 			scope="request"

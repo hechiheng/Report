@@ -25,6 +25,7 @@ import com.report.global.Constants;
 import com.report.global.SysGlobals;
 import com.report.global.SysMessageBean;
 import com.report.manage.bean.Matchapply;
+import com.report.manage.bean.Matchinfo;
 import com.report.manage.bo.MatchapplyBo;
 import com.report.manage.form.MatchapplyForm;
 import com.report.utils.Page;
@@ -38,11 +39,25 @@ public class MatchapplyAction extends BaseAction {
         MatchapplyForm matchapplyForm = (MatchapplyForm) form;
         Matchapply matchapply = matchapplyForm.getMatchapply();
         String name = matchapply.getName();
+        String factname = matchapply.getFactname();
+        int matchid = matchapply.getMatchid();
+        int state = matchapply.getState();
+        String annualmatch = matchapply.getAnnualmatch();
         String p = request.getParameter("p");
         MatchapplyBo bo = new MatchapplyBo();
         int total = bo.getMatchapplyListSize(matchapply);
         Page page = new Page(total, p, matchapply, "load4MatchapplyIndex");
         page.setQueryData("matchapply.name", name == null ? "" : name);
+        page.setQueryData("matchapply.factname", factname == null ? ""
+                : factname);
+        page.setQueryData("matchapply.matchid", matchid == 0 ? "" : matchid
+                + "");
+        page.setQueryData("matchapply.state", state == 0 ? "" : state + "");
+        page.setQueryData("matchapply.annualmatch", annualmatch == null ? ""
+                : annualmatch);
+        List<Matchinfo> matchinfoList = bo.getMatchinfoList();
+        request.setAttribute("matchinfoList", matchinfoList);
+
         List<Matchapply> matchapplyList = bo.getMatchapplyList(matchapply);
         request.setAttribute("matchapplyList", matchapplyList);
         request.setAttribute("page", page);
@@ -155,14 +170,35 @@ public class MatchapplyAction extends BaseAction {
     public ActionForward exportMatchapplyFiles(ActionMapping mapping,
             ActionForm form, HttpServletRequest request,
             HttpServletResponse response) throws BaseException {
+        String annualmatch = request.getParameter("annualmatch");
+        String factname = request.getParameter("factname");
         String ids = request.getParameter("ids");
+        if (StringUtils.isEmpty(annualmatch)) {
+            SysMessageBean smb = new SysMessageBean(true);
+            smb.setMessage(new ActionMessage(
+                    "MatchapplyAction.exportMatchapplyFiles.annualmatch"));
+            SysGlobals.setSysMessage(request, smb);
+            return mapping.findForward("error");
+        }
+        if (StringUtils.isEmpty(factname)) {
+            SysMessageBean smb = new SysMessageBean(true);
+            smb.setMessage(new ActionMessage(
+                    "MatchapplyAction.exportMatchapplyFiles.factname"));
+            SysGlobals.setSysMessage(request, smb);
+            return mapping.findForward("error");
+        }
         if (StringUtils.isEmpty(ids)) {
-            return null;
+            SysMessageBean smb = new SysMessageBean(true);
+            smb.setMessage(new ActionMessage(
+                    "MatchapplyAction.exportMatchapplyFiles.noselect"));
+            SysGlobals.setSysMessage(request, smb);
+            return mapping.findForward("error");
         }
         String rootPath = this.getServlet().getServletContext()
                 .getRealPath("/");
         String filePath = SysGlobals.getSysConfig("filePath");
-        String zipName = System.currentTimeMillis() + ".zip";
+        // String zipName = System.currentTimeMillis() + ".zip";
+        String zipName = annualmatch + "_" + factname + ".zip";
         String zipPath = rootPath + filePath + zipName;
         File zipFile = new File(zipPath);
 

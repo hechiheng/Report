@@ -39,7 +39,8 @@
 
 	<div id="syxw" class="f_l">
 	<p>
-		网站介绍11
+		#set($about = $request.getAttribute("about"))
+		$!about.description
 	</p>
 	</div>
 	<div id="banner" class="f_r">
@@ -62,7 +63,7 @@
 <div class="warp1 mt">
 <div class="left f_l">
 	<h3 class="left_bt">近期通知</h3>
-	<div class="xbox left_box" id="abt">
+	<div class="xbox left_box" id="abt" style='min-height: 300px; overflow:hidden;'>
 	<ul class="sywz">
 		#set($messageList = $request.getAttribute("messageList"))
 		#foreach($message in $messageList)
@@ -77,7 +78,7 @@
 	<h3 class='r_bt'>
 		<a href="$link.setAction('load4News')">更多>></a>
 		<span>新闻资讯</span></h3>
-		<div class='xbox' style='height:185px; overflow:hidden;'>
+		<div class='xbox' style='min-height: 300px; overflow:hidden;'>
 			<ul class='sywz'>
 				#set($newsList = $request.getAttribute("newsList"))
 				#foreach($news in $newsList)

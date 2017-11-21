@@ -5,6 +5,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 <sqlMap namespace="manage.Matchapply">
 	<typeAlias alias="matchapply" type="com.report.manage.bean.Matchapply"/>
 	<typeAlias alias="matchinfo" type="com.report.manage.bean.Matchinfo"/>
+	<typeAlias alias="member" type="com.report.home.bean.Member"/>
 	
 	<select id="manage.MatchapplyDao.selectMatchapplyList4Home" parameterClass="matchapply" resultClass="matchapply">
 		select a.id,a.name,a.annualmatch,a.matchid,b.name matchname,a.unitname,a.authors,a.teachers,a.description,
@@ -30,22 +31,46 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	
 	<select id="manage.MatchapplyDao.selectMatchapplyListSize" parameterClass="matchapply" resultClass="int">
 		select count(a.id) 
-		from t_matchapply a,t_matchinfo b 
-		where a.matchid=b.id and a.isvalid=1 and a.state>0
+		from t_matchapply a,t_matchinfo b,t_member d 
+		where a.matchid=b.id and a.isvalid=1 and a.memberid=d.id and a.state>0
 		<isNotEmpty prepend="and" property="name">
 			a.name like CONCAT('%',#name#,'%')
 		</isNotEmpty>		
+		<isNotEmpty prepend="and" property="factname">
+			d.factname = #factname#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="annualmatch">
+			a.annualmatch = #annualmatch#
+		</isNotEmpty>
+		<isNotEqual prepend="and" property="matchid" compareValue="0">
+			a.matchid = #matchid#
+		</isNotEqual>
+		<isNotEqual prepend="and" property="state" compareValue="0">
+			a.state = #state#
+		</isNotEqual>
 	</select>
 	
 	<select id="manage.MatchapplyDao.selectMatchapplyList" parameterClass="matchapply" resultClass="matchapply">
-		select a.id,a.name,a.annualmatch,a.matchid,b.name matchname,a.unitname,a.authors,a.teachers,a.description,
+		select a.id,d.factname,a.name,a.annualmatch,a.matchid,b.name matchname,a.unitname,a.authors,a.teachers,a.description,
 		DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime,a.state,a.memberid,IFNULL(a.checkuserid,0) checkuserid,
 		DATE_FORMAT(FROM_UNIXTIME(a.checktime),'%Y-%m-%d %H:%i:%s') checktime,IFNULL(c.id,0) matchresultid,IFNULL(c.ispublish,0) ispublish 
-		from t_matchapply a LEFT JOIN t_matchresult c on a.id=c.id,t_matchinfo b 
-		where a.matchid=b.id and a.isvalid=1 and a.state>0
+		from t_matchapply a LEFT JOIN t_matchresult c on a.id=c.id,t_matchinfo b,t_member d  
+		where a.matchid=b.id and a.isvalid=1 and a.memberid=d.id and a.state>0
 		<isNotEmpty prepend="and" property="name">
 			a.name like CONCAT('%',#name#,'%')
 		</isNotEmpty>
+		<isNotEmpty prepend="and" property="factname">
+			d.factname = #factname#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="annualmatch">
+			a.annualmatch = #annualmatch#
+		</isNotEmpty>
+		<isNotEqual prepend="and" property="matchid" compareValue="0">
+			a.matchid = #matchid#
+		</isNotEqual>
+		<isNotEqual prepend="and" property="state" compareValue="0">
+			a.state = #state#
+		</isNotEqual>
 		order by a.updatetime desc
 		limit $firstRow$,$listRows$
 	</select>
@@ -87,6 +112,10 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	
 	<select id="manage.MatchapplyDao.selectMatchinfoList" resultClass="matchinfo">
 		select id,name from t_matchinfo t where t.isvalid=1 
+	</select>
+	
+	<select id="manage.MatchapplyDao.selectMemberList" resultClass="member">
+		select id,factname from t_member t where t.isvalid=1 
 	</select>
 	
 	<insert id="manage.MatchapplyDao.insertMatchapply" parameterClass="matchapply">

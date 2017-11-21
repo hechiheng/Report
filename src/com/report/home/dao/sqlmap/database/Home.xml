@@ -16,17 +16,17 @@
 	]]>
 	</select>
 	
-	<select id="home.HomeDao.selectLatestMessageList" resultClass="message">
+	<select id="home.HomeDao.selectLatestMessageList" parameterClass="int" resultClass="message">
 		select id,title from t_message t where t.isvalid=1 and t.ispublish=1 
 <!--		and t.publishtime>UNIX_TIMESTAMP(date_add(NOW(), interval -10 day))-->
-		order by t.publishtime desc limit 10
+		order by t.publishtime desc limit $listRows$
 	</select>
 	
-	<select id="home.HomeDao.selectLatestNewsList" resultClass="news">
+	<select id="home.HomeDao.selectLatestNewsList" parameterClass="int" resultClass="news">
 		select id,title,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d') publishtime from t_news t 
 		where t.isvalid=1 and t.ispublish=1 
 <!--		and t.publishtime>UNIX_TIMESTAMP(date_add(NOW(), interval -10 day))-->
-		order by t.publishtime desc limit 10
+		order by t.publishtime desc limit $listRows$
 	</select>
 	
 	<select id="home.HomeDao.selectLinkList" resultClass="link">
@@ -65,8 +65,8 @@
 		from t_announce t where t.id=#id#
 	</select>
 	
-	<select id="home.HomeDao.selectAbout" resultClass="about">
-		select id,description,content from t_about 
+	<select id="home.HomeDao.selectAbout" parameterClass="int" resultClass="about">
+		select id,description,content from t_about where id=#id#
 	</select>
 	
 	<select id="home.HomeDao.selectNotice" resultClass="notice">
