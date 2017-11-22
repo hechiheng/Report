@@ -9,13 +9,13 @@
 <script type="text/javascript">
 	function exportFiles(msg){
 		var url = '$link.setAction('exportMatchapplyFiles')';
-		var annualmatch = document.getElementById('annualmatch');
-		var factname = document.getElementById('factname');
-		if(annualmatch.value==""){
+		var annualmatch = document.getElementById('annualmatch').value;
+		var factname = document.getElementById('factname').value;
+		if(annualmatch==""){
 			alert('请输入参赛年度！');
 			return;
 		}
-		if(factname.value==""){
+		if(factname==""){
 			alert('请输入单位名称！');
 			return;
 		}

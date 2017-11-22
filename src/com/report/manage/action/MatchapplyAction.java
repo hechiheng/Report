@@ -183,6 +183,8 @@ public class MatchapplyAction extends BaseAction {
         String annualmatch = request.getParameter("annualmatch");
         String factname = request.getParameter("factname");
         String ids = request.getParameter("ids");
+        System.out.println("=======annualmatch="+annualmatch);
+        System.out.println("=======factname="+factname);
         if (StringUtils.isEmpty(annualmatch)) {
             SysMessageBean smb = new SysMessageBean(true);
             smb.setMessage(new ActionMessage(
