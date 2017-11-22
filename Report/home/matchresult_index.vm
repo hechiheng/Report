@@ -3,9 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>大学生创新大赛网上申报系统</title>
-<meta name="keywords" content="大学生创新大赛网上申报系统" />
-<meta name="description" content="大学生创新大赛网上申报系统" />
+#parse("/home/include/webtitle.vm")
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
 <script type="text/javascript" src="$link.setRelative('/home/js/jquery-1.7.2.min.js')" ></script>
 <link href="$link.setRelative('/home/theme/default/css/css.css')" rel="stylesheet" type="text/css" />
@@ -46,10 +44,11 @@
 <div class="content">
 	<div class="warp1 mt">
 	<div class="left f_l">
-		<h3 class="flbt">参赛结果</h3>
+		<h3 class="flbt">参赛报名</h3>
 		<div class="xbox">
 			<ul class="fllb">
-			<li><a href="$link.setAction('load4MatchresultIndex')">参赛结果</a></li>
+			<li><a href="$link.setAction('load4MatchapplyAdd')">参赛报名</a></li>
+			<li><a href="$link.setAction('load4MatchapplyIndex')">报名列表</a></li>
 			</ul>
 		</div>		
 	</div>
@@ -60,9 +59,25 @@
 	<div class="xbox wzzw"> 
 		<ul class="wzli">	
     		#set($matchapplyList = $request.getAttribute("matchapplyList"))
+			#if($matchapplyList.size()>0)
     		#foreach($matchapply in $matchapplyList)
-    			<li><span>$!matchapply.publishtime</span><a href="$link.setAction('load4Matchresult').addQueryData('id',$!matchapply.id)">$!matchapply.name</a></li>
-    		#end
+    			<li>
+					<span>$!matchapply.publishtime</span>
+					#if($!matchapply.state==0)
+    					<span style='color: #0000FF;'>未提交</span> 
+    				#elseif($!matchapply.state==1)
+    					<span style='color: #8A2BE2;'>已提交</span>
+    				#elseif($!matchapply.state==2)
+    					<span style='color: #00FF00;'>审核通过</span>
+    				#elseif($!matchapply.state==3)
+    					<span style='color: #FF0000;'>审核未通过</span>
+    				#end
+					<a href="$link.setAction('load4Matchresult').addQueryData('id',$!matchapply.id)">$!matchapply.name</a>
+				</li>
+			#end
+			#else
+				<span style='color: #FF0000;'>未查询到数据</span>
+			#end
     	</ul>
 	</div>
 

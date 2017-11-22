@@ -81,19 +81,19 @@ jQuery(function () {
 				<input type="text" name="website.cfg_email" class="inp_one inp_w250" value="$!websiteForm.website.cfg_email" />
 			</dd>
 		</dl>
-		<dl>
-			<dt>站点状态：</dt>
-			<dd>
-				<label><input type="radio" name="website.cfg_website_close" value="0" #if($!websiteForm.website.cfg_website_close==0) checked="checked" #end />允许访问&nbsp;</label>
-				<label><input type="radio" name="website.cfg_website_close" value="1" #if($!websiteForm.website.cfg_website_close==1) checked="checked" #end  />禁止访问</label>
-			</dd>
-		</dl>
-		<dl>
-			<dt>关站提示：</dt>
-			<dd>
-				<textarea name="website.cfg_website_close_info" class="tarea_default">$!websiteForm.website.cfg_website_close_info</textarea>
-			</dd>
-		</dl>
+		##<dl>
+		##	<dt>网站状态：</dt>
+		##	<dd>
+		##		<label><input type="radio" name="website.cfg_website_close" value="0" #if($!websiteForm.website.cfg_website_close==0) checked="checked" #end />允许访问&nbsp;</label>
+		##		<label><input type="radio" name="website.cfg_website_close" value="1" #if($!websiteForm.website.cfg_website_close==1) checked="checked" #end  />禁止访问</label>
+		##	</dd>
+		##</dl>
+		##<dl>
+		##	<dt>关站提示：</dt>
+		##	<dd>
+		##		<textarea name="website.cfg_website_close_info" class="tarea_default">$!websiteForm.website.cfg_website_close_info</textarea>
+		##	</dd>
+		##</dl>
 		<div class="form_b">
 			<input type="submit" class="btn_blue" id="submit" value="提 交">
 		</div>

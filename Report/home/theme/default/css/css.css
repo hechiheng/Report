@@ -186,7 +186,7 @@ li.b5{background:#ffffff;}
 .scott SPAN.disabled{BORDER:#237ac7 1px solid; PADDING:2px 5px; COLOR:#237ac7; MARGIN-RIGHT: 5px; background:#d8f1ff;}
 .fenye1{text-align: center; clear:both; font-size:12px; line-height:28px; height:56px; border:1px solid #9cceec; background:#e9f7ff; padding:0 5px; margin-top:5px;}
 
-.wzzw{padding:10px; line-height:21px;}
+.wzzw{min-height: 200px;padding:10px; line-height:21px;}
 .f_l{float:left;}
 .f_r{float:right;}
 .m_l{ margin-left:10px;}

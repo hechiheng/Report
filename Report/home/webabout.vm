@@ -3,9 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>大学生创新大赛网上申报系统-联系我们</title>
-<meta name="keywords" content="大学生创新大赛网上申报系统" />
-<meta name="description" content="大学生创新大赛网上申报系统" />
+#parse("/home/include/webtitle.vm")
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
 <script type="text/javascript" src="$link.setRelative('/home/js/jquery-1.7.2.min.js')" ></script>
 <link href="$link.setRelative('/home/theme/default/css/css.css')" rel="stylesheet" type="text/css" />
@@ -48,13 +46,18 @@
 
 <div class="right f_r" style="width:980px;">
 	<h3 class="nybt">
-		<i>您当前的位置：<a href="$link.contextPath">首页</a> >> <a href="$link.setAction('load4About')">联系我们</a></i>
-		<span>联系我们</span>
+		<i>您当前的位置：<a href="$link.contextPath">首页</a> >> <a href="$link.setAction('load4WebAbout')">网站介绍</a></i>
+		<span>网站介绍</span>
 	</h3>
 	<div class="xbox wzzw"> 
 		#set($about = $request.getAttribute("about"))
 		<div class="wzzw lh" id="content">
-			$!about.content
+			<p>
+				$!about.description
+            </p>
+			<p>
+    			$!about.content
+            </p>
 		</div>
 	</div>
 

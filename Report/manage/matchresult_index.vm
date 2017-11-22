@@ -17,8 +17,24 @@
         </div>
 		<div class="left_pad">
             <form method="get" action="$link.setAction('load4MatchresultIndex')">
+            	<span style='font-size: 14px;vertical-align: middle;'>参赛年度(YYYY)：</span>
+				<input type="text" id="annualmatch" name="matchapply.annualmatch" class="inp_small" value="$!queryMatchapplyForm.matchapply.annualmatch">
+				<span style='font-size: 14px;vertical-align: middle;'>单位名称：</span>
+				<input type="text" id="factname" name="matchapply.factname" class="inp_small" value="$!queryMatchapplyForm.matchapply.factname">
+				<span style='font-size: 14px;vertical-align: middle;'>参赛项目：</span>
+				<select name="matchapply.matchid">
+					<option value="0">--请选择--</option>
+					#set($matchinfoList = $request.getAttribute("matchinfoList"))
+					#foreach($matchinfo in $matchinfoList)
+						#if($!matchinfo.id==$!queryMatchapplyForm.matchapply.matchid)
+							<option value="$!matchinfo.id" selected="selected">$!matchinfo.name</option>
+						#else
+							<option value="$!matchinfo.id">$!matchinfo.name</option>
+						#end
+					#end
+				</select>
             	<span style='font-size: 14px;vertical-align: middle;'>作品名称：</span>
-                <input type="text" name="matchapply.name" title="关键字" class="inp_default" value="$!queryMatchapplyForm.matchapply.name">
+                <input type="text" name="matchapply.name" title="关键字" class="inp_small" value="$!queryMatchapplyForm.matchapply.name">
                 <input type="submit" class="btn_blue" value="查  询">
             </form>
         </div>

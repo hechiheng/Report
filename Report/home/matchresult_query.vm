@@ -7,7 +7,12 @@
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
 <script type="text/javascript" src="$link.setRelative('/home/js/jquery-1.7.2.min.js')" ></script>
 <link href="$link.setRelative('/home/theme/default/css/css.css')" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="$link.setRelative('/manage/ueditor/ueditor.parse.min.js')"></script>
+<script type="text/javascript">
+jQuery(function () {
+	jQuery("#annualmatch").focus();
+	
+});
+</script>
 </head>
 
 <body>
@@ -27,6 +32,7 @@
 	</div>
 	<div id="top_logo"></div>
 </div>
+
 <!--menu -->
 <div id="menu">
 	<ul>
@@ -43,34 +49,58 @@
 
 <div class="content">
 	<div class="warp1 mt">
-
-<div class="right f_r" style="width:980px;">
-	<h3 class="nybt">
-		<i>您当前的位置：<a href="$link.contextPath">首页</a> >> <a href="$link.setAction('load4Notice')">报名须知</a></i>
-		<span>报名须知</span>
-	</h3>
-	<div class="xbox wzzw"> 
-		#set($about = $request.getAttribute("notice"))
-		<div class="wzzw lh" id="content">
-			$!notice.content
+	<div class="left f_l">
+		<h3 class="flbt">参赛报名</h3>
+		<div class="xbox">
+			<ul class="fllb">
+			<li><a href="$link.setAction('load4MatchapplyAdd')">参赛报名</a></li>
+			<li><a href="$link.setAction('load4MatchapplyIndex')">报名列表</a></li>
+			</ul>
+		</div>		
+	</div>
+<div class="right f_r">
+<h3 class="nybt"><span>参赛结果查询</span></h3>
+<div class="form">
+	<form method='post' id="form_do" name="form_do" action="$link.setAction('load4MatchresultIndex')">
+		<dl>
+			<dt>参赛年度：</dt>
+			<dd>
+				<input type="text" id="annualmatch" name="matchapply.annualmatch" class="inp_one"/>
+				<span style="color: red;">(格式：YYYY)</span>
+			</dd>
+		</dl>
+		<dl>
+			<dt>参赛项目：</dt>
+			<dd>
+				<select name="matchapply.matchid">
+					<option value="0">--请选择--</option>
+					#set($matchinfoList = $request.getAttribute("matchinfoList"))
+					#foreach($matchinfo in $matchinfoList)
+						<option value="$!matchinfo.id">$!matchinfo.name</option>
+					#end
+				</select>
+			</dd>
+		</dl>
+		<dl>
+			<dt>作品名称：</dt>
+			<dd>
+				<input type="text" name="matchapply.name" class="inp_large"/>
+			</dd>
+		</dl>
+		<div class="form_b">
+			<input type="submit" class="btn_blue" id="submit" value="查询">		
 		</div>
+	</form>
 	</div>
 
-	</div>
+</div>
 <div class=" clear"></div>
 </div>
 </div>
 
-
 <div class="warp1 mt" id="bottom">
 	#parse("/home/include/bottom.vm")
 </div>
-<script type="text/javascript">
-	uParse('#content', {
-        rootPath: '../'
-    });
-
-</script>
 
 </body>
 </html>

@@ -46,7 +46,7 @@
 				<input type="text" id="factname" name="matchapply.factname" class="inp_small" value="$!queryMatchapplyForm.matchapply.factname">
 				<span style='font-size: 14px;vertical-align: middle;'>参赛项目：</span>
 				<select name="matchapply.matchid">
-					<option value="">--请选择--</option>
+					<option value="0">--请选择--</option>
 					#set($matchinfoList = $request.getAttribute("matchinfoList"))
 					#foreach($matchinfo in $matchinfoList)
 						#if($!matchinfo.id==$!queryMatchapplyForm.matchapply.matchid)
@@ -60,15 +60,13 @@
                 <input type="text" name="matchapply.name" title="关键字" class="inp_small" value="$!queryMatchapplyForm.matchapply.name">
 				<span style='font-size: 14px;vertical-align: middle;'>审核状态：</span>
 				<select name="matchapply.state">
-					<option value="" #if($!queryMatchapplyForm.matchapply.state==0) selected="selected" #end>--请选择--</option>
+					<option value="0" #if($!queryMatchapplyForm.matchapply.state==0) selected="selected" #end>--请选择--</option>
 					<option value="1" #if($!queryMatchapplyForm.matchapply.state==1) selected="selected" #end>未审核</option>
 					<option value="2" #if($!queryMatchapplyForm.matchapply.state==2) selected="selected" #end>审核通过</option>
 					<option value="3" #if($!queryMatchapplyForm.matchapply.state==3) selected="selected" #end>审核未通过</option>
 				</select>
-					<input type="submit" class="btn_blue" value="查  询">
-				<div>
-					<input type="button" onclick="exportFiles('确实要导出附件吗？')" class="btn_blue" value="导出附件">
-                </div>
+				<input type="submit" class="btn_blue" value="查  询">
+				<input type="button" onclick="exportFiles('确实要导出附件吗？')" class="btn_blue" value="导出附件">
             </form>
         </div>
     </div>

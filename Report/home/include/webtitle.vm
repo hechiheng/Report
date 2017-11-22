@@ -1,0 +1,4 @@
+#set($globalInfo = $session.getAttribute($GLOBAL_SESSION))
+<title>$!globalInfo.cfg_webtitle</title>
+<meta name="keywords" content="$!globalInfo.cfg_keywords" />
+<meta name="description" content="$!globalInfo.cfg_description" />

@@ -183,6 +183,15 @@ public class MatchapplyAction extends BaseAction {
         return mapping.findForward("info");
     }
 
+    public ActionForward load4MatchresultQuery(ActionMapping mapping,
+            ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) throws BaseException {
+        MatchapplyBo bo = new MatchapplyBo();
+        List<Matchinfo> matchinfoList = bo.getMatchinfoList();
+        request.setAttribute("matchinfoList", matchinfoList);
+        return mapping.findForward("success");
+    }
+
     @SuppressWarnings("unchecked")
     public ActionForward load4MatchresultIndex(ActionMapping mapping,
             ActionForm form, HttpServletRequest request,
@@ -190,7 +199,8 @@ public class MatchapplyAction extends BaseAction {
         Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
                 Constants.HOME_SESSION);
         int memberid = Integer.valueOf(sessionMap.get("memberid"));
-        Matchapply matchapply = new Matchapply();
+        MatchapplyForm matchapplyForm = (MatchapplyForm) form;
+        Matchapply matchapply = matchapplyForm.getMatchapply();
         matchapply.setMemberid(String.valueOf(memberid));
         MatchapplyBo bo = new MatchapplyBo();
         List<Matchapply> matchapplyList = bo

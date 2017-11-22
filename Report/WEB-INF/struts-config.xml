@@ -31,6 +31,9 @@
 		<form-bean name="modifyMatchapplyForm"
 			type="com.report.manage.form.MatchapplyForm">
 		</form-bean>
+		<form-bean name="queryMatchapplyForm"
+			type="com.report.manage.form.MatchapplyForm">
+		</form-bean>
 	</form-beans>
 
 
@@ -309,9 +312,18 @@
 			parameter="removeMatchapply">
         </action>
         <action
+        	path="/load4MatchresultQuery"
+			type="com.report.home.action.MatchapplyAction"
+			scope="request"
+			validate="false"
+			parameter="load4MatchresultQuery">
+			<forward name="success" path="/home/matchresult_query.vm"/>
+        </action>
+        <action
         	path="/load4MatchresultIndex"
 			type="com.report.home.action.MatchapplyAction"
 			scope="request"
+			name="queryMatchapplyForm"
 			validate="false"
 			parameter="load4MatchresultIndex">
 			<forward name="success" path="/home/matchresult_index.vm"/>

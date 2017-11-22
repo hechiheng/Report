@@ -3,9 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>大学生创新大赛网上申报系统-参赛结果</title>
-<meta name="keywords" content="大学生创新大赛网上申报系统" />
-<meta name="description" content="大学生创新大赛网上申报系统" />
+#parse("/home/include/webtitle.vm")
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
 <script type="text/javascript" src="$link.setRelative('/home/js/jquery-1.7.2.min.js')" ></script>
 <link href="$link.setRelative('/home/theme/default/css/css.css')" rel="stylesheet" type="text/css" />
@@ -59,10 +57,11 @@ function toConfirm(url, str){
 <div class="content">
 	<div class="warp1 mt">
 	<div class="left f_l">
-		<h3 class="flbt">参赛结果</h3>
+		<h3 class="flbt">参赛报名</h3>
 		<div class="xbox">
 			<ul class="fllb">
-			<li><a href="$link.setAction('load4MatchresultIndex')">参赛结果</a></li>
+			<li><a href="$link.setAction('load4MatchapplyAdd')">参赛报名</a></li>
+			<li><a href="$link.setAction('load4MatchapplyIndex')">报名列表</a></li>
 			</ul>
 		</div>		
 	</div>
@@ -118,6 +117,14 @@ function toConfirm(url, str){
     			<div class="wzzw lh" id="content">
         			$!matchapply.description
         		</div>
+    		</dd>
+    	</dl>
+		<dl>
+    		<dt>附件资料：</dt>
+    		<dd>
+				<p class="file">
+                    <a target="_blank" href="$!matchapply.filepath" title="$!matchapply.filename">$!matchapply.filename</a>
+                </p>
     		</dd>
     	</dl>
 		#if($matchapply.matchresultid!=0)

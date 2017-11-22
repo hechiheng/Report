@@ -3,9 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>大学生创新大赛网上申报系统</title>
-<meta name="keywords" content="大学生创新大赛网上申报系统" />
-<meta name="description" content="大学生创新大赛网上申报系统" />
+#parse("/home/include/webtitle.vm")
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
 <script type="text/javascript" src="$link.setRelative('/home/js/jquery-1.7.2.min.js')" ></script>
 <link href="$link.setRelative('/home/theme/default/css/css.css')" rel="stylesheet" type="text/css" />
@@ -62,7 +60,19 @@
 		<ul class="wzli">	
     		#set($matchapplyList = $request.getAttribute("matchapplyList"))
     		#foreach($matchapply in $matchapplyList)
-    			<li><span>$!matchapply.updatetime</span><a href="$link.setAction('load4Matchapply').addQueryData('id',$!matchapply.id)">$!matchapply.name</a></li>
+    			<li>
+					<span>$!matchapply.updatetime</span>
+					#if($!matchapply.state==0)
+    					<span style='color: #0000FF;'>未提交</span> 
+    				#elseif($!matchapply.state==1)
+    					<span style='color: #8A2BE2;'>已提交</span>
+    				#elseif($!matchapply.state==2)
+    					<span style='color: #00FF00;'>审核通过</span>
+    				#elseif($!matchapply.state==3)
+    					<span style='color: #FF0000;'>审核未通过</span>
+    				#end
+					<a href="$link.setAction('load4Matchapply').addQueryData('id',$!matchapply.id)">$!matchapply.name</a>
+				</li>
     		#end
     	</ul>
 	</div>

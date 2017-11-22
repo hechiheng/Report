@@ -1,7 +1,6 @@
 package com.report.home.interceptor;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -14,13 +13,10 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
-import com.css.base.BaseException;
 import com.css.base.BaseInterceptor;
 import com.report.global.Constants;
 import com.report.global.SysGlobals;
 import com.report.global.SysMessageBean;
-import com.report.home.bo.HomeBo;
-import com.report.manage.bean.Website;
 
 public class MatchapplyInterceptor extends BaseInterceptor {
 

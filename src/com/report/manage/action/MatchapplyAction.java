@@ -50,9 +50,8 @@ public class MatchapplyAction extends BaseAction {
         page.setQueryData("matchapply.name", name == null ? "" : name);
         page.setQueryData("matchapply.factname", factname == null ? ""
                 : factname);
-        page.setQueryData("matchapply.matchid", matchid == 0 ? "" : matchid
-                + "");
-        page.setQueryData("matchapply.state", state == 0 ? "" : state + "");
+        page.setQueryData("matchapply.matchid", matchid + "");
+        page.setQueryData("matchapply.state", state + "");
         page.setQueryData("matchapply.annualmatch", annualmatch == null ? ""
                 : annualmatch);
         List<Matchinfo> matchinfoList = bo.getMatchinfoList();
@@ -115,11 +114,22 @@ public class MatchapplyAction extends BaseAction {
         MatchapplyForm matchapplyForm = (MatchapplyForm) form;
         Matchapply matchapply = matchapplyForm.getMatchapply();
         String name = matchapply.getName();
+        String factname = matchapply.getFactname();
+        int matchid = matchapply.getMatchid();
+        String annualmatch = matchapply.getAnnualmatch();
         String p = request.getParameter("p");
         MatchapplyBo bo = new MatchapplyBo();
         int total = bo.getMatchresultListSize(matchapply);
         Page page = new Page(total, p, matchapply, "load4MatchresultIndex");
         page.setQueryData("matchapply.name", name == null ? "" : name);
+        page.setQueryData("matchapply.factname", factname == null ? ""
+                : factname);
+        page.setQueryData("matchapply.matchid", matchid + "");
+        page.setQueryData("matchapply.annualmatch", annualmatch == null ? ""
+                : annualmatch);
+        List<Matchinfo> matchinfoList = bo.getMatchinfoList();
+        request.setAttribute("matchinfoList", matchinfoList);
+
         List<Matchapply> matchapplyList = bo.getMatchresultList(matchapply);
         request.setAttribute("matchapplyList", matchapplyList);
         request.setAttribute("page", page);

@@ -13,14 +13,6 @@
 	
 	window.UEDITOR_HOME_URL = "ueditor/";
 	window.onload = function() {
-		UE.getEditor('description', {
-    		toolbars: [
-                ['fullscreen', 'source', 'undo', 'redo']
-            ],
-            initialFrameWidth : 600,
-            initialFrameHeight: 100
-        });
-		
 		UE.getEditor('content', {
             initialFrameWidth : 600,
             initialFrameHeight: 300
@@ -37,7 +29,7 @@ jQuery(function () {
      jQuery("#form_do").submit(function(){
 		var description = jQuery("textarea[name='about.description']");
 		var content = jQuery("#content");
-		if(!UE.getEditor('description').hasContents()){
+		if(jQuery.trim(description.val())==''){
 			description.parent().find("span").remove().end().append("<span class='error'>摘要不能为空</span>");
 			description.focus();
 			return false;			
@@ -66,7 +58,8 @@ jQuery(function () {
 		<dl>
 			<dt> 摘要：</dt>
 			<dd>
-				<textarea name="about.description" id="description">$!aboutForm.about.description</textarea>
+				<textarea name="about.description" id="description" class="tarea_default">$!aboutForm.about.description</textarea>
+				<span style="color: red;">*</span>
 			</dd>
 		</dl>
 		<dl>

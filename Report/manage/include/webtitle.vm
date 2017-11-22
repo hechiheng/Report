@@ -1,0 +1,2 @@
+#set($globalInfo = $session.getAttribute($GLOBAL_SESSION))
+<title>$!globalInfo.cfg_webtitle - 后台管理</title>
