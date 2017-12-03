@@ -13,79 +13,100 @@ import com.report.manage.dao.iface.MessageDao;
 
 public class MessageSqlMapDao extends SqlMapDaoTemplate implements MessageDao {
 
-	Logger logger = Logger.getLogger("MessageSqlMapDao");
+    Logger logger = Logger.getLogger("MessageSqlMapDao");
 
-	public MessageSqlMapDao(DaoManager arg0) {
-		super(arg0);
-	}
+    public MessageSqlMapDao(DaoManager arg0) {
+        super(arg0);
+    }
 
-	public int selectMessageListSize(Message message) throws BaseException {
-		try {
-			return (Integer) this.queryForObject(
-					"manage.MessageDao.selectMessageListSize", message);
-		} catch (DaoException e) {
-			logger.error("manage.MessageDao.selectMessageListSize", e);
-			throw new BaseException("manage.MessageDao.selectMessageListSize",
-					e);
-		}
-	}
+    public int selectMessageListSize(Message message) throws BaseException {
+        try {
+            return (Integer) this.queryForObject(
+                    "manage.MessageDao.selectMessageListSize", message);
+        }
+        catch (DaoException e) {
+            logger.error("manage.MessageDao.selectMessageListSize", e);
+            throw new BaseException("manage.MessageDao.selectMessageListSize",
+                    e);
+        }
+    }
 
-	@SuppressWarnings("unchecked")
-	public List<Message> selectMessageList(Message message)
-			throws BaseException {
-		try {
-			return this.queryForList("manage.MessageDao.selectMessageList",
-					message);
-		} catch (DaoException e) {
-			logger.error("manage.MessageDao.selectMessageList", e);
-			throw new BaseException("manage.MessageDao.selectMessageList", e);
-		}
-	}
+    @SuppressWarnings("unchecked")
+    public List<Message> selectMessageList(Message message)
+            throws BaseException {
+        try {
+            return this.queryForList("manage.MessageDao.selectMessageList",
+                    message);
+        }
+        catch (DaoException e) {
+            logger.error("manage.MessageDao.selectMessageList", e);
+            throw new BaseException("manage.MessageDao.selectMessageList", e);
+        }
+    }
 
-	public Message selectMessage(int id) throws BaseException {
-		try {
-			return (Message) this.queryForObject(
-					"manage.MessageDao.selectMessage", id);
-		} catch (DaoException e) {
-			logger.error("manage.MessageDao.selectMessage", e);
-			throw new BaseException("manage.MessageDao.selectMessage", e);
-		}
-	}
+    public Message selectMessage(int id) throws BaseException {
+        try {
+            return (Message) this.queryForObject(
+                    "manage.MessageDao.selectMessage", id);
+        }
+        catch (DaoException e) {
+            logger.error("manage.MessageDao.selectMessage", e);
+            throw new BaseException("manage.MessageDao.selectMessage", e);
+        }
+    }
 
-	public void insertMessage(Message message) throws BaseException {
-		try {
-			this.insert("manage.MessageDao.insertMessage", message);
-		} catch (DaoException e) {
-			logger.error("manage.MessageDao.insertMessage", e);
-			throw new BaseException("manage.MessageDao.insertMessage", e);
-		}
-	}
+    public void insertMessage(Message message) throws BaseException {
+        try {
+            this.insert("manage.MessageDao.insertMessage", message);
+        }
+        catch (DaoException e) {
+            logger.error("manage.MessageDao.insertMessage", e);
+            throw new BaseException("manage.MessageDao.insertMessage", e);
+        }
+    }
 
-	public void updateMessage(Message message) throws BaseException {
-		try {
-			this.update("manage.MessageDao.updateMessage", message);
-		} catch (DaoException e) {
-			logger.error("manage.MessageDao.updateMessage", e);
-			throw new BaseException("manage.MessageDao.updateMessage", e);
-		}
-	}
+    public void updateMessage(Message message) throws BaseException {
+        try {
+            this.update("manage.MessageDao.updateMessage", message);
+        }
+        catch (DaoException e) {
+            logger.error("manage.MessageDao.updateMessage", e);
+            throw new BaseException("manage.MessageDao.updateMessage", e);
+        }
+    }
 
-	public void updateMessageIsvalid(Message message) throws BaseException {
-		try {
-			this.update("manage.MessageDao.updateMessageIsvalid", message);
-		} catch (DaoException e) {
-			logger.error("manage.MessageDao.updateMessageIsvalid", e);
-			throw new BaseException("manage.MessageDao.updateMessageIsvalid", e);
-		}
-	}
+    public void updateMessageIsvalid(Message message) throws BaseException {
+        try {
+            this.update("manage.MessageDao.updateMessageIsvalid", message);
+        }
+        catch (DaoException e) {
+            logger.error("manage.MessageDao.updateMessageIsvalid", e);
+            throw new BaseException("manage.MessageDao.updateMessageIsvalid", e);
+        }
+    }
 
-	public void deleteMessage(int id) throws BaseException {
-		try {
-			this.delete("manage.MessageDao.deleteMessage", id);
-		} catch (DaoException e) {
-			logger.error("manage.MessageDao.deleteMessage", e);
-			throw new BaseException("manage.MessageDao.deleteMessage", e);
-		}
-	}
+    public void deleteMessage(int id) throws BaseException {
+        try {
+            this.delete("manage.MessageDao.deleteMessage", id);
+        }
+        catch (DaoException e) {
+            logger.error("manage.MessageDao.deleteMessage", e);
+            throw new BaseException("manage.MessageDao.deleteMessage", e);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Message> selectLatestMessageList(int listRows)
+            throws BaseException {
+        try {
+            return this.queryForList(
+                    "manage.MessageDao.selectLatestMessageList", listRows);
+        }
+        catch (DaoException e) {
+            logger.error("manage.MessageDao.selectLatestMessageList", e);
+            throw new BaseException(
+                    "manage.MessageDao.selectLatestMessageList", e);
+        }
+    }
 
 }

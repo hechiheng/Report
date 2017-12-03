@@ -49,7 +49,13 @@ public interface MatchapplyDao {
 
     public void updateMatchresult(Matchapply matchapply) throws BaseException;
 
-    public List<Matchapply> selectMatchapplyFileList(String ids)
+    public List<Matchapply> selectMatchapplyFileList(Matchapply matchapply)
+            throws BaseException;
+
+    public int selectMatchapplyMemberListSize(Matchapply matchapply)
+            throws BaseException;
+
+    public List<Matchapply> selectMatchapplyMemberList(Matchapply matchapply)
             throws BaseException;
 
 }

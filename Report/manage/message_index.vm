@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
-<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css1/style.css')" />
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/jBox.config.js')"></script>
@@ -13,46 +13,55 @@
 </head>
 <body>
 <div class="main">
-    <div class="pos">
-    	<a href="$link.setAction('load4MessageIndex')">通知管理</a>
+	<div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="$link.setAction('load4MessageIndex')">通知管理</a></li>
+        </ul>
     </div>
-    <div class="operate">
-        <div class="left">
-		#set($istrash = $request.getAttribute("istrash"))
-		#if($istrash=="1")
-			<input type="button" onclick="goUrl('$link.setAction('load4MessageIndex')')"  class="btn_blue" value="返回" />
-		#else
-			<input type="button" onclick="goUrl('$link.setAction('load4MessageAdd')')" class="btn_blue" value="添加通知" />
-            <input type="button" onclick="goUrl('$link.setAction('load4MessageIndex').addQueryData('istrash','1')')" class="btn_green" value="回收站" />
-		#end
-        </div>
-		#if($istrash=="1")
-			&nbsp;
-		#else
-		<div class="left_pad">
-            <form method="get" action="$link.setAction('load4MessageIndex')">
-            	<span style='font-size: 14px;vertical-align: middle;'>通知标题：</span>
-                <input type="text" name="message.title" title="关键字" class="inp_default" value="$!queryMessageForm.message.title">
-                <input type="submit" class="btn_blue" value="查  询">
-            </form>
-        </div>
-		#end
+    <div class="formbody">
+		<form method="get" action="$link.setAction('load4MessageIndex')">
+		<ul class="seachform">
+			<li>
+				#set($istrash = $request.getAttribute("istrash"))
+				#if($istrash=="1")
+        			<input type="button" onclick="goUrl('$link.setAction('load4MessageIndex')')"  class="scbtn" value="返回" />
+        		#else
+        			<input type="button" onclick="goUrl('$link.setAction('load4MessageAdd')')" class="scbtn" value="添加通知" />
+                    <input type="button" onclick="goUrl('$link.setAction('load4MessageIndex').addQueryData('istrash','1')')" class="scbtn" value="回收站" />
+        		#end
+            </li>
+			#if($istrash=="1")
+				&nbsp;
+			#else
+			<li>
+				<label>通知标题</label>
+				<input type="text" name="message.title" title="关键字" class="scinput" value="$!queryMessageForm.message.title">
+			</li>
+			<li>
+				<label>&nbsp;</label>
+				<input name="" type="submit" class="scbtn" value="查询"/>
+			</li>
+			#end
+        </ul>
+        </form>
     </div>
     <div class="list">    
-        <table width="100%">
+        <table class="tablelist">
             <tr>
                 <th>编号</th>
-                <th class="aleft">通知标题</th>
+                <th width="35%">通知标题</th>
                 <th>发布状态</th>
                 <th>发布时间</th>
                 <th>更新时间</th>
                 <th>操作</th>
             </tr>
+			<tbody>
 			#set($messageList = $request.getAttribute("messageList"))
 			#foreach($message in $messageList)
 			<tr>
 				<td>$!message.id</td>
-				<td class='aleft' style="color:$!message.color">$!message.title</td>
+				<td>$!message.title</td>
 				<td>
 					#if($!message.ispublish==0) 
                     <span style='color: blue;'>未发布</span> 
@@ -63,21 +72,25 @@
 				<td>$!message.publishtime</td>
 				<td>$!message.updatetime</td>
 				<td>
-					<a href="$link.setRelative('/showMessage.do').addQueryData('id',$!message.id)" target='_blank'>查看</a>
+					<a class="tablelink" href="$link.setAction('load4MessageInfo').addQueryData('id',$!message.id)">查看</a>
 				#if($istrash=="1")
-					<a href="javascript:;" onclick="toConfirm('$link.setAction('restoreMessage').addQueryData('id',$!message.id)','确实要还原吗？')">还原</a>
-					<a href="javascript:;" onclick="toConfirm('$link.setAction('removeMessage').addQueryData('id',$!message.id)','该操作不可恢复，确实要删除吗？')">彻底删除</a>
+					<a class="tablelink" href="javascript:;" onclick="toConfirm('$link.setAction('restoreMessage').addQueryData('id',$!message.id)','确实要还原吗？')">还原</a>
+					<a class="tablelink" href="javascript:;" onclick="toConfirm('$link.setAction('removeMessage').addQueryData('id',$!message.id)','该操作不可恢复，确实要删除吗？')">彻底删除</a>
 				#else
-					<a href="$link.setAction('load4MessageModify').addQueryData('id',$!message.id)">编辑</a>
-					<a href="javascript:;" onclick="toConfirm('$link.setAction('trashMessage').addQueryData('id',$!message.id)','确实要删除吗？')">删除</a>
+					<a class="tablelink" href="$link.setAction('load4MessageModify').addQueryData('id',$!message.id)">编辑</a>
+					<a class="tablelink" href="javascript:;" onclick="toConfirm('$link.setAction('trashMessage').addQueryData('id',$!message.id)','确实要删除吗？')">删除</a>
 				#end
                 </td>
             </tr>
 			#end
+			</tbody>
         </table>
         <div class="page" style="clear: both;">
 			#parse("/home/include/page.vm")
         </div>
+		<script type="text/javascript">
+        	jQuery('.tablelist tbody tr:odd').addClass('odd');
+        </script>
     </div>
 </div>
 </body>

@@ -4,196 +4,226 @@ import java.io.Serializable;
 
 public class Member implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private int id;
-	private String accountid;
-	private String password;
-	private String password_re;
-	private String password_old;
-	private String factname;
-	private int sex;
-	private String idcard;
-	private String birthday;
-	private String address;
-	private String qq;
-	private String email;
-	private String tel;
-	private String regtime;
-	private String logintime;
-	private String updatetime;
-	private int isvalid;
-	private int state;
-	private String imagecode;
-	private int firstRow;
-	private int listRows;
+    private int id;
 
-	public String getAccountid() {
-		return accountid;
-	}
+    private String accountid;
 
-	public void setAccountid(String accountid) {
-		this.accountid = accountid;
-	}
+    private String password;
 
-	public String getPassword() {
-		return password;
-	}
+    private String password_re;
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    private String password_old;
 
-	public String getFactname() {
-		return factname;
-	}
+    private String factname;
 
-	public void setFactname(String factname) {
-		this.factname = factname;
-	}
+    private int sex;
 
-	public String getIdcard() {
-		return idcard;
-	}
+    private String idcard;
 
-	public void setIdcard(String idcard) {
-		this.idcard = idcard;
-	}
+    private String birthday;
 
-	public String getBirthday() {
-		return birthday;
-	}
+    private String address;
 
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
-	}
+    private String qq;
 
-	public String getAddress() {
-		return address;
-	}
+    private String email;
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    private String tel;
 
-	public String getQq() {
-		return qq;
-	}
+    private String regtime;
 
-	public void setQq(String qq) {
-		this.qq = qq;
-	}
+    private String logintime;
 
-	public String getEmail() {
-		return email;
-	}
+    private String updatetime;
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    private int isvalid;
 
-	public String getTel() {
-		return tel;
-	}
+    private int state;
 
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
+    private String imagecode;
 
-	public String getRegtime() {
-		return regtime;
-	}
+    private int firstRow;
 
-	public void setRegtime(String regtime) {
-		this.regtime = regtime;
-	}
+    private int listRows;
 
-	public void setFirstRow(int firstRow) {
-		this.firstRow = firstRow;
-	}
+    private int isself;
 
-	public int getFirstRow() {
-		return firstRow;
-	}
+    public String getAccountid() {
+        return accountid;
+    }
 
-	public void setListRows(int listRows) {
-		this.listRows = listRows;
-	}
+    public void setAccountid(String accountid) {
+        this.accountid = accountid;
+    }
 
-	public int getListRows() {
-		return listRows;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setImagecode(String imagecode) {
-		this.imagecode = imagecode;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getImagecode() {
-		return imagecode;
-	}
+    public String getFactname() {
+        return factname;
+    }
 
-	public void setPassword_re(String password_re) {
-		this.password_re = password_re;
-	}
+    public void setFactname(String factname) {
+        this.factname = factname;
+    }
 
-	public String getPassword_re() {
-		return password_re;
-	}
+    public String getIdcard() {
+        return idcard;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setIdcard(String idcard) {
+        this.idcard = idcard;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public String getBirthday() {
+        return birthday;
+    }
 
-	public void setPassword_old(String password_old) {
-		this.password_old = password_old;
-	}
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
 
-	public String getPassword_old() {
-		return password_old;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public String getLogintime() {
-		return logintime;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public void setLogintime(String logintime) {
-		this.logintime = logintime;
-	}
+    public String getQq() {
+        return qq;
+    }
 
-	public String getUpdatetime() {
-		return updatetime;
-	}
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
 
-	public void setUpdatetime(String updatetime) {
-		this.updatetime = updatetime;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setIsvalid(int isvalid) {
-		this.isvalid = isvalid;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public int getIsvalid() {
-		return isvalid;
-	}
+    public String getTel() {
+        return tel;
+    }
 
-	public void setSex(int sex) {
-		this.sex = sex;
-	}
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
 
-	public int getSex() {
-		return sex;
-	}
+    public String getRegtime() {
+        return regtime;
+    }
 
-	public void setState(int state) {
-		this.state = state;
-	}
+    public void setRegtime(String regtime) {
+        this.regtime = regtime;
+    }
 
-	public int getState() {
-		return state;
-	}
+    public void setFirstRow(int firstRow) {
+        this.firstRow = firstRow;
+    }
+
+    public int getFirstRow() {
+        return firstRow;
+    }
+
+    public void setListRows(int listRows) {
+        this.listRows = listRows;
+    }
+
+    public int getListRows() {
+        return listRows;
+    }
+
+    public void setImagecode(String imagecode) {
+        this.imagecode = imagecode;
+    }
+
+    public String getImagecode() {
+        return imagecode;
+    }
+
+    public void setPassword_re(String password_re) {
+        this.password_re = password_re;
+    }
+
+    public String getPassword_re() {
+        return password_re;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setPassword_old(String password_old) {
+        this.password_old = password_old;
+    }
+
+    public String getPassword_old() {
+        return password_old;
+    }
+
+    public String getLogintime() {
+        return logintime;
+    }
+
+    public void setLogintime(String logintime) {
+        this.logintime = logintime;
+    }
+
+    public String getUpdatetime() {
+        return updatetime;
+    }
+
+    public void setUpdatetime(String updatetime) {
+        this.updatetime = updatetime;
+    }
+
+    public void setIsvalid(int isvalid) {
+        this.isvalid = isvalid;
+    }
+
+    public int getIsvalid() {
+        return isvalid;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setIsself(int isself) {
+        this.isself = isself;
+    }
+
+    public int getIsself() {
+        return isself;
+    }
 
 }

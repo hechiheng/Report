@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
+<script type="text/javascript">
+	function exportFiles(msg,memberid,annualmatch,factname){
+		var url = '$link.setAction('exportMatchapplyFiles')';
+	    if (window.confirm(msg)){
+	    	url = url+"?memberid="+memberid+"&annualmatch="+annualmatch+"&factname="+factname;
+			window.open(url);
+	    }
+	}
+	
+	/**
+	var annualmatch = jQuery("#annualmatch");
+	var now = new Date();
+	var year = now.getFullYear();
+	for (var i = 0; i < 3; i++) {  
+        var option = jQuery("<option>").val(year).text(year);    
+        annualmatch.append(option);
+        year = year-1; 
+    };  
+	*/
+	
+	function load4MatchapplyList(url,memberid){
+		var form = jQuery("<form>");
+        form.attr("style", "display:none");
+        form.attr("method", "post");
+        form.attr("action", url);
+        jQuery("body").append(form);
+		
+		var annualmatch = jQuery("#annualmatch").val();
+		var factname = jQuery("#factname").val();
+		var matchid = jQuery("#matchid").val();
+		var name = jQuery("#name").val();
+		var state = jQuery("#state").val();
+        form.append(jQuery("<input type='hidden' name='matchapply.memberid' value='" + memberid + "'>"));
+        form.append(jQuery("<input type='hidden' name='matchapply.annualmatch' value='" + annualmatch + "'>"));
+        form.append(jQuery("<input type='hidden' name='matchapply.factname' value='" + factname + "'>"));
+        form.append(jQuery("<input type='hidden' name='matchapply.matchid' value='" + matchid + "'>"));
+        form.append(jQuery("<input type='hidden' name='matchapply.name' value='" + name + "'>"));
+        form.append(jQuery("<input type='hidden' name='matchapply.state' value='" + state + "'>"));
+        
+        form.submit();
+	}
+	
+	
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="pos">
+    	<a href="$link.setAction('load4MatchapplyIndex')">参赛报名审核</a>
+    </div>
+    <div class="operate">
+		<div class="left_pad">
+            <form method="get" action="$link.setAction('load4MatchapplyIndex')">
+				<span style='font-size: 14px;vertical-align: middle;'>参赛年度：</span>
+				<input type="text" id="annualmatch" name="matchapply.annualmatch" class="inp_small" value="$!queryMatchapplyForm.matchapply.annualmatch"/>
+				<span style='font-size: 14px;vertical-align: middle;'>会员名称：</span>
+				<input type="text" id="factname" name="matchapply.factname" class="inp_small" value="$!queryMatchapplyForm.matchapply.factname"/>
+				<span style='font-size: 14px;vertical-align: middle;'>参赛项目：</span>
+				<select id="matchid" name="matchapply.matchid">
+					<option value="0">--请选择--</option>
+					#set($matchinfoList = $request.getAttribute("matchinfoList"))
+					#foreach($matchinfo in $matchinfoList)
+						#if($!matchinfo.id==$!queryMatchapplyForm.matchapply.matchid)
+							<option value="$!matchinfo.id" selected="selected">$!matchinfo.name</option>
+						#else
+							<option value="$!matchinfo.id">$!matchinfo.name</option>
+						#end
+					#end
+				</select>
+            	<span style='font-size: 14px;vertical-align: middle;'>作品名称：</span>
+                <input type="text" id="name" name="matchapply.name" title="关键字" class="inp_small" value="$!queryMatchapplyForm.matchapply.name"/>
+				<span style='font-size: 14px;vertical-align: middle;'>审核状态：</span>
+				<select id="state" name="matchapply.state">
+					<option value="0" #if($!queryMatchapplyForm.matchapply.state==0) selected="selected" #end>--请选择--</option>
+					<option value="1" #if($!queryMatchapplyForm.matchapply.state==1) selected="selected" #end>未审核</option>
+					<option value="2" #if($!queryMatchapplyForm.matchapply.state==2) selected="selected" #end>审核通过</option>
+					<option value="3" #if($!queryMatchapplyForm.matchapply.state==3) selected="selected" #end>审核未通过</option>
+				</select>
+				<input type="submit" class="btn_blue" value="查  询">
+            </form>
+        </div>
+    </div>
+    <div class="list">    
+        <table width="100%">
+            <tr>
+				<th>编号</th>
+				<th class='aleft'>参赛年度</th>
+				<th class='aleft'>用户名</th>
+				<th class='aleft'>会员名称</th>
+				<th class="aleft">身份证号</th>
+				<th>性别</th>
+                <th>操作</th>
+            </tr>
+			#set($matchapplyList = $request.getAttribute("matchapplyList"))
+			#foreach($matchapply in $matchapplyList)
+			<tr>
+				<td>$!matchapply.id</td>
+				<td class='aleft'>$!matchapply.annualmatch</td>
+				<td class='aleft'>$!matchapply.accountid</td>
+				<td class='aleft'>$!matchapply.factname</td>
+				<td class='aleft'>$!matchapply.idcard</td>
+				<td class='aleft'>#if($!matchapply.sex==1)男#else女#end</td>
+				<td>
+					<a href="javascript:;" onclick="load4MatchapplyList('$link.setAction('load4MatchapplyList')','$!matchapply.memberid')">查看</a>
+					<a href="javascript:;" onclick="exportFiles('确认要导出附件吗？','$!matchapply.id','$!matchapply.annualmatch','$!matchapply.factname')">导出附件</a>
+                </td>
+            </tr>
+			#end
+        </table>
+        <div class="page" style="clear: both;">
+			#parse("/home/include/page.vm")
+        </div>
+    </div>
+</div>
+</body>
+</html>

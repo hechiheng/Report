@@ -61,4 +61,10 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		delete from t_message where id=#id#
 	</delete>
 	
+	<select id="manage.MessageDao.selectLatestMessageList" parameterClass="int" resultClass="message">
+		select id,title,DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d %H:%i:%s') publishtime 
+		from t_message t where t.isvalid=1 and t.ispublish=1 
+		order by t.publishtime desc limit $listRows$
+	</select>
+	
 </sqlMap>

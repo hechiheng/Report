@@ -14,6 +14,7 @@
 	        <form-property name="username" type="java.lang.String"/>
 	        <form-property name="password" type="java.lang.String"/>
 	        <form-property name="imagecode" type="java.lang.String"/>
+	        <form-property name="logintype" type="java.lang.String"/>
         </form-bean>
         <form-bean name="queryNewsForm"
 			type="com.report.manage.form.NewsForm">
@@ -76,6 +77,9 @@
 			type="com.report.manage.form.MemberForm">
 		</form-bean>
 		<form-bean name="modifyMemberForm"
+			type="com.report.manage.form.MemberForm">
+		</form-bean>
+		<form-bean name="modifyMemberPwdForm"
 			type="com.report.manage.form.MemberForm">
 		</form-bean>
 		<form-bean name="queryUserForm"
@@ -150,6 +154,7 @@
         <forward name="error" path="/error.do" />
 		<forward name="info" path="/info.do" />
 		<forward name="index" path="/index.do" redirect="true"/>
+		<forward name="indexMember" path="/indexMember.do" redirect="true"/>
 	</global-forwards>
 
 
@@ -159,6 +164,7 @@
 		<action path="/error" forward="/../sys_message.vm"/>
 		<action path="/info" forward="/../sys_message.vm" />
 		<action path="/index" forward="/load4Index.do"/>
+		<action path="/indexMember" forward="/load4IndexMember.do"/>
 		
 		<action
         	path="/load4Login"
@@ -194,6 +200,22 @@
 			parameter="load4Index">
 			<forward name="success" path="/../manage/index.vm"/>
         </action>
+        <action
+        	path="/load4IndexMember"
+			type="com.report.manage.action.LoginAction"
+			scope="request"
+			validate="false"
+			parameter="load4IndexMember">
+			<forward name="success" path="/../manage/index_member.vm"/>
+        </action>
+        <action
+        	path="/load4Right"
+			type="com.report.manage.action.LoginAction"
+			scope="request"
+			validate="false"
+			parameter="load4Right">
+			<forward name="success" path="/../manage/right.vm"/>
+        </action>
 		<action
         	path="/logout"
 			type="com.report.manage.action.LoginAction"
@@ -201,6 +223,31 @@
 			validate="false"
 			parameter="logout">
 			<forward name="success" path="/load4Login.do" redirect="true"/>
+        </action>
+        <action
+        	path="/load4MemberReg"
+			type="com.report.manage.action.LoginAction"
+			scope="request"
+			validate="false"
+			parameter="load4MemberReg">
+			<forward name="success" path="/../manage/member_reg.vm"/>
+        </action>
+        <action 
+			path="/verifyMemberReg" 
+			type="com.report.manage.action.LoginAction"
+			scope="request" 
+			parameter="verifyMemberReg"
+			validate="false">
+		</action>
+		<action
+        	path="/regMember"
+			type="com.report.manage.action.LoginAction"
+			scope="request"
+			input="/load4MemberReg.do"
+			name="addMemberForm"
+			validate="true"
+			parameter="regMember">
+			<forward name="failure" path="/../manage/member_reg.vm"/>
         </action>
         <action
         	path="/load4NewsIndex"
@@ -333,6 +380,22 @@
 			parameter="removeMessage">
         </action>
         <action
+        	path="/load4MessageInfo"
+			type="com.report.manage.action.MessageAction"
+			scope="request"
+			validate="false"
+			parameter="load4MessageInfo">
+			<forward name="success" path="/../manage/message_info.vm"/>
+        </action>
+        <action
+        	path="/showMessageInfo"
+			type="com.report.manage.action.MessageAction"
+			scope="request"
+			validate="false"
+			parameter="showMessageInfo">
+			<forward name="success" path="/../manage/message_show.vm"/>
+        </action>
+        <action
         	path="/load4AnnounceIndex"
 			type="com.report.manage.action.AnnounceAction"
 			scope="request"
@@ -414,6 +477,22 @@
 			name="publishAnnounceForm"
 			validate="true"
 			parameter="publishAnnounce">
+        </action>
+        <action
+        	path="/load4AnnounceInfo"
+			type="com.report.manage.action.AnnounceAction"
+			scope="request"
+			validate="false"
+			parameter="load4AnnounceInfo">
+			<forward name="success" path="/../manage/announce_info.vm"/>
+        </action>
+        <action
+        	path="/showAnnounceInfo"
+			type="com.report.manage.action.AnnounceAction"
+			scope="request"
+			validate="false"
+			parameter="showAnnounceInfo">
+			<forward name="success" path="/../manage/announce_show.vm"/>
         </action>
         <action
         	path="/load4AboutModify"
@@ -680,6 +759,25 @@
 			scope="request"
 			validate="false"
 			parameter="unLockMember">
+        </action>
+        <action
+        	path="/load4MemberPwdModify"
+			type="com.report.manage.action.MemberAction"
+			scope="request"
+			name="modifyMemberPwdForm"
+			validate="false"
+			parameter="load4MemberPwdModify">
+			<forward name="success" path="/../manage/memberpwd_modify.vm"/>
+        </action>
+        <action
+        	path="/modifyMemberPwd"
+			type="com.report.manage.action.MemberAction"
+			scope="request"
+			input="/load4MemberPwdModify.do"
+			name="modifyMemberPwdForm"
+			validate="true"
+			parameter="modifyMemberPwd">
+			<forward name="failure" path="/../manage/memberpwd_modify.vm" />
         </action>
         <action
         	path="/load4UserIndex"
@@ -1073,7 +1171,16 @@
 			name="queryMatchapplyForm"
 			validate="false"
 			parameter="load4MatchapplyIndex">
-			<forward name="success" path="/../manage/matchapply_index.vm"/>
+			<forward name="success" path="/../manage/matchapply_member.vm"/>
+        </action>
+        <action
+        	path="/load4MatchapplyList"
+			type="com.report.manage.action.MatchapplyAction"
+			scope="request"
+			name="queryMatchapplyForm"
+			validate="false"
+			parameter="load4MatchapplyList">
+			<forward name="success" path="/../manage/matchapply_list.vm"/>
         </action>
         <action
         	path="/load4Matchapply"

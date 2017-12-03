@@ -1,2 +1,3 @@
-#set($globalInfo = $session.getAttribute($GLOBAL_SESSION))
-<title>$!globalInfo.cfg_webtitle - 后台管理</title>
+##set($globalInfo = $session.getAttribute($GLOBAL_SESSION))
+##<title>$!globalInfo.cfg_webtitle - 管理系统</title>
+<title>参赛管理系统</title>

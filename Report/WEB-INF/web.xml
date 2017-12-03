@@ -80,34 +80,4 @@
 	<welcome-file-list>
 		<welcome-file>index.do</welcome-file>
 	</welcome-file-list>
-	<!--page not found error-->
-	<!-- <error-page>
-		<error-code>404</error-code>
-		<location>/pages/main/404_redirect.vm</location>
-		</error-page> -->
-
-	<!--access to vm page error for weblogic/jboss-->
-	<!-- <error-page>
-		<error-code>403</error-code>
-		<location>/pages/main/403_redirect.vm</location>
-		</error-page>
-	-->
-	<!--access to vm page error for tomcat-->
-	<!--<error-page>
-		<error-code>500</error-code>
-		<location>/403_redirect.vm</location>
-		</error-page>-->
-
-	<!-- 	<security-constraint>
-		<web-resource-collection>
-		<web-resource-name>Restrict access to vm pages</web-resource-name>
-		<url-pattern>/include/*</url-pattern>
-		<url-pattern>/pages/*</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-		<description>
-		With no roles defined, no access granted
-		</description>
-		</auth-constraint>
-		</security-constraint> -->
 </web-app>

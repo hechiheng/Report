@@ -4,22 +4,27 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 "http://www.ibatis.com/dtd/sql-map-2.dtd">
 <sqlMap namespace="manage.Login">
 	<typeAlias alias="user" type="com.report.manage.bean.User"/>
+	<typeAlias alias="member" type="com.report.home.bean.Member"/>
 	<typeAlias alias="menu" type="com.report.manage.bean.Menu"/>
 	
 	<select id="manage.LoginDao.selectUserInfo" parameterClass="user" resultClass="user">
 		select id,username,factname,usertype from t_admin where username=#username# and password=#password# 
 	</select>
 	
+	<select id="manage.LoginDao.selectMember" parameterClass="member" resultClass="member">
+		select id,accountid,factname,state from t_member where accountid=#accountid# and password=#password# 
+	</select>
+	
 	<select id="manage.LoginDao.selectMenuList" parameterClass="int" resultClass="menu">
 		select a.* 
 		from t_menu a, t_access b, t_role_user c 
-		where a.id=b.menuid and b.roleid=c.roleid and a.isshow=1 and c.userid=#userid# and a.pid=0 order by a.sort
+		where a.id=b.menuid and b.roleid=c.roleid and a.isshow=1 and a.isvalid=1 and c.userid=#userid# and a.pid=0 order by a.sort
 	</select>
 	
 	<select id="manage.LoginDao.selectSubMenuList" parameterClass="java.util.HashMap" resultClass="menu">
 		select a.* 
 		from t_menu a, t_access b, t_role_user c 
-		where a.id=b.menuid and b.roleid=c.roleid and a.isshow=1 and c.userid=#userid# and a.pid=#pid# order by a.sort
+		where a.id=b.menuid and b.roleid=c.roleid and a.isshow=1 and a.isvalid=1 and c.userid=#userid# and a.pid=#pid# order by a.sort
 	</select>
 	
 </sqlMap>

@@ -3,11 +3,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
-<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<link type="text/css" rel="stylesheet" href="$link.setRelative('/manage/css1/style.css')" />
+<link type="text/css" rel="stylesheet" href="$link.setRelative('/manage/css1/select.css')" />
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/calendar.config.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/ueditor/ueditor.config.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/ueditor/ueditor.all.min.js')"></script>
+<script type="text/javascript">
+	window.UEDITOR_HOME_URL = "ueditor/";
+	window.onload = function() {
+		UE.getEditor('content', {
+            initialFrameWidth : 800,
+            initialFrameHeight: 400
+        });
+    }
+
+</script>
 <script type="text/javascript">
 jQuery(function () {
      jQuery("input[name='announce.title']").focus();
@@ -16,7 +29,7 @@ jQuery(function () {
 	   var v=jQuery(this).val();
 	   var publishtime = jQuery("input[name='announce.publishtime']");
 	   if(v=='1'){
-	   		publishtime.parent().find("span").remove().end().append("<span class='error'>*</span>");
+	   		publishtime.parent().find("span").remove().end().append("<span class='errorcolor'>*</span>");
 	   }else{
 	   		publishtime.parent().find("span").remove();
 	   }
@@ -30,28 +43,28 @@ jQuery(function () {
 		var ispublish = jQuery("input[name='announce.ispublish']:checked");
 		var publishtime = jQuery("input[name='announce.publishtime']");
 		if(jQuery.trim(title.val())==''){
-			title.parent().find("span").remove().end().append("<span class='error'>公告标题不能为空</span>");
+			title.parent().find("span").remove().end().append("<span class='errorcolor'>公告标题不能为空</span>");
 			title.focus();
 			return false;			
 		}else {
 			title.parent().find("span").remove().end();
 		}
 		if(jQuery.trim(starttime.val())==''){
-			starttime.parent().find("span").remove().end().append("<span class='error'>起始日期不能为空</span>");
+			starttime.parent().find("span").remove().end().append("<span class='errorcolor'>起始日期不能为空</span>");
 			starttime.focus();
 			return false;			
 		}else {
 			starttime.parent().find("span").remove().end();
 		}
 		if(jQuery.trim(endtime.val())==''){
-			endtime.parent().find("span").remove().end().append("<span class='error'>截止日期不能为空</span>");
+			endtime.parent().find("span").remove().end().append("<span class='errorcolor'>截止日期不能为空</span>");
 			endtime.focus();
 			return false;			
 		}else {
 			endtime.parent().find("span").remove().end();
 		}
-		if(jQuery.trim(content.val())==''){
-			content.parent().find("span").remove().end().append("<span class='error'>公告内容不能为空</span>");
+		if(!UE.getEditor('content').hasContents()){
+			content.parent().find("span").remove().end().append("<span class='errorcolor'>公告内容不能为空</span>");
 			content.focus();
 			return false;			
 		}else {
@@ -59,7 +72,7 @@ jQuery(function () {
 		}
 		if(ispublish.val()=='1'){
 			if(jQuery.trim(publishtime.val())==''){
-				publishtime.parent().find("span").remove().end().append("<span class='error'>发布时间不能为空</span>");
+				publishtime.parent().find("span").remove().end().append("<span class='errorcolor'>发布时间不能为空</span>");
 				return false;	
 			}else {
     			publishtime.parent().find("span").remove().end();
@@ -74,21 +87,23 @@ jQuery(function () {
 </head>
 <body>
 <div class="main">
-    <div class="pos">添加公告</div>
-	<div class="form">
+	<div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="$link.setAction('load4AnnounceIndex')">公告管理</a></li>
+            <li><a href="#">添加公告</a></li>
+        </ul>
+    </div>
+	<div class="formbody">
 		<form method='post' id="form_do" name="form_do" action="$link.setAction('addAnnounce')">
-		<dl>
-			<dt> 公告标题：</dt>
-			<dd>
-				<input type="text" name="announce.title" class="inp_large" value="$!addAnnounceForm.announce.title"/>
-				<span style="color: red;">*</span>
-			</dd>
-		</dl>
-		<dl>
-            <dt> 起始日期：</dt>
-            <dd>
-                <input type="text" class="inp_one" name="announce.starttime" id="starttime" value="$!addAnnounceForm.announce.starttime" readonly="readonly"/>
-    			<span style="color: red;">*</span>
+		<ul class="forminfo">
+            <li>
+				<label>公告标题<b>*</b></label>
+				<input type="text" name="announce.title" class="dfinput" style="width:600px;" value="$!addAnnounceForm.announce.title"/>
+			</li>
+            <li>
+				<label>起始日期<b>*</b></label>
+				<input type="text" class="dfinput" style="width:300px;" name="announce.starttime" id="starttime" value="$!addAnnounceForm.announce.starttime" readonly="readonly"/>
                 <script type="text/javascript">
                     Calendar.setup({
                         weekNumbers: true,
@@ -100,13 +115,10 @@ jQuery(function () {
                         onSelect   : function() {this.hide();}
                     });
                 </script>
-            </dd>
-        </dl>
-        <dl>
-            <dt> 截止日期：</dt>
-            <dd>
-                <input type="text" class="inp_one" name="announce.endtime" id="endtime" value="$!addAnnounceForm.announce.endtime" readonly="readonly"/>
-                <span style="color: red;">*</span>
+			</li>
+			<li>
+				<label>截止日期<b>*</b></label>
+				<input type="text" class="dfinput" style="width:300px;" name="announce.endtime" id="endtime" value="$!addAnnounceForm.announce.endtime" readonly="readonly"/>
                 <script type="text/javascript">
                     Calendar.setup({
                         weekNumbers: true,
@@ -117,29 +129,20 @@ jQuery(function () {
                         minuteStep: 1,
                         onSelect   : function() {this.hide();}
                     });
-
                 </script>
-            </dd>
-        </dl>
-		<dl>
-			<dt> 公告内容：</dt>
-			<dd>
-				<textarea name="announce.content" id="content" class="tarea_default">$!addAnnounceForm.announce.content</textarea>
-				<span style="color: red;">*</span>
-			</dd>
-		</dl>		
-		<dl>
-			<dt> 是否发布：</dt>
-			<dd>
+			</li>
+			<li>
+				<label>公告内容<b>*</b></label>
+                <label><textarea name="announce.content" id="content">$!addAnnounceForm.announce.content</textarea></label>
+			</li>
+			<li>
+				<label>是否发布<b>*</b></label>
 				<label><input type="radio" name="announce.ispublish" value="1" checked="checked" />立即发布&nbsp;</label>
 				<label><input type="radio" name="announce.ispublish" value="0" />暂不发布</label>
-			</dd>
-		</dl>
-		<dl>
-            <dt> 发布时间：</dt>
-            <dd>
-                <input type="text" class="inp_one" name="announce.publishtime" id="publishtime" readonly="readonly" value="$!addAnnounceForm.announce.publishtime"/>
-				<span style="color: red;">*</span>
+			</li>
+			<li>
+				<label>发布时间<b>*</b></label>
+				<input type="text" class="dfinput" style="width:300px;" name="announce.publishtime" id="publishtime" readonly="readonly" value="$!addAnnounceForm.announce.publishtime"/>
                 <script type="text/javascript">
                     Calendar.setup({
                         weekNumbers: true,
@@ -151,17 +154,18 @@ jQuery(function () {
                         onSelect   : function() {this.hide();}
                     });
                 </script>
-            </dd>
-        </dl>	
-		<dl>
-			<span class='error'>#errorMarkup()</span>
-        </dl>
-		<div class="form_b">		
-			<input type="submit" class="btn_blue" id="submit" value="提 交">
-			<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
-		</div>
-	   </form>
-	</div>
+			</li>
+			<li>
+				<span class='errorcolor'>#errorMarkup()</span>
+            </li>
+            <li>
+				<label>&nbsp;</label>
+				<input name="" type="submit" class="btn" value="马上发布"/>
+				<input type="button" class="btn" value="返 回" onclick="javascript:history.back();" />
+			</li>
+        </ul>
+        </form>
+    </div>
 </div>
 
 

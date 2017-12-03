@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+#parse("/manage/include/webtitle.vm")
+<link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
+<link type="text/css" rel="stylesheet" href="$link.setRelative('/manage/css1/style.css')" />
+<script type="text/javascript" src="$link.setRelative('/manage/js1/jquery.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
+##<script type="text/javascript" src="$link.setRelative('/manage/js1/cloud.js')"></script>
+
+<style type="text/css">
+.imagecode{
+	width: 80px;
+    border: 1px solid;
+    height: 30px;
+}
+</style>
+
+<script language="javascript">
+	jQuery(function(){
+		jQuery("#username").focus();
+		
+        jQuery('.regbox').css({'position':'absolute','left':(jQuery(window).width()-692)/2});
+    	jQuery(window).resize(function(){  
+        jQuery('.regbox').css({'position':'absolute','left':(jQuery(window).width()-692)/2});
+		
+    });
+});  
+</script> 
+
+<script type="text/javascript">
+jQuery(function () {
+     jQuery("input[name='member.accountid']").focus();
+	 
+	 //验证用户名是否存在
+	jQuery("input[name='member.accountid']").blur(function(){
+		var accountid = jQuery("input[name='member.accountid']");
+		if(jQuery.trim(accountid.val())==''){
+			jQuery("#errormsg").text("用户名不能为空");
+			return ;
+		}
+		jQuery.post("$link.setAction('verifyMemberReg')",{accountid:jQuery.trim(accountid.val())},
+			function(msg){
+				if(msg != ""){
+					accountid.focus();
+					jQuery("#errormsg").text(msg);
+				}else{
+					jQuery("#errormsg").text("");
+				}
+			}
+		);
+	});
+     
+     jQuery("#form_do").submit(function(){
+		var accountid = jQuery("input[name='member.accountid']");
+		var password = jQuery("input[name='member.password']");
+		var password_re = jQuery("input[name='member.password_re']");
+		var factname = jQuery("input[name='member.factname']");
+		var email = jQuery("input[name='member.email']");
+		if(jQuery.trim(accountid.val())==''){
+			jQuery("#errormsg").text("用户名不能为空");
+			accountid.focus();
+			return false;			
+		}else{
+			jQuery("#errormsg").text("");
+		}
+		if(jQuery.trim(password.val())==''){
+			jQuery("#errormsg").text("登录密码不能为空");
+			password.focus();
+			return false;			
+		}else{
+			jQuery("#errormsg").text("");
+		}
+		if(jQuery.trim(password_re.val())==''){
+			jQuery("#errormsg").text("确认密码不能为空");
+			password_re.focus();
+			return false;			
+		}else{
+			jQuery("#errormsg").text("");
+		}
+		if(jQuery.trim(factname.val())==''){
+			jQuery("#errormsg").text("会员名称不能为空");
+			factname.focus();
+			return false;			
+		}else{
+			jQuery("#errormsg").text("");
+		}
+		if(jQuery.trim(email.val())==''){
+			jQuery("#errormsg").text("邮箱不能为空");
+			email.focus();
+			return false;			
+		}else{
+			jQuery("#errormsg").text("");
+		}
+
+	});
+	
+});
+
+
+</script>
+
+</head>
+
+<body style="background-color:#1c77ac; background-image:url(images1/light.png); background-repeat:no-repeat; background-position:center top; overflow:hidden;">
+    <div id="mainBody">
+      <div id="cloud1" class="cloud"></div>
+      <div id="cloud2" class="cloud"></div>
+    </div>  
+
+
+	<div class="logintop">    
+        <span>欢迎登录参赛管理系统</span>    
+        ##<ul>
+        ##    <li><a href="#">最新通知</a></li>
+        ##    <li><a href="#">最新公告</a></li>
+        ##</ul>    
+    </div>
+	
+    <div class="loginbody">
+    
+    <span class="systemlogo"></span> 
+       
+    <div class="regbox">
+    <form id="form_do" action="$link.setAction('regMember.do')" method="post" id="login">
+    <ul class="forminfo">
+		<li>
+			<label>　用户名：<b>*</b></label>
+			<input type="text" name="member.accountid" class="dfinput" style="width:300px;" value="$!addMemberForm.member.accountid"/>
+		</li>
+		<li>
+			<label>登录密码：<b>*</b></label>
+			<input type="password" name="member.password" class="dfinput" style="width:300px;" value=""/>
+		</li>
+		<li>
+			<label>确认密码：<b>*</b></label>
+			<input type="password" name="member.password_re" class="dfinput" style="width:300px;" value=""/>
+        </li>
+		<li>
+			<label>会员名称：<b>*</b></label>
+			<input type="text" name="member.factname" class="dfinput" style="width:300px;" value="$!addMemberForm.member.factname"/>
+        </li>
+		<li>
+			<label>身份证号：<b>*</b></label>
+			<input type="text" name="member.idcard" class="dfinput" style="width:300px;" value="$!addMemberForm.member.idcard"/>
+        </li>
+		<li>
+			<label>邮箱：<b>*</b></label>
+			<input type="text" name="member.email" class="dfinput" style="width:300px;" value="$!addMemberForm.member.email"/>
+        </li>
+        <li>
+			<label>验证码：<b>*</b></label>
+    		<input name="imagecode" type="text" class="dfinput" style="width:200px;"/>
+    		<img src="$link.setAction('imageCode.do')" align="absmiddle" id="code" onclick="change_code(this);"/>
+    	</li>
+        <li style="clear:both">
+    		<input type="submit" class="loginbtn" value="提交"/>
+    	</li>
+		<li><span id="errormsg" class="errorcolor">#errorMarkup()</span></li>
+    </ul>
+    </form>
+    
+    </div>
+    
+    </div>
+    
+    
+    
+    <div class="loginbm">Copyright © 2009 - 2016 XXX. All Rights Reserved</div>
+</body>
+</html>

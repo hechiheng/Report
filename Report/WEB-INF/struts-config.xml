@@ -64,7 +64,8 @@
 
 		<action path="/error" forward="/sys_message.vm"/>
 		<action path="/info" forward="/sys_message.vm" />
-		<action path="/index" forward="/load4Home.do"/>
+<!--		<action path="/index" forward="/load4Home.do"/>-->
+		<action path="/index" forward="/load4Admin.do"/>
 		<action path="/admin" forward="/load4Admin.do"/>
 		
         <action

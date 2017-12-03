@@ -516,16 +516,16 @@
 					<var-value>50</var-value>
 				</var>
 			</field>
-			<field property="member.sex"
-				depends="required,bytemaxlength">
-				<arg key="member.sex" />
-				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
-					resource="false" />
-				<var>
-					<var-name>bytemaxlength</var-name>
-					<var-value>1</var-value>
-				</var>
-			</field>
+<!--			<field property="member.sex"-->
+<!--				depends="required,bytemaxlength">-->
+<!--				<arg key="member.sex" />-->
+<!--				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"-->
+<!--					resource="false" />-->
+<!--				<var>-->
+<!--					<var-name>bytemaxlength</var-name>-->
+<!--					<var-value>1</var-value>-->
+<!--				</var>-->
+<!--			</field>-->
 			<field property="member.idcard"
 				depends="bytemaxlength">
 				<arg key="member.idcard" />

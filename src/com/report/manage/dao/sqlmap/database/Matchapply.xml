@@ -44,7 +44,10 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		where a.matchid=b.id and a.isvalid=1 and a.memberid=d.id and a.state>0
 		<isNotEmpty prepend="and" property="name">
 			a.name like CONCAT('%',#name#,'%')
-		</isNotEmpty>		
+		</isNotEmpty>	
+		<isNotEmpty prepend="and" property="memberid">
+			d.memberid = #memberid#
+		</isNotEmpty>	
 		<isNotEmpty prepend="and" property="factname">
 			d.factname = #factname#
 		</isNotEmpty>
@@ -70,6 +73,9 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		</isNotEmpty>
 		<isNotEmpty prepend="and" property="factname">
 			d.factname = #factname#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="memberid">
+			d.memberid = #memberid#
 		</isNotEmpty>
 		<isNotEmpty prepend="and" property="annualmatch">
 			a.annualmatch = #annualmatch#
@@ -195,10 +201,57 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		where id=#matchresultid#
 	</update>
 	
-	<select id="manage.MatchapplyDao.selectMatchapplyFileList" parameterClass="string" resultClass="matchapply">
+	<select id="manage.MatchapplyDao.selectMatchapplyFileList" parameterClass="matchapply" resultClass="matchapply">
 		select a.filepath,a.filename,IFNULL(a.filesize,0) filesize,a.physicalpath
 		from t_matchapply a  
-		where a.id in ($ids$)
+		where a.annualmatch = #annualmatch# and a.memberid = #memberid#
+	</select>
+	
+	<select id="manage.MatchapplyDao.selectMatchapplyMemberListSize" parameterClass="matchapply" resultClass="int">
+		select count(t.id) from (
+		select a.annualmatch,d.id,d.accountid,d.factname,d.sex,d.idcard 
+		from t_matchapply a,t_matchinfo b,t_member d 
+		where a.matchid=b.id and a.isvalid=1 and a.memberid=d.id and a.state>0
+		<isNotEmpty prepend="and" property="name">
+			a.name like CONCAT('%',#name#,'%')
+		</isNotEmpty>		
+		<isNotEmpty prepend="and" property="factname">
+			d.factname like CONCAT('%',#factname#,'%')
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="annualmatch">
+			a.annualmatch = #annualmatch#
+		</isNotEmpty>
+		<isNotEqual prepend="and" property="matchid" compareValue="0">
+			a.matchid = #matchid#
+		</isNotEqual>
+		<isNotEqual prepend="and" property="state" compareValue="0">
+			a.state = #state#
+		</isNotEqual>
+		group by a.annualmatch,d.id,d.accountid,d.factname,d.sex,d.idcard) t
+	</select>
+	
+	<select id="manage.MatchapplyDao.selectMatchapplyMemberList" parameterClass="matchapply" resultClass="matchapply">
+		select a.annualmatch,d.id,d.accountid,d.factname,d.sex,d.idcard  
+		from t_matchapply a,t_matchinfo b,t_member d  
+		where a.matchid=b.id and a.isvalid=1 and a.memberid=d.id and a.state>0
+		<isNotEmpty prepend="and" property="name">
+			a.name like CONCAT('%',#name#,'%')
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="factname">
+			d.factname like CONCAT('%',#factname#,'%')
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="annualmatch">
+			a.annualmatch = #annualmatch#
+		</isNotEmpty>
+		<isNotEqual prepend="and" property="matchid" compareValue="0">
+			a.matchid = #matchid#
+		</isNotEqual>
+		<isNotEqual prepend="and" property="state" compareValue="0">
+			a.state = #state#
+		</isNotEqual>
+		group by d.id,d.accountid,d.factname,d.sex,d.idcard
+		order by a.updatetime desc
+		limit $firstRow$,$listRows$
 	</select>
 	
 </sqlMap>

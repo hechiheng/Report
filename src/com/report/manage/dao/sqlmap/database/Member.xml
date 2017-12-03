@@ -11,7 +11,10 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		where a.isvalid=#isvalid# 
 		<isNotEmpty prepend="and" property="accountid">
 			accountid like CONCAT('%',#accountid#,'%')
-		</isNotEmpty>		
+		</isNotEmpty>	
+		<isNotEmpty prepend="and" property="factname">
+			a.factname like CONCAT('%',#factname#,'%')
+		</isNotEmpty>	
 	</select>
 	
 	<select id="manage.MemberDao.selectMemberList" parameterClass="member" resultClass="member">
@@ -21,6 +24,9 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		where a.isvalid=#isvalid# 
 		<isNotEmpty prepend="and" property="accountid">
 			a.accountid like CONCAT('%',#accountid#,'%')
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="factname">
+			a.factname like CONCAT('%',#factname#,'%')
 		</isNotEmpty>
 		order by a.id desc
 		limit $firstRow$,$listRows$

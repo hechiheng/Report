@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
@@ -18,6 +19,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 
 import com.css.base.BaseAction;
 import com.css.base.BaseException;
@@ -45,8 +47,42 @@ public class MatchapplyAction extends BaseAction {
         String annualmatch = matchapply.getAnnualmatch();
         String p = request.getParameter("p");
         MatchapplyBo bo = new MatchapplyBo();
+        int total = bo.getMatchapplyMemberListSize(matchapply);
+        Page page = new Page(total, p, matchapply, "load4MatchapplyMemberList");
+        page.setQueryData("matchapply.name", name == null ? "" : name);
+        page.setQueryData("matchapply.factname", factname == null ? ""
+                : factname);
+        page.setQueryData("matchapply.matchid", matchid + "");
+        page.setQueryData("matchapply.state", state + "");
+        page.setQueryData("matchapply.annualmatch", annualmatch == null ? ""
+                : annualmatch);
+        List<Matchinfo> matchinfoList = bo.getMatchinfoList();
+        request.setAttribute("matchinfoList", matchinfoList);
+
+        List<Matchapply> matchapplyList = bo
+                .getMatchapplyMemberList(matchapply);
+        request.setAttribute("matchapplyList", matchapplyList);
+        request.setAttribute("page", page);
+        return mapping.findForward("success");
+    }
+
+    public ActionForward load4MatchapplyList(ActionMapping mapping,
+            ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) throws BaseException {
+        MatchapplyForm matchapplyForm = (MatchapplyForm) form;
+        Matchapply matchapply = matchapplyForm.getMatchapply();
+        String memberid = matchapply.getMemberid();
+        String name = matchapply.getName();
+        String factname = matchapply.getFactname();
+        int matchid = matchapply.getMatchid();
+        int state = matchapply.getState();
+        String annualmatch = matchapply.getAnnualmatch();
+        String p = request.getParameter("p");
+        MatchapplyBo bo = new MatchapplyBo();
         int total = bo.getMatchapplyListSize(matchapply);
         Page page = new Page(total, p, matchapply, "load4MatchapplyIndex");
+        page.setQueryData("matchapply.memberid", memberid == null ? ""
+                : memberid);
         page.setQueryData("matchapply.name", name == null ? "" : name);
         page.setQueryData("matchapply.factname", factname == null ? ""
                 : factname);
@@ -180,11 +216,17 @@ public class MatchapplyAction extends BaseAction {
     public ActionForward exportMatchapplyFiles(ActionMapping mapping,
             ActionForm form, HttpServletRequest request,
             HttpServletResponse response) throws BaseException {
+        String memberid = request.getParameter("memberid");
         String annualmatch = request.getParameter("annualmatch");
         String factname = request.getParameter("factname");
-        String ids = request.getParameter("ids");
-        System.out.println("=======annualmatch="+annualmatch);
-        System.out.println("=======factname="+factname);
+        System.out.println("========memberid====" + memberid);
+        if (StringUtils.isEmpty(memberid)) {
+            SysMessageBean smb = new SysMessageBean(true);
+            smb.setMessage(new ActionMessage(
+                    "MatchapplyAction.exportMatchapplyFiles.memberid"));
+            SysGlobals.setSysMessage(request, smb);
+            return mapping.findForward("error");
+        }
         if (StringUtils.isEmpty(annualmatch)) {
             SysMessageBean smb = new SysMessageBean(true);
             smb.setMessage(new ActionMessage(
@@ -199,13 +241,6 @@ public class MatchapplyAction extends BaseAction {
             SysGlobals.setSysMessage(request, smb);
             return mapping.findForward("error");
         }
-        if (StringUtils.isEmpty(ids)) {
-            SysMessageBean smb = new SysMessageBean(true);
-            smb.setMessage(new ActionMessage(
-                    "MatchapplyAction.exportMatchapplyFiles.noselect"));
-            SysGlobals.setSysMessage(request, smb);
-            return mapping.findForward("error");
-        }
         String rootPath = this.getServlet().getServletContext()
                 .getRealPath("/");
         String filePath = SysGlobals.getSysConfig("filePath");
@@ -215,11 +250,25 @@ public class MatchapplyAction extends BaseAction {
         File zipFile = new File(zipPath);
 
         MatchapplyBo bo = new MatchapplyBo();
-        List<Matchapply> matchapplyList = bo.getMatchapplyFileList(ids);
+        Matchapply matchapply = new Matchapply();
+        matchapply.setMemberid(memberid);
+        matchapply.setAnnualmatch(annualmatch);
+        matchapply.setFactname(factname);
+        List<Matchapply> matchapplyList = bo.getMatchapplyFileList(matchapply);
         List<File> fileList = new ArrayList<File>();
-        for (Matchapply matchapply : matchapplyList) {
-            File file = new File(matchapply.getPhysicalpath());
-            fileList.add(file);
+        try {
+            for (Matchapply matchapplyT : matchapplyList) {
+                File file = new File(matchapplyT.getPhysicalpath());
+                fileList.add(file);
+            }
+        }
+        catch (Exception e) {
+            logger.error("manage.MatchapplyAction.exportMatchapplyFiles", e);
+            SysMessageBean smb = new SysMessageBean(true);
+            smb.setMessage(new ActionMessage(
+                    "MatchapplyAction.exportMatchapplyFiles.error"));
+            SysGlobals.setSysMessage(request, smb);
+            return mapping.findForward("error");
         }
 
         ZipArchiveOutputStream zos = null;
@@ -273,5 +322,56 @@ public class MatchapplyAction extends BaseAction {
         }
 
         return null;
+    }
+
+    public ActionForward load4MatchapplyAdd(ActionMapping mapping,
+            ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) throws BaseException {
+        MatchapplyBo bo = new MatchapplyBo();
+        List<Matchinfo> matchinfoList = bo.getMatchinfoList();
+        request.setAttribute("matchinfoList", matchinfoList);
+        return mapping.findForward("success");
+    }
+    
+    @SuppressWarnings("unchecked")
+    public ActionForward addMatchapply(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response)
+            throws BaseException {
+        Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
+                Constants.MANAGE_SESSION);
+        int memberid = Integer.valueOf(sessionMap.get("memberid"));
+        String rootPath = this.getServlet().getServletContext()
+                .getRealPath("/");
+        String contextPath = request.getContextPath();
+        MatchapplyBo bo = new MatchapplyBo();
+        MatchapplyForm matchapplyForm = (MatchapplyForm) form;
+        Matchapply matchapply = matchapplyForm.getMatchapply();
+        matchapply.setRootPath(rootPath);
+        matchapply.setContextPath(contextPath);
+        HttpSession session = request.getSession(false);
+        String imagecode = (String) session.getAttribute("imagecode");
+        if (!imagecode.equals(matchapply.getImagecode())) {
+            ActionMessages am = new ActionMessages();
+            am.add("sysMessage", new ActionMessage("error.input.imagecode"));
+            saveErrors(request, am);
+            return mapping.findForward("failure");
+        }
+        String message = bo.saveFile(matchapply);
+        if (StringUtils.isNotEmpty(message)) {
+            ActionMessages am = new ActionMessages();
+            am.add("sysMessage", new ActionMessage(message));
+            saveErrors(request, am);
+            return mapping.findForward("failure");
+        }
+        matchapply.setMemberid(String.valueOf(memberid));
+        bo.addMatchapply(matchapply);
+
+        SysMessageBean smb = new SysMessageBean(false);
+        smb.setMessage(new ActionMessage(
+                "MatchapplyAction.addMatchapply.success"));
+        smb.setLinkText(new ActionMessage("MatchapplyAction.return"));
+        smb.setAction("/load4MatchapplyIndex");
+        SysGlobals.setSysMessage(request, smb);
+        return mapping.findForward("info");
     }
 }

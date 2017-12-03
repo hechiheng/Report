@@ -59,7 +59,7 @@ jQuery(function () {
 			password_re.parent().find("span").remove().end();
 		}
 		if(jQuery.trim(factname.val())==''){
-			factname.parent().find("span").remove().end().append("<span class='error'>姓名/单位名称不能为空</span>");
+			factname.parent().find("span").remove().end().append("<span class='error'>会员名称不能为空</span>");
 			factname.focus();
 			return false;			
 		}else {
@@ -107,7 +107,7 @@ jQuery(function () {
 			</dd>
 		</dl>
 		<dl>
-			<dt>姓名/单位名称：</dt>
+			<dt>会员名称：</dt>
 			<dd>
 				<input type="text" name="member.factname" class="inp_large" value="$!addMemberForm.member.factname"/>
 				<span style="color: red;">*</span>

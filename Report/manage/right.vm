@@ -4,45 +4,56 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>后台管理</title>
-<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/main.css')" />
-<link rel="stylesheet" type="text/css" href="$link.setRelative('manage//bootstrap/3.3.5/css/bootstrap.min.css')">
-<script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
-<script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
+<link type="text/css" rel="stylesheet" href="$link.setRelative('/manage/css1/style.css')" />
+<script type="text/javascript" src="$link.setRelative('/manage/js1/jquery.js')"></script>
 
 </head>
-<body>
 <style type="text/css">
 	html{_overflow-y:scroll}
 </style>
-<div class="xyh-content">
-	<div class="row">
-		<div class="col-md-6">
-			<div class="panel panel-info">
-				<!-- Default panel contents -->		
-				<div class="panel-heading"><em class="glyphicon glyphicon-star"></em> 我的个人信息</div>
-				<div class="panel-body">
-					<p>
-						您好，$!loginInfo.get("factname")<br/>		
-						上次登录时间：$!loginInfo.get("logintime")<br/>		
-					</p>
-				</div>
-			</div>
-			
-        </div>
-		<div class="col-md-6">
-			<div class="panel panel-default">
-				<!-- Default panel contents -->		
-				<div class="panel-heading">关于作者</div>
-				<div class="panel-body">
-					<p>
-						作者：XXX<br />邮箱：xxxxxx@qq.com<br />QQ：100000000 <br />
-					</p>
-				</div>
-			</div>
-        </div>
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    </ul>
     </div>
-</div>
-
-</div>
+    
+    <div class="mainindex">
+    
+    
+    <div class="welinfo">
+    <span><img src="$link.setRelative('/manage/images1/sun.png')" alt="天气" /></span>
+    <b>$!loginInfo.factname ，您好！欢迎使用信息管理系统</b>
+    </div>
+    
+    ##<div class="welinfo">
+    ##<span><img src="$link.setRelative('/manage/images1/time.png')" alt="时间" /></span>
+    ##<i>您上次登录的时间：2013-10-09 15:22</i> 
+    ##</div>
+    
+    <div class="xline"></div>
+	
+	<div class="infoleft" style="margin-top: 10px;width: 50%;">
+		<div class="listtitle">最新通知</div>    
+        <ul class="newlist">
+			#set($messageList = $request.getAttribute("messageList"))
+			#foreach($message in $messageList)
+            <li><a href="$link.setAction('showMessageInfo').addQueryData('id',$!message.id)">$!message.title</a><b>$!message.publishtime</b></li>
+			#end
+        </ul>   
+    </div>
+	
+	<div class="inforight" style="margin-top: 10px;width: 48%;">
+		<div class="listtitle">最新公告</div>    
+        <ul class="newlist">
+			#set($announceList = $request.getAttribute("announceList"))
+			#foreach($announce in $announceList)
+            <li><a href="$link.setAction('showAnnounceInfo').addQueryData('id',$!announce.id)">$!announce.title</a><b>$!announce.publishtime</b></li>
+			#end
+        </ul>   
+    </div>
+    
+    </div>
 </body>
 </html>

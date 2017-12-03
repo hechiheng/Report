@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
-<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css1/style.css')" />
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
@@ -15,10 +15,10 @@
 <script type="text/javascript">
 	window.UEDITOR_HOME_URL = "ueditor/";
 	window.onload = function() {
-		window.UEDITOR_CONFIG.initialFrameWidth="600";
-		window.UEDITOR_CONFIG.initialFrameHeight="300";
-
-        UE.getEditor('content');
+		UE.getEditor('content', {
+            initialFrameWidth : 800,
+            initialFrameHeight: 400
+        });
     }
 
 
@@ -32,7 +32,7 @@ jQuery(function () {
 	   var v=jQuery(this).val();
 	   var publishtime = jQuery("input[name='message.publishtime']");
 	   if(v=='1'){
-	   		publishtime.parent().find("span").remove().end().append("<span class='error'>*</span>");
+	   		publishtime.parent().find("span").remove().end().append("<span class='errorcolor'>*</span>");
 	   }else{
 	   		publishtime.parent().find("span").remove();
 	   }
@@ -44,14 +44,14 @@ jQuery(function () {
 		var ispublish = jQuery("input[name='message.ispublish']:checked");
 		var publishtime = jQuery("input[name='message.publishtime']");
 		if(jQuery.trim(title.val())==''){
-			title.parent().find("span").remove().end().append("<span class='error'>通知标题不能为空</span>");
+			title.parent().find("span").remove().end().append("<span class='errorcolor'>通知标题不能为空</span>");
 			title.focus();
 			return false;			
 		}else {
 			title.parent().find("span").remove().end();
 		}
 		if(!UE.getEditor('content').hasContents()){
-			content.parent().find("span").remove().end().append("<span class='error'>通知内容不能为空</span>");
+			content.parent().find("span").remove().end().append("<span class='errorcolor'>通知内容不能为空</span>");
 			content.focus();
 			return false;			
 		}else {
@@ -59,7 +59,7 @@ jQuery(function () {
 		}
 		if(ispublish.val()=='1'){
 			if(jQuery.trim(publishtime.val())==''){
-				publishtime.parent().find("span").remove().end().append("<span class='error'>发布时间不能为空</span>");
+				publishtime.parent().find("span").remove().end().append("<span class='errorcolor'>发布时间不能为空</span>");
 				return false;	
 			}else {
     			publishtime.parent().find("span").remove().end();
@@ -74,40 +74,36 @@ jQuery(function () {
 </head>
 <body>
 <div class="main">
-    <div class="pos">修改通知</div>
-	<div class="form">
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="$link.setAction('load4MessageIndex')">通知管理</a></li>
+            <li><a href="#">修改通知</a></li>
+        </ul>
+    </div>
+	<div class="formbody">
 		<form method='post' id="form_do" name="form_do" action="$link.setAction('modifyMessage')">
-		<dl>
-			<dt> 通知标题：</dt>
-			<dd>
-				<input type="text" name="message.title" class="inp_large" value="$!modifyMessageForm.message.title"/>
-				<span style="color: red;">*</span>
-			</dd>
-		</dl>
-		<dl>
-			<dt> 作者：</dt>
-			<dd>
-				<input type="text" name="message.author" class="inp_w250" value="$!modifyMessageForm.message.author"/><span class="tip"></span>
-			</dd>
-		</dl>
-		<dl>
-			<dt> 通知内容：</dt>
-			<dd>
-				<textarea name="message.content" id="content">$!modifyMessageForm.message.content</textarea>
-			</dd>
-		</dl>		
-		<dl>
-			<dt> 是否发布：</dt>
-			<dd>
+		<ul class="forminfo">
+			<li>
+				<label>通知标题<b>*</b></label>
+				<input type="text" name="message.title" class="dfinput" style="width:600px;" value="$!modifyMessageForm.message.title"/>
+			</li>
+			<li>
+				<label>作者</label>
+				<input type="text" name="message.author" class="dfinput" style="width:300px;" value="$!modifyMessageForm.message.author"/>
+			</li>
+			<li>
+				<label>通知内容<b>*</b></label>
+                <label><textarea name="message.content" id="content">$!modifyMessageForm.message.content</textarea></label>
+			</li>
+			<li>
+				<label>是否发布<b>*</b></label>
 				<label><input type="radio" name="message.ispublish" value="1" #if($!modifyMessageForm.message.ispublish==1) checked="checked" #end/>立即发布&nbsp;</label>
 				<label><input type="radio" name="message.ispublish" value="0" #if($!modifyMessageForm.message.ispublish==0) checked="checked" #end/>暂不发布</label>
-			</dd>
-		</dl>
-		<dl>
-            <dt> 发布时间：</dt>
-            <dd>
-                <input type="text" class="inp_one" name="message.publishtime" id="publishtime" readonly="readonly" value="$!modifyMessageForm.message.publishtime" />
-				#if($!modifyMessageForm.message.ispublish==1) <span style="color: red;">*</span> #end
+			</li>
+			<li>
+				<label>发布时间<b>*</b></label>
+				<input type="text" class="dfinput" style="width:300px;" name="message.publishtime" id="publishtime" readonly="readonly" value="$!modifyMessageForm.message.publishtime"/>
                 <script type="text/javascript">
                     Calendar.setup({
                         weekNumbers: true,
@@ -119,16 +115,17 @@ jQuery(function () {
                         onSelect   : function() {this.hide();}
                     });
                 </script>
-            </dd>
-        </dl>	
-		<dl>
-			<span class='error'>#errorMarkup()</span>
-        </dl>
-		<div class="form_b">		
-			<input type="hidden" name="message.id" value="$!modifyMessageForm.message.id" />
-			<input type="submit" class="btn_blue" id="submit" value="提 交">
-			<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
-		</div>
+			</li>
+			<li>
+				<span class='errorcolor'>#errorMarkup()</span>
+            </li>
+			<li>
+				<label>&nbsp;</label>
+				<input type="hidden" name="message.id" value="$!modifyMessageForm.message.id" />
+				<input name="" type="submit" class="btn" value="提交"/>
+				<input type="button" class="btn" value="返 回" onclick="javascript:history.back();" />
+			</li>
+        </ul>
 	   </form>
 	</div>
 </div>

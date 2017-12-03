@@ -222,16 +222,48 @@ public class MatchapplySqlMapDao extends SqlMapDaoTemplate implements
     }
 
     @SuppressWarnings("unchecked")
-    public List<Matchapply> selectMatchapplyFileList(String ids)
+    public List<Matchapply> selectMatchapplyFileList(Matchapply matchapply)
             throws BaseException {
         try {
-            return this.queryForList(
-                    "manage.MatchapplyDao.selectMatchapplyFileList", ids);
+            return this
+                    .queryForList(
+                            "manage.MatchapplyDao.selectMatchapplyFileList",
+                            matchapply);
         }
         catch (DaoException e) {
             logger.error("manage.MatchapplyDao.selectMatchapplyFileList", e);
             throw new BaseException(
                     "manage.MatchapplyDao.selectMatchapplyFileList", e);
+        }
+    }
+
+    public int selectMatchapplyMemberListSize(Matchapply matchapply)
+            throws BaseException {
+        try {
+            return (Integer) this.queryForObject(
+                    "manage.MatchapplyDao.selectMatchapplyMemberListSize",
+                    matchapply);
+        }
+        catch (DaoException e) {
+            logger.error("manage.MatchapplyDao.selectMatchapplyMemberListSize",
+                    e);
+            throw new BaseException(
+                    "manage.MatchapplyDao.selectMatchapplyMemberListSize", e);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Matchapply> selectMatchapplyMemberList(Matchapply matchapply)
+            throws BaseException {
+        try {
+            return this.queryForList(
+                    "manage.MatchapplyDao.selectMatchapplyMemberList",
+                    matchapply);
+        }
+        catch (DaoException e) {
+            logger.error("manage.MatchapplyDao.selectMatchapplyMemberList", e);
+            throw new BaseException(
+                    "manage.MatchapplyDao.selectMatchapplyMemberList", e);
         }
     }
 

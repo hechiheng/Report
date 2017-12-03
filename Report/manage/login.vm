@@ -4,52 +4,82 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 #parse("/manage/include/webtitle.vm")
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
-<script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
-<script type="text/javascript" src="$link.setRelative('/manage/js/login.js')"></script>		
-<link rel="stylesheet" href="$link.setRelative('/manage/css/login.css')" />
-<script type="text/javascript">
-	jQuery(document).ready(function(){
-	  jQuery("#username").focus();
-	});
-</script>
-</head>	
-<body>
-	<div class="login">
-		<div class="login-form">	
-			<form action="$link.setAction('login.do')" method="post" id="login">
-			<div class="title"></div>
-			<table width="100%">
-				<tr>
-					<th>用户名:</th>
-					<td>
-						<input type="text" id="username" name="username" class="len220" value="admin"/>
-					</td>
-				</tr>
-				<tr>
-					<th>密码:</th>
-					<td>
-						<input type="password" class="len220" name="password" value="1"/>
-					</td>
-				</tr>
-				<tr>
-					<th>验证码:</th>
-				  <td>
-						<input type="text" class="len220" name="imagecode" autocomplete="off" />
-						<img src="$link.setAction('imageCode.do')" align="absmiddle" id="code"  class="vcode" onclick="change_code(this);"/>
-				  </td>
-				</tr>
-				<tr>
-					<td colspan="2" class="msg" style="text-align: center;">
-						<span class='error'>#errorMarkup()</span>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" style="padding-left:120px;"> <button type="submit">登　　录</button></td>
-				</tr>
-			</table>
-		</form>
-		</div>
-	</div>
+<link type="text/css" rel="stylesheet" href="$link.setRelative('/manage/css1/style.css')" />
+<script type="text/javascript" src="$link.setRelative('/manage/js1/jquery.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
+##<script type="text/javascript" src="$link.setRelative('/manage/js1/cloud.js')"></script>
 
+<style type="text/css">
+.imagecode{
+	width: 80px;
+    border: 1px solid;
+    height: 30px;
+}
+</style>
+
+<script language="javascript">
+	jQuery(function(){
+		jQuery("#username").focus();
+		
+        jQuery('.loginbox').css({'position':'absolute','left':(jQuery(window).width()-692)/2});
+    	jQuery(window).resize(function(){  
+        jQuery('.loginbox').css({'position':'absolute','left':(jQuery(window).width()-692)/2});
+		
+    });
+});  
+</script> 
+
+</head>
+
+<body style="background-color:#1c77ac; background-image:url(images1/light.png); background-repeat:no-repeat; background-position:center top; overflow:hidden;">
+    <div id="mainBody">
+      <div id="cloud1" class="cloud"></div>
+      <div id="cloud2" class="cloud"></div>
+    </div>  
+
+
+	<div class="logintop">    
+        <span>欢迎登录参赛管理系统</span>    
+        ##<ul>
+        ##    <li><a href="#">最新通知</a></li>
+        ##    <li><a href="#">最新公告</a></li>
+        ##</ul>    
+    </div>
+	
+    <div class="loginbody">
+    
+    <span class="systemlogo"></span> 
+       
+    <div class="loginbox">
+    <form action="$link.setAction('login.do')" method="post" id="login">
+    <ul>
+    <li><input id="username" name="username" type="text" class="loginuser" value="admin"/></li>
+    <li><input name="password" type="password" class="loginpwd" value="1"/></li>
+    <li>
+		<input name="imagecode" type="text" class="loginimgcode"/>
+		<img src="$link.setAction('imageCode.do')" align="absmiddle" id="code" onclick="change_code(this);"/>
+	</li>
+	<li>
+		<label style="padding-left:0px;font-size: 14px;">登录用户类型：</label>
+        <select name="logintype" style="width:120px;height:25px;font-size: 14px;border: 1px solid #999;">
+            <option value="1">注册会员</option>
+			<option value="2">管理员</option>
+        </select>
+    </li>
+    <li style="clear:both">
+		<input type="submit" class="loginbtn" value="登录"/>
+		<input type="button" class="loginbtn" onclick="goUrl('$link.setAction('load4MemberReg')')" value="注册" style="margin-left: 50px;"/>
+	</li>
+    <li><span class="errorcolor">#errorMarkup()</span></li>
+    </ul>
+    </form>
+    
+    </div>
+    
+    </div>
+    
+    
+    
+    <div class="loginbm">Copyright © 2009 - 2016 XXX. All Rights Reserved</div>
 </body>
 </html>

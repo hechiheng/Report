@@ -56,6 +56,12 @@ public class Matchapply implements Serializable {
 
     private String memberid;
 
+    private String accountid;
+
+    private String sex;
+
+    private String idcard;
+
     private int checkuserid;
 
     private String imagecode;
@@ -366,6 +372,30 @@ public class Matchapply implements Serializable {
 
     public String getFactname() {
         return factname;
+    }
+
+    public void setAccountid(String accountid) {
+        this.accountid = accountid;
+    }
+
+    public String getAccountid() {
+        return accountid;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getIdcard() {
+        return idcard;
+    }
+
+    public void setIdcard(String idcard) {
+        this.idcard = idcard;
     }
 
 }

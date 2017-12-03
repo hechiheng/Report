@@ -64,7 +64,7 @@ scrollbar-base-color:  #ffffff; /*滚动条的基本颜色*/
 
 body.showmenu .left{display:block}
 body.hidemenu .left{display:none}
-body.showmenu .right{left:195px}
+body.showmenu .right{left:190px}
 body.hidemenu .right{left:0px}
 
 .left{position:absolute;top:63px;width:187px;left:0px;bottom:0px;z-index:7;overflow-x:hidden;overflow-y:auto; }

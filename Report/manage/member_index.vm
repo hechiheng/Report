@@ -14,32 +14,33 @@
     </div>
     <div class="operate">
         <div class="left">
-		#set($istrash = $request.getAttribute("istrash"))
-		#if($istrash=="1")
-			<input type="button" onclick="goUrl('$link.setAction('load4MemberIndex')')"  class="btn_blue" value="返回" />
-		#else
-			<input type="button" onclick="goUrl('$link.setAction('load4MemberAdd')')" class="btn_blue" value="添加会员" />
-            <input type="button" onclick="goUrl('$link.setAction('load4MemberIndex').addQueryData('istrash','1')')" class="btn_green" value="回收站" />
-		#end
+		##set($istrash = $request.getAttribute("istrash"))
+		##if($istrash=="1")
+		##	<input type="button" onclick="goUrl('$link.setAction('load4MemberIndex')')"  class="btn_blue" value="返回" />
+		##else
+		##	<input type="button" onclick="goUrl('$link.setAction('load4MemberAdd')')" class="btn_blue" value="添加会员" />
+        ##  <input type="button" onclick="goUrl('$link.setAction('load4MemberIndex').addQueryData('istrash','1')')" class="btn_green" value="回收站" />
+		##end
         </div>
-		#if($istrash=="1")
-			&nbsp;
-		#else
+		##if($istrash=="1")
+		##	&nbsp;
+		##else
 		<div class="left_pad">
             <form method="get" action="$link.setAction('load4MemberIndex')">
             	<span style='font-size: 14px;vertical-align: middle;'>用户名：</span>
-                <input type="text" name="member.accountid" title="关键字" class="inp_default" value="$!queryMemberForm.member.accountid">
+                <input type="text" name="member.accountid" class="inp_one" value="$!queryMemberForm.member.accountid">
+                <input type="text" name="member.factname" class="inp_one" value="$!queryMemberForm.member.factname">
                 <input type="submit" class="btn_blue" value="查  询">
             </form>
         </div>
-		#end
+		##end
     </div>
     <div class="list">    
         <table width="100%">
             <tr>
                 <th>编号</th>
                 <th>用户名</th>
-				<th>名称</th>
+				<th>会员名称</th>
 				<th>性别</th>
 				<th>身份证号</th>
                 <th>状态</th>
@@ -66,11 +67,11 @@
 				<td>$!member.logintime</td>
 				<td>
 					<a href="$link.setAction('load4MemberInfo').addQueryData('id',$!member.id)">查看</a>
-				#if($istrash=="1")
-					<a href="javascript:;" onclick="toConfirm('$link.setAction('restoreMember').addQueryData('id',$!member.id)','确实要还原吗？')">还原</a>
-					<a href="javascript:;" onclick="toConfirm('$link.setAction('removeMember').addQueryData('id',$!member.id)','该操作不可恢复，确实要删除吗？')">彻底删除</a>
-				#else
-					<a href="$link.setAction('load4MemberModify').addQueryData('id',$!member.id)">编辑</a>
+				##if($istrash=="1")
+					##<a href="javascript:;" onclick="toConfirm('$link.setAction('restoreMember').addQueryData('id',$!member.id)','确实要还原吗？')">还原</a>
+					##<a href="javascript:;" onclick="toConfirm('$link.setAction('removeMember').addQueryData('id',$!member.id)','该操作不可恢复，确实要删除吗？')">彻底删除</a>
+				##else
+					##<a href="$link.setAction('load4MemberModify').addQueryData('id',$!member.id)">编辑</a>
 					<a href="javascript:;" onclick="toConfirm('$link.setAction('resetMemberPwd').addQueryData('id',$!member.id)','确实要重置密码么？')">重置密码</a>
 					#if($!member.state==0)
 					<a href="javascript:;" onclick="toConfirm('$link.setAction('auditMember').addQueryData('id',$!member.id)','确实要审批通过吗？')">审批</a>
@@ -79,8 +80,8 @@
 					#elseif($!member.state==2)
 					<a href="javascript:;" onclick="toConfirm('$link.setAction('unLockMember').addQueryData('id',$!member.id)','确实要解锁吗？')">解锁</a>
 					#end
-					<a href="javascript:;" onclick="toConfirm('$link.setAction('trashMember').addQueryData('id',$!member.id)','确实要删除吗？')">删除</a>
-				#end
+					##<a href="javascript:;" onclick="toConfirm('$link.setAction('trashMember').addQueryData('id',$!member.id)','确实要删除吗？')">删除</a>
+				##end
                 </td>
             </tr>
 			#end
