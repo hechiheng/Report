@@ -39,14 +39,24 @@ public class MatchapplyBo {
         return dao.selectMatchresultList4Home(matchapply);
     }
 
-    public int getMatchapplyListSize(Matchapply matchapply)
+    public int getMatchapplyAuditListSize(Matchapply matchapply)
             throws BaseException {
-        return dao.selectMatchapplyListSize(matchapply);
+        return dao.selectMatchapplyAuditListSize(matchapply);
     }
 
-    public List<Matchapply> getMatchapplyList(Matchapply matchapply)
+    public List<Matchapply> getMatchapplyAuditList(Matchapply matchapply)
             throws BaseException {
-        return dao.selectMatchapplyList(matchapply);
+        return dao.selectMatchapplyAuditList(matchapply);
+    }
+
+    public int getMatchapplyAuditList1Size(Matchapply matchapply)
+            throws BaseException {
+        return dao.selectMatchapplyAuditList1Size(matchapply);
+    }
+
+    public List<Matchapply> getMatchapplyAuditList1(Matchapply matchapply)
+            throws BaseException {
+        return dao.selectMatchapplyAuditList1(matchapply);
     }
 
     public int getMatchresultListSize(Matchapply matchapply)
@@ -165,14 +175,14 @@ public class MatchapplyBo {
         return dao.selectMatchapplyFileList(matchapply);
     }
 
-    public int getMatchapplyMemberListSize(Matchapply matchapply)
+    public int getMatchapplyListSize(Matchapply matchapply)
             throws BaseException {
-        return dao.selectMatchapplyMemberListSize(matchapply);
+        return dao.selectMatchapplyListSize(matchapply);
     }
 
-    public List<Matchapply> getMatchapplyMemberList(Matchapply matchapply)
+    public List<Matchapply> getMatchapplyList(Matchapply matchapply)
             throws BaseException {
-        return dao.selectMatchapplyMemberList(matchapply);
+        return dao.selectMatchapplyList(matchapply);
     }
 
 }

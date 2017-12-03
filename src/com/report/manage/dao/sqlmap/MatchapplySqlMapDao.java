@@ -52,32 +52,63 @@ public class MatchapplySqlMapDao extends SqlMapDaoTemplate implements
         }
     }
 
-    public int selectMatchapplyListSize(Matchapply matchapply)
+    public int selectMatchapplyAuditListSize(Matchapply matchapply)
             throws BaseException {
         try {
-            return (Integer) this
-                    .queryForObject(
-                            "manage.MatchapplyDao.selectMatchapplyListSize",
-                            matchapply);
+            return (Integer) this.queryForObject(
+                    "manage.MatchapplyDao.selectMatchapplyAuditListSize",
+                    matchapply);
         }
         catch (DaoException e) {
-            logger.error("manage.MatchapplyDao.selectMatchapplyListSize", e);
+            logger.error("manage.MatchapplyDao.selectMatchapplyAuditListSize",
+                    e);
             throw new BaseException(
-                    "manage.MatchapplyDao.selectMatchapplyListSize", e);
+                    "manage.MatchapplyDao.selectMatchapplyAuditListSize", e);
         }
     }
 
     @SuppressWarnings("unchecked")
-    public List<Matchapply> selectMatchapplyList(Matchapply matchapply)
+    public List<Matchapply> selectMatchapplyAuditList(Matchapply matchapply)
             throws BaseException {
         try {
             return this.queryForList(
-                    "manage.MatchapplyDao.selectMatchapplyList", matchapply);
+                    "manage.MatchapplyDao.selectMatchapplyAuditList",
+                    matchapply);
         }
         catch (DaoException e) {
-            logger.error("manage.MatchapplyDao.selectMatchapplyList", e);
+            logger.error("manage.MatchapplyDao.selectMatchapplyAuditList", e);
             throw new BaseException(
-                    "manage.MatchapplyDao.selectMatchapplyList", e);
+                    "manage.MatchapplyDao.selectMatchapplyAuditList", e);
+        }
+    }
+
+    public int selectMatchapplyAuditList1Size(Matchapply matchapply)
+            throws BaseException {
+        try {
+            return (Integer) this.queryForObject(
+                    "manage.MatchapplyDao.selectMatchapplyAuditList1Size",
+                    matchapply);
+        }
+        catch (DaoException e) {
+            logger.error("manage.MatchapplyDao.selectMatchapplyAuditList1Size",
+                    e);
+            throw new BaseException(
+                    "manage.MatchapplyDao.selectMatchapplyAuditList1Size", e);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Matchapply> selectMatchapplyAuditList1(Matchapply matchapply)
+            throws BaseException {
+        try {
+            return this.queryForList(
+                    "manage.MatchapplyDao.selectMatchapplyAuditList",
+                    matchapply);
+        }
+        catch (DaoException e) {
+            logger.error("manage.MatchapplyDao.selectMatchapplyAuditList", e);
+            throw new BaseException(
+                    "manage.MatchapplyDao.selectMatchapplyAuditList", e);
         }
     }
 
@@ -237,33 +268,32 @@ public class MatchapplySqlMapDao extends SqlMapDaoTemplate implements
         }
     }
 
-    public int selectMatchapplyMemberListSize(Matchapply matchapply)
+    public int selectMatchapplyListSize(Matchapply matchapply)
             throws BaseException {
         try {
-            return (Integer) this.queryForObject(
-                    "manage.MatchapplyDao.selectMatchapplyMemberListSize",
-                    matchapply);
+            return (Integer) this
+                    .queryForObject(
+                            "manage.MatchapplyDao.selectMatchapplyListSize",
+                            matchapply);
         }
         catch (DaoException e) {
-            logger.error("manage.MatchapplyDao.selectMatchapplyMemberListSize",
-                    e);
+            logger.error("manage.MatchapplyDao.selectMatchapplyListSize", e);
             throw new BaseException(
-                    "manage.MatchapplyDao.selectMatchapplyMemberListSize", e);
+                    "manage.MatchapplyDao.selectMatchapplyListSize", e);
         }
     }
 
     @SuppressWarnings("unchecked")
-    public List<Matchapply> selectMatchapplyMemberList(Matchapply matchapply)
+    public List<Matchapply> selectMatchapplyList(Matchapply matchapply)
             throws BaseException {
         try {
             return this.queryForList(
-                    "manage.MatchapplyDao.selectMatchapplyMemberList",
-                    matchapply);
+                    "manage.MatchapplyDao.selectMatchapplyList", matchapply);
         }
         catch (DaoException e) {
-            logger.error("manage.MatchapplyDao.selectMatchapplyMemberList", e);
+            logger.error("manage.MatchapplyDao.selectMatchapplyList", e);
             throw new BaseException(
-                    "manage.MatchapplyDao.selectMatchapplyMemberList", e);
+                    "manage.MatchapplyDao.selectMatchapplyList", e);
         }
     }
 

@@ -18,15 +18,6 @@
 	<div class="formbody">
 		<form method="get" action="$link.setAction('load4AnnounceIndex')">
 		<ul class="seachform">
-			<li>
-				#set($istrash = $request.getAttribute("istrash"))
-				#if($istrash=="1")
-        			<input type="button" onclick="goUrl('$link.setAction('load4AnnounceIndex')')"  class="scbtn" value="返回" />
-        		#else
-        			<input type="button" onclick="goUrl('$link.setAction('load4AnnounceAdd')')" class="scbtn" value="添加公告" />
-                    <input type="button" onclick="goUrl('$link.setAction('load4AnnounceIndex').addQueryData('istrash','1')')" class="scbtn" value="回收站" />
-        		#end
-            </li>
 			#if($istrash=="1")
 				&nbsp;
 			#else
@@ -39,6 +30,15 @@
 				<input name="" type="submit" class="scbtn" value="查询"/>
 			</li>
 			#end
+			<li>
+				#set($istrash = $request.getAttribute("istrash"))
+				#if($istrash=="1")
+        			<input type="button" onclick="goUrl('$link.setAction('load4AnnounceIndex')')"  class="scbtn" value="返回" />
+        		#else
+        			<input type="button" onclick="goUrl('$link.setAction('load4AnnounceAdd')')" class="scbtn" value="添加公告" />
+                    <input type="button" onclick="goUrl('$link.setAction('load4AnnounceIndex').addQueryData('istrash','1')')" class="scbtn" value="回收站" />
+        		#end
+            </li>
         </ul>
         </form>
     </div>

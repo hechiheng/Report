@@ -54,11 +54,11 @@
 <body>
 <div class="main">
     <div class="pos">
-    	<a href="$link.setAction('load4MatchapplyIndex')">参赛报名审核</a>
+    	<a href="$link.setAction('load4MatchapplyAuditIndex')">参赛报名审核</a>
     </div>
     <div class="operate">
 		<div class="left_pad">
-            <form method="get" action="$link.setAction('load4MatchapplyIndex')">
+            <form method="get" action="$link.setAction('load4MatchapplyAuditIndex')">
 				<span style='font-size: 14px;vertical-align: middle;'>参赛年度：</span>
 				<input type="text" id="annualmatch" name="matchapply.annualmatch" class="inp_small" value="$!queryMatchapplyForm.matchapply.annualmatch"/>
 				<span style='font-size: 14px;vertical-align: middle;'>会员名称：</span>
@@ -79,7 +79,7 @@
                 <input type="text" id="name" name="matchapply.name" title="关键字" class="inp_small" value="$!queryMatchapplyForm.matchapply.name"/>
 				<span style='font-size: 14px;vertical-align: middle;'>审核状态：</span>
 				<select id="state" name="matchapply.state">
-					<option value="0" #if($!queryMatchapplyForm.matchapply.state==0) selected="selected" #end>--请选择--</option>
+					<option value="9" #if($!queryMatchapplyForm.matchapply.state==9) selected="selected" #end>--请选择--</option>
 					<option value="1" #if($!queryMatchapplyForm.matchapply.state==1) selected="selected" #end>未审核</option>
 					<option value="2" #if($!queryMatchapplyForm.matchapply.state==2) selected="selected" #end>审核通过</option>
 					<option value="3" #if($!queryMatchapplyForm.matchapply.state==3) selected="selected" #end>审核未通过</option>
@@ -109,7 +109,7 @@
 				<td class='aleft'>$!matchapply.idcard</td>
 				<td class='aleft'>#if($!matchapply.sex==1)男#else女#end</td>
 				<td>
-					<a href="javascript:;" onclick="load4MatchapplyList('$link.setAction('load4MatchapplyList')','$!matchapply.memberid')">查看</a>
+					<a href="javascript:;" onclick="load4MatchapplyList('$link.setAction('load4MatchapplyAuditIndex1')','$!matchapply.memberid')">查看</a>
 					<a href="javascript:;" onclick="exportFiles('确认要导出附件吗？','$!matchapply.id','$!matchapply.annualmatch','$!matchapply.factname')">导出附件</a>
                 </td>
             </tr>

@@ -4,7 +4,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
 <link type="text/css" rel="stylesheet" href="$link.setRelative('/manage/css1/style.css')" />
-<link type="text/css" rel="stylesheet" href="$link.setRelative('/manage/css1/select.css')" />
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
@@ -115,7 +114,7 @@ jQuery(function () {
 			</li>
             <li>
 				<label>参赛项目<b>*</b></label>
-				<select name="matchapply.matchid" style="width:300px;height:25px;font-size: 14px;border: 1px solid #999;">
+				<select name="matchapply.matchid" class="dfinput" style="width:300px;">
 					#set($matchinfoList = $request.getAttribute("matchinfoList"))
 					#foreach($matchinfo in $matchinfoList)
 						#if($!matchinfo.id==$!addMatchapplyForm.matchapply.matchid)
@@ -144,11 +143,11 @@ jQuery(function () {
 			</li>
 			<li>
 				<label>作品简述</label>
-                <label><textarea name="matchapply.description" id="description">$!addMatchapplyForm.matchapply.description</textarea></label>
+                <label style="margin-bottom: 13px;"><textarea name="matchapply.description" id="description">$!addMatchapplyForm.matchapply.description</textarea></label>
 			</li>
 			<li>
 				<label>上传附件</label>
-				<input type="file" name="matchapply.upfile" />
+				<input type="file" name="matchapply.upfile" style="width:400px;"/>
 			</li>
 			<li>
 				<label>是否提交<b>*</b></label>
@@ -158,7 +157,7 @@ jQuery(function () {
 			<li>
 				<label>验证码<b>*</b></label>
 				<input type="text" name="matchapply.imagecode" class="dfinput" style="width:100px;"  />
-				<img src="$link.setAction('/manage/imageCode.do')" align="absmiddle" id="code"  class="vcode" onclick="change_code(this);"/>
+				<img src="$link.setAction('imageCode.do')" align="absmiddle" id="code" onclick="change_code(this);"/>
 			</li>
 			<li>
 				<span class='errorcolor'>#errorMarkup()</span>
@@ -166,6 +165,7 @@ jQuery(function () {
             <li>
 				<label>&nbsp;</label>
 				<input name="" type="submit" class="btn" value="保存"/>
+				<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
 			</li>
         </ul>
         </form>

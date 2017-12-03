@@ -130,6 +130,12 @@
 		<form-bean name="auditMatchapplyForm"
 			type="com.report.manage.form.MatchapplyForm">
 		</form-bean>
+		<form-bean name="addMatchapplyForm"
+			type="com.report.manage.form.MatchapplyForm">
+		</form-bean>
+		<form-bean name="modifyMatchapplyForm"
+			type="com.report.manage.form.MatchapplyForm">
+		</form-bean>
 		<form-bean name="modifyMatchresultForm"
 			type="com.report.manage.form.MatchapplyForm">
 		</form-bean>
@@ -1165,31 +1171,31 @@
 			parameter="removeMatchinfo">
         </action>
         <action
-        	path="/load4MatchapplyIndex"
+        	path="/load4MatchapplyAuditIndex"
 			type="com.report.manage.action.MatchapplyAction"
 			scope="request"
 			name="queryMatchapplyForm"
 			validate="false"
-			parameter="load4MatchapplyIndex">
-			<forward name="success" path="/../manage/matchapply_member.vm"/>
+			parameter="load4MatchapplyAuditIndex">
+			<forward name="success" path="/../manage/matchapply_audit_index.vm"/>
         </action>
         <action
-        	path="/load4MatchapplyList"
+        	path="/load4MatchapplyAuditIndex1"
 			type="com.report.manage.action.MatchapplyAction"
 			scope="request"
 			name="queryMatchapplyForm"
 			validate="false"
-			parameter="load4MatchapplyList">
-			<forward name="success" path="/../manage/matchapply_list.vm"/>
+			parameter="load4MatchapplyAuditIndex1">
+			<forward name="success" path="/../manage/matchapply_audit_index1.vm"/>
         </action>
         <action
-        	path="/load4Matchapply"
+        	path="/load4MatchapplyAuditInfo"
 			type="com.report.manage.action.MatchapplyAction"
 			scope="request"
 			name="modifyMatchapplyForm"
 			validate="false"
-			parameter="load4Matchapply">
-			<forward name="success" path="/../manage/matchapply_info.vm"/>
+			parameter="load4MatchapplyAuditInfo">
+			<forward name="success" path="/../manage/matchapply_audit_info.vm"/>
         </action>
         <action
         	path="/load4MatchapplyAudit"
@@ -1206,6 +1212,43 @@
 			scope="request"
 			validate="false"
 			parameter="auditMatchapply">
+        </action>
+        <action
+        	path="/load4MatchapplyIndex"
+			type="com.report.manage.action.MatchapplyAction"
+			scope="request"
+			name="queryMatchapplyForm"
+			validate="false"
+			parameter="load4MatchapplyIndex">
+			<forward name="success" path="/../manage/matchapply_index.vm"/>
+        </action>
+        <action
+        	path="/load4MatchapplyInfo"
+			type="com.report.manage.action.MatchapplyAction"
+			scope="request"
+			name="modifyMatchapplyForm"
+			validate="false"
+			parameter="load4MatchapplyInfo">
+			<forward name="success" path="/../manage/matchapply_info.vm"/>
+        </action>
+        <action
+        	path="/load4MatchapplyAdd"
+			type="com.report.manage.action.MatchapplyAction"
+			scope="request"
+			name="addMatchapplyForm"
+			validate="false"
+			parameter="load4MatchapplyAdd">
+			<forward name="success" path="/../manage/matchapply_add.vm"/>
+        </action>
+        <action
+        	path="/addMatchapply"
+			type="com.report.manage.action.MatchapplyAction"
+			scope="request"
+			input="/load4MatchapplyAdd.do"
+			name="addMatchapplyForm"
+			validate="true"
+			parameter="addMatchapply">
+			<forward name="failure" path="/load4MatchapplyAdd.do"/>
         </action>
         <action
         	path="/load4MatchresultIndex"

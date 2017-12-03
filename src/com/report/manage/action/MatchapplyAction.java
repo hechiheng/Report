@@ -35,7 +35,7 @@ import com.report.utils.Page;
 public class MatchapplyAction extends BaseAction {
     private Logger logger = Logger.getLogger("MatchapplyAction");
 
-    public ActionForward load4MatchapplyIndex(ActionMapping mapping,
+    public ActionForward load4MatchapplyAuditIndex(ActionMapping mapping,
             ActionForm form, HttpServletRequest request,
             HttpServletResponse response) throws BaseException {
         MatchapplyForm matchapplyForm = (MatchapplyForm) form;
@@ -47,8 +47,8 @@ public class MatchapplyAction extends BaseAction {
         String annualmatch = matchapply.getAnnualmatch();
         String p = request.getParameter("p");
         MatchapplyBo bo = new MatchapplyBo();
-        int total = bo.getMatchapplyMemberListSize(matchapply);
-        Page page = new Page(total, p, matchapply, "load4MatchapplyMemberList");
+        int total = bo.getMatchapplyAuditListSize(matchapply);
+        Page page = new Page(total, p, matchapply, "load4MatchapplyAuditIndex");
         page.setQueryData("matchapply.name", name == null ? "" : name);
         page.setQueryData("matchapply.factname", factname == null ? ""
                 : factname);
@@ -59,14 +59,13 @@ public class MatchapplyAction extends BaseAction {
         List<Matchinfo> matchinfoList = bo.getMatchinfoList();
         request.setAttribute("matchinfoList", matchinfoList);
 
-        List<Matchapply> matchapplyList = bo
-                .getMatchapplyMemberList(matchapply);
+        List<Matchapply> matchapplyList = bo.getMatchapplyAuditList(matchapply);
         request.setAttribute("matchapplyList", matchapplyList);
         request.setAttribute("page", page);
         return mapping.findForward("success");
     }
 
-    public ActionForward load4MatchapplyList(ActionMapping mapping,
+    public ActionForward load4MatchapplyAuditIndex1(ActionMapping mapping,
             ActionForm form, HttpServletRequest request,
             HttpServletResponse response) throws BaseException {
         MatchapplyForm matchapplyForm = (MatchapplyForm) form;
@@ -79,8 +78,8 @@ public class MatchapplyAction extends BaseAction {
         String annualmatch = matchapply.getAnnualmatch();
         String p = request.getParameter("p");
         MatchapplyBo bo = new MatchapplyBo();
-        int total = bo.getMatchapplyListSize(matchapply);
-        Page page = new Page(total, p, matchapply, "load4MatchapplyIndex");
+        int total = bo.getMatchapplyAuditList1Size(matchapply);
+        Page page = new Page(total, p, matchapply, "load4MatchapplyAuditIndex1");
         page.setQueryData("matchapply.memberid", memberid == null ? ""
                 : memberid);
         page.setQueryData("matchapply.name", name == null ? "" : name);
@@ -93,13 +92,14 @@ public class MatchapplyAction extends BaseAction {
         List<Matchinfo> matchinfoList = bo.getMatchinfoList();
         request.setAttribute("matchinfoList", matchinfoList);
 
-        List<Matchapply> matchapplyList = bo.getMatchapplyList(matchapply);
+        List<Matchapply> matchapplyList = bo
+                .getMatchapplyAuditList1(matchapply);
         request.setAttribute("matchapplyList", matchapplyList);
         request.setAttribute("page", page);
         return mapping.findForward("success");
     }
 
-    public ActionForward load4Matchapply(ActionMapping mapping,
+    public ActionForward load4MatchapplyAuditInfo(ActionMapping mapping,
             ActionForm form, HttpServletRequest request,
             HttpServletResponse response) throws BaseException {
         String id = request.getParameter("id");
@@ -324,6 +324,48 @@ public class MatchapplyAction extends BaseAction {
         return null;
     }
 
+    @SuppressWarnings("unchecked")
+    public ActionForward load4MatchapplyIndex(ActionMapping mapping,
+            ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) throws BaseException {
+        Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
+                Constants.MANAGE_SESSION);
+        String memberid = sessionMap.get("memberid");
+        MatchapplyForm matchapplyForm = (MatchapplyForm) form;
+        Matchapply matchapply = matchapplyForm.getMatchapply();
+        matchapply.setMemberid(memberid);
+        String name = matchapply.getName();
+        int matchid = matchapply.getMatchid();
+        int state = matchapply.getState();
+        String annualmatch = matchapply.getAnnualmatch();
+        String p = request.getParameter("p");
+        MatchapplyBo bo = new MatchapplyBo();
+        int total = bo.getMatchapplyListSize(matchapply);
+        Page page = new Page(total, p, matchapply, "load4MatchapplyMemberList");
+        page.setQueryData("matchapply.name", name == null ? "" : name);
+        page.setQueryData("matchapply.matchid", matchid + "");
+        page.setQueryData("matchapply.state", state + "");
+        page.setQueryData("matchapply.annualmatch", annualmatch == null ? ""
+                : annualmatch);
+        List<Matchinfo> matchinfoList = bo.getMatchinfoList();
+        request.setAttribute("matchinfoList", matchinfoList);
+
+        List<Matchapply> matchapplyList = bo.getMatchapplyList(matchapply);
+        request.setAttribute("matchapplyList", matchapplyList);
+        request.setAttribute("page", page);
+        return mapping.findForward("success");
+    }
+
+    public ActionForward load4MatchapplyInfo(ActionMapping mapping,
+            ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) throws BaseException {
+        String id = request.getParameter("id");
+        MatchapplyBo bo = new MatchapplyBo();
+        Matchapply matchapply = bo.getMatchapply(Integer.valueOf(id));
+        request.setAttribute("matchapply", matchapply);
+        return mapping.findForward("success");
+    }
+
     public ActionForward load4MatchapplyAdd(ActionMapping mapping,
             ActionForm form, HttpServletRequest request,
             HttpServletResponse response) throws BaseException {
@@ -332,7 +374,7 @@ public class MatchapplyAction extends BaseAction {
         request.setAttribute("matchinfoList", matchinfoList);
         return mapping.findForward("success");
     }
-    
+
     @SuppressWarnings("unchecked")
     public ActionForward addMatchapply(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)

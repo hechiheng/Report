@@ -15,10 +15,16 @@ public interface MatchapplyDao {
     public List<Matchapply> selectMatchresultList4Home(Matchapply matchapply)
             throws BaseException;
 
-    public int selectMatchapplyListSize(Matchapply matchapply)
+    public int selectMatchapplyAuditListSize(Matchapply matchapply)
             throws BaseException;
 
-    public List<Matchapply> selectMatchapplyList(Matchapply matchapply)
+    public List<Matchapply> selectMatchapplyAuditList(Matchapply matchapply)
+            throws BaseException;
+
+    public int selectMatchapplyAuditList1Size(Matchapply matchapply)
+            throws BaseException;
+
+    public List<Matchapply> selectMatchapplyAuditList1(Matchapply matchapply)
             throws BaseException;
 
     public int selectMatchresultListSize(Matchapply matchapply)
@@ -52,10 +58,9 @@ public interface MatchapplyDao {
     public List<Matchapply> selectMatchapplyFileList(Matchapply matchapply)
             throws BaseException;
 
-    public int selectMatchapplyMemberListSize(Matchapply matchapply)
+    public int selectMatchapplyListSize(Matchapply matchapply)
             throws BaseException;
 
-    public List<Matchapply> selectMatchapplyMemberList(Matchapply matchapply)
+    public List<Matchapply> selectMatchapplyList(Matchapply matchapply)
             throws BaseException;
-
 }

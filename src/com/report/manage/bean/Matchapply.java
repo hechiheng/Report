@@ -44,7 +44,7 @@ public class Matchapply implements Serializable {
 
     private int isvalid;
 
-    private int state;
+    private int state = 9;
 
     private String begindate;
 

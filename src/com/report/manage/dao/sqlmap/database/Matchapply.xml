@@ -38,7 +38,54 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		order by a.updatetime desc
 	</select>
 	
-	<select id="manage.MatchapplyDao.selectMatchapplyListSize" parameterClass="matchapply" resultClass="int">
+	<select id="manage.MatchapplyDao.selectMatchapplyAuditListSize" parameterClass="matchapply" resultClass="int">
+		select count(t.id) from (
+		select a.annualmatch,d.id,d.accountid,d.factname,d.sex,d.idcard 
+		from t_matchapply a,t_matchinfo b,t_member d 
+		where a.matchid=b.id and a.isvalid=1 and a.memberid=d.id and a.state>0
+		<isNotEmpty prepend="and" property="name">
+			a.name like CONCAT('%',#name#,'%')
+		</isNotEmpty>		
+		<isNotEmpty prepend="and" property="factname">
+			d.factname like CONCAT('%',#factname#,'%')
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="annualmatch">
+			a.annualmatch = #annualmatch#
+		</isNotEmpty>
+		<isNotEqual prepend="and" property="matchid" compareValue="0">
+			a.matchid = #matchid#
+		</isNotEqual>
+		<isNotEqual prepend="and" property="state" compareValue="9">
+			a.state = #state#
+		</isNotEqual>
+		group by a.annualmatch,d.id,d.accountid,d.factname,d.sex,d.idcard) t
+	</select>
+	
+	<select id="manage.MatchapplyDao.selectMatchapplyAuditList" parameterClass="matchapply" resultClass="matchapply">
+		select a.annualmatch,d.id,d.accountid,d.factname,d.sex,d.idcard  
+		from t_matchapply a,t_matchinfo b,t_member d  
+		where a.matchid=b.id and a.isvalid=1 and a.memberid=d.id and a.state>0
+		<isNotEmpty prepend="and" property="name">
+			a.name like CONCAT('%',#name#,'%')
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="factname">
+			d.factname like CONCAT('%',#factname#,'%')
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="annualmatch">
+			a.annualmatch = #annualmatch#
+		</isNotEmpty>
+		<isNotEqual prepend="and" property="matchid" compareValue="0">
+			a.matchid = #matchid#
+		</isNotEqual>
+		<isNotEqual prepend="and" property="state" compareValue="9">
+			a.state = #state#
+		</isNotEqual>
+		group by d.id,d.accountid,d.factname,d.sex,d.idcard
+		order by a.updatetime desc
+		limit $firstRow$,$listRows$
+	</select>
+	
+	<select id="manage.MatchapplyDao.selectMatchapplyAuditList1Size" parameterClass="matchapply" resultClass="int">
 		select count(a.id) 
 		from t_matchapply a,t_matchinfo b,t_member d 
 		where a.matchid=b.id and a.isvalid=1 and a.memberid=d.id and a.state>0
@@ -46,7 +93,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 			a.name like CONCAT('%',#name#,'%')
 		</isNotEmpty>	
 		<isNotEmpty prepend="and" property="memberid">
-			d.memberid = #memberid#
+			a.memberid = #memberid#
 		</isNotEmpty>	
 		<isNotEmpty prepend="and" property="factname">
 			d.factname = #factname#
@@ -57,12 +104,12 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		<isNotEqual prepend="and" property="matchid" compareValue="0">
 			a.matchid = #matchid#
 		</isNotEqual>
-		<isNotEqual prepend="and" property="state" compareValue="0">
+		<isNotEqual prepend="and" property="state" compareValue="9">
 			a.state = #state#
 		</isNotEqual>
 	</select>
 	
-	<select id="manage.MatchapplyDao.selectMatchapplyList" parameterClass="matchapply" resultClass="matchapply">
+	<select id="manage.MatchapplyDao.selectMatchapplyAuditList1" parameterClass="matchapply" resultClass="matchapply">
 		select a.id,d.factname,a.name,a.annualmatch,a.matchid,b.name matchname,a.unitname,a.authors,a.teachers,a.description,
 		DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime,a.state,a.memberid,IFNULL(a.checkuserid,0) checkuserid,
 		DATE_FORMAT(FROM_UNIXTIME(a.checktime),'%Y-%m-%d %H:%i:%s') checktime,IFNULL(c.id,0) matchresultid,IFNULL(c.ispublish,0) ispublish 
@@ -75,7 +122,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 			d.factname = #factname#
 		</isNotEmpty>
 		<isNotEmpty prepend="and" property="memberid">
-			d.memberid = #memberid#
+			a.memberid = #memberid#
 		</isNotEmpty>
 		<isNotEmpty prepend="and" property="annualmatch">
 			a.annualmatch = #annualmatch#
@@ -83,7 +130,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		<isNotEqual prepend="and" property="matchid" compareValue="0">
 			a.matchid = #matchid#
 		</isNotEqual>
-		<isNotEqual prepend="and" property="state" compareValue="0">
+		<isNotEqual prepend="and" property="state" compareValue="9">
 			a.state = #state#
 		</isNotEqual>
 		order by a.updatetime desc
@@ -106,7 +153,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		<isNotEqual prepend="and" property="matchid" compareValue="0">
 			a.matchid = #matchid#
 		</isNotEqual>
-		<isNotEqual prepend="and" property="state" compareValue="0">
+		<isNotEqual prepend="and" property="state" compareValue="9">
 			a.state = #state#
 		</isNotEqual>		
 	</select>
@@ -128,7 +175,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		<isNotEmpty prepend="and" property="annualmatch">
 			a.annualmatch = #annualmatch#
 		</isNotEmpty>
-		<isNotEqual prepend="and" property="matchid" compareValue="0">
+		<isNotEqual prepend="and" property="matchid" compareValue="9">
 			a.matchid = #matchid#
 		</isNotEqual>
 		order by a.checktime desc
@@ -207,38 +254,34 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		where a.annualmatch = #annualmatch# and a.memberid = #memberid#
 	</select>
 	
-	<select id="manage.MatchapplyDao.selectMatchapplyMemberListSize" parameterClass="matchapply" resultClass="int">
-		select count(t.id) from (
-		select a.annualmatch,d.id,d.accountid,d.factname,d.sex,d.idcard 
+	<select id="manage.MatchapplyDao.selectMatchapplyListSize" parameterClass="matchapply" resultClass="int">
+		select count(a.id) 
 		from t_matchapply a,t_matchinfo b,t_member d 
-		where a.matchid=b.id and a.isvalid=1 and a.memberid=d.id and a.state>0
+		where a.matchid=b.id and a.isvalid=1 and a.memberid=d.id 
+		and a.memberid = #memberid#
 		<isNotEmpty prepend="and" property="name">
 			a.name like CONCAT('%',#name#,'%')
-		</isNotEmpty>		
-		<isNotEmpty prepend="and" property="factname">
-			d.factname like CONCAT('%',#factname#,'%')
-		</isNotEmpty>
+		</isNotEmpty>	
 		<isNotEmpty prepend="and" property="annualmatch">
 			a.annualmatch = #annualmatch#
 		</isNotEmpty>
 		<isNotEqual prepend="and" property="matchid" compareValue="0">
 			a.matchid = #matchid#
 		</isNotEqual>
-		<isNotEqual prepend="and" property="state" compareValue="0">
+		<isNotEqual prepend="and" property="state" compareValue="9">
 			a.state = #state#
 		</isNotEqual>
-		group by a.annualmatch,d.id,d.accountid,d.factname,d.sex,d.idcard) t
 	</select>
 	
-	<select id="manage.MatchapplyDao.selectMatchapplyMemberList" parameterClass="matchapply" resultClass="matchapply">
-		select a.annualmatch,d.id,d.accountid,d.factname,d.sex,d.idcard  
+	<select id="manage.MatchapplyDao.selectMatchapplyList" parameterClass="matchapply" resultClass="matchapply">
+		select a.id,d.factname,a.name,a.annualmatch,a.matchid,b.name matchname,a.unitname,a.authors,a.teachers,a.description,
+		DATE_FORMAT(FROM_UNIXTIME(a.updatetime),'%Y-%m-%d %H:%i:%s') updatetime,a.state,a.memberid,IFNULL(a.checkuserid,0) checkuserid,
+		DATE_FORMAT(FROM_UNIXTIME(a.checktime),'%Y-%m-%d %H:%i:%s') checktime  
 		from t_matchapply a,t_matchinfo b,t_member d  
-		where a.matchid=b.id and a.isvalid=1 and a.memberid=d.id and a.state>0
+		where a.matchid=b.id and a.isvalid=1 and a.memberid=d.id 
+		and a.memberid = #memberid#
 		<isNotEmpty prepend="and" property="name">
 			a.name like CONCAT('%',#name#,'%')
-		</isNotEmpty>
-		<isNotEmpty prepend="and" property="factname">
-			d.factname like CONCAT('%',#factname#,'%')
 		</isNotEmpty>
 		<isNotEmpty prepend="and" property="annualmatch">
 			a.annualmatch = #annualmatch#
@@ -246,10 +289,9 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		<isNotEqual prepend="and" property="matchid" compareValue="0">
 			a.matchid = #matchid#
 		</isNotEqual>
-		<isNotEqual prepend="and" property="state" compareValue="0">
+		<isNotEqual prepend="and" property="state" compareValue="9">
 			a.state = #state#
 		</isNotEqual>
-		group by d.id,d.accountid,d.factname,d.sex,d.idcard
 		order by a.updatetime desc
 		limit $firstRow$,$listRows$
 	</select>

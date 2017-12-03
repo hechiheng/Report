@@ -52,8 +52,7 @@ jQuery(function(){
     			<span><img src="$link.setRelative('/manage/images1/leftico01.png')" /></span>参赛管理
             </div>
         	<ul class="menuson">
-                <li><cite></cite><a href="$link.setAction('load4MatchapplyAdd')" target="right">参赛报名</a><i></i></li>
-                <li><cite></cite><a href="$link.setAction('load4MatchapplySearch')" target="right">参赛报名查询</a><i></i></li>
+                <li><cite></cite><a href="$link.setAction('load4MatchapplyIndex')" target="right">参赛报名管理</a><i></i></li>
                 <li><cite></cite><a href="$link.setAction('load4MatchresultSearch')" target="right">参赛结果查询</a><i></i></li>
             </ul>    
         </dd>

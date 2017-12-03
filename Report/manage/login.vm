@@ -18,6 +18,11 @@
 </style>
 
 <script language="javascript">
+    function change_code(obj){
+    	jQuery("#code").attr("src",obj.src+'?'+Math.random());
+    	return false;
+    }
+
 	jQuery(function(){
 		jQuery("#username").focus();
 		
@@ -61,7 +66,7 @@
 	</li>
 	<li>
 		<label style="padding-left:0px;font-size: 14px;">登录用户类型：</label>
-        <select name="logintype" style="width:120px;height:25px;font-size: 14px;border: 1px solid #999;">
+        <select name="logintype" class="dfinput" style="width:100px;">
             <option value="1">注册会员</option>
 			<option value="2">管理员</option>
         </select>
