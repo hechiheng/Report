@@ -102,13 +102,13 @@ public class MatchapplySqlMapDao extends SqlMapDaoTemplate implements
             throws BaseException {
         try {
             return this.queryForList(
-                    "manage.MatchapplyDao.selectMatchapplyAuditList",
+                    "manage.MatchapplyDao.selectMatchapplyAuditList1",
                     matchapply);
         }
         catch (DaoException e) {
-            logger.error("manage.MatchapplyDao.selectMatchapplyAuditList", e);
+            logger.error("manage.MatchapplyDao.selectMatchapplyAuditList1", e);
             throw new BaseException(
-                    "manage.MatchapplyDao.selectMatchapplyAuditList", e);
+                    "manage.MatchapplyDao.selectMatchapplyAuditList1", e);
         }
     }
 

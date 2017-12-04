@@ -139,7 +139,7 @@ public class MatchapplyAction extends BaseAction {
         smb.setMessage(new ActionMessage(
                 "MatchapplyAction.auditMatchapply.success"));
         smb.setLinkText(new ActionMessage("MatchapplyAction.return"));
-        smb.setAction("/load4MatchapplyIndex");
+        smb.setAction("/load4MatchapplyAuditIndex1");
         SysGlobals.setSysMessage(request, smb);
         return mapping.findForward("info");
     }
@@ -219,7 +219,6 @@ public class MatchapplyAction extends BaseAction {
         String memberid = request.getParameter("memberid");
         String annualmatch = request.getParameter("annualmatch");
         String factname = request.getParameter("factname");
-        System.out.println("========memberid====" + memberid);
         if (StringUtils.isEmpty(memberid)) {
             SysMessageBean smb = new SysMessageBean(true);
             smb.setMessage(new ActionMessage(
@@ -341,7 +340,7 @@ public class MatchapplyAction extends BaseAction {
         String p = request.getParameter("p");
         MatchapplyBo bo = new MatchapplyBo();
         int total = bo.getMatchapplyListSize(matchapply);
-        Page page = new Page(total, p, matchapply, "load4MatchapplyMemberList");
+        Page page = new Page(total, p, matchapply, "load4MatchapplyIndex");
         page.setQueryData("matchapply.name", name == null ? "" : name);
         page.setQueryData("matchapply.matchid", matchid + "");
         page.setQueryData("matchapply.state", state + "");
@@ -416,4 +415,118 @@ public class MatchapplyAction extends BaseAction {
         SysGlobals.setSysMessage(request, smb);
         return mapping.findForward("info");
     }
+
+    public ActionForward load4MatchapplyModify(ActionMapping mapping,
+            ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) throws BaseException {
+        String id = request.getParameter("id");
+        MatchapplyForm matchapplyForm = (MatchapplyForm) form;
+        if (id == null) {
+            id = String.valueOf(matchapplyForm.getMatchapply().getId());
+        }
+        MatchapplyBo bo = new MatchapplyBo();
+        Matchapply matchapply = bo.getMatchapply(Integer.valueOf(id));
+        matchapplyForm.setMatchapply(matchapply);
+        if (matchapply.getState() > 1) {
+            SysMessageBean smb = new SysMessageBean(false);
+            smb.setMessage(new ActionMessage("error.exception"));
+            smb.setLinkText(new ActionMessage("MatchapplyAction.return"));
+            smb.setAction("/load4MatchapplyIndex");
+            SysGlobals.setSysMessage(request, smb);
+            return mapping.findForward("info");
+        }
+
+        List<Matchinfo> matchinfoList = bo.getMatchinfoList();
+        request.setAttribute("matchinfoList", matchinfoList);
+        return mapping.findForward("success");
+    }
+
+    @SuppressWarnings("unchecked")
+    public ActionForward modifyMatchapply(ActionMapping mapping,
+            ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) throws BaseException {
+        Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
+                Constants.MANAGE_SESSION);
+        int memberid = Integer.valueOf(sessionMap.get("memberid"));
+        String rootPath = this.getServlet().getServletContext()
+                .getRealPath("/");
+        String contextPath = request.getContextPath();
+        MatchapplyBo bo = new MatchapplyBo();
+        MatchapplyForm matchapplyForm = (MatchapplyForm) form;
+        Matchapply matchapply = matchapplyForm.getMatchapply();
+        matchapply.setRootPath(rootPath);
+        matchapply.setContextPath(contextPath);
+        HttpSession session = request.getSession(false);
+        String imagecode = (String) session.getAttribute("imagecode");
+        if (!imagecode.equals(matchapply.getImagecode())) {
+            ActionMessages am = new ActionMessages();
+            am.add("sysMessage", new ActionMessage("error.input.imagecode"));
+            saveErrors(request, am);
+            return mapping.findForward("failure");
+        }
+        String message = bo.saveFile(matchapply);
+        if (StringUtils.isNotEmpty(message)) {
+            ActionMessages am = new ActionMessages();
+            am.add("sysMessage", new ActionMessage(message));
+            saveErrors(request, am);
+            return mapping.findForward("failure");
+        }
+        matchapply.setMemberid(String.valueOf(memberid));
+        bo.modifyMatchapply(matchapply);
+
+        SysMessageBean smb = new SysMessageBean(false);
+        smb.setMessage(new ActionMessage(
+                "MatchapplyAction.modifyMatchapply.success"));
+        smb.setLinkText(new ActionMessage("MatchapplyAction.return"));
+        smb.setAction("/load4MatchapplyIndex");
+        SysGlobals.setSysMessage(request, smb);
+        return mapping.findForward("info");
+    }
+
+    public ActionForward removeMatchapply(ActionMapping mapping,
+            ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) throws BaseException {
+        String id = request.getParameter("id");
+        MatchapplyBo bo = new MatchapplyBo();
+        bo.removeMatchapply(Integer.valueOf(id));
+
+        SysMessageBean smb = new SysMessageBean(false);
+        smb.setMessage(new ActionMessage(
+                "MatchapplyAction.removeMatchapply.success"));
+        smb.setLinkText(new ActionMessage("MatchapplyAction.return"));
+        smb.setAction("/load4MatchapplyIndex");
+        SysGlobals.setSysMessage(request, smb);
+        return mapping.findForward("info");
+    }
+
+    @SuppressWarnings("unchecked")
+    public ActionForward load4MatchresultSearch(ActionMapping mapping,
+            ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) throws BaseException {
+        Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
+                Constants.MANAGE_SESSION);
+        String memberid = sessionMap.get("memberid");
+        MatchapplyForm matchapplyForm = (MatchapplyForm) form;
+        Matchapply matchapply = matchapplyForm.getMatchapply();
+        matchapply.setMemberid(memberid);
+        String name = matchapply.getName();
+        int matchid = matchapply.getMatchid();
+        String annualmatch = matchapply.getAnnualmatch();
+        String p = request.getParameter("p");
+        MatchapplyBo bo = new MatchapplyBo();
+        int total = bo.getMatchresultListSize(matchapply);
+        Page page = new Page(total, p, matchapply, "load4MatchresultIndex");
+        page.setQueryData("matchapply.name", name == null ? "" : name);
+        page.setQueryData("matchapply.matchid", matchid + "");
+        page.setQueryData("matchapply.annualmatch", annualmatch == null ? ""
+                : annualmatch);
+        List<Matchinfo> matchinfoList = bo.getMatchinfoList();
+        request.setAttribute("matchinfoList", matchinfoList);
+
+        List<Matchapply> matchapplyList = bo.getMatchresultList(matchapply);
+        request.setAttribute("matchapplyList", matchapplyList);
+        request.setAttribute("page", page);
+        return mapping.findForward("success");
+    }
+
 }

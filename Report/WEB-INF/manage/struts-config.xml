@@ -1251,6 +1251,41 @@
 			<forward name="failure" path="/load4MatchapplyAdd.do"/>
         </action>
         <action
+        	path="/load4MatchapplyModify"
+			type="com.report.manage.action.MatchapplyAction"
+			scope="request"
+			name="modifyMatchapplyForm"
+			validate="false"
+			parameter="load4MatchapplyModify">
+			<forward name="success" path="/../manage/matchapply_modify.vm"/>
+        </action>
+        <action
+        	path="/modifyMatchapply"
+			type="com.report.manage.action.MatchapplyAction"
+			scope="request"
+			input="/load4MatchapplyModify.do"
+			name="modifyMatchapplyForm"
+			validate="true"
+			parameter="modifyMatchapply">
+			<forward name="failure" path="/load4MatchapplyModify.do"/>
+        </action>
+        <action
+        	path="/removeMatchapply"
+			type="com.report.manage.action.MatchapplyAction"
+			scope="request"
+			validate="false"
+			parameter="removeMatchapply">
+        </action>
+        <action
+        	path="/load4MatchresultSearch"
+			type="com.report.manage.action.MatchapplyAction"
+			scope="request"
+			name="queryMatchapplyForm"
+			validate="false"
+			parameter="load4MatchresultSearch">
+			<forward name="success" path="/../manage/matchresult_search.vm"/>
+        </action>
+        <action
         	path="/load4MatchresultIndex"
 			type="com.report.manage.action.MatchapplyAction"
 			scope="request"

@@ -26,7 +26,7 @@
 			</li>
 			<li>
 				<label>参赛项目</label>
-				<select name="matchapply.matchid" class="dfinput" style="width:80px;">
+				<select name="matchapply.matchid" class="dfinput" style="width:100px;">
     				<option value="0">--请选择--</option>
     				#set($matchinfoList = $request.getAttribute("matchinfoList"))
     				#foreach($matchinfo in $matchinfoList)
@@ -44,7 +44,7 @@
 			</li>
 			<li>
 				<label>审核状态</label>
-				<select name="matchapply.state" class="dfinput" style="width:80px;">
+				<select name="matchapply.state" class="dfinput" style="width:100px;">
     				<option value="9" #if($!queryMatchapplyForm.matchapply.state==9) selected="selected" #end>--请选择--</option>
     				<option value="0" #if($!queryMatchapplyForm.matchapply.state==0) selected="selected" #end>未提交</option>
     				<option value="1" #if($!queryMatchapplyForm.matchapply.state==1) selected="selected" #end>未审核</option>
@@ -82,7 +82,7 @@
 			<td>$!matchapply.authors</td>
 			<td>
 				#if($!matchapply.state==0)
-					<span style='color: #B8B8B8;'>未提交</span>
+					<span style='color: #3385ff;'>未提交</span>
 				#elseif($!matchapply.state==1)
 					<span style='color: #8A2BE2;'>未审核</span>
 				#elseif($!matchapply.state==2)
@@ -94,6 +94,10 @@
 			<td>$!matchapply.updatetime</td>
 			<td>
 				<a class="tablelink" href="$link.setAction('load4MatchapplyInfo').addQueryData('id',$!matchapply.id)">查看</a>
+				#if($!matchapply.state==0||$!matchapply.state==1)
+				<a class="tablelink" href="$link.setAction('load4MatchapplyModify').addQueryData('id',$!matchapply.id)">编辑</a>
+				<a class="tablelink" href="javascript:;" onclick="toConfirm('$link.setAction('removeMatchapply').addQueryData('id',$!matchapply.id)','该操作不可恢复，确实要删除吗？')">删除</a>
+				#end
             </td>
         </tr>
 		#end

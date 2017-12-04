@@ -147,15 +147,15 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		<isNotEmpty prepend="and" property="factname">
 			d.factname = #factname#
 		</isNotEmpty>
+		<isNotEmpty prepend="and" property="memberid">
+			a.memberid = #memberid#
+		</isNotEmpty>
 		<isNotEmpty prepend="and" property="annualmatch">
 			a.annualmatch = #annualmatch#
 		</isNotEmpty>
 		<isNotEqual prepend="and" property="matchid" compareValue="0">
 			a.matchid = #matchid#
 		</isNotEqual>
-		<isNotEqual prepend="and" property="state" compareValue="9">
-			a.state = #state#
-		</isNotEqual>		
 	</select>
 	
 	<select id="manage.MatchapplyDao.selectMatchresultList" parameterClass="matchapply" resultClass="matchapply">
@@ -172,10 +172,13 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		<isNotEmpty prepend="and" property="factname">
 			d.factname = #factname#
 		</isNotEmpty>
+		<isNotEmpty prepend="and" property="memberid">
+			a.memberid = #memberid#
+		</isNotEmpty>
 		<isNotEmpty prepend="and" property="annualmatch">
 			a.annualmatch = #annualmatch#
 		</isNotEmpty>
-		<isNotEqual prepend="and" property="matchid" compareValue="9">
+		<isNotEqual prepend="and" property="matchid" compareValue="0">
 			a.matchid = #matchid#
 		</isNotEqual>
 		order by a.checktime desc
