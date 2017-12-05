@@ -23,7 +23,7 @@
     		#else
     		<li>
             	<label>参赛项目名称：</label>
-                <input type="text" name="matchinfo.name" title="关键字" class="scinput" style="width: 80px;" value="$!queryMatchinfoForm.matchinfo.name">
+                <input type="text" name="matchinfo.name" title="关键字" class="scinput" style="width: 150px;" value="$!queryMatchinfoForm.matchinfo.name">
     		</li>
             <li>
     			<label>&nbsp;</label>
@@ -35,7 +35,7 @@
         		#if($istrash=="1")
         			<input type="button" onclick="goUrl('$link.setAction('load4MatchinfoIndex')')"  class="scbtn" value="返回" />
         		#else
-        			<input type="button" onclick="goUrl('$link.setAction('load4MatchinfoAdd')')" class="scbtn" value="添加参赛项目" />
+        			<input type="button" style="width: 110px;" onclick="goUrl('$link.setAction('load4MatchinfoAdd')')" class="scbtn" value="添加参赛项目" />
                     <input type="button" onclick="goUrl('$link.setAction('load4MatchinfoIndex').addQueryData('istrash','1')')" class="scbtn" value="回收站" />
         		#end
             </li>

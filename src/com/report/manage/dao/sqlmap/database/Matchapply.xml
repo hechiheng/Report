@@ -39,8 +39,8 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	</select>
 	
 	<select id="manage.MatchapplyDao.selectMatchapplyAuditListSize" parameterClass="matchapply" resultClass="int">
-		select count(t.id) from (
-		select a.annualmatch,d.id,d.accountid,d.factname,d.sex,d.idcard 
+		select count(t.memberid) from (
+		select a.annualmatch,d.id memberid,d.accountid,d.factname,d.sex,d.idcard 
 		from t_matchapply a,t_matchinfo b,t_member d 
 		where a.matchid=b.id and a.isvalid=1 and a.memberid=d.id and a.state>0
 		<isNotEmpty prepend="and" property="name">
@@ -62,7 +62,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	</select>
 	
 	<select id="manage.MatchapplyDao.selectMatchapplyAuditList" parameterClass="matchapply" resultClass="matchapply">
-		select a.annualmatch,d.id,d.accountid,d.factname,d.sex,d.idcard  
+		select a.annualmatch,d.id memberid,d.accountid,d.factname,d.sex,d.idcard  
 		from t_matchapply a,t_matchinfo b,t_member d  
 		where a.matchid=b.id and a.isvalid=1 and a.memberid=d.id and a.state>0
 		<isNotEmpty prepend="and" property="name">
@@ -138,8 +138,8 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	</select>
 	
 	<select id="manage.MatchapplyDao.selectMatchresultListSize" parameterClass="matchapply" resultClass="int">
-		select count(t.id) from (
-		select a.annualmatch,d.id,d.accountid,d.factname,d.sex,d.idcard 
+		select count(t.memberid) from (
+		select a.annualmatch,d.id memberid,d.accountid,d.factname,d.sex,d.idcard 
 		from t_matchapply a,t_matchinfo b,t_member d 
 		where a.matchid=b.id and a.isvalid=1 and a.memberid=d.id and a.state=2
 		<isNotEmpty prepend="and" property="name">
@@ -158,7 +158,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	</select>
 	
 	<select id="manage.MatchapplyDao.selectMatchresultList" parameterClass="matchapply" resultClass="matchapply">
-		select a.annualmatch,d.id,d.accountid,d.factname,d.sex,d.idcard  
+		select a.annualmatch,d.id memberid,d.accountid,d.factname,d.sex,d.idcard  
 		from t_matchapply a,t_matchinfo b,t_member d  
 		where a.matchid=b.id and a.isvalid=1 and a.memberid=d.id and a.state=2
 		<isNotEmpty prepend="and" property="name">

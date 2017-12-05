@@ -46,6 +46,7 @@
 			<li>
 				<label>审核状态</label>
 				<select name="matchapply.state" class="dfinput" style="width:100px;">
+					<option value="9" #if($!queryMatchapplyForm.matchapply.state==9) selected="selected" #end>--请选择--</option>
     				<option value="1" #if($!queryMatchapplyForm.matchapply.state==1) selected="selected" #end>未审核</option>
     				<option value="2" #if($!queryMatchapplyForm.matchapply.state==2) selected="selected" #end>审核通过</option>
     				<option value="3" #if($!queryMatchapplyForm.matchapply.state==3) selected="selected" #end>审核未通过</option>
@@ -70,6 +71,7 @@
             <th>更新时间</th>
             <th>操作</th>
         </tr>
+		<tbody>
 		#set($matchapplyList = $request.getAttribute("matchapplyList"))
 		#foreach($matchapply in $matchapplyList)
 		<tr>
@@ -96,6 +98,7 @@
             </td>
         </tr>
 		#end
+		</tbody>
     </table>
     <div class="page" style="clear: both;">
 		#parse("/home/include/page.vm")

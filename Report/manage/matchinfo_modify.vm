@@ -44,49 +44,49 @@ jQuery(function () {
 		var description = jQuery("#description");
 		var content = jQuery("#content");
 		if(jQuery.trim(annualmatch.val())==''){
-			annualmatch.parent().find("span").remove().end().append("<span class='error'>参赛年度不能为空</span>");
+			annualmatch.parent().find("span").remove().end().append("<span class='errorcolor'>参赛年度不能为空</span>");
 			annualmatch.focus();
 			return false;			
 		}else {
 			annualmatch.parent().find("span").remove().end();
 		}
 		if(jQuery.trim(name.val())==''){
-			name.parent().find("span").remove().end().append("<span class='error'>参赛项目名称不能为空</span>");
+			name.parent().find("span").remove().end().append("<span class='errorcolor'>参赛项目名称不能为空</span>");
 			name.focus();
 			return false;			
 		}else {
 			name.parent().find("span").remove().end();
 		}
 		if(jQuery.trim(begindate.val())==''){
-			begindate.parent().find("span").remove().end().append("<span class='error'>报名开始日期不能为空</span>");
+			begindate.parent().find("span").remove().end().append("<span class='errorcolor'>报名开始日期不能为空</span>");
 			begindate.focus();
 			return false;			
 		}else {
 			begindate.parent().find("span").remove().end();
 		}
 		if(jQuery.trim(enddate.val())==''){
-			enddate.parent().find("span").remove().end().append("<span class='error'>报名截止日期不能为空</span>");
+			enddate.parent().find("span").remove().end().append("<span class='errorcolor'>报名截止日期不能为空</span>");
 			enddate.focus();
 			return false;			
 		}else {
 			enddate.parent().find("span").remove().end();
 		}
 		if(jQuery.trim(optunitname.val())==''){
-			optunitname.parent().find("span").remove().end().append("<span class='error'>主办单位不能为空</span>");
+			optunitname.parent().find("span").remove().end().append("<span class='errorcolor'>主办单位不能为空</span>");
 			optunitname.focus();
 			return false;			
 		}else {
 			optunitname.parent().find("span").remove().end();
 		}
 		if(!UE.getEditor('description').hasContents()){
-			description.parent().find("span").remove().end().append("<span class='error'>摘要不能为空</span>");
+			description.parent().find("span").remove().end().append("<span class='errorcolor'>摘要不能为空</span>");
 			description.focus();
 			return false;			
 		}else {
 			description.parent().find("span").remove().end();
 		}
 		if(!UE.getEditor('content').hasContents()){
-			content.parent().find("span").remove().end().append("<span class='error'>内容不能为空</span>");
+			content.parent().find("span").remove().end().append("<span class='errorcolor'>内容不能为空</span>");
 			content.focus();
 			return false;			
 		}else {

@@ -55,6 +55,10 @@
 				<span>$!matchinfo.annualmatch</span>
 			</li>
 			<li>
+				<label>参赛项目名称：</label>
+				<span>$!matchinfo.name</span>
+			</li>
+			<li>
 				<label>报名日期：</label>
 				<span>$!matchinfo.begindate至$!matchinfo.enddate</span>
 			</li>

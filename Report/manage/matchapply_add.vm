@@ -42,49 +42,49 @@ jQuery(function () {
 		var imagecode = jQuery("input[name='matchapply.imagecode']");
 		var description = jQuery("#description");
 		if(jQuery.trim(annualmatch.val())==''){
-			annualmatch.parent().find("span").remove().end().append("<span class='error'>参赛年度不能为空</span>");
+			annualmatch.parent().find("span").remove().end().append("<span class='errorcolor'>参赛年度不能为空</span>");
 			annualmatch.focus();
 			return false;			
 		}else {
 			annualmatch.parent().find("span").remove().end();
 		}
 		if(jQuery.trim(name.val())==''){
-			name.parent().find("span").remove().end().append("<span class='error'>作品名称不能为空</span>");
+			name.parent().find("span").remove().end().append("<span class='errorcolor'>作品名称不能为空</span>");
 			name.focus();
 			return false;			
 		}else {
 			name.parent().find("span").remove().end();
 		}
 		if(jQuery.trim(unitname.val())==''){
-			unitname.parent().find("span").remove().end().append("<span class='error'>学校名称不能为空</span>");
+			unitname.parent().find("span").remove().end().append("<span class='errorcolor'>学校名称不能为空</span>");
 			unitname.focus();
 			return false;			
 		}else {
 			unitname.parent().find("span").remove().end();
 		}
 		if(jQuery.trim(authors.val())==''){
-			authors.parent().find("span").remove().end().append("<span class='error'>作者姓名不能为空</span>");
+			authors.parent().find("span").remove().end().append("<span class='errorcolor'>作者姓名不能为空</span>");
 			authors.focus();
 			return false;			
 		}else {
 			authors.parent().find("span").remove().end();
 		}
 		if(jQuery.trim(teachers.val())==''){
-			teachers.parent().find("span").remove().end().append("<span class='error'>辅导老师不能为空</span>");
+			teachers.parent().find("span").remove().end().append("<span class='errorcolor'>辅导老师不能为空</span>");
 			teachers.focus();
 			return false;			
 		}else {
 			teachers.parent().find("span").remove().end();
 		}
 		if(!UE.getEditor('description').hasContents()){
-			description.parent().find("span").remove().end().append("<span class='error'>作品简述不能为空</span>");
+			description.parent().find("span").remove().end().append("<span class='errorcolor'>作品简述不能为空</span>");
 			description.focus();
 			return false;			
 		}else {
 			description.parent().find("span").remove().end();
 		}
 		if(jQuery.trim(imagecode.val())==''){
-			imagecode.parent().find("span").remove().end().append("<span class='error'>验证码不能为空</span>");
+			imagecode.parent().find("span").remove().end().append("<span class='errorcolor'>验证码不能为空</span>");
 			imagecode.focus();
 			return false;			
 		}else {

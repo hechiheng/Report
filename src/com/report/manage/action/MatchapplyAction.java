@@ -72,9 +72,9 @@ public class MatchapplyAction extends BaseAction {
         Matchapply matchapply = matchapplyForm.getMatchapply();
         String memberid = matchapply.getMemberid();
         String name = matchapply.getName();
-        String factname = matchapply.getFactname();
         int matchid = matchapply.getMatchid();
         int state = matchapply.getState();
+        System.out.println("-------memberid-----" + memberid);
         String annualmatch = matchapply.getAnnualmatch();
         String p = request.getParameter("p");
         MatchapplyBo bo = new MatchapplyBo();
@@ -83,8 +83,6 @@ public class MatchapplyAction extends BaseAction {
         page.setQueryData("matchapply.memberid", memberid == null ? ""
                 : memberid);
         page.setQueryData("matchapply.name", name == null ? "" : name);
-        page.setQueryData("matchapply.factname", factname == null ? ""
-                : factname);
         page.setQueryData("matchapply.matchid", matchid + "");
         page.setQueryData("matchapply.state", state + "");
         page.setQueryData("matchapply.annualmatch", annualmatch == null ? ""
@@ -179,7 +177,6 @@ public class MatchapplyAction extends BaseAction {
         Matchapply matchapply = matchapplyForm.getMatchapply();
         String memberid = matchapply.getMemberid();
         String name = matchapply.getName();
-        String factname = matchapply.getFactname();
         int matchid = matchapply.getMatchid();
         String annualmatch = matchapply.getAnnualmatch();
         String p = request.getParameter("p");
@@ -189,8 +186,6 @@ public class MatchapplyAction extends BaseAction {
         page.setQueryData("matchapply.memberid", memberid == null ? ""
                 : memberid);
         page.setQueryData("matchapply.name", name == null ? "" : name);
-        page.setQueryData("matchapply.factname", factname == null ? ""
-                : factname);
         page.setQueryData("matchapply.matchid", matchid + "");
         page.setQueryData("matchapply.annualmatch", annualmatch == null ? ""
                 : annualmatch);

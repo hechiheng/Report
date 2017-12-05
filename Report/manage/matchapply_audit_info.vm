@@ -82,11 +82,11 @@
 			</li>
 			<li>
 				<label>作品简述：</label>
-				<span><textarea id="description" readonly="readonly">$!matchapply.description</textarea></span>
+				<span style="display: flex;"><textarea id="description" readonly="readonly">$!matchapply.description</textarea></span>
 			</li>
 			<li>
 				<label>附件资料：</label>
-				<span><a target="_blank" href="$!matchapply.filepath" title="$!matchapply.filename">$!matchapply.filename</a></span>
+				<span style="display: flex;"><a target="_blank" href="$!matchapply.filepath" title="$!matchapply.filename">$!matchapply.filename</a></span>
 			</li>
         </ul>
 		<div class="h3">
@@ -107,7 +107,7 @@
 				<span>$!matchapply.awards</span>
 			</li>
 			<li>
-				<label>是否发布：</label>
+				<label>发布状态：</label>
 				<span>
     				#if($matchapply.ispublish==0)
     					未发布
