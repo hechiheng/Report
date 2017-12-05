@@ -3,48 +3,81 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
-<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css1/style.css')" />
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/ueditor/ueditor.config.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/ueditor/ueditor.all.min.js')"></script>
 <style type="text/css">
-.h3{padding:5px; background:#C5E3FA; font-size:14px; font-weight:bold;}
-.biaoti{font-size:2.2em; font-family: Microsoft YaHei;font-weight:500; color:#000; line-height:1.5; text-align:center;margin-bottom: 10px;}
-.biaoti_sub{font-size: 9pt;color:#888;text-align:center;margin-bottom:10px;}
-.wzzw{padding:10px; line-height:21px;}
-.lh{font-size:14px; line-height:28px;}
+.h3{padding:5px; background:#C5E3FA; font-size:14px; font-weight:bold;border-left: 5px #0099FF solid;}
 </style>
 <script type="text/javascript">
+	window.UEDITOR_HOME_URL = "ueditor/";
+	window.onload = function() {
+		UE.getEditor('description', {
+    		toolbars: [
+                ['fullscreen']
+            ],
+            initialFrameWidth : 800,
+            initialFrameHeight: 100,
+			readonly : true
+        });
+		UE.getEditor('content', {
+    		toolbars: [
+                ['fullscreen']
+            ],
+            initialFrameWidth : 800,
+            initialFrameHeight: 400,
+			readonly : true
+        });
+		
+    }
+
 </script>
 </head>
 <body>
 <div class="main">
-    <div class="pos">查看参赛项目</div>
-	<div class="form">
-		<div class="biaoti" align="center">$!matchinfo.name</div>
-		<div class="biaoti_sub">
-			<span>参赛年度:$!matchinfo.annualmatch</span>
-			<span>报名日期:$!matchinfo.begindate至$!matchinfo.enddate</span>
-		</div>
-		<div class="biaoti_sub">
-			<span>参赛类型:$!matchinfo.matchtypename</span>
-			<span>主办单位:$!matchinfo.optunitname</span>
-		</div>
+	<div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="$link.setAction('load4MatchinfoIndex')">参赛项目管理</a></li>
+            <li><a href="#">查看参赛项目</a></li>
+        </ul>
+    </div>
+	<div class="formbody">
 		<div class="h3">
-			<span>参赛简述</span>
+			<span>参赛项目信息</span>
 		</div>
-		<div class="wzzw lh" id="content">
-			$!matchinfo.description
-		</div>
-		<div class="h3">
-			<span>参赛详细说明</span>
-		</div>
-		<div class="wzzw lh" id="content">
-			$!matchinfo.content
-		</div>
-		<div>		
-			<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
-		</div>
+		<ul class="forminfo">
+			<li>
+				<label>参赛年度：</label>
+				<span>$!matchinfo.annualmatch</span>
+			</li>
+			<li>
+				<label>报名日期：</label>
+				<span>$!matchinfo.begindate至$!matchinfo.enddate</span>
+			</li>
+			<li>
+				<label>参赛类型：</label>
+				<span>$!matchinfo.matchtypename</span>
+			</li>
+			<li>
+				<label>主办单位：</label>
+				<span>$!matchinfo.optunitname</span>
+			</li>
+			<li>
+				<label>参赛简述：</label>
+				<span><textarea id="description" readonly="readonly">$!matchinfo.description</textarea></span>
+			</li>
+			<li>
+				<label>参赛详细说明：</label>
+				<span><textarea id="content" readonly="readonly">$!matchinfo.content</textarea></span>
+			</li>
+			<li>
+        		<input type="button" class="btn" id="back" value="返 回" onclick="javascript:history.back();" />
+            </li>
+        </ul>
 	</div>
 </div>
 

@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
+</head>
+<body>
+<div class="main">
+    <div class="pos">
+    	<a href="$link.setAction('load4MatchresultIndex')">参赛结果管理</a>
+    </div>
+    <div class="operate">
+        <div class="left">
+        </div>
+		<div class="left_pad">
+            <form method="get" action="$link.setAction('load4MatchresultIndex')">
+				<input type="hidden" name="matchapply.memberid" value="$!queryMatchapplyForm.matchapply.memberid">
+            	<span style='font-size: 14px;vertical-align: middle;'>参赛年度(YYYY)：</span>
+				<input type="text" id="annualmatch" name="matchapply.annualmatch" class="inp_small" value="$!queryMatchapplyForm.matchapply.annualmatch">
+				<span style='font-size: 14px;vertical-align: middle;'>参赛项目：</span>
+				<select name="matchapply.matchid">
+					<option value="0">--请选择--</option>
+					#set($matchinfoList = $request.getAttribute("matchinfoList"))
+					#foreach($matchinfo in $matchinfoList)
+						#if($!matchinfo.id==$!queryMatchapplyForm.matchapply.matchid)
+							<option value="$!matchinfo.id" selected="selected">$!matchinfo.name</option>
+						#else
+							<option value="$!matchinfo.id">$!matchinfo.name</option>
+						#end
+					#end
+				</select>
+            	<span style='font-size: 14px;vertical-align: middle;'>作品名称：</span>
+                <input type="text" name="matchapply.name" title="关键字" class="inp_small" value="$!queryMatchapplyForm.matchapply.name">
+                <input type="submit" class="btn_blue" value="查  询">
+            </form>
+        </div>
+    </div>
+    <div class="list">    
+        <table width="100%">
+            <tr>
+                <th>编号</th>
+				<th class="aleft">作品名称</th>
+				<th class="aleft">学校</th>
+				<th class="aleft">作者</th>
+				<th>参赛结果</th>
+                <th>审核时间</th>
+                <th>操作</th>
+            </tr>
+			#set($matchapplyList = $request.getAttribute("matchapplyList"))
+			#foreach($matchapply in $matchapplyList)
+			<tr>
+				<td>$!matchapply.id</td>
+				<td class='aleft'>$!matchapply.name</td>
+				<td class='aleft'>$!matchapply.unitname</td>
+				<td class='aleft'>$!matchapply.authors</td>
+				<td>
+					#if($matchapply.matchresultid==0)
+						未录入
+					#elseif($matchapply.ispublish==0)
+						未发布
+					#elseif($matchapply.ispublish==1)
+						已发布
+					#end
+				</td>
+				<td>$!matchapply.checktime</td>
+				<td>
+					<a href="$link.setAction('load4MatchapplyAuditInfo').addQueryData('id',$!matchapply.id)">查看</a>
+					<a href="$link.setAction('load4MatchresultModify').addQueryData('id',$!matchapply.id)">录入参赛结果</a>
+                </td>
+            </tr>
+			#end
+        </table>
+        <div class="page" style="clear: both;">
+			#parse("/home/include/page.vm")
+        </div>
+    </div>
+</div>
+</body>
+</html>

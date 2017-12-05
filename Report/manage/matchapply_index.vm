@@ -45,7 +45,6 @@
 			<li>
 				<label>审核状态</label>
 				<select name="matchapply.state" class="dfinput" style="width:100px;">
-    				<option value="9" #if($!queryMatchapplyForm.matchapply.state==9) selected="selected" #end>--请选择--</option>
     				<option value="0" #if($!queryMatchapplyForm.matchapply.state==0) selected="selected" #end>未提交</option>
     				<option value="1" #if($!queryMatchapplyForm.matchapply.state==1) selected="selected" #end>未审核</option>
     				<option value="2" #if($!queryMatchapplyForm.matchapply.state==2) selected="selected" #end>审核通过</option>

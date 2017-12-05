@@ -1295,6 +1295,15 @@
 			<forward name="success" path="/../manage/matchresult_index.vm"/>
         </action>
         <action
+        	path="/load4MatchresultIndex1"
+			type="com.report.manage.action.MatchapplyAction"
+			scope="request"
+			name="queryMatchapplyForm"
+			validate="false"
+			parameter="load4MatchresultIndex1">
+			<forward name="success" path="/../manage/matchresult_index1.vm"/>
+        </action>
+        <action
         	path="/load4MatchresultModify"
 			type="com.report.manage.action.MatchapplyAction"
 			scope="request"

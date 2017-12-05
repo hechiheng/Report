@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
-<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css1/style.css')" />
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
@@ -18,13 +18,13 @@
     		toolbars: [
                 ['fullscreen', 'source', 'undo', 'redo']
             ],
-            initialFrameWidth : 600,
+            initialFrameWidth : 800,
             initialFrameHeight: 100
         });
 		
 		UE.getEditor('content', {
-            initialFrameWidth : 600,
-            initialFrameHeight: 300
+            initialFrameWidth : 800,
+            initialFrameHeight: 400
         });
     }
 
@@ -106,27 +106,27 @@ jQuery(function () {
 </head>
 <body>
 <div class="main">
-    <div class="pos">添加参赛项目</div>
-	<div class="form">
+	<div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="$link.setAction('load4MatchinfoIndex')">参赛项目管理</a></li>
+            <li><a href="#">添加参赛项目</a></li>
+        </ul>
+    </div>
+	<div class="formbody">
 		<form method='post' id="form_do" name="form_do" action="$link.setAction('addMatchinfo')">
-		<dl>
-			<dt>参赛年度：</dt>
-			<dd>
-				<input type="text" id="annualmatch" name="matchinfo.annualmatch" class="inp_one" value="$!addMatchinfoForm.matchinfo.annualmatch"/>
-				<span style="color: red;">*(格式：YYYY)</span>
-			</dd>
-		</dl>
-		<dl>
-			<dt>参赛项目名称：</dt>
-			<dd>
-				<input type="text" name="matchinfo.name" class="inp_large" value="$!addMatchinfoForm.matchinfo.name"/>
-				<span style="color: red;">*</span>
-			</dd>
-		</dl>
-		<dl>
-			<dt> 参赛类型：</dt>
-			<dd>
-				<select name="matchinfo.matchtype">
+		<ul class="forminfo">
+			<li>
+				<label>参赛年度<b>*</b></label>
+				<input type="text" id="annualmatch" name="matchinfo.annualmatch" class="dfinput" style="width:100px;" value="$!addMatchinfoForm.matchinfo.annualmatch"/>
+			</li>
+			<li>
+				<label>参赛项目名称<b>*</b></label>
+				<input type="text" name="matchinfo.name" class="dfinput" style="width:600px;" value="$!addMatchinfoForm.matchinfo.name"/>
+			</li>
+			<li>
+				<label>参赛类型<b>*</b></label>
+				<select name="matchinfo.matchtype" class="dfinput" style="width:300px;">
 					#set($matchtypeList = $request.getAttribute("matchtypeList"))
 					#foreach($matchtype in $matchtypeList)
 						#if($!matchtype.id==$!addMatchinfoForm.matchinfo.matchtype)
@@ -136,13 +136,10 @@ jQuery(function () {
 						#end
 					#end
 				</select>
-			</dd>
-		</dl>	
-		<dl>
-            <dt> 报名开始日期：</dt>
-            <dd>
-                <input type="text" class="inp_one" name="matchinfo.begindate" id="begindate" readonly="readonly" value="$!addMatchinfoForm.matchinfo.begindate"/>
-				<span style="color: red;">*</span>
+			</li>
+			<li>
+				<label>报名开始日期<b>*</b></label>
+				<input type="text" class="dfinput" style="width:200px;" name="matchinfo.begindate" id="begindate" readonly="readonly" value="$!addMatchinfoForm.matchinfo.begindate"/>
                 <script type="text/javascript">
                     Calendar.setup({
                         weekNumbers: true,
@@ -154,13 +151,10 @@ jQuery(function () {
                         onSelect   : function() {this.hide();}
                     });
                 </script>
-            </dd>
-        </dl>	
-		<dl>
-            <dt> 报名截止日期：</dt>
-            <dd>
-                <input type="text" class="inp_one" name="matchinfo.enddate" id="enddate" readonly="readonly" value="$!addMatchinfoForm.matchinfo.enddate"/>
-				<span style="color: red;">*</span>
+			</li>
+			<li>
+				<label>报名截止日期<b>*</b></label>
+				<input type="text" class="dfinput" style="width:200px;" name="matchinfo.enddate" id="enddate" readonly="readonly" value="$!addMatchinfoForm.matchinfo.enddate"/>
                 <script type="text/javascript">
                     Calendar.setup({
                         weekNumbers: true,
@@ -172,34 +166,28 @@ jQuery(function () {
                         onSelect   : function() {this.hide();}
                     });
                 </script>
-            </dd>
-        </dl>	
-		<dl>
-			<dt>主办单位：</dt>
-			<dd>
-				<input type="text" name="matchinfo.optunitname" class="inp_large" value="$!addMatchinfoForm.matchinfo.optunitname"/>
-				<span style="color: red;">*</span>
-			</dd>
-		</dl>
-		<dl>
-			<dt>参赛简述：</dt>
-			<dd>
-				<textarea name="matchinfo.description" id="description">$!addMatchinfoForm.matchinfo.description</textarea>
-			</dd>
-		</dl>
-		<dl>
-			<dt>参赛详细说明：</dt>
-			<dd>
-				<textarea name="matchinfo.content" id="content">$!addMatchinfoForm.matchinfo.content</textarea>
-			</dd>
-		</dl>
-		<dl>
-			<span class='error'>#errorMarkup()</span>
-        </dl>
-		<div class="form_b">		
-			<input type="submit" class="btn_blue" id="submit" value="提 交">
-			<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
-		</div>
+			</li>
+			<li>
+				<label>主办单位<b>*</b></label>
+				<input type="text" name="matchinfo.optunitname" class="dfinput" style="width:600px;" value="$!addMatchinfoForm.matchinfo.optunitname"/>
+			</li>
+			<li>
+				<label>参赛简述</label>
+				<label style="margin-bottom: 13px;"><textarea name="matchinfo.description" id="description">$!addMatchinfoForm.matchinfo.description</textarea></label>
+			</li>
+			<li>
+				<label>参赛详细说明</label>
+				<label style="margin-bottom: 13px;"><textarea name="matchinfo.content" id="content">$!addMatchinfoForm.matchinfo.content</textarea></label>
+			</li>
+			<li>
+				<span class='errorcolor'>#errorMarkup()</span>
+            </li>
+			<li>
+				<label>&nbsp;</label>
+				<input name="" type="submit" class="btn" value="保存"/>
+				<input type="button" class="btn" id="back" value="返 回" onclick="javascript:history.back();" />
+			</li>
+        </ul>
 	   </form>
 	</div>
 </div>

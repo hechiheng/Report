@@ -11,9 +11,6 @@
 <script type="text/javascript" src="$link.setRelative('/manage/ueditor/ueditor.all.min.js')"></script>
 <style type="text/css">
 .h3{padding:5px; background:#C5E3FA; font-size:14px; font-weight:bold;border-left: 5px #0099FF solid;}
-.wzzw{padding:10px; line-height:21px;}
-.lh{font-size:14px; line-height:28px;}
-
 </style>
 <script type="text/javascript">
 	window.UEDITOR_HOME_URL = "ueditor/";

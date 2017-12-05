@@ -69,6 +69,16 @@ public class MatchapplyBo {
         return dao.selectMatchresultList(matchapply);
     }
 
+    public int getMatchresultList1Size(Matchapply matchapply)
+            throws BaseException {
+        return dao.selectMatchresultList1Size(matchapply);
+    }
+
+    public List<Matchapply> getMatchresultList1(Matchapply matchapply)
+            throws BaseException {
+        return dao.selectMatchresultList1(matchapply);
+    }
+
     public Matchapply getMatchapply(int id) throws BaseException {
         return dao.selectMatchapply(id);
     }

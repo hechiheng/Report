@@ -140,6 +140,34 @@ public class MatchapplySqlMapDao extends SqlMapDaoTemplate implements
         }
     }
 
+    public int selectMatchresultList1Size(Matchapply matchapply)
+            throws BaseException {
+        try {
+            return (Integer) this.queryForObject(
+                    "manage.MatchapplyDao.selectMatchresultList1Size",
+                    matchapply);
+        }
+        catch (DaoException e) {
+            logger.error("manage.MatchapplyDao.selectMatchresultList1Size", e);
+            throw new BaseException(
+                    "manage.MatchapplyDao.selectMatchresultList1Size", e);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Matchapply> selectMatchresultList1(Matchapply matchapply)
+            throws BaseException {
+        try {
+            return this.queryForList(
+                    "manage.MatchapplyDao.selectMatchresultList1", matchapply);
+        }
+        catch (DaoException e) {
+            logger.error("manage.MatchapplyDao.selectMatchresultList1", e);
+            throw new BaseException(
+                    "manage.MatchapplyDao.selectMatchresultList1", e);
+        }
+    }
+
     @SuppressWarnings("unchecked")
     public List<Matchinfo> selectMatchinfoList() throws BaseException {
         try {

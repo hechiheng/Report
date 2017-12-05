@@ -33,6 +33,12 @@ public interface MatchapplyDao {
     public List<Matchapply> selectMatchresultList(Matchapply matchapply)
             throws BaseException;
 
+    public int selectMatchresultList1Size(Matchapply matchapply)
+            throws BaseException;
+
+    public List<Matchapply> selectMatchresultList1(Matchapply matchapply)
+            throws BaseException;
+
     public Matchapply selectMatchapply(int id) throws BaseException;
 
     public List<Matchinfo> selectMatchinfoList() throws BaseException;

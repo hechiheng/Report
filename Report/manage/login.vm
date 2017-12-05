@@ -66,14 +66,12 @@
 	</li>
 	<li>
 		<label style="padding-left:0px;font-size: 14px;">登录用户类型：</label>
-        <select name="logintype" class="dfinput" style="width:100px;">
-            <option value="1">注册会员</option>
-			<option value="2">管理员</option>
-        </select>
+		<label style="width: 40px;padding-left: 5px; */"><input type="radio" name="logintype" value="1" checked="checked"/>参赛会员</label>
+		<label style="width: 40px;padding-left: 5px; */"><input type="radio" name="logintype" value="2" />管理员</label>
     </li>
     <li style="clear:both">
 		<input type="submit" class="loginbtn" value="登录"/>
-		<input type="button" class="loginbtn" onclick="goUrl('$link.setAction('load4MemberReg')')" value="注册" style="margin-left: 50px;"/>
+		<input type="button" class="loginbtn" onclick="goUrl('$link.setAction('load4MemberReg')')" value="注册会员" style="margin-left: 50px;"/>
 	</li>
     <li><span class="errorcolor">#errorMarkup()</span></li>
     </ul>

@@ -172,6 +172,37 @@ public class MatchapplyAction extends BaseAction {
         return mapping.findForward("success");
     }
 
+    public ActionForward load4MatchresultIndex1(ActionMapping mapping,
+            ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) throws BaseException {
+        MatchapplyForm matchapplyForm = (MatchapplyForm) form;
+        Matchapply matchapply = matchapplyForm.getMatchapply();
+        String memberid = matchapply.getMemberid();
+        String name = matchapply.getName();
+        String factname = matchapply.getFactname();
+        int matchid = matchapply.getMatchid();
+        String annualmatch = matchapply.getAnnualmatch();
+        String p = request.getParameter("p");
+        MatchapplyBo bo = new MatchapplyBo();
+        int total = bo.getMatchresultList1Size(matchapply);
+        Page page = new Page(total, p, matchapply, "load4MatchresultIndex1");
+        page.setQueryData("matchapply.memberid", memberid == null ? ""
+                : memberid);
+        page.setQueryData("matchapply.name", name == null ? "" : name);
+        page.setQueryData("matchapply.factname", factname == null ? ""
+                : factname);
+        page.setQueryData("matchapply.matchid", matchid + "");
+        page.setQueryData("matchapply.annualmatch", annualmatch == null ? ""
+                : annualmatch);
+        List<Matchinfo> matchinfoList = bo.getMatchinfoList();
+        request.setAttribute("matchinfoList", matchinfoList);
+
+        List<Matchapply> matchapplyList = bo.getMatchresultList1(matchapply);
+        request.setAttribute("matchapplyList", matchapplyList);
+        request.setAttribute("page", page);
+        return mapping.findForward("success");
+    }
+
     public ActionForward load4MatchresultModify(ActionMapping mapping,
             ActionForm form, HttpServletRequest request,
             HttpServletResponse response) throws BaseException {
@@ -514,7 +545,7 @@ public class MatchapplyAction extends BaseAction {
         String annualmatch = matchapply.getAnnualmatch();
         String p = request.getParameter("p");
         MatchapplyBo bo = new MatchapplyBo();
-        int total = bo.getMatchresultListSize(matchapply);
+        int total = bo.getMatchresultList1Size(matchapply);
         Page page = new Page(total, p, matchapply, "load4MatchresultIndex");
         page.setQueryData("matchapply.name", name == null ? "" : name);
         page.setQueryData("matchapply.matchid", matchid + "");
@@ -523,7 +554,7 @@ public class MatchapplyAction extends BaseAction {
         List<Matchinfo> matchinfoList = bo.getMatchinfoList();
         request.setAttribute("matchinfoList", matchinfoList);
 
-        List<Matchapply> matchapplyList = bo.getMatchresultList(matchapply);
+        List<Matchapply> matchapplyList = bo.getMatchresultList1(matchapply);
         request.setAttribute("matchapplyList", matchapplyList);
         request.setAttribute("page", page);
         return mapping.findForward("success");
