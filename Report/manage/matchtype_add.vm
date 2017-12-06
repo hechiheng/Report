@@ -30,29 +30,33 @@ jQuery(function () {
 </head>
 <body>
 <div class="main">
-    <div class="pos">添加赛事类型</div>
-	<div class="form">
+	<div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="$link.setAction('load4MatchtypeIndex')">赛事类型管理</a></li>
+            <li><a href="#">添加赛事类型</a></li>
+        </ul>
+    </div>
+	<div class="formbody">
 		<form method='post' id="form_do" name="form_do" action="$link.setAction('addMatchtype')">
-		<dl>
-			<dt>赛事类型名称：</dt>
-			<dd>
-				<input type="text" name="matchtype.name" class="inp_one" value="$!addMatchtypeForm.matchtype.name"/>
-				<span style="color: red;">*</span>
-			</dd>
-		</dl>
-		<dl>
-			<dt>赛事类型描述：</dt>
-			<dd>
-				<textarea name="matchtype.description" class="tarea_default">$!addMatchtypeForm.matchtype.description</textarea>
-			</dd>
-		</dl>
-		<dl>
-			<span class='error'>#errorMarkup()</span>
-        </dl>
-		<div class="form_b">		
-			<input type="submit" class="btn_blue" id="submit" value="提 交">
-			<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
-		</div>
+		<ul class="forminfo">
+			<li>
+				<label>赛事类型名称<b>*</b></label>
+				<input type="text" name="matchtype.name" class="dfinput" style="width:300px;" value="$!addMatchtypeForm.matchtype.name"/>
+			</li>
+			<li>
+				<label>赛事类型描述</label>
+				<textarea name="matchtype.description" class="dfinput" style="width:600px;height:100px;">$!addMatchtypeForm.matchtype.description</textarea>
+			</li>
+			<li>
+				<span class='errorcolor'>#errorMarkup()</span>
+            </li>
+			<li>
+				<label>&nbsp;</label>
+				<input name="" type="submit" class="btn" value="保存"/>
+				<input type="button" class="btn" id="back" value="返 回" onclick="javascript:history.back();" />
+			</li>
+        </ul>
 	   </form>
 	</div>
 </div>

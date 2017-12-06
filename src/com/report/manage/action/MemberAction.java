@@ -106,16 +106,26 @@ public class MemberAction extends BaseAction {
         return mapping.findForward("info");
     }
 
-    @SuppressWarnings("unchecked")
     public ActionForward load4MemberInfo(ActionMapping mapping,
             ActionForm form, HttpServletRequest request,
             HttpServletResponse response) throws BaseException {
         String id = request.getParameter("id");
         if (id == null) {
-            Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
-                    Constants.MANAGE_SESSION);
-            id = sessionMap.get("memberid");
+            return null;
         }
+        MemberBo bo = new MemberBo();
+        Member member = bo.getMember(Integer.valueOf(id));
+        request.setAttribute("member", member);
+        return mapping.findForward("success");
+    }
+
+    @SuppressWarnings("unchecked")
+    public ActionForward load4MemberInfo1(ActionMapping mapping,
+            ActionForm form, HttpServletRequest request,
+            HttpServletResponse response) throws BaseException {
+        Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
+                Constants.MANAGE_SESSION);
+        String id = sessionMap.get("memberid");
         MemberBo bo = new MemberBo();
         Member member = bo.getMember(Integer.valueOf(id));
         request.setAttribute("member", member);

@@ -700,6 +700,14 @@
 			<forward name="success" path="/../manage/member_info.vm"/>
         </action>
         <action
+        	path="/load4MemberInfo1"
+			type="com.report.manage.action.MemberAction"
+			scope="request"
+			validate="false"
+			parameter="load4MemberInfo1">
+			<forward name="success" path="/../manage/member_info1.vm"/>
+        </action>
+        <action
         	path="/load4MemberModify"
 			type="com.report.manage.action.MemberAction"
 			scope="request"

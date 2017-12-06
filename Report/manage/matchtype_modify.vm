@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
-<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css1/style.css')" />
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
@@ -30,30 +30,34 @@ jQuery(function () {
 </head>
 <body>
 <div class="main">
-    <div class="pos">修改赛事类型</div>
-	<div class="form">
+	<div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="$link.setAction('load4MatchtypeIndex')">赛事类型管理</a></li>
+            <li><a href="#">修改赛事类型</a></li>
+        </ul>
+    </div>
+	<div class="formbody">
 		<form method='post' id="form_do" name="form_do" action="$link.setAction('modifyMatchtype')">
-		<dl>
-			<dt>赛事类型名称：</dt>
-			<dd>
-				<input type="text" name="matchtype.name" class="inp_large" value="$!modifyMatchtypeForm.matchtype.name"/>
-				<span style="color: red;">*</span>
-			</dd>
-		</dl>
-		<dl>
-			<dt>赛事类型描述：</dt>
-			<dd>
-				<textarea name="matchtype.description" class="tarea_default">$!modifyMatchtypeForm.matchtype.description</textarea>
-			</dd>
-		</dl>
-		<dl>
-			<span class='error'>#errorMarkup()</span>
-        </dl>
-		<div class="form_b">		
-			<input type="hidden" name="matchtype.id" value="$!modifyMatchtypeForm.matchtype.id" />
-			<input type="submit" class="btn_blue" id="submit" value="提 交">
-			<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
-		</div>
+		<ul class="forminfo">
+			<li>
+				<label>赛事类型名称<b>*</b></label>
+				<input type="text" name="matchtype.name" class="dfinput" style="width:300px;" value="$!modifyMatchtypeForm.matchtype.name"/>
+			</li>
+			<li>
+				<label>赛事类型描述</label>
+				<textarea name="matchtype.description" class="dfinput" style="width:600px;height:100px;">$!modifyMatchtypeForm.matchtype.description</textarea>
+			</li>
+			<li>
+				<span class='errorcolor'>#errorMarkup()</span>
+            </li>
+			<li>
+				<label>&nbsp;</label>
+				<input type="hidden" name="matchtype.id" value="$!modifyMatchtypeForm.matchtype.id" />
+				<input name="" type="submit" class="btn" value="保存"/>
+				<input type="button" class="btn" id="back" value="返 回" onclick="javascript:history.back();" />
+			</li>
+        </ul>
 	   </form>
 	</div>
 </div>
