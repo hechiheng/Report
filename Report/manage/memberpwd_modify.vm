@@ -57,15 +57,15 @@ jQuery(function () {
 		<form method='post' id="form_do" name="form_do" action="$link.setAction('modifyMemberPwd')">
 		<ul class="forminfo">
 			<li>
-				<label>当前密码<b>*</b></label>
+				<label>当前密码：<b>*</b></label>
 				<input type="password" name="member.password_old" class="dfinput" style="width:200px;"/>
 			</li>
 			<li>
-				<label>新密码<b>*</b></label>
+				<label>新密码：<b>*</b></label>
 				<input type="password" name="member.password" class="dfinput" style="width:200px;" />
 			</li>
 			<li>
-				<label>确认新密码<b>*</b></label>
+				<label>确认新密码：<b>*</b></label>
 				<input type="password" name="member.password_re" class="dfinput" style="width:200px;" />
 			</li>
 			<li>

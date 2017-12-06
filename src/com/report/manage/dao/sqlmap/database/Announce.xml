@@ -30,6 +30,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	<select id="manage.AnnounceDao.selectAnnounce" parameterClass="int" resultClass="announce">
 		select id,title,content,ispublish,DATE_FORMAT(FROM_UNIXTIME(starttime),'%Y-%m-%d %H:%i:%s') starttime,
 		DATE_FORMAT(FROM_UNIXTIME(endtime),'%Y-%m-%d %H:%i:%s') endtime,
+		<![CDATA[ if(UNIX_TIMESTAMP(NOW())>starttime and UNIX_TIMESTAMP(NOW())<endtime,0,1) as isexpire,]]>
 		DATE_FORMAT(FROM_UNIXTIME(publishtime),'%Y-%m-%d %H:%i:%s') publishtime,
 		DATE_FORMAT(FROM_UNIXTIME(updatetime),'%Y-%m-%d %H:%i:%s') updatetime 
 		from t_announce t where t.id=#id#

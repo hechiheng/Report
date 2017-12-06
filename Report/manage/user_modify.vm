@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
-<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css1/style.css')" />
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
@@ -15,7 +15,7 @@ jQuery(function () {
      jQuery("#form_do").submit(function(){
 		var factname = jQuery("input[name='user.factname']");
 		if(jQuery.trim(factname.val())==''){
-			factname.parent().find("span").remove().end().append("<span class='error'>姓名不能为空</span>");
+			factname.parent().find("span").remove().end().append("<span class='errorcolor'>姓名不能为空</span>");
 			factname.focus();
 			return false;			
 		}else {
@@ -31,73 +31,74 @@ jQuery(function () {
 </head>
 <body>
 <div class="main">
-    <div class="pos">修改用户</div>
-	<div class="form">
+	<div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="$link.setAction('load4UserIndex')">用户管理</a></li>
+            <li><a href="#">修改用户</a></li>
+        </ul>
+    </div>
+	<div class="formbody">
 		<form method='post' id="form_do" name="form_do" action="$link.setAction('modifyUser')">
-		<dl>
-			<dt>用户名：</dt>
-			<dd>
-				<span style="font-size: 14px;font-weight: bold;">$!modifyUserForm.user.username</span>
-			</dd>
-		</dl>
-		<dl>
-			<dt>姓名：</dt>
-			<dd>
-				<input type="text" name="user.factname" class="inp_one" value="$!modifyUserForm.user.factname"/>
-				<span style="color: red;">*</span>
-			</dd>
-		</dl>
-		<dl>
-			<dt> 性别：</dt>
-			<dd>
-				<label><input type="radio" name="user.sex" value="1" #if($!modifyUserForm.user.sex==1) checked="checked" #end/>男&nbsp;</label>
-				<label><input type="radio" name="user.sex" value="2" #if($!modifyUserForm.user.sex==2) checked="checked" #end/>女</label>
-			</dd>
-		</dl>
-		<dl>
-			<dt>邮箱：</dt>
-			<dd>
-				<input type="text" name="user.email" class="inp_large" value="$!modifyUserForm.user.email"/>
-			</dd>
-		</dl>
-		<dl>
-			<dt>QQ：</dt>
-			<dd>
-				<input type="text" name="user.qq" class="inp_one" value="$!modifyUserForm.user.qq"/>
-			</dd>
-		</dl>
-		<dl>
-			<dt>电话：</dt>
-			<dd>
-				<input type="text" name="user.tel" class="inp_one" value="$!modifyUserForm.user.tel"/>
-			</dd>
-		</dl>
-		<dl>
-			<dt> 岗位：</dt>
-			<dd>
-				<select name="user.roleid">
+		<ul class="forminfo">
+            <li>
+				<label>用户名：<b>*</b></label>
+				<span>$!modifyUserForm.user.username</span>
+			</li>
+			<li>
+				<label>登录密码：<b>*</b></label>
+				<input type="password" name="user.password" class="dfinput" style="width:300px;" value=""/>
+			</li>
+			<li>
+				<label>确认密码：<b>*</b></label>
+				<input type="password" name="user.password_re" class="dfinput" style="width:300px;" value=""/>
+			</li>
+			<li>
+				<label>姓名：<b>*</b></label>
+				<input type="text" name="user.factname" class="dfinput" style="width:300px;" value="$!modifyUserForm.user.factname"/>
+			</li>
+			<li>
+				<label>性别：<b>*</b></label>
+				<label style="width: 50px;"><input type="radio" name="user.sex" value="1" checked="checked"/>男&nbsp;</label>
+				<label style="width: 50px;"><input type="radio" name="user.sex" value="2" />女</label>
+			</li>
+			<li>
+				<label>邮箱：</label>
+				<input type="text" name="user.email" class="dfinput" style="width:300px;" value="$!modifyUserForm.user.email"/>
+			</li>
+			<li>
+				<label>QQ：</label>
+				<input type="text" name="user.qq" class="dfinput" style="width:300px;" value="$!modifyUserForm.user.qq"/>
+			</li>
+			<li>
+				<label>电话：</label>
+				<input type="text" name="user.tel" class="dfinput" style="width:300px;" value="$!modifyUserForm.user.tel"/>
+			</li>
+			<li>
+				<label>岗位：</label>
+				<select name="user.roleid" class="dfinput" style="width:300px;">
 					#set($roleList = $request.getAttribute("roleList"))
 					#foreach($role in $roleList)
-						#if($!role.id==$!modifyUserForm.role.roleid)
+						#if($!role.id==$!modifyUserForm.user.roleid)
 							<option value="$!role.id" selected="selected">$!role.name</option>
 						#else
 							<option value="$!role.id">$!role.name</option>
 						#end
 					#end
 				</select>
-			</dd>
-		</dl>
-		<dl>
-			<span class='error'>#errorMarkup()</span>
-        </dl>
-		<div class="form_b">		
-			<input type="hidden" name="user.id" value="$!modifyUserForm.user.id" />
-			<input type="hidden" name="user.isself" value="$!modifyUserForm.user.isself" />
-			<input type="submit" class="btn_blue" id="submit" value="提 交">
-			#if($!modifyUserForm.user.isself==0)
-			<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
-			#end
-		</div>
+			</li>
+			<li>
+				<span class='errorcolor'>#errorMarkup()</span>
+            </li>
+            <li>
+				<input type="hidden" name="user.id" value="$!modifyUserForm.user.id" />
+    			<input type="hidden" name="user.isself" value="$!modifyUserForm.user.isself" />
+    			<input type="submit" class="btn" id="submit" value="保存">
+    			#if($!modifyUserForm.user.isself==0)
+    			<input type="button" class="btn" id="back" value="返 回" onclick="javascript:history.back();" />
+    			#end
+			</li>
+        </ul>
 	   </form>
 	</div>
 </div>

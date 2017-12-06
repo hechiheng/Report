@@ -110,11 +110,11 @@ jQuery(function () {
 		<form method='post' id="form_do" name="form_do" action="$link.setAction('addMatchapply')" enctype="multipart/form-data">
 		<ul class="forminfo">
             <li>
-				<label>参赛年度<b>*</b></label>
+				<label>参赛年度(YYYY)：<b>*</b></label>
 				<input type="text" id="annualmatch" name="matchapply.annualmatch" class="dfinput" style="width:200px;" value="$!addMatchapplyForm.matchapply.annualmatch"/>
 			</li>
             <li>
-				<label>参赛项目<b>*</b></label>
+				<label>参赛项目：<b>*</b></label>
 				<select name="matchapply.matchid" class="dfinput" style="width:300px;">
 					#set($matchinfoList = $request.getAttribute("matchinfoList"))
 					#foreach($matchinfo in $matchinfoList)
@@ -127,36 +127,36 @@ jQuery(function () {
 				</select>
 			</li>
 			<li>
-				<label>作品名称<b>*</b></label>
+				<label>作品名称：<b>*</b></label>
 				<input type="text" name="matchapply.name" class="dfinput" style="width:600px;" value="$!addMatchapplyForm.matchapply.name"/>
 			</li>
 			<li>
-				<label>学校名称<b>*</b></label>
+				<label>学校名称：<b>*</b></label>
 				<input type="text" name="matchapply.unitname" class="dfinput" style="width:600px;" value="$!addMatchapplyForm.matchapply.unitname"/>
 			</li>
 			<li>
-				<label>作者姓名<b>*</b></label>
+				<label>作者姓名：<b>*</b></label>
 				<input type="text" name="matchapply.authors" class="dfinput" style="width:300px;" value="$!addMatchapplyForm.matchapply.authors"/>
 			</li>
 			<li>
-				<label>辅导老师<b>*</b></label>
+				<label>辅导老师：<b>*</b></label>
 				<input type="text" name="matchapply.teachers" class="dfinput" style="width:300px;" value="$!addMatchapplyForm.matchapply.teachers"/>
 			</li>
 			<li>
-				<label>作品简述</label>
+				<label>作品简述：</label>
                 <label style="margin-bottom: 13px;"><textarea name="matchapply.description" id="description">$!addMatchapplyForm.matchapply.description</textarea></label>
 			</li>
 			<li>
-				<label>上传附件</label>
+				<label>上传附件：</label>
 				<input type="file" name="matchapply.upfile" style="width:400px;"/>
 			</li>
 			<li>
-				<label>是否提交<b>*</b></label>
+				<label>是否提交：<b>*</b></label>
 				<label><input type="radio" name="matchapply.state" value="1" checked="checked" />立即提交&nbsp;</label>
         		<label><input type="radio" name="matchapply.state" value="0" />暂不提交</label>
 			</li>
 			<li>
-				<label>验证码<b>*</b></label>
+				<label>验证码：<b>*</b></label>
 				<input type="text" name="matchapply.imagecode" class="dfinput" style="width:100px;"  />
 				<img src="$link.setAction('imageCode.do')" align="absmiddle" id="code" onclick="change_code(this);"/>
 			</li>

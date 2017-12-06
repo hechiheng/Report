@@ -19,7 +19,7 @@
 		<form method="get" action="$link.setAction('load4MatchtypeIndex')">
 		<ul class="seachform">
 			<li>
-				<label>赛事类型名称</label>
+				<label>赛事类型名称：</label>
 				<input type="text" name="matchtype.name" title="关键字" class="scinput" style="width: 200px;" value="$!queryMatchtypeForm.matchtype.name">
             </li>
 			<li>
@@ -27,7 +27,7 @@
 				<input name="" type="submit" class="scbtn" value="查询"/>
 			</li>
 			<li>
-				<input type="button" onclick="goUrl('$link.setAction('load4MatchtypeAdd')')" class="scbtn" value="添加赛事类型" />
+				<input type="button" onclick="goUrl('$link.setAction('load4MatchtypeAdd')')" class="scbtn" style="width: 110px;" value="添加赛事类型" />
 			</li>
         </ul>
         </form>

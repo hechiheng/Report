@@ -85,24 +85,24 @@ jQuery(function () {
 		<form method='post' id="form_do" name="form_do" action="$link.setAction('modifyMessage')">
 		<ul class="forminfo">
 			<li>
-				<label>通知标题<b>*</b></label>
+				<label>通知标题：<b>*</b></label>
 				<input type="text" name="message.title" class="dfinput" style="width:600px;" value="$!modifyMessageForm.message.title"/>
 			</li>
 			<li>
-				<label>作者</label>
+				<label>作者：</label>
 				<input type="text" name="message.author" class="dfinput" style="width:300px;" value="$!modifyMessageForm.message.author"/>
 			</li>
 			<li>
-				<label>通知内容<b>*</b></label>
+				<label>通知内容：<b>*</b></label>
                 <label><textarea name="message.content" id="content">$!modifyMessageForm.message.content</textarea></label>
 			</li>
 			<li>
-				<label>是否发布<b>*</b></label>
+				<label>是否发布：<b>*</b></label>
 				<label><input type="radio" name="message.ispublish" value="1" #if($!modifyMessageForm.message.ispublish==1) checked="checked" #end/>立即发布&nbsp;</label>
 				<label><input type="radio" name="message.ispublish" value="0" #if($!modifyMessageForm.message.ispublish==0) checked="checked" #end/>暂不发布</label>
 			</li>
 			<li>
-				<label>发布时间<b>*</b></label>
+				<label>发布时间：</label>
 				<input type="text" class="dfinput" style="width:300px;" name="message.publishtime" id="publishtime" readonly="readonly" value="$!modifyMessageForm.message.publishtime"/>
                 <script type="text/javascript">
                     Calendar.setup({

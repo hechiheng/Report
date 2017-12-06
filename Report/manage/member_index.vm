@@ -19,19 +19,16 @@
 		<form method="get" action="$link.setAction('load4MemberIndex')">
 		<ul class="seachform">
 			<li>
-				<label>用户名</label>
+				<label>用户名：</label>
 				<input type="text" name="member.accountid" class="scinput" style="width: 100px;" value="$!queryMemberForm.member.accountid">
             </li>
 			<li>
-				<label>会员名称</label>
+				<label>会员名称：</label>
 				<input type="text" name="member.factname" class="scinput" style="width: 150px;" value="$!queryMemberForm.member.factname">
             </li>
 			<li>
 				<label>&nbsp;</label>
 				<input name="" type="submit" class="scbtn" value="查询"/>
-			</li>
-			<li>
-				<input type="button" onclick="goUrl('$link.setAction('load4MatchtypeAdd')')" class="scbtn" value="添加赛事类型" />
 			</li>
         </ul>
         </form>

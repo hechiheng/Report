@@ -72,11 +72,11 @@
 			</li>
 			<li>
 				<label>参赛简述：</label>
-				<span><textarea id="description" readonly="readonly">$!matchinfo.description</textarea></span>
+				<span style="display: flex;"><textarea id="description" readonly="readonly">$!matchinfo.description</textarea></span>
 			</li>
 			<li>
 				<label>参赛详细说明：</label>
-				<span><textarea id="content" readonly="readonly">$!matchinfo.content</textarea></span>
+				<span style="display: flex;"><textarea id="content" readonly="readonly">$!matchinfo.content</textarea></span>
 			</li>
 			<li>
         		<input type="button" class="btn" id="back" value="返 回" onclick="javascript:history.back();" />

@@ -41,12 +41,12 @@ jQuery(function () {
 		<form method='post' id="form_do" name="form_do" action="$link.setAction('modifyMatchtype')">
 		<ul class="forminfo">
 			<li>
-				<label>赛事类型名称<b>*</b></label>
+				<label>赛事类型名称：<b>*</b></label>
 				<input type="text" name="matchtype.name" class="dfinput" style="width:300px;" value="$!modifyMatchtypeForm.matchtype.name"/>
 			</li>
 			<li>
-				<label>赛事类型描述</label>
-				<textarea name="matchtype.description" class="dfinput" style="width:600px;height:100px;">$!modifyMatchtypeForm.matchtype.description</textarea>
+				<label>赛事类型描述：</label>
+				<label style="margin-bottom: 13px;"><textarea name="matchtype.description" class="dfinput" style="width:600px;height:100px;">$!modifyMatchtypeForm.matchtype.description</textarea></label>
 			</li>
 			<li>
 				<span class='errorcolor'>#errorMarkup()</span>

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
-<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css1/style.css')" />
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
@@ -14,7 +14,7 @@ jQuery(function () {
      jQuery("#form_do").submit(function(){
 		var name = jQuery("input[name='role.name']");
 		if(jQuery.trim(name.val())==''){
-			name.parent().find("span").remove().end().append("<span class='error'>岗位名称不能为空</span>");
+			name.parent().find("span").remove().end().append("<span class='errorcolor'>岗位名称不能为空</span>");
 			name.focus();
 			return false;			
 		}else {
@@ -30,29 +30,32 @@ jQuery(function () {
 </head>
 <body>
 <div class="main">
-    <div class="pos">添加岗位</div>
-	<div class="form">
+	<div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="$link.setAction('load4RoleIndex')">岗位管理</a></li>
+            <li><a href="#">添加岗位</a></li>
+        </ul>
+    </div>
+	<div class="formbody">
 		<form method='post' id="form_do" name="form_do" action="$link.setAction('addRole')">
-		<dl>
-			<dt>岗位名称：</dt>
-			<dd>
-				<input type="text" name="role.name" class="inp_one" value="$!addRoleForm.role.name"/>
-				<span style="color: red;">*</span>
-			</dd>
-		</dl>
-		<dl>
-			<dt>岗位描述：</dt>
-			<dd>
-				<textarea name="role.description" class="tarea_default">$!addRoleForm.role.description</textarea>
-			</dd>
-		</dl>
-		<dl>
-			<span class='error'>#errorMarkup()</span>
-        </dl>
-		<div class="form_b">		
-			<input type="submit" class="btn_blue" id="submit" value="提 交">
-			<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
-		</div>
+		<ul class="forminfo">
+            <li>
+				<label>岗位名称：<b>*</b></label>
+				<input type="text" name="role.name" class="dfinput" style="width:300px;" value="$!addRoleForm.role.name"/>
+			</li>
+			<li>
+				<label>岗位描述：</label>
+				<label><textarea name="role.description" class="dfinput" style="width:600px;height:100px;">$!addRoleForm.role.description</textarea></label>
+			</li>
+			<li>
+				<span class='errorcolor'>#errorMarkup()</span>
+            </li>
+            <li>
+				<input name="" type="submit" class="btn" value="保存"/>
+				<input type="button" class="btn" value="返 回" onclick="javascript:history.back();" />
+			</li>
+        </ul>
 	   </form>
 	</div>
 </div>

@@ -59,8 +59,8 @@
         <form method="get" action="$link.setAction('load4MatchapplyAuditIndex')">
 		<ul class="seachform">
 			<li>
-				<label>参赛年度(YYYY)</label>
-				<input type="text" id="annualmatch" name="matchapply.annualmatch" class="scinput" style="width: 80px;" value="$!queryMatchapplyForm.matchapply.annualmatch"/>
+				<label>参赛年度(YYYY)：</label>
+				<input type="text" id="annualmatch" name="matchapply.annualmatch" class="scinput" style="width: 60px;" value="$!queryMatchapplyForm.matchapply.annualmatch"/>
 			</li>
 			<li>
     			<label>会员名称：</label>
@@ -68,7 +68,7 @@
             </li>
 			<li>
     			<label>参赛项目：</label>
-    			<select id="matchid" name="matchapply.matchid" class="dfinput" style="width:100px;">
+    			<select id="matchid" name="matchapply.matchid" class="dfinput" style="width:120px;">
     				<option value="0">--请选择--</option>
     				#set($matchinfoList = $request.getAttribute("matchinfoList"))
     				#foreach($matchinfo in $matchinfoList)
@@ -81,11 +81,11 @@
     			</select>
 			</li>
         	<li>
-				<label>作品名称</label>
+				<label>作品名称：</label>
 				<input type="text" id="name" name="matchapply.name" title="关键字" class="scinput" value="$!queryMatchapplyForm.matchapply.name">
 			</li>
 			<li>
-				<label>审核状态</label>
+				<label>审核状态：</label>
 				<select id="state" name="matchapply.state" class="dfinput" style="width:100px;">
     				<option value="9" #if($!queryMatchapplyForm.matchapply.state==9) selected="selected" #end>--请选择--</option>
     				<option value="1" #if($!queryMatchapplyForm.matchapply.state==1) selected="selected" #end>未审核</option>

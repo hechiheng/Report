@@ -24,16 +24,6 @@
 jQuery(function () {
      jQuery("input[name='announce.title']").focus();
 	 
-	 jQuery("input[name='announce.ispublish']").click(function(){
-	   var v=jQuery(this).val();
-	   var publishtime = jQuery("input[name='announce.publishtime']");
-	   if(v=='1'){
-	   		publishtime.parent().find("span").remove().end().append("<span class='errorcolor'>*</span>");
-	   }else{
-	   		publishtime.parent().find("span").remove();
-	   }
-     });
-     
      jQuery("#form_do").submit(function(){
 		var title = jQuery("input[name='announce.title']");
 		var starttime = jQuery("input[name='announce.starttime']");
@@ -97,11 +87,11 @@ jQuery(function () {
 		<form method='post' id="form_do" name="form_do" action="$link.setAction('addAnnounce')">
 		<ul class="forminfo">
             <li>
-				<label>公告标题<b>*</b></label>
+				<label>公告标题：<b>*</b></label>
 				<input type="text" name="announce.title" class="dfinput" style="width:600px;" value="$!addAnnounceForm.announce.title"/>
 			</li>
             <li>
-				<label>起始日期<b>*</b></label>
+				<label>起始日期：<b>*</b></label>
 				<input type="text" class="dfinput" style="width:300px;" name="announce.starttime" id="starttime" value="$!addAnnounceForm.announce.starttime" readonly="readonly"/>
                 <script type="text/javascript">
                     Calendar.setup({
@@ -116,7 +106,7 @@ jQuery(function () {
                 </script>
 			</li>
 			<li>
-				<label>截止日期<b>*</b></label>
+				<label>截止日期：<b>*</b></label>
 				<input type="text" class="dfinput" style="width:300px;" name="announce.endtime" id="endtime" value="$!addAnnounceForm.announce.endtime" readonly="readonly"/>
                 <script type="text/javascript">
                     Calendar.setup({
@@ -131,16 +121,16 @@ jQuery(function () {
                 </script>
 			</li>
 			<li>
-				<label>公告内容<b>*</b></label>
+				<label>公告内容：<b>*</b></label>
                 <label><textarea name="announce.content" id="content">$!addAnnounceForm.announce.content</textarea></label>
 			</li>
 			<li>
-				<label>是否发布<b>*</b></label>
+				<label>是否发布：<b>*</b></label>
 				<label><input type="radio" name="announce.ispublish" value="1" checked="checked" />立即发布&nbsp;</label>
 				<label><input type="radio" name="announce.ispublish" value="0" />暂不发布</label>
 			</li>
 			<li>
-				<label>发布时间<b>*</b></label>
+				<label>发布时间：</label>
 				<input type="text" class="dfinput" style="width:300px;" name="announce.publishtime" id="publishtime" readonly="readonly" value="$!addAnnounceForm.announce.publishtime"/>
                 <script type="text/javascript">
                     Calendar.setup({
@@ -159,7 +149,7 @@ jQuery(function () {
             </li>
             <li>
 				<label>&nbsp;</label>
-				<input name="" type="submit" class="btn" value="马上发布"/>
+				<input name="" type="submit" class="btn" value="保存"/>
 				<input type="button" class="btn" value="返 回" onclick="javascript:history.back();" />
 			</li>
         </ul>

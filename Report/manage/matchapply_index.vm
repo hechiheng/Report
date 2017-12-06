@@ -29,12 +29,12 @@ jQuery(function () {
         <form method="get" action="$link.setAction('load4MatchapplyIndex')">
 		<ul class="seachform">
 			<li>
-				<label>参赛年度(YYYY)</label>
+				<label>参赛年度(YYYY)：</label>
 				<input type="text" id="annualmatch" name="matchapply.annualmatch" class="scinput" style="width: 80px;" value="$!queryMatchapplyForm.matchapply.annualmatch"/>
 			</li>
 			<li>
-				<label>参赛项目</label>
-				<select name="matchapply.matchid" class="dfinput" style="width:100px;">
+				<label>参赛项目：</label>
+				<select name="matchapply.matchid" class="dfinput" style="width:150px;">
     				<option value="0">--请选择--</option>
     				#set($matchinfoList = $request.getAttribute("matchinfoList"))
     				#foreach($matchinfo in $matchinfoList)
@@ -47,11 +47,11 @@ jQuery(function () {
     			</select>
 			</li>
 			<li>
-				<label>作品名称</label>
+				<label>作品名称：</label>
 				<input type="text" name="matchapply.name" title="关键字" class="scinput" value="$!queryMatchapplyForm.matchapply.name">
 			</li>
 			<li>
-				<label>审核状态</label>
+				<label>审核状态：</label>
 				<select name="matchapply.state" class="dfinput" style="width:100px;">
     				<option value="0" #if($!queryMatchapplyForm.matchapply.state==0) selected="selected" #end>未提交</option>
     				<option value="1" #if($!queryMatchapplyForm.matchapply.state==1) selected="selected" #end>未审核</option>

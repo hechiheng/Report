@@ -26,7 +26,7 @@
 				&nbsp;
 			#else
 			<li>
-				<label>通知标题</label>
+				<label>通知标题：</label>
 				<input type="text" name="message.title" title="关键字" class="scinput" value="$!queryMessageForm.message.title">
 			</li>
 			<li>

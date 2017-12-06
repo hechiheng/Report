@@ -117,15 +117,15 @@ jQuery(function () {
 		<form method='post' id="form_do" name="form_do" action="$link.setAction('addMatchinfo')">
 		<ul class="forminfo">
 			<li>
-				<label>参赛年度<b>*</b></label>
+				<label>参赛年度：<b>*</b></label>
 				<input type="text" id="annualmatch" name="matchinfo.annualmatch" class="dfinput" style="width:100px;" value="$!addMatchinfoForm.matchinfo.annualmatch"/>
 			</li>
 			<li>
-				<label>参赛项目名称<b>*</b></label>
+				<label>参赛项目名称：<b>*</b></label>
 				<input type="text" name="matchinfo.name" class="dfinput" style="width:600px;" value="$!addMatchinfoForm.matchinfo.name"/>
 			</li>
 			<li>
-				<label>参赛类型<b>*</b></label>
+				<label>参赛类型：<b>*</b></label>
 				<select name="matchinfo.matchtype" class="dfinput" style="width:300px;">
 					#set($matchtypeList = $request.getAttribute("matchtypeList"))
 					#foreach($matchtype in $matchtypeList)
@@ -138,7 +138,7 @@ jQuery(function () {
 				</select>
 			</li>
 			<li>
-				<label>报名开始日期<b>*</b></label>
+				<label>报名开始日期：<b>*</b></label>
 				<input type="text" class="dfinput" style="width:200px;" name="matchinfo.begindate" id="begindate" readonly="readonly" value="$!addMatchinfoForm.matchinfo.begindate"/>
                 <script type="text/javascript">
                     Calendar.setup({
@@ -153,7 +153,7 @@ jQuery(function () {
                 </script>
 			</li>
 			<li>
-				<label>报名截止日期<b>*</b></label>
+				<label>报名截止日期：<b>*</b></label>
 				<input type="text" class="dfinput" style="width:200px;" name="matchinfo.enddate" id="enddate" readonly="readonly" value="$!addMatchinfoForm.matchinfo.enddate"/>
                 <script type="text/javascript">
                     Calendar.setup({
@@ -168,15 +168,15 @@ jQuery(function () {
                 </script>
 			</li>
 			<li>
-				<label>主办单位<b>*</b></label>
+				<label>主办单位：<b>*</b></label>
 				<input type="text" name="matchinfo.optunitname" class="dfinput" style="width:600px;" value="$!addMatchinfoForm.matchinfo.optunitname"/>
 			</li>
 			<li>
-				<label>参赛简述</label>
+				<label>参赛简述：</label>
 				<label style="margin-bottom: 13px;"><textarea name="matchinfo.description" id="description">$!addMatchinfoForm.matchinfo.description</textarea></label>
 			</li>
 			<li>
-				<label>参赛详细说明</label>
+				<label>参赛详细说明：</label>
 				<label style="margin-bottom: 13px;"><textarea name="matchinfo.content" id="content">$!addMatchinfoForm.matchinfo.content</textarea></label>
 			</li>
 			<li>

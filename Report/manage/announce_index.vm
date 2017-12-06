@@ -18,11 +18,12 @@
 	<div class="formbody">
 		<form method="get" action="$link.setAction('load4AnnounceIndex')">
 		<ul class="seachform">
+			#set($istrash = $request.getAttribute("istrash"))
 			#if($istrash=="1")
 				&nbsp;
 			#else
 			<li>
-				<label>公告标题</label>
+				<label>公告标题：</label>
 				<input type="text" name="announce.title" title="关键字" class="scinput" value="$!queryAnnounceForm.announce.title">
 			</li>
 			<li>
@@ -31,7 +32,6 @@
 			</li>
 			#end
 			<li>
-				#set($istrash = $request.getAttribute("istrash"))
 				#if($istrash=="1")
         			<input type="button" onclick="goUrl('$link.setAction('load4AnnounceIndex')')"  class="scbtn" value="返回" />
         		#else
