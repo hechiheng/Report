@@ -46,8 +46,9 @@
         <tr>
             <th>编号</th>
 			<th>参赛年度</th>
-			<th>参赛项目名称</th>
-			<th width="50%">参赛项目简述</th>
+			<th width="30%">参赛项目名称</th>
+			<th>报名开始时间</th>
+			<th>报名截止时间</th>
             <th>更新时间</th>
             <th>操作</th>
         </tr>
@@ -58,7 +59,8 @@
 			<td>$!matchinfo.id</td>
 			<td>$!matchinfo.annualmatch</td>
 			<td>$!matchinfo.name</td>
-			<td>$!matchinfo.description</td>
+			<td>$!matchinfo.begindate</td>
+			<td>$!matchinfo.enddate</td>
 			<td>$!matchinfo.updatetime</td>
 			<td>
 				<a class="tablelink" href="$link.setAction('load4Matchinfo').addQueryData('id',$!matchinfo.id)">查看</a>

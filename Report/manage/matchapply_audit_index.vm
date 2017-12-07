@@ -68,7 +68,7 @@
             </li>
 			<li>
     			<label>参赛项目：</label>
-    			<select id="matchid" name="matchapply.matchid" class="dfinput" style="width:120px;">
+				<select id="matchid" name="matchapply.matchid" class="dfinput" style="width:120px;">
     				<option value="0">--请选择--</option>
     				#set($matchinfoList = $request.getAttribute("matchinfoList"))
     				#foreach($matchinfo in $matchinfoList)

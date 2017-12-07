@@ -5,7 +5,8 @@
 #parse("/manage/include/webtitle.vm")
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
 <link type="text/css" rel="stylesheet" href="$link.setRelative('/manage/css1/style.css')" />
-<script type="text/javascript" src="$link.setRelative('/manage/js1/jquery.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery.cookie.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
 ##<script type="text/javascript" src="$link.setRelative('/manage/js1/cloud.js')"></script>
 
@@ -16,7 +17,6 @@
     height: 30px;
 }
 </style>
-
 <script language="javascript">
     function change_code(obj){
     	jQuery("#code").attr("src",obj.src+'?'+Math.random());
@@ -28,10 +28,31 @@
 		
         jQuery('.loginbox').css({'position':'absolute','left':(jQuery(window).width()-692)/2});
     	jQuery(window).resize(function(){  
-        jQuery('.loginbox').css({'position':'absolute','left':(jQuery(window).width()-692)/2});
+        	jQuery('.loginbox').css({'position':'absolute','left':(jQuery(window).width()-692)/2});
+    	});
 		
-    });
-});  
+		if (jQuery.cookie("rememberMe") == "1") {
+            jQuery("#rememberMe").attr("checked", "checked");
+            jQuery("#logintype").val(jQuery.cookie("logintype"));
+            jQuery("#username").val(jQuery.cookie("username"));
+        }
+		
+		jQuery("#form_do").submit(function(){
+    		if (jQuery("#rememberMe").is(":checked") == true) {
+                var username = jQuery("#username").val();
+                var logintype = jQuery("#logintype").val();
+                jQuery.cookie("rememberMe", "1", { expires: 7 }); // 存储一个带7天期限的 cookie
+                jQuery.cookie("username", username, { expires: 7 }); // 存储一个带7天期限的 cookie
+                jQuery.cookie("logintype", logintype, { expires: 7 }); // 存储一个带7天期限的 cookie
+            }
+            else {
+                jQuery.cookie("rememberMe", "0", { expires: -1 });
+                jQuery.cookie("username", '', { expires: -1 });
+                jQuery.cookie("logintype", '', { expires: -1 });
+            }
+		});  
+		
+	});  
 </script> 
 
 </head>
@@ -56,7 +77,7 @@
     <span class="systemlogo"></span> 
        
     <div class="loginbox">
-    <form action="$link.setAction('login.do')" method="post" id="login">
+    <form action="$link.setAction('login.do')" method="post" name="form_do" id="form_do">
     <ul>
     <li><input id="username" name="username" type="text" class="loginuser" value="admin"/></li>
     <li><input name="password" type="password" class="loginpwd" value="1"/></li>
@@ -66,8 +87,13 @@
 	</li>
 	<li>
 		<label style="padding-left:0px;font-size: 14px;">登录用户类型：</label>
-		<label style="width: 40px;padding-left: 5px; */"><input type="radio" name="logintype" value="1" checked="checked"/>参赛会员</label>
-		<label style="width: 40px;padding-left: 5px; */"><input type="radio" name="logintype" value="2" />管理员</label>
+		<select id="logintype" name="logintype" class="dfinput" style="width:100px;">
+			<option value="1" selected="selected">参赛会员</option>
+			<option value="2">管理员</option>
+		</select>
+    </li>
+	<li>
+		<label style="padding-left:0px;font-size: 14px;"><input type="checkbox" id="rememberMe" />记住用户名</label>
     </li>
     <li style="clear:both">
 		<input type="submit" class="loginbtn" value="登录"/>

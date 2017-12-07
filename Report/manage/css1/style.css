@@ -32,7 +32,7 @@ h2{font-weight:normal;}
 .logintop ul li a{color:#afc5d2;}
 .logintop ul li a:hover{color:#fff;}
 .loginbody{background:url(../images1/loginbg3.png) no-repeat center center; width:100%; height:585px; overflow:hidden; position:absolute; top:10px;}
-.systemlogo{background:url(../images1/loginlogo.png) no-repeat center;width:100%; height:71px; margin-top:60px;display:block;}
+.systemlogo{background:url(../images1/logo.png) no-repeat center;width:100%; height:71px; margin-top:60px;display:block;}
 .loginbox{width:692px; height:336px; background:url(../images1/logininfo.png) no-repeat; margin-top:15px;}
 .loginbox ul{margin-top:88px; margin-left:285px;}
 .loginbox ul li{margin-bottom:10px;}

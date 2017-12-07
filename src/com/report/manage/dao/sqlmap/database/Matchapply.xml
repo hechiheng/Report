@@ -232,11 +232,11 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	</select>
 	
 	<select id="manage.MatchapplyDao.selectMatchinfoList" resultClass="matchinfo">
-		select id,name from t_matchinfo t where t.isvalid=1 
+		<![CDATA[ select id,annualmatch,concat(annualmatch,'-',name) name from t_matchinfo where isvalid=1 and begindate<UNIX_TIMESTAMP(NOW()) and enddate>UNIX_TIMESTAMP(NOW()) ]]>
 	</select>
 	
 	<select id="manage.MatchapplyDao.selectMemberList" resultClass="member">
-		select id,factname from t_member t where t.isvalid=1 
+		select id,factname from t_member t where t.isvalid=1 and t.state=1
 	</select>
 	
 	<insert id="manage.MatchapplyDao.insertMatchapply" parameterClass="matchapply">

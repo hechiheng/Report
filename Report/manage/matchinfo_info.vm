@@ -60,7 +60,7 @@
 			</li>
 			<li>
 				<label>报名日期：</label>
-				<span>$!matchinfo.begindate至$!matchinfo.enddate</span>
+				<span>$!matchinfo.begindate &nbsp;至&nbsp;$!matchinfo.enddate</span>
 			</li>
 			<li>
 				<label>参赛类型：</label>
