@@ -61,21 +61,26 @@ public class LoginAction extends BaseAction {
         String password = loginForm.getString("password");
         String imagecode = loginForm.getString("imagecode");
         String logintype = loginForm.getString("logintype");
-        String flag = "index";
         HttpSession session = request.getSession(false);
         session.removeAttribute("username");
 
         if (!imagecode.equals(session.getAttribute("imagecode"))) {
-            flag = "failure";
-            ActionMessages msg = new ActionMessages();
-            msg.add("sysMessage", new ActionMessage("error.input.imagecode"));
-            saveErrors(request, msg);
+            SysMessageBean smb = new SysMessageBean(true);
+            smb.setMessage(new ActionMessage("error.input.imagecode"));
+            smb.setLinkText(new ActionMessage("LoginAction.login.return"));
+            smb.setAction("/load4Login");
+            smb.setLinkTarget("_parent");
+            SysGlobals.setSysMessage(request, smb);
+            return mapping.findForward("error");
         }
         else if (StringUtils.isEmpty(logintype)) {
-            flag = "failure";
-            ActionMessages msg = new ActionMessages();
-            msg.add("sysMessage", new ActionMessage("error.input.usertype"));
-            saveErrors(request, msg);
+            SysMessageBean smb = new SysMessageBean(true);
+            smb.setMessage(new ActionMessage("error.input.logintype"));
+            smb.setLinkText(new ActionMessage("LoginAction.login.return"));
+            smb.setAction("/load4Login");
+            smb.setLinkTarget("_parent");
+            SysGlobals.setSysMessage(request, smb);
+            return mapping.findForward("error");
         }
         else {
             try {
@@ -116,14 +121,18 @@ public class LoginAction extends BaseAction {
                         sessionMap.put("factname", memberDB.getFactname());
                         SysGlobals.setSessionObj(request,
                                 Constants.MANAGE_SESSION, sessionMap);
-                        flag = "indexMember";
+                        return mapping.findForward("indexMember");
                     }
                     else {
-                        ActionMessages msg = new ActionMessages();
-                        msg.add("sysMessage", new ActionMessage(
+                        SysMessageBean smb = new SysMessageBean(true);
+                        smb.setMessage(new ActionMessage(
                                 "LoginAction.login.failed"));
-                        saveErrors(request, msg);
-                        flag = "failure";
+                        smb.setLinkText(new ActionMessage(
+                                "LoginAction.login.return"));
+                        smb.setAction("/load4Login");
+                        smb.setLinkTarget("_parent");
+                        SysGlobals.setSysMessage(request, smb);
+                        return mapping.findForward("error");
                     }
                 }
                 else if ("2".equals(logintype)) {
@@ -142,28 +151,35 @@ public class LoginAction extends BaseAction {
                                 .getUsertype()));
                         SysGlobals.setSessionObj(request,
                                 Constants.MANAGE_SESSION, sessionMap);
+                        return mapping.findForward("index");
                     }
                     else {
-                        ActionMessages msg = new ActionMessages();
-                        msg.add("sysMessage", new ActionMessage(
+                        SysMessageBean smb = new SysMessageBean(true);
+                        smb.setMessage(new ActionMessage(
                                 "LoginAction.login.failed"));
-                        saveErrors(request, msg);
-                        flag = "failure";
+                        smb.setLinkText(new ActionMessage(
+                                "LoginAction.login.return"));
+                        smb.setAction("/load4Login");
+                        smb.setLinkTarget("_parent");
+                        SysGlobals.setSysMessage(request, smb);
+                        return mapping.findForward("error");
                     }
                 }
                 else {
-                    flag = "failure";
-                    ActionMessages msg = new ActionMessages();
-                    msg.add("sysMessage", new ActionMessage(
-                            "error.input.logintype"));
-                    saveErrors(request, msg);
+                    SysMessageBean smb = new SysMessageBean(true);
+                    smb.setMessage(new ActionMessage("error.input.logintype"));
+                    smb.setLinkText(new ActionMessage(
+                            "LoginAction.login.return"));
+                    smb.setAction("/load4Login");
+                    smb.setLinkTarget("_parent");
+                    SysGlobals.setSysMessage(request, smb);
+                    return mapping.findForward("error");
                 }
             }
             catch (BaseException e) {
                 throw new BaseException("errors.not.connect.db", e);
             }
         }
-        return mapping.findForward(flag);
     }
 
     public ActionForward logout(ActionMapping mapping, ActionForm form,
@@ -245,6 +261,14 @@ public class LoginAction extends BaseAction {
         MemberBo bo = new MemberBo();
         MemberForm memberForm = (MemberForm) form;
         Member member = memberForm.getMember();
+        HttpSession session = request.getSession(false);
+        String imagecode = (String) session.getAttribute("imagecode");
+        if (!imagecode.equals(member.getImagecode())) {
+            ActionMessages am = new ActionMessages();
+            am.add("sysMessage", new ActionMessage("error.input.imagecode"));
+            saveErrors(request, am);
+            return mapping.findForward("failure");
+        }
         int cnt = bo.getMemberCount(member.getAccountid());
         if (cnt > 0) {
             ActionMessages am = new ActionMessages();
@@ -266,7 +290,9 @@ public class LoginAction extends BaseAction {
         SysMessageBean smb = new SysMessageBean(false);
         smb.setMessage(new ActionMessage(
                 "manage.MemberAction.addMember.success"));
-        smb.setLinkText(new ActionMessage("MemberAction.regMember.returnLogin"));
+        smb
+                .setLinkText(new ActionMessage(
+                        "MemberAction.regMember.returnLogin"));
         smb.setAction("/load4Login");
         SysGlobals.setSysMessage(request, smb);
         return mapping.findForward("info");

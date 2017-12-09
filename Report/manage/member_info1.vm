@@ -70,9 +70,6 @@
 				<label>所在地：</label>
 				<span>$!member.address</span>
 			</li>
-			<li>
-        		<input type="button" class="btn" id="back" value="返 回" onclick="javascript:history.back();" />
-            </li>
         </ul>
 	</div>
 </div>

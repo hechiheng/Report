@@ -38,6 +38,31 @@
         }
 		
 		jQuery("#form_do").submit(function(){
+			var username = jQuery("input[name='username']");
+			var password = jQuery("input[name='password']");
+			var imagecode = jQuery("input[name='imagecode']");
+			if(jQuery.trim(username.val())==''){
+    			username.parent().find("span").remove().end().append("<span style='color: red;'>用户名不能为空</span>");
+    			username.focus();
+    			return false;			
+    		}else {
+    			username.parent().find("span").remove().end();
+    		}
+    		if(jQuery.trim(password.val())==''){
+    			password.parent().find("span").remove().end().append("<span style='color: red;'>登录密码不能为空</span>");
+    			password.focus();
+    			return false;			
+    		}else {
+    			password.parent().find("span").remove().end();
+    		}
+			if(jQuery.trim(imagecode.val())==''){
+    			imagecode.parent().find("span").remove().end().append("<span style='color: red;'>验证码不能为空</span>");
+    			imagecode.focus();
+    			return false;			
+    		}else {
+    			imagecode.parent().find("span").remove().end();
+    		}
+		
     		if (jQuery("#rememberMe").is(":checked") == true) {
                 var username = jQuery("#username").val();
                 var logintype = jQuery("#logintype").val();

@@ -527,7 +527,7 @@
 <!--				</var>-->
 <!--			</field>-->
 			<field property="member.idcard"
-				depends="bytemaxlength">
+				depends="required,bytemaxlength">
 				<arg key="member.idcard" />
 				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
 					resource="false" />
@@ -547,7 +547,7 @@
 				</var>
 			</field>
 			<field property="member.email"
-				depends="bytemaxlength">
+				depends="required,bytemaxlength">
 				<arg key="member.email" />
 				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
 					resource="false" />

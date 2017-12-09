@@ -15,6 +15,7 @@
     border: 1px solid;
     height: 30px;
 }
+.forminfo li label{width: 16%;}
 </style>
 
 <script language="javascript">
@@ -30,23 +31,29 @@
 </script> 
 
 <script type="text/javascript">
+function change_code(obj){
+	jQuery("#code").attr("src",obj.src+'?'+Math.random());
+	return false;
+}
+
 jQuery(function () {
-     jQuery("input[name='member.accountid']").focus();
+    jQuery("input[name='member.accountid']").focus();
 	 
-	 //验证用户名是否存在
+	//验证用户名是否存在
 	jQuery("input[name='member.accountid']").blur(function(){
 		var accountid = jQuery("input[name='member.accountid']");
 		if(jQuery.trim(accountid.val())==''){
-			jQuery("#errormsg").text("用户名不能为空");
+			accountid.focus();
+			accountid.parent().find("span").remove().end().append("<span style='color: red;'>用户名不能为空</span>");
 			return ;
 		}
 		jQuery.post("$link.setAction('verifyMemberReg')",{accountid:jQuery.trim(accountid.val())},
 			function(msg){
 				if(msg != ""){
 					accountid.focus();
-					jQuery("#errormsg").text(msg);
+					accountid.parent().find("span").remove().end().append("<span style='color: red;'>"+msg+"</span>");
 				}else{
-					jQuery("#errormsg").text("");
+					accountid.parent().find("span").remove().end().append("<span style='color: green;'>用户名可用</span>");
 				}
 			}
 		);
@@ -57,41 +64,57 @@ jQuery(function () {
 		var password = jQuery("input[name='member.password']");
 		var password_re = jQuery("input[name='member.password_re']");
 		var factname = jQuery("input[name='member.factname']");
+		var idcard = jQuery("input[name='member.idcard']");
 		var email = jQuery("input[name='member.email']");
+		var imagecode = jQuery("input[name='member.imagecode']");
 		if(jQuery.trim(accountid.val())==''){
-			jQuery("#errormsg").text("用户名不能为空");
+			accountid.parent().find("span").remove().end().append("<span style='color: red;'>用户名不能为空</span>");
 			accountid.focus();
 			return false;			
-		}else{
-			jQuery("#errormsg").text("");
+		}else {
+			accountid.parent().find("span").remove().end();
 		}
 		if(jQuery.trim(password.val())==''){
-			jQuery("#errormsg").text("登录密码不能为空");
+			password.parent().find("span").remove().end().append("<span style='color: red;'>登录密码不能为空</span>");
 			password.focus();
 			return false;			
-		}else{
-			jQuery("#errormsg").text("");
+		}else {
+			password.parent().find("span").remove().end();
 		}
 		if(jQuery.trim(password_re.val())==''){
-			jQuery("#errormsg").text("确认密码不能为空");
+			password_re.parent().find("span").remove().end().append("<span style='color: red;'>确认密码不能为空</span>");
 			password_re.focus();
 			return false;			
-		}else{
-			jQuery("#errormsg").text("");
+		}else {
+			password_re.parent().find("span").remove().end();
 		}
 		if(jQuery.trim(factname.val())==''){
-			jQuery("#errormsg").text("会员名称不能为空");
+			factname.parent().find("span").remove().end().append("<span style='color: red;'>会员名称不能为空</span>");
 			factname.focus();
 			return false;			
-		}else{
-			jQuery("#errormsg").text("");
+		}else {
+			factname.parent().find("span").remove().end();
+		}
+		if(jQuery.trim(idcard.val())==''){
+			idcard.parent().find("span").remove().end().append("<span style='color: red;'>身份证号不能为空</span>");
+			idcard.focus();
+			return false;			
+		}else {
+			idcard.parent().find("span").remove().end();
 		}
 		if(jQuery.trim(email.val())==''){
-			jQuery("#errormsg").text("邮箱不能为空");
+			email.parent().find("span").remove().end().append("<span style='color: red;'>邮箱不能为空</span>");
 			email.focus();
 			return false;			
-		}else{
-			jQuery("#errormsg").text("");
+		}else {
+			email.parent().find("span").remove().end();
+		}
+		if(jQuery.trim(imagecode.val())==''){
+			imagecode.parent().find("span").remove().end().append("<span style='color: red;'>验证码不能为空</span>");
+			imagecode.focus();
+			return false;			
+		}else {
+			imagecode.parent().find("span").remove().end();
 		}
 
 	});
@@ -122,42 +145,46 @@ jQuery(function () {
     
     <span class="systemlogo"></span> 
        
-    <div class="regbox">
+    <div class="formbody">
     <form id="form_do" action="$link.setAction('regMember.do')" method="post" id="login">
-    <ul class="forminfo">
+    <ul class="forminfo" style="width: 600px;margin: 0 auto;background:#edf6fa;padding: 20px;">
 		<li>
-			<label>　用户名：<b>*</b></label>
-			<input type="text" name="member.accountid" class="dfinput" style="width:300px;" value="$!addMemberForm.member.accountid"/>
+			<label style="font-size: 16px;font-weight: bold;margin-bottom: 10px;">会员注册</label>
+		</li>
+		<li>
+			<label> 　用户名：<b>*</b></label>
+			<input type="text" name="member.accountid" class="dfinput" width="60%" value="$!addMemberForm.member.accountid"/>
 		</li>
 		<li>
 			<label>登录密码：<b>*</b></label>
-			<input type="password" name="member.password" class="dfinput" style="width:300px;" value=""/>
+			<input type="password" name="member.password" class="dfinput" width="60%" value=""/>
 		</li>
 		<li>
 			<label>确认密码：<b>*</b></label>
-			<input type="password" name="member.password_re" class="dfinput" style="width:300px;" value=""/>
+			<input type="password" name="member.password_re" class="dfinput" width="60%" value=""/>
         </li>
 		<li>
 			<label>会员名称：<b>*</b></label>
-			<input type="text" name="member.factname" class="dfinput" style="width:300px;" value="$!addMemberForm.member.factname"/>
+			<input type="text" name="member.factname" class="dfinput" width="60%" value="$!addMemberForm.member.factname"/>
         </li>
 		<li>
 			<label>身份证号：<b>*</b></label>
-			<input type="text" name="member.idcard" class="dfinput" style="width:300px;" value="$!addMemberForm.member.idcard"/>
+			<input type="text" name="member.idcard" class="dfinput" width="60%" value="$!addMemberForm.member.idcard"/>
         </li>
 		<li>
-			<label>邮箱：<b>*</b></label>
-			<input type="text" name="member.email" class="dfinput" style="width:300px;" value="$!addMemberForm.member.email"/>
+			<label>邮箱地址：<b>*</b></label>
+			<input type="text" name="member.email" class="dfinput" width="60%" value="$!addMemberForm.member.email"/>
         </li>
         <li>
 			<label>验证码：<b>*</b></label>
-    		<input name="imagecode" type="text" class="dfinput" style="width:200px;"/>
+    		<input name="member.imagecode" type="text" class="dfinput" style="width:200px;"/>
     		<img src="$link.setAction('imageCode.do')" align="absmiddle" id="code" onclick="change_code(this);"/>
     	</li>
         <li style="clear:both">
+			<label>&nbsp;</label>
     		<input type="submit" class="loginbtn" value="提交"/>
     	</li>
-		<li><span id="errormsg" class="errorcolor">#errorMarkup()</span></li>
+		<li><span class="errorcolor">#errorMarkup()</span></li>
     </ul>
     </form>
     

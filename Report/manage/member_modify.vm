@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
-<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css/style.css')" />
+<link rel='stylesheet' type="text/css" href="$link.setRelative('/manage/css1/style.css')" />
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
 <script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
@@ -39,39 +39,35 @@ jQuery(function () {
 </head>
 <body>
 <div class="main">
-    <div class="pos">修改会员</div>
-	<div class="form">
+	<div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">修改资料</a></li>
+        </ul>
+    </div>
+	<div class="formbody">
 		<form method='post' id="form_do" name="form_do" action="$link.setAction('modifyMember')">
-		<dl>
-			<dt>用户名：</dt>
-			<dd>
-				<span style="font-size: 14px;font-weight: bold;">$!modifyMemberForm.member.accountid</span>
-			</dd>
-		</dl>
-		<dl>
-			<dt>会员名称：</dt>
-			<dd>
-				<input type="text" name="member.factname" class="inp_large" value="$!modifyMemberForm.member.factname"/>
-				<span style="color: red;">*</span>
-			</dd>
-		</dl>
-		<dl>
-			<dt> 性别：</dt>
-			<dd>
-				<label><input type="radio" name="member.sex" value="1" #if($!modifyMemberForm.member.sex==1) checked="checked" #end/>男&nbsp;</label>
-				<label><input type="radio" name="member.sex" value="2" #if($!modifyMemberForm.member.sex==2) checked="checked" #end/>女</label>
-			</dd>
-		</dl>
-		<dl>
-			<dt>身份证号：</dt>
-			<dd>
-				<input type="text" name="member.idcard" class="inp_one" value="$!modifyMemberForm.member.idcard"/>
-			</dd>
-		</dl>
-		<dl>
-            <dt> 出生日期：</dt>
-            <dd>
-                <input type="text" class="inp_one" name="member.birthday" id="birthday" value="$!modifyMemberForm.member.birthday" readonly="readonly">
+		<ul class="forminfo">
+			<li>
+				<label>用户名：</label>
+				<span>$!modifyMemberForm.member.accountid</span>
+			</li>
+			<li>
+				<label>会员名称：<b>*</b></label>
+				<input type="text" name="member.factname" class="dfinput" style="width:200px;" value="$!modifyMemberForm.member.factname"/>
+			</li>
+			<li>
+				<label>性别：</label>
+				<label style="width: 50px;"><input type="radio" name="member.sex" value="1" #if($!modifyMemberForm.member.sex==1) checked="checked" #end/>男&nbsp;</label>
+				<label style="width: 50px;"><input type="radio" name="member.sex" value="2" #if($!modifyMemberForm.member.sex==2) checked="checked" #end/>女</label>
+			</li>
+			<li>
+    			<label>身份证号：<b>*</b></label>
+    			<input type="text" name="member.idcard" class="dfinput" style="width:200px;"  value="$!modifyMemberForm.member.idcard"/>
+            </li>
+			<li>
+    			<label>出生日期：</label>
+				<input type="text" class="dfinput" style="width:100px;"  name="member.birthday" id="birthday" value="$!modifyMemberForm.member.birthday" readonly="readonly">
                 <script type="text/javascript">
                     Calendar.setup({
                         weekNumbers: true,
@@ -83,40 +79,31 @@ jQuery(function () {
                         onSelect   : function() {this.hide();}
                     });
                 </script>
-            </dd>
-        </dl>
-		<dl>
-			<dt>邮箱：</dt>
-			<dd>
-				<input type="text" name="member.email" class="inp_large" value="$!modifyMemberForm.member.email"/>
-				<span style="color: red;">*</span>
-			</dd>
-		</dl>
-		<dl>
-			<dt>QQ：</dt>
-			<dd>
-				<input type="text" name="member.qq" class="inp_one" value="$!modifyMemberForm.member.qq"/>
-			</dd>
-		</dl>
-		<dl>
-			<dt>电话：</dt>
-			<dd>
-				<input type="text" name="member.tel" class="inp_one" value="$!modifyMemberForm.member.tel"/>
-			</dd>
-		</dl>
-		<dl>
-			<dt>所在地：</dt>
-			<dd>
-				<input type="text" name="member.address" class="inp_large" value="$!modifyMemberForm.member.address"/>
-			</dd>
-		</dl>
-		<dl>
-			<span class='error'>#errorMarkup()</span>
-        </dl>
-		<div class="form_b">		
-			<input type="submit" class="btn_blue" id="submit" value="提 交">
-			##<input type="button" class="btn_blue" id="back" value="返 回" onclick="javascript:history.back();" />
-		</div>
+            </li>
+			<li>
+    			<label>邮箱地址：<b>*</b></label>
+				<input type="text" name="member.email" class="dfinput" style="width:500px;" value="$!modifyMemberForm.member.email"/>
+            </li>
+			<li>
+    			<label>QQ：</label>
+				<input type="text" name="member.qq" class="dfinput" style="width:300px;" value="$!modifyMemberForm.member.qq"/>
+            </li>
+			<li>
+    			<label>电话：</label>
+				<input type="text" name="member.tel" class="dfinput" style="width:300px;" value="$!modifyMemberForm.member.tel"/>
+            </li>
+			<li>
+    			<label>所在地：</label>
+				<label style="margin-bottom: 13px;"><textarea name="member.address" class="dfinput" style="width:600px;height:100px;">$!modifyMemberForm.member.address</textarea></label>
+            </li>
+			<li>
+				<span class='errorcolor'>#errorMarkup()</span>
+            </li>
+			<li>
+				<label>&nbsp;</label>
+				<input name="" type="submit" class="btn" value="保存"/>
+			</li>
+        </ul>
 	   </form>
 	</div>
 </div>

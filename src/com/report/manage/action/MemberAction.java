@@ -162,7 +162,7 @@ public class MemberAction extends BaseAction {
         SysMessageBean smb = new SysMessageBean(false);
         smb.setMessage(new ActionMessage(
                 "manage.MemberAction.modifyMember.success"));
-        smb.setAction("/load4MemberModify");
+        smb.setAction("/load4MemberInfo1");
         smb
                 .setLinkText(new ActionMessage(
                         "UserAction.modifyUser.returnModify"));

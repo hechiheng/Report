@@ -7,7 +7,7 @@
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'/> 
 <title>系统信息提示</title>
 <style type="text/css">
-body{background:#fff;padding:0px;margin: 0px;font-family: 'Microsoft YaHei'; color: #333;}
+body{background:#edf6fa;padding:0px;margin: 0px;font-family: 'Microsoft YaHei'; color: #333;}
 input,button{ border:solid 1px #dcdcdc;height:30px; line-height:30px; padding:3px 6px;color:#999;background:#fff; vertical-align: middle;}
 select{border:solid 1px #ccc;}
 img{border:none;}
@@ -15,6 +15,7 @@ a{ text-decoration: none;color:#3361AD;}
 .success{font-size: 12px; color: #008B00;}
 .system-message{ padding:10pxx; }
 .system-message .jump{ padding-top: 10px; font-size:14px;}
+.jump a{width:115px; height:30px; font-size:14px; font-weight:normal; color:#fff; background:#3c95c8; display:inline-block; line-height:30px; text-align:center;border-radius: 3px; margin-top:20px;}
 .system-message .success,.system-message .error{ line-height: 1.6em; font-size: 18px;word-break:break-all; }
 .system-message .detail{ font-size: 12px; line-height: 20px; margin-top: 12px; display:none}
 
