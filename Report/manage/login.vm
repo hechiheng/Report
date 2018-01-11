@@ -90,7 +90,7 @@
 
 
 	<div class="logintop">    
-        <span>欢迎登录参赛管理系统</span>    
+        <span>欢迎登录</span>    
         ##<ul>
         ##    <li><a href="#">最新通知</a></li>
         ##    <li><a href="#">最新公告</a></li>
