@@ -46,14 +46,6 @@ jQuery(function () {
 				<span>$!modifyUserForm.user.username</span>
 			</li>
 			<li>
-				<label>登录密码：<b>*</b></label>
-				<input type="password" name="user.password" class="dfinput" style="width:300px;" value=""/>
-			</li>
-			<li>
-				<label>确认密码：<b>*</b></label>
-				<input type="password" name="user.password_re" class="dfinput" style="width:300px;" value=""/>
-			</li>
-			<li>
 				<label>姓名：<b>*</b></label>
 				<input type="text" name="user.factname" class="dfinput" style="width:300px;" value="$!modifyUserForm.user.factname"/>
 			</li>

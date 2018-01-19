@@ -24,7 +24,7 @@
     
     <div class="welinfo">
     <span><img src="$link.setRelative('/manage/images1/sun.png')" alt="天气" /></span>
-    <b>$!loginInfo.factname ，您好！欢迎使用信息管理系统</b>
+    <b>$!loginInfo.factname ，您好！欢迎使用大学生创新大赛网上申报系统</b>
     </div>
     
     ##<div class="welinfo">

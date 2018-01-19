@@ -12,29 +12,7 @@
 <style type="text/css">
 .h3{padding:5px; background:#C5E3FA; font-size:14px; font-weight:bold;border-left: 5px #0099FF solid;}
 </style>
-<script type="text/javascript">
-	window.UEDITOR_HOME_URL = "ueditor/";
-	window.onload = function() {
-		UE.getEditor('description', {
-    		toolbars: [
-                ['fullscreen']
-            ],
-            initialFrameWidth : 800,
-            initialFrameHeight: 100,
-			readonly : true
-        });
-		UE.getEditor('content', {
-    		toolbars: [
-                ['fullscreen']
-            ],
-            initialFrameWidth : 800,
-            initialFrameHeight: 400,
-			readonly : true
-        });
-		
-    }
 
-</script>
 </head>
 <body>
 <div class="main">
@@ -84,7 +62,50 @@
         </ul>
 	</div>
 </div>
+<script type="text/javascript">
+	window.UEDITOR_HOME_URL = "ueditor/";
+	window.onload = function() {
+		UE.getEditor('description', {
+    		toolbars: [
+                ['fullscreen']
+            ],
+            initialFrameWidth : 800,
+            initialFrameHeight: 100,
+			readonly : true
+        });
+		UE.getEditor('content', {
+    		toolbars: [
+                ['fullscreen']
+            ],
+            initialFrameWidth : 800,
+            initialFrameHeight: 400,
+			readonly : true
+        });
+		
+    }
 
-
+</script>
+<script type="text/javascript">
+	var ue = UE.getEditor('description', {
+		toolbars: [
+            ['fullscreen']
+        ],
+        initialFrameWidth : 800,
+        initialFrameHeight: 100
+    });
+	var ue1 = UE.getEditor('content', {
+		toolbars: [
+            ['fullscreen']
+        ],
+        initialFrameWidth : 800,
+        initialFrameHeight: 400
+    });
+	ue.ready(function() {
+	    ue.setDisabled('fullscreen');
+	});
+	ue1.ready(function() {
+	    ue.setDisabled('fullscreen');
+	});
+</script>
 </body>
 </html>
