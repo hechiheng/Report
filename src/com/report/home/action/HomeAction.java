@@ -43,12 +43,6 @@ public class HomeAction extends BaseAction {
         return mapping.findForward("success");
     }
 
-    public ActionForward load4Admin(ActionMapping mapping, ActionForm form,
-            HttpServletRequest request, HttpServletResponse response)
-            throws BaseException {
-        return mapping.findForward("success");
-    }
-
     public ActionForward showMessage(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws BaseException {

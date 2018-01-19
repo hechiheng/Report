@@ -21,7 +21,6 @@
             initialFrameHeight: 400,
 			readonly : true
         });
-		
     }
 
 </script>

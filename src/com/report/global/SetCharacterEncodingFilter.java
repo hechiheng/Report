@@ -44,13 +44,13 @@ public class SetCharacterEncodingFilter implements Filter {
             request.setCharacterEncoding(this.encodingName);
             response.setCharacterEncoding(this.encodingName);
         }
-        if (SysGlobals.getSysConfig("website_close").equals("1")) {
-            response.setContentType("text/html; charset=utf-8");
-            response.getWriter().println("<h1>网站维护中，请稍后访问</h1>");
-        }
-        else {
+//        if (SysGlobals.getSysConfig("website_close").equals("1")) {
+//            response.setContentType("text/html; charset=utf-8");
+//            response.getWriter().println("<h1>网站维护中，请稍后访问</h1>");
+//        }
+//        else {
             chain.doFilter(request, response);
-        }
+//        }
     }
 
     public void destroy() {
