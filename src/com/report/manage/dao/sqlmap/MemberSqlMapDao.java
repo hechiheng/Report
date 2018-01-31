@@ -105,12 +105,12 @@ public class MemberSqlMapDao extends SqlMapDaoTemplate implements MemberDao {
 		}
 	}
 
-	public void updateMemberIslock(Member member) throws BaseException {
+	public void updateMemberState(Member member) throws BaseException {
 		try {
-			this.update("manage.MemberDao.updateMemberIslock", member);
+			this.update("manage.MemberDao.updateMemberState", member);
 		} catch (DaoException e) {
-			logger.error("manage.MemberDao.updateMemberIslock", e);
-			throw new BaseException("manage.MemberDao.updateMemberIslock", e);
+			logger.error("manage.MemberDao.updateMemberState", e);
+			throw new BaseException("manage.MemberDao.updateMemberState", e);
 		}
 	}
 

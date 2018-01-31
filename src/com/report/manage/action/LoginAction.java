@@ -285,6 +285,7 @@ public class LoginAction extends BaseAction {
             return mapping.findForward("failure");
         }
 
+        member.setState(1);//默认审核通过
         bo.addMember(member);
 
         SysMessageBean smb = new SysMessageBean(false);

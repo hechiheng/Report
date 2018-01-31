@@ -25,6 +25,6 @@ public interface MemberDao {
 
 	public void updateMemberPwd(Member member) throws BaseException;
 	
-	public void updateMemberIslock(Member member) throws BaseException;
+	public void updateMemberState(Member member) throws BaseException;
 
 }

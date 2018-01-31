@@ -9,10 +9,11 @@
 <script type="text/javascript">
 jQuery(function () {
      jQuery("input[name='matchapply.annualmatch']").focus();
-	 
+	 /*
 	 var d = new Date();
 	 var year = d.getFullYear();
 	 jQuery("#annualmatch").val(year);
+	 */
 	 
 });
 </script>
@@ -29,7 +30,7 @@ jQuery(function () {
         <form method="get" action="$link.setAction('load4MatchapplyIndex')">
 		<ul class="seachform">
 			<li>
-				<label>参赛年度(YYYY)：</label>
+				<label>参赛年度：</label>
 				<input type="text" id="annualmatch" name="matchapply.annualmatch" class="scinput" style="width: 80px;" value="$!queryMatchapplyForm.matchapply.annualmatch"/>
 			</li>
 			<li>

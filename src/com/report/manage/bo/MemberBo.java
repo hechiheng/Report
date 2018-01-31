@@ -83,8 +83,8 @@ public class MemberBo {
         dao.deleteMember(id);
     }
 
-    public void lockMember(Member member) throws BaseException {
-        dao.updateMemberIslock(member);
+    public void modifyMemberState(Member member) throws BaseException {
+        dao.updateMemberState(member);
     }
 
     public void modifyMemberPwd(Member member) throws BaseException {

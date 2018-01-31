@@ -22,7 +22,7 @@
 		<ul class="seachform">
 			<input type="hidden" name="matchapply.memberid" value="$!queryMatchapplyForm.matchapply.memberid">
 			<li>
-				<label>参赛年度(YYYY)：</label>
+				<label>参赛年度：</label>
 				<input type="text" id="annualmatch" name="matchapply.annualmatch" class="scinput" style="width: 60px;" value="$!queryMatchapplyForm.matchapply.annualmatch"/>
 			</li>
 			<li>
@@ -63,7 +63,7 @@
     <table class="tablelist">
         <tr>
 			<th>编号</th>
-			<th>会员名称</th>
+			<th>参赛单位名称</th>
 			<th width="35%">作品名称</th>
 			<th>学校</th>
 			<th>作者</th>

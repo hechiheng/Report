@@ -86,6 +86,8 @@ public class Matchapply implements Serializable {
 
     private String factname;
 
+    private String checkmemo;
+
     public int getId() {
         return id;
     }
@@ -396,6 +398,14 @@ public class Matchapply implements Serializable {
 
     public void setIdcard(String idcard) {
         this.idcard = idcard;
+    }
+
+    public void setCheckmemo(String checkmemo) {
+        this.checkmemo = checkmemo;
+    }
+
+    public String getCheckmemo() {
+        return checkmemo;
     }
 
 }

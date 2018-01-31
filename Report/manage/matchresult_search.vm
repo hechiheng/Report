@@ -16,10 +16,10 @@
         </ul>
     </div>
     <div class="formbody">
-		<form method="get" action="$link.setAction('load4MatchresultIndex')">
+		<form method="get" action="$link.setAction('load4MatchresultSearch')">
 		<ul class="seachform">
 			<li>
-				<label>参赛年度(YYYY)：</label>
+				<label>参赛年度：</label>
 				<input type="text" id="annualmatch" name="matchapply.annualmatch" class="scinput" style="width: 80px;" value="$!queryMatchapplyForm.matchapply.annualmatch">
             </li>
 			<li>

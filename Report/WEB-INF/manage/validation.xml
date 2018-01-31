@@ -526,16 +526,16 @@
 <!--					<var-value>1</var-value>-->
 <!--				</var>-->
 <!--			</field>-->
-			<field property="member.idcard"
-				depends="required,bytemaxlength">
-				<arg key="member.idcard" />
-				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
-					resource="false" />
-				<var>
-					<var-name>bytemaxlength</var-name>
-					<var-value>20</var-value>
-				</var>
-			</field>
+<!--			<field property="member.idcard"-->
+<!--				depends="required,bytemaxlength">-->
+<!--				<arg key="member.idcard" />-->
+<!--				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"-->
+<!--					resource="false" />-->
+<!--				<var>-->
+<!--					<var-name>bytemaxlength</var-name>-->
+<!--					<var-value>20</var-value>-->
+<!--				</var>-->
+<!--			</field>-->
 			<field property="member.birthday"
 				depends="bytemaxlength">
 				<arg key="member.birthday" />
@@ -546,16 +546,16 @@
 					<var-value>20</var-value>
 				</var>
 			</field>
-			<field property="member.email"
-				depends="required,bytemaxlength">
-				<arg key="member.email" />
-				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
-					resource="false" />
-				<var>
-					<var-name>bytemaxlength</var-name>
-					<var-value>20</var-value>
-				</var>
-			</field>
+<!--			<field property="member.email"-->
+<!--				depends="required,bytemaxlength">-->
+<!--				<arg key="member.email" />-->
+<!--				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"-->
+<!--					resource="false" />-->
+<!--				<var>-->
+<!--					<var-name>bytemaxlength</var-name>-->
+<!--					<var-value>20</var-value>-->
+<!--				</var>-->
+<!--			</field>-->
 			<field property="member.qq"
 				depends="bytemaxlength">
 				<arg key="member.qq" />
@@ -618,16 +618,16 @@
 					<var-value>1</var-value>
 				</var>
 			</field>
-			<field property="member.idcard"
-				depends="bytemaxlength">
-				<arg key="member.idcard" />
-				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
-					resource="false" />
-				<var>
-					<var-name>bytemaxlength</var-name>
-					<var-value>20</var-value>
-				</var>
-			</field>
+<!--			<field property="member.idcard"-->
+<!--				depends="bytemaxlength">-->
+<!--				<arg key="member.idcard" />-->
+<!--				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"-->
+<!--					resource="false" />-->
+<!--				<var>-->
+<!--					<var-name>bytemaxlength</var-name>-->
+<!--					<var-value>20</var-value>-->
+<!--				</var>-->
+<!--			</field>-->
 			<field property="member.birthday"
 				depends="bytemaxlength">
 				<arg key="member.birthday" />
@@ -638,16 +638,16 @@
 					<var-value>20</var-value>
 				</var>
 			</field>
-			<field property="member.email"
-				depends="bytemaxlength">
-				<arg key="member.email" />
-				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"
-					resource="false" />
-				<var>
-					<var-name>bytemaxlength</var-name>
-					<var-value>20</var-value>
-				</var>
-			</field>
+<!--			<field property="member.email"-->
+<!--				depends="bytemaxlength">-->
+<!--				<arg key="member.email" />-->
+<!--				<arg1 name="bytemaxlength" key="${var:bytemaxlength}"-->
+<!--					resource="false" />-->
+<!--				<var>-->
+<!--					<var-name>bytemaxlength</var-name>-->
+<!--					<var-value>20</var-value>-->
+<!--				</var>-->
+<!--			</field>-->
 			<field property="member.qq"
 				depends="bytemaxlength">
 				<arg key="member.qq" />

@@ -16,12 +16,13 @@ jQuery(function () {
 		var factname = jQuery("input[name='member.factname']");
 		var email = jQuery("input[name='member.email']");
 		if(jQuery.trim(factname.val())==''){
-			factname.parent().find("span").remove().end().append("<span class='error'>会员名称不能为空</span>");
+			factname.parent().find("span").remove().end().append("<span class='error'>参赛单位名称不能为空</span>");
 			factname.focus();
 			return false;			
 		}else {
 			factname.parent().find("span").remove().end();
 		}
+		/*
 		if(jQuery.trim(email.val())==''){
 			email.parent().find("span").remove().end().append("<span class='error'>邮箱不能为空</span>");
 			email.focus();
@@ -29,6 +30,7 @@ jQuery(function () {
 		}else {
 			email.parent().find("span").remove().end();
 		}
+		*/
 
 	});
 	
@@ -49,11 +51,11 @@ jQuery(function () {
 		<form method='post' id="form_do" name="form_do" action="$link.setAction('modifyMember')">
 		<ul class="forminfo">
 			<li>
-				<label>用户名：</label>
+				<label>账号：</label>
 				<span>$!modifyMemberForm.member.accountid</span>
 			</li>
 			<li>
-				<label>会员名称：<b>*</b></label>
+				<label>参赛单位名称：<b>*</b></label>
 				<input type="text" name="member.factname" class="dfinput" style="width:200px;" value="$!modifyMemberForm.member.factname"/>
 			</li>
 			<li>
@@ -62,7 +64,7 @@ jQuery(function () {
 				<label style="width: 50px;"><input type="radio" name="member.sex" value="2" #if($!modifyMemberForm.member.sex==2) checked="checked" #end/>女</label>
 			</li>
 			<li>
-    			<label>身份证号：<b>*</b></label>
+    			<label>身份证号：</label>
     			<input type="text" name="member.idcard" class="dfinput" style="width:200px;"  value="$!modifyMemberForm.member.idcard"/>
             </li>
 			<li>
@@ -81,7 +83,7 @@ jQuery(function () {
                 </script>
             </li>
 			<li>
-    			<label>邮箱地址：<b>*</b></label>
+    			<label>邮箱地址：</label>
 				<input type="text" name="member.email" class="dfinput" style="width:500px;" value="$!modifyMemberForm.member.email"/>
             </li>
 			<li>

@@ -40,6 +40,9 @@ public class Member implements Serializable {
 
     private int isvalid;
 
+    /**
+     * 状态:0未审批,1正常,2锁定
+     */
     private int state;
 
     private String imagecode;

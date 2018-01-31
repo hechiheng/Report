@@ -74,7 +74,6 @@ public class MatchapplyAction extends BaseAction {
         String name = matchapply.getName();
         int matchid = matchapply.getMatchid();
         int state = matchapply.getState();
-        System.out.println("-------memberid-----" + memberid);
         String annualmatch = matchapply.getAnnualmatch();
         String p = request.getParameter("p");
         MatchapplyBo bo = new MatchapplyBo();
@@ -94,6 +93,10 @@ public class MatchapplyAction extends BaseAction {
                 .getMatchapplyAuditList1(matchapply);
         request.setAttribute("matchapplyList", matchapplyList);
         request.setAttribute("page", page);
+
+        request.getSession().setAttribute("matchapply.memberid", memberid);
+        request.getSession()
+                .setAttribute("matchapply.annualmatch", annualmatch);
         return mapping.findForward("success");
     }
 
@@ -124,11 +127,8 @@ public class MatchapplyAction extends BaseAction {
         Map<String, String> sessionMap = SysGlobals.getSessionObj(request,
                 Constants.MANAGE_SESSION);
         int userid = Integer.valueOf(sessionMap.get("userid"));
-        String id = request.getParameter("id");
-        String state = request.getParameter("state");
-        Matchapply matchapply = new Matchapply();
-        matchapply.setId(Integer.valueOf(id));
-        matchapply.setState(Integer.valueOf(state));
+        MatchapplyForm matchapplyForm = (MatchapplyForm) form;
+        Matchapply matchapply = matchapplyForm.getMatchapply();
         MatchapplyBo bo = new MatchapplyBo();
         matchapply.setCheckuserid(userid);
         bo.auditMatchapply(matchapply);
@@ -138,10 +138,15 @@ public class MatchapplyAction extends BaseAction {
                 "MatchapplyAction.auditMatchapply.success"));
         smb.setLinkText(new ActionMessage("MatchapplyAction.return"));
         smb.setAction("/load4MatchapplyAuditIndex1");
+        smb.setQueryData("matchapply.memberid", (String) request.getSession()
+                .getAttribute("matchapply.memberid"));
+        smb.setQueryData("matchapply.annualmatch", (String) request
+                .getSession().getAttribute("matchapply.annualmatch"));
         SysGlobals.setSysMessage(request, smb);
         return mapping.findForward("info");
     }
 
+    @SuppressWarnings("unchecked")
     public ActionForward load4MatchresultIndex(ActionMapping mapping,
             ActionForm form, HttpServletRequest request,
             HttpServletResponse response) throws BaseException {
@@ -195,6 +200,10 @@ public class MatchapplyAction extends BaseAction {
         List<Matchapply> matchapplyList = bo.getMatchresultList1(matchapply);
         request.setAttribute("matchapplyList", matchapplyList);
         request.setAttribute("page", page);
+
+        request.getSession().setAttribute("matchapply.memberid", memberid);
+        request.getSession()
+                .setAttribute("matchapply.annualmatch", annualmatch);
         return mapping.findForward("success");
     }
 
@@ -235,6 +244,10 @@ public class MatchapplyAction extends BaseAction {
                 "MatchapplyAction.modifyMatchresult.success"));
         smb.setLinkText(new ActionMessage("MatchapplyAction.return"));
         smb.setAction("/load4MatchresultIndex");
+        smb.setQueryData("matchapply.memberid", (String) request.getSession()
+                .getAttribute("matchapply.memberid"));
+        smb.setQueryData("matchapply.annualmatch", (String) request
+                .getSession().getAttribute("matchapply.annualmatch"));
         SysGlobals.setSysMessage(request, smb);
         return mapping.findForward("info");
     }

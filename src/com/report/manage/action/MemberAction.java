@@ -252,7 +252,7 @@ public class MemberAction extends BaseAction {
         member.setId(Integer.valueOf(id));
         member.setState(1);
         MemberBo bo = new MemberBo();
-        bo.lockMember(member);
+        bo.modifyMemberState(member);
 
         SysMessageBean smb = new SysMessageBean(false);
         smb.setMessage(new ActionMessage(
@@ -271,7 +271,7 @@ public class MemberAction extends BaseAction {
         member.setId(Integer.valueOf(id));
         member.setState(2);
         MemberBo bo = new MemberBo();
-        bo.lockMember(member);
+        bo.modifyMemberState(member);
 
         SysMessageBean smb = new SysMessageBean(false);
         smb.setMessage(new ActionMessage(
@@ -290,7 +290,7 @@ public class MemberAction extends BaseAction {
         member.setId(Integer.valueOf(id));
         member.setState(1);
         MemberBo bo = new MemberBo();
-        bo.lockMember(member);
+        bo.modifyMemberState(member);
 
         SysMessageBean smb = new SysMessageBean(false);
         smb.setMessage(new ActionMessage(

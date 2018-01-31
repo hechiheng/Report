@@ -30,11 +30,11 @@
 		</div>
 		<ul class="forminfo">
 			<li>
-				<label>用户名：</label>
+				<label>账号：</label>
 				<span>$!member.accountid</span>
 			</li>
 			<li>
-				<label>会员名称：</label>
+				<label>参赛单位名称：</label>
 				<span>$!member.factname</span>
 			</li>
 			<li>

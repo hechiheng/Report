@@ -1218,6 +1218,7 @@
         	path="/auditMatchapply"
 			type="com.report.manage.action.MatchapplyAction"
 			scope="request"
+			name="auditMatchapplyForm"
 			validate="false"
 			parameter="auditMatchapply">
         </action>

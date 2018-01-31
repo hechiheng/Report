@@ -66,6 +66,10 @@
 				</span>
 			</li>
 			<li>
+				<label>审核意见：</label>
+				<span style="display: flex;"><textarea id="checkmemo" readonly="readonly" class="dfinput" style="width:600px;height:100px;">$!matchapply.checkmemo</textarea></span>
+			</li>
+			<li>
 				<label>作品简述：</label>
 				<span style="display: flex;"><textarea id="description" readonly="readonly">$!matchapply.description</textarea></span>
 			</li>

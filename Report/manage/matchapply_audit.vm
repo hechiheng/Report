@@ -26,6 +26,7 @@
 		<div class="h3">
 			<span>参赛报名信息</span>
 		</div>
+		<form method='post' id="form_do" name="form_do" action="$link.setAction('auditMatchapply')">
 		<ul class="forminfo">
 			<li>
 				<label>参赛年度：</label>
@@ -73,14 +74,26 @@
 				<label>附件资料：</label>
 				<span style="display: flex;"><a target="_blank" href="$!matchapply.filepath" title="$!matchapply.filename">$!matchapply.filename</a></span>
 			</li>
+			<li>
+				<label>审核状态：<b>*</b></label>
+				<select name="matchapply.state" class="dfinput" style="width:200px;">
+					<option value="2" selected="selected">审核通过</option>
+					<option value="3">审核未通过</option>
+				</select>
+			</li>
+			<li>
+				<label>审核意见：</label>
+				<label style="margin-bottom: 13px;"><textarea name="matchapply.checkmemo" class="dfinput" style="width:600px;height:100px;"></textarea></label>
+			</li>
         </ul>
 		<ul class="forminfo">
 			<li>
-				<input type="button" onclick="goUrl('$link.setAction('auditMatchapply').addQueryData('id',$!matchapply.id).addQueryData('state','2')')"  class="btn" value="审核通过" />
-    			<input type="button" onclick="goUrl('$link.setAction('auditMatchapply').addQueryData('id',$!matchapply.id).addQueryData('state','3')')"  class="btn" value="审核不通过" />
+				<input type="hidden" name="matchapply.id" value="$!matchapply.id" />
+				<input name="" type="submit" class="btn" value="审核"/>
     			<input type="button" class="btn" id="back" value="返 回" onclick="javascript:history.back();" />
             </li>
         </ul>
+        </form>
 	</div>
 </div>
 <script type="text/javascript">

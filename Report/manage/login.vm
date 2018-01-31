@@ -91,44 +91,50 @@
 
 	<div class="logintop">    
         <span>欢迎登录</span>    
-        ##<ul>
+        <ul>
         ##    <li><a href="#">最新通知</a></li>
-        ##    <li><a href="#">最新公告</a></li>
-        ##</ul>    
+            <li><a href="#">最新公告</a></li>
+        </ul>    
     </div>
 	
     <div class="loginbody">
-    
-    <span class="systemlogo"></span> 
-       
-    <div class="loginbox">
-    <form action="$link.setAction('login.do')" method="post" name="form_do" id="form_do">
-    <ul>
-    <li><input id="username" name="username" type="text" class="loginuser" value="admin"/></li>
-    <li><input name="password" type="password" class="loginpwd" value="1"/></li>
-    <li>
-		<input name="imagecode" type="text" class="loginimgcode"/>
-		<img src="$link.setAction('imageCode.do')" align="absmiddle" id="code" onclick="change_code(this);"/>
-	</li>
-	<li>
-		<label style="padding-left:0px;font-size: 14px;">登录用户类型：</label>
-		<select id="logintype" name="logintype" class="dfinput" style="width:100px;">
-			<option value="1" selected="selected">参赛会员</option>
-			<option value="2">管理员</option>
-		</select>
-    </li>
-	<li>
-		<label style="padding-left:0px;font-size: 14px;"><input type="checkbox" id="rememberMe" />记住用户名</label>
-    </li>
-    <li style="clear:both">
-		<input type="submit" class="loginbtn" value="登录"/>
-		<input type="button" class="loginbtn" onclick="goUrl('$link.setAction('load4MemberReg')')" value="注册会员" style="margin-left: 50px;"/>
-	</li>
-    <li><span class="errorcolor">#errorMarkup()</span></li>
-    </ul>
-    </form>
-    
-    </div>
+		<span class="systemlogo"></span> 
+        <div class="loginbox">
+            <form action="$link.setAction('login.do')" method="post" name="form_do" id="form_do">
+                <ul>
+                    <li><input id="username" name="username" type="text" class="loginuser" value="admin"/></li>
+                    <li><input name="password" type="password" class="loginpwd" value="1"/></li>
+                    <li>
+                		<input name="imagecode" type="text" class="loginimgcode"/>
+                		<img src="$link.setAction('imageCode.do')" align="absmiddle" id="code" onclick="change_code(this);"/>
+                	</li>
+                	<li>
+                		<label style="padding-left:0px;font-size: 14px;">登录用户类型：</label>
+                		<select id="logintype" name="logintype" class="dfinput" style="width:100px;">
+                			<option value="1" selected="selected">参赛会员</option>
+                			<option value="2">管理员</option>
+                		</select>
+                    </li>
+                	<li>
+                		<label style="padding-left:0px;font-size: 14px;"><input type="checkbox" id="rememberMe" />记住用户名</label>
+                    </li>
+                    <li style="clear:both">
+                		<input type="submit" class="loginbtn" value="登录"/>
+                		<input type="button" class="loginbtn" onclick="goUrl('$link.setAction('load4MemberReg')')" value="注册会员" style="margin-left: 50px;"/>
+                	</li>
+                    <li><span class="errorcolor">#errorMarkup()</span></li>
+                </ul>
+            </form>
+        </div>
+		<div class="inforight" style="margin-top: 10px;width: 48%;">
+    		<div class="listtitle">最新公告</div>    
+            <ul class="newlist">
+    			#set($announceList = $request.getAttribute("announceList"))
+    			#foreach($announce in $announceList)
+                <li><a href="$link.setAction('showAnnounceInfo').addQueryData('id',$!announce.id)">$!announce.title</a><b>$!announce.publishtime</b></li>
+    			#end
+            </ul>   
+        </div>
     
     </div>
     

@@ -37,8 +37,8 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 	</select>
 	
 	<insert id="manage.MemberDao.insertMember" parameterClass="member">
-		insert into t_member(accountid,password,sex,factname,idcard,birthday,address,qq,email,tel,regtime)
-		values(#accountid#,#password#,#sex#,#factname#,#idcard#,#birthday#,#address#,#qq#,#email#,#tel#,UNIX_TIMESTAMP(NOW()))
+		insert into t_member(accountid,password,sex,factname,idcard,birthday,address,qq,email,tel,regtime,state)
+		values(#accountid#,#password#,#sex#,#factname#,#idcard#,#birthday#,#address#,#qq#,#email#,#tel#,UNIX_TIMESTAMP(NOW()),#state#)
 	</insert>
 	
 	<select id="manage.MemberDao.selectMember" parameterClass="int" resultClass="member">
@@ -65,7 +65,7 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		delete from t_member where id=#id#
 	</delete>
 	
-	<update id="manage.MemberDao.updateMemberIslock" parameterClass="member">
+	<update id="manage.MemberDao.updateMemberState" parameterClass="member">
 		update t_member set state=#state# where id=#id#
 	</update>
 	
