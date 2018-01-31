@@ -146,7 +146,6 @@ public class MatchapplyAction extends BaseAction {
         return mapping.findForward("info");
     }
 
-    @SuppressWarnings("unchecked")
     public ActionForward load4MatchresultIndex(ActionMapping mapping,
             ActionForm form, HttpServletRequest request,
             HttpServletResponse response) throws BaseException {

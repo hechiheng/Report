@@ -43,6 +43,19 @@ public class LoginAction extends BaseAction {
     public ActionForward load4Login(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws BaseException {
+        AnnounceBo announceBo = new AnnounceBo();
+        List<Announce> announceList = announceBo.getLatestAnnounceList();
+        request.setAttribute("announceList", announceList);
+        return mapping.findForward("success");
+    }
+
+    public ActionForward load4Announce(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response)
+            throws BaseException {
+        String id = request.getParameter("id");
+        AnnounceBo bo = new AnnounceBo();
+        Announce announce = bo.getAnnounce(Integer.valueOf(id));
+        request.setAttribute("announce", announce);
         return mapping.findForward("success");
     }
 
@@ -285,7 +298,7 @@ public class LoginAction extends BaseAction {
             return mapping.findForward("failure");
         }
 
-        member.setState(1);//默认审核通过
+        member.setState(1);// 默认审核通过
         bo.addMember(member);
 
         SysMessageBean smb = new SysMessageBean(false);

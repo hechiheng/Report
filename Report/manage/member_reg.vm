@@ -5,8 +5,9 @@
 #parse("/manage/include/webtitle.vm")
 <link rel="shortcut icon" href="$link.setRelative('favicon.png')" />
 <link type="text/css" rel="stylesheet" href="$link.setRelative('/manage/css1/style.css')" />
-<script type="text/javascript" src="$link.setRelative('/manage/js1/jquery.js')"></script>
-<script type="text/javascript" src="$link.setRelative('/manage/js/jquery.form.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery-1.7.2.min.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/jquery.cookie.js')"></script>
+<script type="text/javascript" src="$link.setRelative('/manage/js/common.js')"></script>
 ##<script type="text/javascript" src="$link.setRelative('/manage/js1/cloud.js')"></script>
 
 <style type="text/css">
@@ -15,21 +16,81 @@
     border: 1px solid;
     height: 30px;
 }
-.forminfo li label{width: 120px; text-align: right; padding-right: 10px;}
+.systemlogo1{
+	background:url("images1/logo.png") no-repeat left;
+	width:100%; 
+	height:71px; 
+	margin-top:10px;
+	margin-left: 20px;
+	display:block;
+}
+.login {
+    background: #fff;
+    padding: 16px 34px 37px;
+    width: 70%;
+    margin: 0 auto;
+}
+.login .hd {
+    border-bottom: 1px solid #ccc;
+    height: 72px;
+    margin-bottom: 20px;
+}
+.login .hd li.on {
+    color: #2b9fd0;
+}
+.login .hd li {
+    font: 20px/71px "微软雅黑";
+    color: #2b9fd0;
+    float: left;
+    color: #666;
+    width: 50%;
+}
+.login ul li{margin-bottom:10px;}
+.login label {
+    width: 120px;
+    text-align: right;
+    padding-right: 10px;
+	display: block;
+	float: left;
+}
+.login b {
+    color: #ea2020;
+    padding-left: 3px;
+}
+.login .reginput {
+    width: 272px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+    font-family: "微软雅黑";
+    font-size: 14px;
+    color: #666;
+}
+.login .logintype {
+    width: 150px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #ccc;
+    font-family: "微软雅黑";
+    font-size: 14px;
+    color: #666;
+}
+.login .loginbutton {
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    font-family: 微软雅黑;
+    background: rgb(43, 159, 208);
+}
 </style>
-
 <script language="javascript">
 	jQuery(function(){
 		jQuery("#username").focus();
 		
-        jQuery('.regbox').css({'position':'absolute','left':(jQuery(window).width()-692)/2});
-    	jQuery(window).resize(function(){  
-        jQuery('.regbox').css({'position':'absolute','left':(jQuery(window).width()-692)/2});
-		
     });
-});  
 </script> 
-
 <script type="text/javascript">
 function change_code(obj){
 	jQuery("#code").attr("src",obj.src+'?'+Math.random());
@@ -134,68 +195,55 @@ jQuery(function () {
       <div id="cloud2" class="cloud"></div>
     </div>  
 
-
-	<div class="logintop">    
-        ##<span>欢迎登录参赛管理系统</span>    
-        ##<ul>
-        ##    <li><a href="#">最新通知</a></li>
-        ##    <li><a href="#">最新公告</a></li>
-        ##</ul>    
-    </div>
-	
     <div class="loginbody">
-    
-    <span class="systemlogo"></span> 
-       
-    <div class="formbody">
-    <form id="form_do" action="$link.setAction('regMember.do')" method="post" id="login">
-    <ul class="forminfo" style="width: 700px;margin: 0 auto;background:#edf6fa;padding: 20px;">
-		<li>
-			<label style="font-size: 16px;font-weight: bold;margin-bottom: 10px;">会员注册</label>
-		</li>
-		<li>
-			<label> 　　账号：<b>*</b></label>
-			<input type="text" name="member.accountid" class="dfinput" width="60%" value="$!addMemberForm.member.accountid"/>
-		</li>
-		<li>
-			<label>登录密码：<b>*</b></label>
-			<input type="password" name="member.password" class="dfinput" width="60%" value=""/>
-		</li>
-		<li>
-			<label>确认密码：<b>*</b></label>
-			<input type="password" name="member.password_re" class="dfinput" width="60%" value=""/>
-        </li>
-		<li>
-			<label>参赛单位名称：<b>*</b></label>
-			<input type="text" name="member.factname" class="dfinput" width="60%" value="$!addMemberForm.member.factname"/>
-        </li>
-		<li>
-			<label>身份证号：</label>
-			<input type="text" name="member.idcard" class="dfinput" width="60%" value="$!addMemberForm.member.idcard"/>
-        </li>
-		<li>
-			<label>邮箱地址：</label>
-			<input type="text" name="member.email" class="dfinput" width="60%" value="$!addMemberForm.member.email"/>
-        </li>
-        <li>
-			<label>验证码：<b>*</b></label>
-    		<input name="member.imagecode" type="text" class="dfinput" style="width:200px;"/>
-    		<img src="$link.setAction('imageCode.do')" align="absmiddle" id="code" onclick="change_code(this);"/>
-    	</li>
-        <li style="clear:both">
-			<label>&nbsp;</label>
-    		<input type="submit" class="loginbtn" value="提交"/>
-    	</li>
-		<li><span class="errorcolor">#errorMarkup()</span></li>
-    </ul>
-    </form>
-    
-    </div>
+		<span class="systemlogo1"></span> 
+        <div class="login">
+            <ul class="hd">
+                <li class="on">注册会员</li>
+                <li class="on"><a style="float: right;" href="javascript:void(0)" onclick="goUrl('$link.setAction('load4Login')')">返回登录</a></li>
+            </ul>
+			<form id="form_do" action="$link.setAction('regMember.do')" method="post" id="login">
+                <ul>
+            		<li>
+            			<label>账号：<b>*</b></label>
+            			<input type="text" name="member.accountid" class="reginput" value="$!addMemberForm.member.accountid"/>
+            		</li>
+            		<li>
+            			<label>登录密码：<b>*</b></label>
+            			<input type="password" name="member.password" class="reginput" value=""/>
+            		</li>
+            		<li>
+            			<label>确认密码：<b>*</b></label>
+            			<input type="password" name="member.password_re" class="reginput" value=""/>
+                    </li>
+            		<li>
+            			<label>参赛单位名称：<b>*</b></label>
+            			<input type="text" name="member.factname" class="reginput" value="$!addMemberForm.member.factname"/>
+                    </li>
+            		<li>
+            			<label>身份证号：</label>
+            			<input type="text" name="member.idcard" class="reginput" value="$!addMemberForm.member.idcard"/>
+                    </li>
+            		<li>
+            			<label>邮箱地址：</label>
+            			<input type="text" name="member.email" class="reginput" value="$!addMemberForm.member.email"/>
+                    </li>
+                    <li>
+            			<label>验证码：<b>*</b></label>
+                		<input name="member.imagecode" type="text" class="reginput" style="width:200px;"/>
+                		<img src="$link.setAction('imageCode.do')" align="absmiddle" id="code" onclick="change_code(this);"/>
+                	</li>
+                    <li style="clear:both">
+						<label>&nbsp;</label>
+                		<input type="submit" class="loginbutton" value="注册"/>
+                	</li>
+            		<li><span class="errorcolor">#errorMarkup()</span></li>
+                </ul>
+            </form>
+        </div>
     
     </div>
     
-    
-    
-    <div class="loginbm">Copyright © 2009 - 2016 XXX. All Rights Reserved</div>
+    <div class="loginbm">#parse("/manage/include/copyright.vm")</div>
 </body>
 </html>

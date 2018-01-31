@@ -181,6 +181,15 @@
 			parameter="load4Login">
 			<forward name="success" path="/../manage/login.vm"/>
         </action>
+        <action
+        	path="/load4Announce"
+			type="com.report.manage.action.LoginAction"
+			scope="request"
+			validate="false"
+			parameter="load4Announce">
+			<forward name="success" path="/../manage/login_announce.vm"/>
+        </action>
+        
 		<action	path="/login"
 			type="com.report.manage.action.LoginAction"
 			scope="request"
