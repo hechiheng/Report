@@ -31,7 +31,7 @@ h2{font-weight:normal;}
 .logintop ul li{float:left; margin-left:20px; line-height:47px;}
 .logintop ul li a{color:#afc5d2;}
 .logintop ul li a:hover{color:#fff;}
-.loginbody{background:url(../images1/loginbg3.png) no-repeat center center; width:100%; height:585px; overflow:hidden; position:absolute; top:10px;}
+.loginbody{background:url(../images1/loginbg3.png) no-repeat center center; width:100%; height:585px; overflow-x: hidden;overflow-y:auto; position:absolute; top:10px;}
 .systemlogo{background:url(../images1/logo.png) no-repeat center;width:100%; height:71px; margin-top:60px;display:block;}
 .loginbox{width:692px; height:336px; background:url(../images1/logininfo.png) no-repeat; margin-top:15px;}
 .loginbox ul{margin-top:88px; margin-left:285px;}
@@ -44,7 +44,7 @@ h2{font-weight:normal;}
 .loginpwd{width:196px; height:30px; background:url(../images1/loginpassword.png) no-repeat; border:none;line-height:30px; padding-left:44px; font-size:14px; color:#90a2bc;}
 .loginimgcode{width:136px; height:30px; background:url(../images1/loginimgcode.png) no-repeat; border:none;line-height:30px; padding-left:44px; font-size:14px; color:#90a2bc;}
 .loginbtn{width:95px;height:30px; background:url(../images1/buttonbg.png) no-repeat; font-size:14px; font-weight:bold; color:#fff;cursor:pointer; line-height:30px;}
-.loginbm{height:50px; line-height:50px; text-align:center; background:url(../images1/loginbg2.png) repeat-x;position:absolute; bottom:0; width:100%; color:#0b3a58;}
+.loginbm{height:20px; line-height:20px; text-align:center; background:url(../images1/loginbg2.png) repeat-x;position:absolute; bottom:0; width:100%; color:#0b3a58;font-size: 12px;}
 .loginbm a{font-weight:bold;color:#0b3a58;}
 .loginbm a:hover{color:#fff;}
 
